@@ -1,0 +1,178 @@
+# Scene informations
+title: "rtv1 - scene 1"
+camera{
+	pos: {0, 0, -10}
+	rot: {0, 0, 0}
+}
+#
+
+# Objects
+object{
+	type: "plane"
+	center: {0, -7, 0}
+	axis: {0, -30, 0}
+	color: {250, 150, 150}
+}
+object{
+	type: "plane"
+	center: {0, 0, 42}
+	axis: {0, 0, 1}
+	color: {100, 100, 100}
+}
+object{
+	type: "plane"
+	center: {0, 7, 0}
+	axis: {0, -30, 0}
+	color: {250, 220, 220}
+}
+
+object{
+	type: "cylinder"
+	center: {-8, 0, 15}
+	axis: {0, 0, 0}
+	radius: 2
+	color: {250, 200, 200}
+}
+object{
+	type: "cylinder"
+	center: {-8, 0, 30}
+	axis: {0, 0, 0}
+	radius: 2
+	color: {250, 200, 200}
+}
+object{
+	type: "cylinder"
+	center: {8, 0, 15}
+	axis: {0, 0, 0}
+	radius: 2
+	color: {250, 200, 200}
+}
+object{
+	type: "cylinder"
+	center: {8, 0, 30}
+	axis: {0, 0, 0}
+	radius: 2
+	color: {250, 200, 200}
+}
+
+object{
+	type: "sphere"
+	center: {-8, -7, 15}
+	radius: 2
+	color: {250, 200, 200}
+}
+object{
+	type: "sphere"
+	center: {-8, -7, 30}
+	radius: 2
+	color: {250, 200, 200}
+}
+object{
+	type: "sphere"
+	center: {8, -7, 15}
+	radius: 2
+	color: {250, 200, 200}
+}
+object{
+	type: "sphere"
+	center: {8, -7, 30}
+	radius: 2
+	color: {250, 200, 200}
+}
+
+object{
+	type: "sphere"
+	center: {-8, 7, 15}
+	radius: 2
+	color: {250, 200, 200}
+}
+object{
+	type: "sphere"
+	center: {-8, 7, 30}
+	radius: 2
+	color: {250, 200, 200}
+}
+object{
+	type: "sphere"
+	center: {8, 7, 15}
+	radius: 2
+	color: {250, 200, 200}
+}
+object{
+	type: "sphere"
+	center: {8, 7, 30}
+	radius: 2
+	color: {250, 200, 200}
+}
+
+object{
+	type: "cone"
+	center: {0, 7, 22}
+	axis: {0, 0, 1}
+	radius: 10
+	color: {12, 123, 123}
+}
+object{
+	type: "sphere"
+	center: {-2, 4, 23}
+	radius: 1
+	color: {50, 50, 255}
+}
+object{
+	type: "sphere"
+	center: {1, 2, 24}
+	radius: 1
+	color: {50, 50, 255}
+}
+object{
+	type: "sphere"
+	center: {0, -1, 20}
+	radius: 1
+	color: {50, 50, 255}
+}
+
+#
+
+# Lights
+spot{
+	pos: {0, 0, 10}
+	color: {255, 255, 255}
+}
+spot{
+	pos: {-12, 0, 20}
+	color: {255, 255, 42}
+}
+spot{
+	pos: {10, 2, 12}
+	color: {20, 180, 40}
+}
+
+spot{
+	pos: {5, 12, 4}
+	color: {255, 43, 150}
+}
+#
+
+##END##
+
+camera{
+	pos: {x, y, z}
+	rot: {x, y, z}
+}
+
+object{
+	type: "sphere/plane/cylinder/cone"
+	center: {x, y, z}
+	axis: {x, y, z}
+	color: {r, g, b}
+	radius: a
+}
+sphere -> center, radius, color
+plane -> center, axis, color
+cylinder -> center, axis, radius, color
+cone -> center, axis, radius, color
+
+spot{
+	pos: {x, y, z}
+	color: {r, g, b}
+}

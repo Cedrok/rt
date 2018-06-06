@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/06 10:34:18 by tmilon           ###   ########.fr        #
+#    Updated: 2018/06/06 18:38:51 by cvautrai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,13 +43,10 @@ SRC_NAME= 	main.c				\
 			utils.c				\
 			intersection.c		\
 			normal.c			\
-			parsing.c 			\
-			create_obj.c		\
 			camera.c			\
 			img.c				\
 			rotation_matrix.c	\
 			ray_adapter.c		\
-			parse_2.c			\
 			light.c				\
 			exit.c				\
 			filter.c 			\
@@ -57,7 +54,15 @@ SRC_NAME= 	main.c				\
 			textures.c			\
 			limit.c				\
 			button_event.c		\
-			sdl_init.c
+			sdl_init.c			\
+			create_obj.c		\
+			parser.c			\
+			parser_check_print.c			\
+			parser_gets.c			\
+			parser_sc_infos.c			\
+			parser_utils.c			
+#			parsing.c 			\
+			parse_2.c			\
 
 OBJ_NAME=	$(SRC_NAME:.c=.o)
 

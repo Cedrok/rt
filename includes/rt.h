@@ -6,12 +6,12 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/06 10:47:27 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/06 18:35:30 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RTV1_H
-# define RTV1_H
+#ifndef RT_H
+# define RT_H
 
 # include <SDL.h>
 # include "../libgraph/include/libgraph.h"
@@ -29,7 +29,6 @@
 # define DIST_MAX			2000000
 # define DIST_MIN			0.00000001
 # define THREAD_LIMIT		40
-# define MOTION_NOTIFY		6
 # define PI					3.141592653
 
 /*
@@ -108,7 +107,7 @@ typedef struct		s_shape
 	t_mat3d			rot;
 	t_mat3d			inv_rot;
 	t_textunit		textunit;
-	void			*shape;
+//	void			*shape;
 }					t_shape;
 
 /*
@@ -137,11 +136,11 @@ typedef struct		s_intersect
 typedef struct		s_env
 {
 	SDL_Window		*win;
-	SDL_GLContext	gtx;
 	SDL_Renderer	*rend;
 	SDL_Surface		*surf;
 	SDL_Surface		*s_filter;
 	int				loop;
+	char			*title;
 }					t_env;
 
 /*
@@ -150,14 +149,11 @@ typedef struct		s_env
 
 typedef struct		s_data
 {
-	double			x_offset;
-	double			y_offset;
-	double			z_offset;
-	double			zoom;
 	double			ambiantlight;
 	int				fastmode;
 	int				filter;
 	int				nb_light;
+	int				nb_shape;
 }					t_data;
 
 typedef struct		s_scene
@@ -190,7 +186,7 @@ typedef struct		s_thread_param
 ** Initstruct
 */
 
-t_light				new_light(t_vector3d origin, double intensity, int color);
+t_light				new_light(t_vector3d origin, double intensity, int color);//?
 t_ray				new_ray(t_vector3d o, t_vector3d d);
 t_point				new_point(int x, int y, int color);
 t_shape				new_shape(int type, void *shape, int color);
@@ -234,6 +230,8 @@ void				setup_multithread(t_scene scene, t_env *unit, t_data data);
 */
 
 int			texture(int color, t_intersect i, t_shape s);
+void		setup_textunit(const char *surfpath, t_textunit *textunit,
+		double xscale, double yscale);
 
 /*
  ** Limiters
@@ -280,16 +278,30 @@ t_vector3d			set_axe(int x, int y, t_camera *cam);
 **	Parse
 */
 
+void				parse(t_all *param, char *arg);
+void				get_scene_infos(t_all *param, int *fd);
+void				get_ligths(t_all *param, int *fd);
+void				get_objs(t_all *param, int *fd);
+void				print_infos(int a, int b);
+
+char				*extract_text(char *line);
+t_vector3d			extract_vd3(char *line);
+int					rt_get_next_line(int fd, char **line);
+
 t_light				cpy_light(char **tab);
 void				cpy_cone(t_shape *shape, char **tab);
 void				cpy_cylinder(t_shape *shape, char **tab);
 void				cpy_sphere(t_shape *shape, char **tab);
 void				cpy_plane(t_shape *shape, char **tab);
-int					parse(char *file, t_scene *scene);
+//int					parse(char *file, t_scene *scene);
 void				create_scene(char *s, t_scene *scene,
 		int *nb_cam, int *nb_lght);
 void				ft_abort_free(char *msg, char *line);
 void				parsing_quit(char *msg, char **splt_ln, char *ln);
+
+/*
+**	Misc
+*/
 
 int					sdl_key(t_all *param, int key);
 

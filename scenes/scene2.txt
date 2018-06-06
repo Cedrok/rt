@@ -1,0 +1,131 @@
+# Scene informations
+title: "rtv1 - scene 2"
+camera{
+	pos: {0, 0, -10}
+	rot: {0, 0, 0}
+}
+#
+
+# Objects
+object{
+	type: "sphere"
+	center:{0,0,0}
+	radius: 1
+	color:{250, 250, 250}
+}
+object{
+	type: "sphere"
+	center: {-10, -7, 15}
+	radius: 2
+	color: {255, 100, 2}
+}
+object{
+	type: "sphere"
+	center: {4, 2, 10}
+	radius: 1
+	color: {255, 0, 0}
+}
+object{
+	type:"sphere"
+	center: {-3, 1, 5}
+	radius: 1
+	color: {25, 255, 25}
+}
+object{
+	type: "sphere"
+	center: {-3, -5, 20}
+	color: {255, 255, 42}
+	radius: 1
+}
+object{
+	type: "plane"
+	center: {0, 0, 42}
+	axis: {0, 0, 1}
+	color: {55, 55, 255}
+}
+object{
+	type: "plane"
+	center: {-13, 0, 20}
+	axis: {-30, 0, 1}
+	color: {150,10,250}
+}
+object{
+	type: "plane"
+	center: {0, -7, 0}
+	axis: {0, 30, 0}
+	color: {225, 225, 225}
+}
+object{
+	type: "cylinder"
+	center: {-12, 6, 20}
+	axis: {0, 0, 0}
+	radius: 5
+	color: {25, 255, 255}
+}
+object{
+	type: "cylinder"
+	center: {3, 2, 23}
+	axis: {50, 0, 30}
+	radius: 5
+	color: {255, 155, 100}
+}
+object{
+	type: "cone"
+	center: {-3, 5, 25}
+	axis: {-15, 30, -42}
+	radius: 15
+	color: {25, 150, 255}
+}
+object{
+	type: "cone"
+	center: {5, -2, 10}
+	axis: {12, 0, -142}
+	radius: 15
+	color: {25, 250, 125}
+}
+#
+
+# Lights
+spot{
+	pos: {-7, 3, 25}
+	color: {20, 200, 25}
+}
+spot{
+	pos: {-3, 2, -12}
+	color: {255, 255, 155}
+}
+spot{
+	pos: {0, 0, 8}
+	color: {255, 255, 255}
+}
+spot{
+	pos:{5, -2, 2}
+	color: {2, 3, 200}
+}
+#
+
+#END##
+
+camera{
+	pos: {x, y, z}
+	rot: {x, y, z}
+}
+
+object{
+	type: "sphere/plane/cylinder/cone"
+	center: {x, y, z}
+	axis: {x, y, z}
+	color: {r, g, b}
+	radius: a
+	length: a
+}
+sphere -> center, radius, color
+plane -> center, axis, color
+cylinder -> center, axis, radius, color[, length]
+cone -> center, axis, radius, color[, length]
+
+spot{
+	pos: {x, y, z}
+	color: {r, g, b}
+	[range: a]
+}

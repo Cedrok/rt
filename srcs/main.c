@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 15:09:23 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/06 10:52:36 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/06 18:47:39 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static t_all	init_param(t_all param)
 	create_win_render(param.env);
 	create_all_surface(param.env);
 	clear_render(param.env);
-	param.data.ambiantlight = 0;
+	param.data.ambiantlight = 0;//
 	param.env->loop = 1;
 	param.data.fastmode = 1;
 	param.data.filter = 4;
@@ -50,8 +50,9 @@ int				main(int ac, char **av)
 		ft_abort("Usage: ./rtv1 [scene_file.csv]");
 	if (!(param.env = (t_env*)malloc(sizeof(t_env))))
 		ft_abort("Malloc Failed: struct env");
+	parse(&param, av[1]);
 	param = init_param(param);
-	param.data.nb_light = parse(av[1], &param.scene);
+//	param.data.nb_light = parse(av[1], &param.scene);
 	create_render(&param);
 	launch(&param, param.env);
 	quit_exe(param);
