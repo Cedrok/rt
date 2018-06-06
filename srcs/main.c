@@ -1,0 +1,58 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/08 15:09:23 by tmilon            #+#    #+#             */
+/*   Updated: 2018/06/06 10:52:36 by tmilon           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "rt.h"
+
+static void		launch(t_all *param, t_env *env)
+{
+	SDL_Event		event;
+
+	env->rend = surface_2_rend(env);
+	while (env->loop)
+	{
+		SDL_WaitEvent(&event);
+		if (event.type == SDL_QUIT || event.key.keysym.sym == SDLK_ESCAPE)
+			env->loop = 0;
+		else if (event.type == SDL_KEYDOWN)
+			sdl_key(param, event.key.keysym.sym);
+		//else if (event.type == SDL_MOUSEBUTTONDOWN)
+		//	event_button(param, event.button.x, event.button.y);
+	}
+}
+
+static t_all	init_param(t_all param)
+{
+	SDL_Init(SDL_INIT_VIDEO);
+	create_win_render(param.env);
+	create_all_surface(param.env);
+	clear_render(param.env);
+	param.data.ambiantlight = 0;
+	param.env->loop = 1;
+	param.data.fastmode = 1;
+	param.data.filter = 4;
+	return (param);
+}
+
+int				main(int ac, char **av)
+{
+	t_all	param;
+
+	if (ac != 2)
+		ft_abort("Usage: ./rtv1 [scene_file.csv]");
+	if (!(param.env = (t_env*)malloc(sizeof(t_env))))
+		ft_abort("Malloc Failed: struct env");
+	param = init_param(param);
+	param.data.nb_light = parse(av[1], &param.scene);
+	create_render(&param);
+	launch(&param, param.env);
+	quit_exe(param);
+}

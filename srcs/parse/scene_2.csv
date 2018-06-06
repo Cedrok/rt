@@ -1,0 +1,14 @@
+#	0	, 1	  , 2	, 3	  , 4	 , 5	  , 6	   , 7		, 8		, 9    , 10    , 11		  , 12		 ;
+#	Type, PosX, PosY, PosZ, Color, VectorX, VectorY, VectorZ, Radius, Width, Height, Intensity, Brillance;
+#	N = NULL
+#
+#
+CYLINDER,-5,-5,10,FF0FF0,0,0,-60,1,N,40,N,0.6;
+CONE,5,-5,9.5,F0FF00,0,0,50,0.5,N,40,N,0.6;
+SPHERE,-4,-3.5,6,0F00FF,N,N,N,1,N,N,N,0.5;
+SPHERE,4,-3.5,6,000F0F,N,N,N,0.6,N,N,N,0.5;
+PLANE,-50,-5,-4,00FF00,0,0,0,N,100,N,N,0.3;
+PLANE,-50,40,40,FF9900,90,0,0,N,100,N,N,0.3;
+CAMERA,0,0,-1.5,N,1,1,1,N,N,N,N,N;
+LIGHT,2,10,0,FFFFFF,N,N,N,N,N,N,0.2,N;
+LIGHT,-2,5,-3,FFFFFF,N,N,N,N,N,N,0.2,N;
