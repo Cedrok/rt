@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:03:41 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/07 15:32:59 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/07 19:50:59 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,10 @@ static void	grab_obj(t_scene *scene, int *fd)
 		if (!ft_strncmp(line, "\twidth:", 7))
 			obj.width = ft_atof(line + 7);
 		if (!ft_strncmp(line, "\tbrillance:", 11))
-			obj.brillance = ft_atof(line + 11);
+		{
+			obj.brillance = ft_atof(line + 11) * 0.1;
+			printf("obj.brillance: %f\n", ft_atof(line + 11));
+		}
 		if (!ft_strncmp(line, "\ttexture:", 9))
 			setup_textunit(extract_text(line), &obj.textunit, 1, 1);
 	}
@@ -143,7 +146,10 @@ static void	grab_spot(t_scene *scene, int *fd)
 		if (!ft_strncmp(line, "\tcolor:", 7))
 			light.color = hex2int(extract_text(line));
 		if (!ft_strncmp(line, "\tintensity:", 11))
+		{
 			light.intensity = ft_atof(line + 11);
+			printf("light.intensity: %f\n", ft_atof(line + 11));
+		}
 	}
 	ft_strdel(&line);
 	ft_lstadd(&scene->light_lst, ft_lstnew(&light, sizeof(light)));

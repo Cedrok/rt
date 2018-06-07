@@ -2,9 +2,9 @@
 title: "rt - scene 0"
 camera{
 	pos: {0, 0, -1.5}
-	rot: {0, 0, 0}
+	rot: {1, 1, 1}
 }
-ambiant: 0.2
+ambiant: 0
 #
 
 # Objects

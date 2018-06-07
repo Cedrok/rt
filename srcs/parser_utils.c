@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 17:41:51 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/07 15:27:36 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/07 19:25:35 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char		*extract_text(char *line)
 		j++;
 	}
 	new[j] = '\0';
+	printf("_text: \'%s\'\n", new);
 	return (new);
 }
 
@@ -55,16 +56,16 @@ t_vector3d	extract_vd3(char *line)
 	while (line[i] != '{' && i < len - 1)
 		i++;
 	i++;
-	new.x = ft_atof(line + i);
+	new.x = atof(line + i);//
 	while (line[i] != ',' && i < len - 1)
 		i++;
 	i++;
-	new.y = ft_atof(line + i);
+	new.y = atof(line + i);//
 	while (line[i] != ',' && i < len - 1)
 		i++;
 	i++;
-	new.z = ft_atof(line + i);
-	printf("\'%s\' => z = %f\n", line + i, new.z);
+	new.z = atof(line + i);//
+//	printf("\'%s\' => z = %f\n", line + i, new.z);
 	return (new);
 }
 

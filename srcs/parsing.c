@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 11:22:45 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/04 17:01:13 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/07 18:54:50 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void		end_lst(t_scene *scene)
 	scene->light_lst = ft_lstnew(&light, sizeof(light));
 }
 
-int				parse(char *file, t_scene *scene)
+int				parse_old(char *file, t_scene *scene)
 {
 	char		*line;
 	int			fd;

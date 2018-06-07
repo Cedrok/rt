@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 11:11:20 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/07 18:03:22 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/07 19:49:15 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ void	setup_textunit(const char *surfpath, t_textunit *textunit, double xscale, d
 void	cpy_plane(t_shape *s, char **tab)
 {
 	//char	*ok = "textures/stones.bmp";
-	char	*ok = "textures/lena_gray.bmp";
+//	char	*ok = "textures/lena_gray.bmp";
 
-	if (ft_strcmp(ok, "") != 0)
-		setup_textunit(ok, &s->textunit, 1.5, 1.5);
-	else
+//	if (ft_strcmp(ok, "") != 0)
+//		setup_textunit(ok, &s->textunit, 1.5, 1.5);
+//	else
 		s->textunit.has_texture = 0;
 	s->origin = new_vector_3d(ft_atof(tab[1]), ft_atof(tab[2]), ft_atof(tab[3]));
 	s->width = ft_atof(tab[9]);
@@ -84,11 +84,11 @@ void	cpy_plane(t_shape *s, char **tab)
 void	cpy_sphere(t_shape *s, char **tab)
 {
 	//char	*ok = "textures/stones.bmp";
-	char	*ok = "textures/lena_gray.bmp";
+//	char	*ok = "textures/lena_gray.bmp";
 
-	if (ft_strcmp(ok, "") != 0)
-		setup_textunit(ok, &s->textunit, 0.5, 0.5);
-	else
+//	if (ft_strcmp(ok, "") != 0)
+//		setup_textunit(ok, &s->textunit, 0.5, 0.5);
+//	else
 		s->textunit.has_texture = 0;
 	s->origin = new_vector_3d(ft_atof(tab[1]), ft_atof(tab[2]), ft_atof(tab[3]));
 	s->radius = ft_atof(tab[8]);
@@ -97,17 +97,18 @@ void	cpy_sphere(t_shape *s, char **tab)
 	s->type = SPHERE;
 	s->color = hex2int(tab[4]);
 	s->brillance = ft_atof(tab[12]);
+	printf("brill:%f\n", s->brillance);
 	return ;
 }
 
 void	cpy_cylinder(t_shape *s, char **tab)
 {
 	//char	*ok = "textures/stones.bmp";
-	char	*ok = "textures/lena_gray.bmp";
+//	char	*ok = "textures/lena_gray.bmp";
 
-	if (ft_strcmp(ok, "") != 0)
-		setup_textunit(ok, &s->textunit, 1, 1);
-	else
+//	if (ft_strcmp(ok, "") != 0)
+//		setup_textunit(ok, &s->textunit, 1, 1);
+//	else
 		s->textunit.has_texture = 0;
 	s->origin = new_vector_3d(ft_atof(tab[1]), ft_atof(tab[2]), ft_atof(tab[3]));
 	s->radius = ft_atof(tab[8]);
@@ -123,11 +124,11 @@ void	cpy_cylinder(t_shape *s, char **tab)
 void	cpy_cone(t_shape *s, char **tab)
 {
 	//char	*ok = "textures/stones.bmp";
-	char	*ok = "textures/lena_gray.bmp";
+//	char	*ok = "textures/lena_gray.bmp";
 
-	if (ft_strcmp(ok, "") != 0)
-		setup_textunit(ok, &s->textunit, 1, 1);
-	else
+//	if (ft_strcmp(ok, "") != 0)
+//		setup_textunit(ok, &s->textunit, 1, 1);
+//	else
 		s->textunit.has_texture = 0;
 	s->origin = new_vector_3d(ft_atof(tab[1]), ft_atof(tab[2]), ft_atof(tab[3]));
 	s->radius = ft_atof(tab[8]) * DEG2RAD;
