@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/06 18:35:30 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/07 10:40:23 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <SDL.h>
 # include "../libgraph/include/libgraph.h"
 # include "../libft/include/libft.h"
+
+#include <stdio.h>
 
 /*
 ******************************* Disp defines *********************************
@@ -28,7 +30,7 @@
 # define PIC_LIMIT			W_WIDTH * W_HEIGHT
 # define DIST_MAX			2000000
 # define DIST_MIN			0.00000001
-# define THREAD_LIMIT		40
+# define THREAD_LIMIT		4
 # define PI					3.141592653
 
 /*

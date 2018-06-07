@@ -6,14 +6,15 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 16:47:24 by tmilon            #+#    #+#             */
-/*   Updated: 2018/05/22 15:34:06 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/07 10:15:45 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef __LIBFT_H
 # define __LIBFT_H
 
-# define BUFF_SIZE 1000
+# define BUFF_SIZE 32
+# define FD_MAX 24
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>

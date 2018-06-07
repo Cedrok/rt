@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/06 18:38:51 by cvautrai         ###   ########.fr        #
+#    Updated: 2018/06/07 10:43:03 by cvautrai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,10 +93,10 @@ $(NAME):	libft echo $(OBJ)
 echo:
 			@ echo -n Compilating files
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c includes/rt.h
 			@mkdir $(OBJ_PATH) 2> /dev/null || true
 			@if [ -d "/Library/Frameworks/SDL2.framework" ]; then \
-			$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -I $(INCLUDE) -I/Library/Frameworks/SDL2.framework/Headers/ -I $(IMG_PATH)/Headers -I $(TTF_PATH)/Headers -o $@; \
+			$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -I/Library/Frameworks/SDL2.framework/Headers/ -I $(IMG_PATH)/Headers -I $(TTF_PATH)/Headers -o $@; \
 			else \
 			$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -I $(SDL_PATH)/Headers -I $(TTF_PATH)/Headers -I $(IMG_PATH)/Headers -o $@; \
 			fi

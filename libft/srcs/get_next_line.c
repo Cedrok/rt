@@ -3,91 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/15 10:09:45 by cpieri            #+#    #+#             */
-/*   Updated: 2018/05/30 13:42:25 by cpieri           ###   ########.fr       */
+/*   Created: 2017/12/04 17:02:13 by cvautrai          #+#    #+#             */
+/*   Updated: 2018/06/07 10:16:35 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		cpy_to_line(char **save, char **line, char *chr)
+static char	*read_input(const int fd, int *endcode, char *stock)
 {
-	char	*tmp;
+	char		buf[BUFF_SIZE + 1];
+	char		*tmp;
 
-	if (chr != NULL)
-	{
-		*line = ft_strsub(*save, 0, chr - *save);
-		tmp = *save;
-		*save = ft_strsub(tmp, chr - tmp + 1, ft_strlen(tmp));
-		ft_strdel(&tmp);
-	}
-	else
-	{
-		*line = ft_strdup(*save);
-		ft_strdel(&*save);
-	}
+	*endcode = read(fd, buf, BUFF_SIZE);
+	buf[*endcode] = '\0';
+	tmp = stock;
+	stock = ft_strjoin(stock, buf);
+	ft_strdel(&tmp);
+	return (stock);
 }
 
-static void		cpy_in_read(char *buffer, char **save)
+int			get_next_line(const int fd, char **line)
 {
-	char	*tmp;
+	static char	*stock[FD_MAX];
+	int			endcode;
+	char		*str;
 
-	if (*save == NULL)
-		*save = ft_strdup(buffer);
-	else
+	if (fd < 0 || fd > FD_MAX || !line || read(fd, NULL, 0) == -1)
+		return (-1);
+	if (!stock[fd])
+		stock[fd] = ft_strnew(0);
+	endcode = 1;
+	while (endcode > 0)
 	{
-		tmp = *save;
-		*save = ft_strjoin(tmp, buffer);
-		ft_strdel(&tmp);
-	}
-}
-
-static int		read_fd(int fd, char **save, char **line)
-{
-	char	buffer[BUFF_SIZE + 1];
-	char	*chr;
-	int		ret;
-
-	while ((ret = read(fd, buffer, BUFF_SIZE)))
-	{
-		buffer[ret] = '\0';
-		cpy_in_read(buffer, save);
-		chr = ft_strchr(*save, '\n');
-		if (chr != NULL || ret < BUFF_SIZE)
+		if ((str = ft_strchr(stock[fd], '\n')))
 		{
-			cpy_to_line(save, line, chr);
+			*str = '\0';
+			*line = ft_strdup(stock[fd]);
+			ft_memcpy(stock[fd], str + 1, ft_strlen(str + 1) + 1);
 			return (1);
 		}
+		stock[fd] = read_input(fd, &endcode, stock[fd]);
 	}
-	if (ret == 0 && *save != NULL && ft_strcmp(*save, "\0") != 0)
-	{
-		chr = ft_strchr(*save, '\n');
-		cpy_to_line(save, line, chr);
+	*line = ft_strdup(stock[fd]);
+	ft_strdel(&stock[fd]);
+	if (ft_strlen(*line))
 		return (1);
-	}
-	return (0);
-}
-
-int				get_next_line(const int fd, char **line)
-{
-	static char		*save = NULL;
-	char			*tmp;
-
-	tmp = NULL;
-	if (fd < 0 || line == NULL || BUFF_SIZE <= 0 || read(fd, tmp, 0) == -1)
-		return (-1);
-	tmp = ft_strchr(save, '\n');
-	if (tmp != NULL)
-		cpy_to_line(&save, line, tmp);
-	else
-	{
-		if (read_fd(fd, &save, line) == 0)
-		{
-			ft_strdel(&save);
-			return (0);
-		}
-	}
-	return (1);
+	return (endcode);
 }

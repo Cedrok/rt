@@ -6,73 +6,13 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 13:39:25 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/06 18:32:00 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/07 10:25:47 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include <fcntl.h>
 
-/*
-**	Read file to count objects and lights
-*/
-/*
-static void	init_objs_spots(t_scene *scene)
-{
-	int		i;
-
-	scene->obj = (t_object*)malloc(sizeof(t_object) * scene->obj_nbr);
-	scene->spot = (t_spot*)malloc(sizeof(t_spot) * scene->spot_nbr);
-	i = 0;
-	while (i < scene->obj_nbr)
-	{
-		scene->obj[i].name = NULL;
-		scene->obj[i].center = ft_vd3_new(0, 0, 0);
-		scene->obj[i].axis = ft_vd3_new(0, 0, 0);
-		scene->obj[i].color = ft_vd3_new(255, 255, 255);
-		scene->obj[i].radius = 0;
-		i++;
-	}
-	i = 0;
-	while (i < scene->spot_nbr)
-	{
-		scene->spot[i].pos = ft_vd3_new(0, 0, 0);
-		scene->spot[i].hide = 0;
-		scene->spot[i].color = ft_vd3_new(0, 0, 0);
-		i++;
-	}
-}
-*/
-
-/*
-static void	get_nbrs(t_scene *scene, char *arg)
-{
-	int		fd;
-	int		gnl;
-	char	*line;
-	int		do_it;
-
-	if ((fd = open(arg, O_RDONLY)) == -1)
-		error_exit("open fail");
-	gnl = 1;
-	line = NULL;
-	do_it = 1;
-	while (gnl)
-	{
-		if ((gnl = get_next_line(fd, &line)) == -1)
-			error_exit("gnl fail");
-		if (!ft_strcmp(line, "object{") && do_it)
-			scene->obj_nbr++;
-		if (!ft_strcmp(line, "spot{") && do_it)
-			scene->spot_nbr++;
-		if (!ft_strcmp(line, "##END##"))
-			do_it = 0;
-		ft_strdel(&line);
-	}
-	close(fd);
-	init_objs_spots(scene);
-}
-*/
 /*
 **	Main parsing function
 */
@@ -128,7 +68,6 @@ void		parse(t_all *param, char *arg)
 	char	*line;
 	int		do_it;
 
-//	get_nbrs(scene, arg);
 	if ((fd = open(arg, O_RDONLY)) <= 0)
 		ft_abort("open fail");
 	end_lst(&param->scene);
@@ -142,7 +81,9 @@ void		parse(t_all *param, char *arg)
 		if (do_it)
 			which_section(param, &fd, line);
 		if (!ft_strcmp(line, "##END##"))
+		{
 			do_it = 0;//break ; ?
+		}
 		ft_strdel(&line);
 	}
 	close(fd);

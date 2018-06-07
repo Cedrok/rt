@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:47:21 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/04 17:01:19 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/07 10:43:31 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void		create_render(t_all *param)
 {
 	new_ui(param);
+	printf("cam : %f\n", param->scene.camera.origin.y);
 	setup_multithread(param->scene, param->env, param->data);
 	if (param->data.filter < 4)
 		put_filter(*param);

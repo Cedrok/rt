@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 15:09:23 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/06 18:47:39 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/07 09:45:21 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int				main(int ac, char **av)
 	if (!(param.env = (t_env*)malloc(sizeof(t_env))))
 		ft_abort("Malloc Failed: struct env");
 	parse(&param, av[1]);
+	printf("parsing done\n");//
 	param = init_param(param);
 //	param.data.nb_light = parse(av[1], &param.scene);
 	create_render(&param);
