@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 10:42:20 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/06 17:00:14 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/07 16:49:30 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "button.h"
 # include "label.h"
 # include "../../libft/include/libft.h"
-# include <string.h>
+# include <stdlib.h>
 
 # define BUTTON		1
 # define LABEL		2
@@ -52,9 +52,7 @@ typedef struct	s_bloc
 
 t_vector4d		calc_position(t_vector4d parent_size, t_vector4d ratio_marge, int pos);
 void			set_title_bloc(t_bloc *bloc, char *title, t_vector4d pos, t_color c);
-void			lst_add_obj(t_obj **alst, t_obj *new);
-t_obj			*new_lst_obj(const void *obj, size_t obj_size, int type);
 t_bloc			new_bloc(t_vector2d w_sz, t_color c, t_vector4d r_m, int pos);
-void			add_child_bloc(t_bloc *bloc, void *obj, int type);
+t_obj			new_obj(const void *obj, size_t obj_size, int type);
 
 #endif

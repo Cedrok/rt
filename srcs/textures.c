@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/27 14:06:23 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/06 11:13:03 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/07 14:16:23 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	coloralter(int color, double u, double v)
 		i++;
 	}
 	rainbow[i] = new_color(0, 255, 0);
-	color = interpolate(color, color_to_int(rainbow[(int)(u + (int)(v * rainbowsize * 2)) % rainbowsize]),0.9);
+	color = interpolate(color, color_to_int(rainbow[(int)(u + (int)(v * rainbowsize * 2)) % rainbowsize]),0.6);
 	free(rainbow);
 	return (color);
 }
@@ -72,28 +72,20 @@ int	checker_pattern(int color, double u, double v)
 int	get_texture_color(double u, double v, t_shape s)
 {
 	double	modif;
-	double uback;
-	double vback;
 
-	vback = v;
-	uback = u;
 	modif = s.textunit.texture_width;
-	//printf("Modif is %f \n", modif);
-	if (s.type == PLANE)
-	{
-		u = u * modif / (s.width  * 2 * s.textunit.xscale);
-		v = v * modif / (s.width  * 2 * s.textunit.yscale);
-		u += modif;
-		v += modif;
-	}
+	u = u * modif / (s.textunit.xscale);
+	v = v * modif / (s.textunit.yscale);
+	if (s.textunit.xscale < 1)
+		u -= (modif - modif * s.textunit.xscale) / (2 * s.textunit.xscale) - modif;
 	else
-	{
-		u = u * modif / (s.textunit.xscale);
-		v = v * modif / (s.textunit.yscale);
-	}
+		u += (modif * s.textunit.xscale - modif) / (2 * s.textunit.xscale);
+	if (s.textunit.yscale < 1)
+		v -= (modif - modif * s.textunit.yscale) / (2 * s.textunit.yscale) - modif;
+	else
+		v += (modif * s.textunit.yscale - modif) / (2 * s.textunit.yscale);
 	u = (int)u % (int)modif;
 	v = (int)v % (int)modif;
-	//printf("u %f v %f got converted to u %f v %f\n",uback, vback,  ceil(u), ceil(v));
 	if ((int)u + (int)v * modif < modif * modif && (int)u >= 0 && (int)v >= 0 && (int)v < modif && (int)u < modif)
 		return (s.textunit.texture[(int)u + (int)((int)v * modif)]);
 	else
@@ -104,8 +96,8 @@ void		get_uv_mapping_coord(double *u, double *v, t_intersect i, t_shape s)
 {
 	if (s.type == PLANE)
 	{
-		*u = i.point.x + s.width * (s.textunit.xscale);
-		*v = -i.point.z + s.width * (s.textunit.yscale);
+		*u = (i.point.x + s.width) / (2 * s.width);
+		*v = (-i.point.z + s.width) / (2 * s.width);
 	}
 	if (s.type == SPHERE)
 	{
@@ -130,8 +122,8 @@ int			texture(int color, t_intersect i, t_shape s)
 	double v;
 
 	get_uv_mapping_coord(&u, &v, i, s);
-	//if (s.textunit.has_texture)
-	//	color = get_texture_color(u, v, s);
+	if (s.textunit.has_texture)
+		color = get_texture_color(u, v, s);
 	//color = checker_pattern(color, u, v);
 	//color = coloralter(color, u, v);
 	return (color);

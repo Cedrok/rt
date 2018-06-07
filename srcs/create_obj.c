@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 11:11:20 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/07 09:41:12 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/07 18:03:22 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		*surf_to_int_array(SDL_Surface *surf, t_point p)
 	int		*tab;
 	SDL_Surface *rgbaImage;
 
-	rgbaImage = SDL_ConvertSurfaceFormat(surf, SDL_PIXELFORMAT_RGB332, 0);
+	rgbaImage = SDL_ConvertSurfaceFormat(surf, SDL_PIXELFORMAT_RGBA32, 0);
 	tab = ft_memalloc(sizeof(int) * (surf->h * surf->w));
 	uint32_t* pixels = (uint32_t *)(rgbaImage->pixels);
 	while(++p.y < surf->h)
@@ -50,6 +50,8 @@ void	setup_textunit(const char *surfpath, t_textunit *textunit, double xscale, d
 	surf = NULL;
 	//check if text exists otherwise segfaults
 	surf = SDL_LoadBMP(surfpath);
+	if (!surf)
+		return ;
 	textunit->has_texture = 1;
 	textunit->texture_width = surf->w;
 	textunit->xscale = xscale;
@@ -65,7 +67,7 @@ void	cpy_plane(t_shape *s, char **tab)
 	char	*ok = "textures/lena_gray.bmp";
 
 	if (ft_strcmp(ok, "") != 0)
-		setup_textunit(ok, &s->textunit, 1, 1);
+		setup_textunit(ok, &s->textunit, 1.5, 1.5);
 	else
 		s->textunit.has_texture = 0;
 	s->origin = new_vector_3d(ft_atof(tab[1]), ft_atof(tab[2]), ft_atof(tab[3]));

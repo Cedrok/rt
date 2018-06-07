@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:03:41 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/07 13:49:19 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/07 15:32:59 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,12 @@ static void	grab_obj(t_scene *scene, int *fd)
 		if (!ft_strncmp(line, "\tcolor:", 7))
 			obj.color = hex2int(extract_text(line));
 		if (!ft_strncmp(line, "\tradius:", 8))
-			obj.radius = ft_atof(line + 8);
+		{
+			if (obj.type == CONE)
+				obj.radius = ft_atof(line + 8) * DEG2RAD;
+			else
+				obj.radius = ft_atof(line + 8);
+		}
 		if (!ft_strncmp(line, "\theight:", 8))
 			obj.height = ft_atof(line + 8);
 		if (!ft_strncmp(line, "\twidth:", 7))

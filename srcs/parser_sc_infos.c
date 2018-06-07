@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 14:39:34 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/07 13:58:21 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/07 15:30:14 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	grab_cam(t_scene *scene, int *fd)
 		if (!ft_strncmp(line, "\trot:", 5))
 			tmp = extract_vd3(line);
 	}
-	printf("origin.z = %f\n", origin.z);
+	origin.z = origin.z * 10; //rustine!
 	scene->camera = new_cam(origin, tmp.x, tmp.y, tmp.z);
 	ft_strdel(&line);
 }

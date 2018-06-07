@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 10:50:45 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/06 19:02:25 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/07 17:19:45 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ t_bloc			new_bloc(t_vector2d w_sz, t_color c, t_vector4d r_m, int pos)
 
 	new.pos = calc_position(new_vector_4d(0, 0, w_sz.x, w_sz.y), r_m, pos);
 	new.color = c;
+	new.title = new.title = new_label("", c, new_vector_4d(0, 0, 0, 0), 0);
+	new.lst_obj = NULL;
 	return (new);
 }
 
@@ -56,13 +58,15 @@ void			set_title_bloc(t_bloc *bloc, char *title, t_vector4d pos, t_color c)
 	int		font_size;
 
 	font_size = (bloc->pos.w * pos.y / 100) / 3;
-	bloc->title = create_new_label(title, c, pos, font_size);
+	bloc->title = new_label(title, c, pos, font_size);
 }
 
-void			add_child_bloc(t_bloc *bloc, void *obj, int type)
+t_obj			new_obj(const void *obj, size_t obj_size, int type)
 {
-	t_obj		*new;
+	t_obj	new;
 
-	new = new_lst_obj(obj, sizeof(obj), type);
-	lst_add_obj(&(bloc->lst_obj), new);
+	new.obj = (void *)obj;
+	new.obj_size = obj_size;
+	new.type = type;
+	return (new);
 }

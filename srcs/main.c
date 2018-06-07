@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 15:09:23 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/07 11:36:50 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/07 18:38:19 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ static void		launch(t_all *param, t_env *env)
 			env->loop = 0;
 		else if (event.type == SDL_KEYDOWN)
 			sdl_key(param, event.key.keysym.sym);
+		if (event.type == SDL_WINDOWEVENT){
+			if (event.window.event == SDL_WINDOWEVENT_RESIZED)
+			{
+				SDL_GetWindowSize(env->win, &env->w, &env->h);
+				refresh_img(param);
+			}
+		}
 		//else if (event.type == SDL_MOUSEBUTTONDOWN)
 		//	event_button(param, event.button.x, event.button.y);
 	}
@@ -39,7 +46,8 @@ static t_all	init_param(t_all param)
 	create_win_render(param.env);
 	create_all_surface(param.env);
 	clear_render(param.env);
-//	param.data.ambiantlight = 0;
+	SDL_GetWindowSize(param.env->win, &param.env->w, &param.env->h);
+	//	param.data.ambiantlight = 0;
 	param.env->loop = 1;
 	param.data.fastmode = 1;
 	param.data.filter = 4;

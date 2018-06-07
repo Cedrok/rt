@@ -4,30 +4,88 @@ camera{
 	pos: {0, 0, -1.5}
 	rot: {0, 0, 0}
 }
-ambiant: 1
+ambiant: 0.2
 #
 
 # Objects
 object{
-	type: "sphere"
-	center: {0, 0, 3}
+	type: "cylinder"
+	color: "FF0FF0"
+	pos: {-5, -5, 10}
+	rot: {0, 0, -60}
+	height: 40
+	width: a
 	radius: 1
-	color: "FFFF00"
-	brillance: 0.9
+	brillance: 0.6
+	texture: "path"
 }
--object{
+object{
+	type: "cone"
+	color: "F0FF00"
+	pos: {5, -5, 9}
+	rot: {0, 0, 50}
+	height: 40
+	width: a
+	radius: 0.5
+	brillance: 0.6
+-	texture: "path"
+}
+object{
+	type: "sphere"
+	color: "0F00FF"
+	pos: {-4, -3.5, 6}
+-	rot: {x, y, z}
+-	height: a
+-	width: a
+	radius: 1
+	brillance: 0.5
+-	texture: "path"
+}
+object{
+	type: "sphere"
+	color: "000F0F"
+	pos: {4, -3.5, 6}
+	rot: {x, y, z}
+	height: a
+	width: a
+	radius: 0.6
+	brillance: 0.5
+-	texture: "path"
+}
+object{
 	type: "plane"
-	center: {0, -7, 0}
-	axis: {0, -50, 0}
-	color: "DDDDDD"
+	color: "00FF00"
+	pos: {-50, -5, -4}
+	rot: {0, 0, 0}
+	height: a
+	width: 100
+	radius: a
+	brillance: 0.5
+-	texture: "path"
+}
+object{
+	type: "plane"
+	color: "FF9900"
+	pos: {-50, -40, 40}
+	rot: {90, 0, 0}
+	height: a
+	width: 100
+	radius: a
+	brillance: 0.3
+-	texture: "path"
 }
 #
 
 # Lights
 spot{
-	pos: {10, 10, 0}
+	pos: {2, 10, 0}
 	color: "FFFFFF"
 	intensity: 0.2
+}
+spot{
+	pos: {-2, 5, -3}
+	color: "FFFFFF"
+	intensity: 0.6
 }
 #
 
@@ -38,19 +96,26 @@ camera{
 	rot: {x, y, z}
 }
 
+ambiant: a [0 -> 1]
+
 object{
 	type: "sphere/plane/cylinder/cone"
-	center: {x, y, z}
-	axis: {x, y, z}
 	color: "RRGGBB"
+	pos: {x, y, z}
+	rot: {x, y, z}
+	height: a
+	width: a
 	radius: a
+	brillance: a
+	texture: "path"
 }
-sphere -> center, radius, color
-plane -> center, axis, color
-cylinder -> center, axis, radius, color
-cone -> center, axis, radius, color
+sphere -> pos, radius, color, brillance[, texture]
+plane -> pos, rot, color, brillance[, width, height]
+cylinder -> pos, rot, radius, color, height
+cone -> pos, rot, radius, color, height
 
 spot{
 	pos: {x, y, z}
-	color: {r, g, b}
+	color: "RRGGBB"
+	intensity: a
 }
