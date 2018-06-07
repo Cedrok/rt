@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:26:55 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/06 10:13:41 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/06 16:37:51 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,10 @@ typedef struct	s_label
 {
 	const char	*title;
 	int			font_size;
-	t_vector4d	pos;
-	t_vector2d	ratio;
-	t_vector2d	margin;
+	t_vector4d	ratio_marge;
 	t_color		color;
 }				t_label;
 
-t_label			create_new_label(char *s, t_color c, int f_size);
+t_label			create_new_label(char *s, t_color c, t_vector4d	ratio_marge, int f_size);
 
 #endif

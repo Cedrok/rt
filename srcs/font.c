@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 10:10:13 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/04 17:01:20 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/06 15:03:58 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void     put_string(t_env *env, SDL_Point pt, SDL_Color color, char *str)
 	SDL_DestroyTexture(texture);
 }
 
+/*
 void            put_string_shadow(t_env *env, int x, int y, char *str)
 {
 	t_color_4	light;
@@ -47,3 +48,4 @@ void            put_string_shadow(t_env *env, int x, int y, char *str)
 	pt.y = y;
 	put_string(env, pt, light, str);
 }
+*/

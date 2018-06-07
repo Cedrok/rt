@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/01 15:43:04 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/04 16:00:51 by cpieri           ###   ########.fr        #
+#    Updated: 2018/06/06 11:47:22 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS = 		matrix.c			\
 			colors.c			\
 			button.c			\
 			bloc.c				\
+			obj_lst.c			\
 			label.c
 
 OBJS	=	$(SRCS:.c=.o)

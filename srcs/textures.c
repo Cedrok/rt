@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/27 14:06:23 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/06 10:56:51 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/06 11:13:03 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,8 @@ int			texture(int color, t_intersect i, t_shape s)
 	double v;
 
 	get_uv_mapping_coord(&u, &v, i, s);
-	if (s.textunit.has_texture)
-		color = get_texture_color(u, v, s);
+	//if (s.textunit.has_texture)
+	//	color = get_texture_color(u, v, s);
 	//color = checker_pattern(color, u, v);
 	//color = coloralter(color, u, v);
 	return (color);

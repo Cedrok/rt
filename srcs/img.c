@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:47:21 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/07 10:43:31 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/07 14:30:02 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,33 @@
 void		create_render(t_all *param)
 {
 	new_ui(param);
-	printf("cam : %f\n", param->scene.camera.origin.y);
-	setup_multithread(param->scene, param->env, param->data);
+/*
+	printf("ambiant = %f\n", param->data.ambiantlight);
+	printf("camera.ori.z = %f\n", param->scene.camera.origin.z);
+	printf("camera.w = %f\n", param->scene.camera.w);
+	printf("camera.h = %f\n", param->scene.camera.h);
+	printf("camera.fov = %f\n", param->scene.camera.fov);
+	while (param->scene.shape_lst)
+	{
+		printf("obj type = %i\n",
+				((t_shape*)param->scene.shape_lst->content)->type);
+		printf("obj color = %i\n",
+				((t_shape*)param->scene.shape_lst->content)->color);
+		param->scene.shape_lst = param->scene.shape_lst->next;
+	}
+	while (param->scene.light_lst)
+	{
+		printf("light color = %i\n",
+				((t_light*)param->scene.light_lst->content)->color);
+		printf("light intensity = %f\n",
+				((t_light*)param->scene.light_lst->content)->intensity);
+		printf("light pos.x = %f\n",
+				((t_light*)param->scene.light_lst->content)->origin.x);
+		param->scene.light_lst = param->scene.light_lst->next;
+	}
+	printf("checkpoint\n");//
+*/
+	setup_multithread(*param);
 	if (param->data.filter < 4)
 		put_filter(*param);
 }

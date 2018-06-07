@@ -1,5 +1,5 @@
-#	0	, 1	  , 2	, 3	  , 4	 , 5	  , 6	   , 7		, 8		, 9    , 10    , 11		  ;
-#	Type, PosX, PosY, PosZ, Color, VectorX, VectorY, VectorZ, Radius, Width, Height, Intensity;
+#	0	, 1	  , 2	, 3	  , 4	 , 5	  , 6	   , 7		, 8		, 9    , 10    , 11		  ,	12;
+#	Type, PosX, PosY, PosZ, Color, VectorX, VectorY, VectorZ, Radius, Width, Height, Intensity, Brillance;
 #	N = NULL
 #
 SPHERE,0,0,3,0000FF,N,N,N,1,N,N,N,0.9;

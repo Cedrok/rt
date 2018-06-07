@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/07 10:40:23 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/07 11:49:06 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 */
 
 # define I_WIDTH			1280
-# define I_HEIGHT			723
-# define W_WIDTH			1680
-# define W_HEIGHT			949
+# define I_HEIGHT			720
+# define W_WIDTH			1920
+# define W_HEIGHT			1080
 # define PIC_LIMIT			W_WIDTH * W_HEIGHT
 # define DIST_MAX			2000000
 # define DIST_MIN			0.00000001
@@ -171,6 +171,9 @@ typedef struct		s_all
 	t_env			*env;
 	t_data			data;
 	t_button		btn_teste;
+	t_point			point;
+	int				maxy;
+	int				*colorarray;
 }					t_all;
 
 /*
@@ -222,10 +225,11 @@ int					no_collisions(t_list *shape_lst,
 int					set_color(t_list *light_lst, t_list *shape_lst,
 		t_intersect intersection, t_data data);
 int					interpolate(int start, int finish, float ratio);
-void				raytrace(t_scene scene, t_env *unit, t_point p, t_data data);
+//void				raytrace(t_scene scene, t_env *unit, t_point p, t_data data);
 int					get_nearest_intersection(t_ray ray, t_list *shape_lst,
 		t_intersect *nearest_intersect, double maxdist);
-void				setup_multithread(t_scene scene, t_env *unit, t_data data);
+void				setup_multithread(t_all param);
+//void				setup_multithread(t_scene scene, t_env *unit, t_data data);
 
 /*
  ** Texture

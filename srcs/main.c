@@ -6,11 +6,12 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 15:09:23 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/07 09:45:21 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/07 11:36:50 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "SDL_ttf.h"
 
 static void		launch(t_all *param, t_env *env)
 {
@@ -31,11 +32,14 @@ static void		launch(t_all *param, t_env *env)
 
 static t_all	init_param(t_all param)
 {
-	SDL_Init(SDL_INIT_VIDEO);
+	if (SDL_Init(SDL_INIT_VIDEO) != 0)
+		ft_abort("Error SDL_Init");
+	if (TTF_Init() != 0)
+		ft_abort("Error TTF_Init");
 	create_win_render(param.env);
 	create_all_surface(param.env);
 	clear_render(param.env);
-	param.data.ambiantlight = 0;//
+//	param.data.ambiantlight = 0;
 	param.env->loop = 1;
 	param.data.fastmode = 1;
 	param.data.filter = 4;
@@ -51,9 +55,8 @@ int				main(int ac, char **av)
 	if (!(param.env = (t_env*)malloc(sizeof(t_env))))
 		ft_abort("Malloc Failed: struct env");
 	parse(&param, av[1]);
-	printf("parsing done\n");//
 	param = init_param(param);
-//	param.data.nb_light = parse(av[1], &param.scene);
+	printf("parsing & init OK\n");//
 	create_render(&param);
 	launch(&param, param.env);
 	quit_exe(param);

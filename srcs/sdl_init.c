@@ -6,15 +6,16 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 16:26:18 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/06 19:09:50 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/06 19:03:30 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "rt.h"
 
 void			create_win_render(t_env *env)
 {
-	env->win = SDL_CreateWindow(env->title, SDL_WINDOWPOS_CENTERED,
+	env->win = SDL_CreateWindow("RT", SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED, W_WIDTH, W_HEIGHT, SDL_WINDOW_RESIZABLE);
 	SDL_SetWindowMinimumSize(env->win, W_WIDTH, W_HEIGHT);
 	env->rend = SDL_CreateRenderer(env->win, -1,
@@ -39,9 +40,12 @@ SDL_Renderer	*surface_2_rend(t_env *env)
 {
 	SDL_Texture	*text;
 	SDL_Rect	rectd;
+	int 		x, y;
 
-	rectd.x = (W_WIDTH / 2) - (I_WIDTH / 2);
-	rectd.y = (W_HEIGHT - I_HEIGHT) - 20;
+	SDL_GetWindowSize(env->win, &x, &y);
+	t_vector4d teste = calc_position(new_vector_4d(0, 0, x, y), new_vector_4d((I_WIDTH * 100 / x),(I_HEIGHT * 100 / y),0,0), CENTER);
+	rectd.x = teste.x;
+	rectd.y = teste.y;
 	rectd.w = I_WIDTH;
 	rectd.h = I_HEIGHT;
 	text = SDL_CreateTextureFromSurface(env->rend, env->s_filter);
