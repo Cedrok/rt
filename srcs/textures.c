@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/27 14:06:23 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/08 10:49:49 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/08 10:54:38 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ int	get_texture_color(double u, double v, t_shape s)
 		v -= (modi - modi * s.textunit.y_scale) / (2 * s.textunit.y_scale);
 	else
 		v += (modi * s.textunit.y_scale - modi) / (2 * s.textunit.y_scale);
+	u += s.textunit.x_offset;
+	v += s.textunit.y_offset;
 	while (v < 0)
 		v += modi;
 	while (u < 0)
