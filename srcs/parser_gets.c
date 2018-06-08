@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:03:41 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/08 10:49:51 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/08 11:15:27 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static t_shape	default_shape(int i)
 	obj.width = 1;
 	obj.radius = 1;
 	obj.brillance = 0;
+	obj.opacity = 1;
 	obj.rot = new_matrix(0, 0, 0);
 	obj.inv_rot = matrix_inv(obj.rot);
 	obj.textunit.has_texture = 0;
@@ -51,7 +52,7 @@ static t_shape	default_shape(int i)
 	obj.textunit.y_scale = 1;
 	obj.textunit.x_offset = 0;
 	obj.textunit.y_offset = 0;
-	return (obj);	
+	return (obj);
 }
 
 static void	grab_texture(t_shape *obj, int *fd)
@@ -125,6 +126,11 @@ static void	grab_obj(t_scene *scene, int *fd)
 		{
 			obj.brillance = ft_atof(line + 11) * 0.1;
 			printf("obj.brillance: %f\n", ft_atof(line + 11));
+		}
+		if (!ft_strncmp(line, "\topacity:", 9))
+		{
+			obj.opacity = ft_atof(line + 9);
+			printf("obj.opacity: %f\n", ft_atof(line + 9));
 		}
 		if (!ft_strncmp(line, "\ttexture{", 9))
 			grab_texture(&obj, fd);

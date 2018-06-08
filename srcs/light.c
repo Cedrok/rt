@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 10:50:35 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/07 17:49:02 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/07 19:03:11 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int		brillance(int start, t_intersect inter, t_light light)
 	return (color_to_int(a));
 }
 
-int				shadows(t_list *shape_lst, t_intersect inter, t_light light)
+static int			shadows(t_scene scene, t_intersect inter, t_light light)
 {
 	t_ray		ray;
 	t_vector3d	dir;
@@ -79,10 +79,10 @@ int				shadows(t_list *shape_lst, t_intersect inter, t_light light)
 	dir = vector_op(light.origin, rayorigin, '-');
 	ray = new_ray(rayorigin, normalize(dir));
 	dist = get_length(dir);
-	return (get_nearest_intersection(ray, shape_lst, &inter, dist));
+	return (get_nearest_intersection(&ray, scene, &inter, dist));
 }
 
-int				set_color(t_list *light_lst, t_list *shape_lst,
+int				set_color(t_scene scene,
 		t_intersect intersection, t_data data)
 {
 	int			ret;
@@ -91,19 +91,19 @@ int				set_color(t_list *light_lst, t_list *shape_lst,
 	t_light		light;
 
 	ret = 0;
-	while (light_lst != NULL)
+	while (scene.light_lst != NULL)
 	{
-		light = *(t_light*)light_lst->content;
+		light = *(t_light*)scene.light_lst->content;
 		if (light.color == -1)
 			break ;
 		intensity = get_intensity(intersection, light, data);
 		tmp = interpolate(0, intersection.shape_copy.color, intensity);
-		if (!shadows(shape_lst, intersection, light))
+		if (!shadows(scene, intersection, light))
 			tmp = brillance(tmp, intersection, light);
 		else
 			tmp = interpolate(0, tmp, data.ambiantlight);
 		ret = fuse(ret, tmp, light.color);
-		light_lst = light_lst->next;
+		scene.light_lst = scene.light_lst->next;
 	}
 	return (ret);
 }

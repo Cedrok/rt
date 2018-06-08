@@ -17,12 +17,13 @@ object{
 	width: a
 	radius: 1 
 	brillance: 0.6
-	texture{
+	opacity: 0.6
+	-texture{
 		path: "textures/stones.bmp"
 		x_scale: 1
-		y_scale: 1
-		x_offset: 0
-		y_offset: 0
+		y_scale: 0.1
+		x_offset: 40
+		y_offset: 40
 	}
 
 }
@@ -41,6 +42,7 @@ object{
 	type: "sphere"
 	color: "0F00FF"
 	pos: {-4, -3.5, 6}
+	opacity: 0.6
 -	rot: {x, y, z}
 -	height: a
 -	width: a
@@ -114,6 +116,7 @@ object{
 	width: a
 	radius: a [0+]
 	brillance: a [0 -> 1]
+	opacity: a [0 -> 1]
 	texture{
 		path: "path"
 		x_scale: a

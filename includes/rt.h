@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/08 10:49:55 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/08 11:02:49 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ typedef struct		s_shape
 	double			width;
 	double			radius;
 	double			brillance;
+	double			opacity;
 	t_mat3d			rot;
 	t_mat3d			inv_rot;
 	t_textunit		textunit;
@@ -226,11 +227,10 @@ t_vector3d			cone_normal(t_shape shape, t_vector3d intersection_point);
 
 int					no_collisions(t_list *shape_lst,
 		t_intersect inter, t_light light);
-int					set_color(t_list *light_lst, t_list *shape_lst,
-		t_intersect intersection, t_data data);
+int					set_color(t_scene scene, t_intersect intersection, t_data data);
 int					interpolate(int start, int finish, float ratio);
 //void				raytrace(t_scene scene, t_env *unit, t_point p, t_data data);
-int					get_nearest_intersection(t_ray ray, t_list *shape_lst,
+int			get_nearest_intersection(t_ray *ray, t_scene scene,
 		t_intersect *nearest_intersect, double maxdist);
 void				setup_multithread(t_all param);
 //void				setup_multithread(t_scene scene, t_env *unit, t_data data);

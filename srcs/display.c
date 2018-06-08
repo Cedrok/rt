@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/07 14:31:18 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/08 10:28:44 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,18 @@
 #include <math.h>
 #include <pthread.h>
 
+t_vector3d	bump_mapping(t_vector3d normal, int colorint)
+{
+	double	mult;
+	t_color	color;
+
+	color = int_to_color(colorint);
+	mult = color.b / 255.0
+		+ color.r / 255.0
+		+ color.g / 255.0;
+	mult /= 3.0;
+	return (vector_op(normal, new_vector_3d_unicoord(mult), '*'));
+}
 t_intersect	new_intersection(t_shape shape, t_ray ray, double point_dist)
 {
 	t_vector3d	tmp;
@@ -41,11 +53,12 @@ t_intersect	new_intersection(t_shape shape, t_ray ray, double point_dist)
 	ret.point = adjust_direction(ret.point, shape.rot);
 	ret.normal = adjust_direction(ret.normal, shape.rot);
 	ret.normal = normalize(ret.normal);
+	ret.normal = bump_mapping(ret.normal, shape.color);
 	ret.dir_to_cam = adjust_direction(ray.direction, shape.rot);
 	return (ret);
 }
 
-int			get_nearest_intersection(t_ray ray, t_list *shape_lst,
+int			get_nearest_intersection(t_ray *ray, t_scene scene,
 		t_intersect *nearest_intersect, double maxdist)
 {
 	int			(*collisions[10])(t_shape shape, t_ray ray, double *t);
@@ -57,20 +70,38 @@ int			get_nearest_intersection(t_ray ray, t_list *shape_lst,
 	collisions[CYLINDER] = &intersect_cylinder;
 	collisions[CONE] = &intersect_cone;
 	nearest_shape.color = 0;
-	while (shape_lst != NULL)
+	while (scene.shape_lst != NULL)
 	{
-		shape = *(t_shape*)shape_lst->content;
+		shape = *(t_shape*)scene.shape_lst->content;
 		if (shape.type == -1)
 			break ;
 		if (collisions[shape.type](shape,
-					adapt_ray(ray, shape.inv_rot), &maxdist))
+					adapt_ray(*ray, shape.inv_rot), &maxdist))
 			nearest_shape = shape;
-		shape_lst = shape_lst->next;
+		scene.shape_lst = scene.shape_lst->next;
 	}
 	if (nearest_shape.color)
+	{
 		*nearest_intersect = new_intersection(nearest_shape,
-				adapt_ray(ray, nearest_shape.inv_rot), maxdist);
+				adapt_ray(*ray, nearest_shape.inv_rot), maxdist);
+		ray->origin = vector_op(ray->origin,
+				vector_op(ray->direction, new_vector_3d_unicoord(maxdist), '*'),
+				'+');
+	}
 	return (nearest_shape.color ? 1 : 0);
+}
+
+int	transparency(t_scene scene, t_ray ray, t_intersect intersection, t_point p, t_data data)
+{
+	if (get_nearest_intersection(&ray, scene, &intersection, DIST_MAX))
+	{
+		//rename set_light
+		p.color = set_color(scene, intersection, data);
+		if (intersection.shape_copy.opacity != 100)
+			p.color = interpolate(p.color, transparency(scene, ray, intersection, p, data), intersection.shape_copy.opacity);
+		return (p.color);
+	}
+	return (0); //noir
 }
 
 static void	raytrace(t_scene scene, int *colorarray, t_point p, t_data data)
@@ -81,9 +112,12 @@ static void	raytrace(t_scene scene, int *colorarray, t_point p, t_data data)
 
 	direction = set_axe(p.x, p.y, &(scene.camera));
 	ray = new_ray(scene.camera.origin, normalize(direction));
-	if (get_nearest_intersection(ray, scene.shape_lst, &intersection, DIST_MAX))
+	if (get_nearest_intersection(&ray, scene, &intersection, DIST_MAX))
 	{
-		p.color = set_color(scene.light_lst, scene.shape_lst, intersection, data);
+		//rename set_light
+		p.color = set_color(scene, intersection, data);
+		if (intersection.shape_copy.opacity != 1)
+			p.color = interpolate(p.color, transparency(scene, ray, intersection, p, data), intersection.shape_copy.opacity);
 		colorarray[p.x + p.y * I_WIDTH] = p.color;
 	}
 }
