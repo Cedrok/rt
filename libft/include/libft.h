@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 16:47:24 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/07 10:15:45 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/08 11:18:07 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int					ft_strnequ(char const *s1, char const *s2, size_t n);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 int					ftb_adjustmagn(unsigned int toadjust, unsigned int goal);
-int					ftb_clamp(int toclamp, int min, int max);
 int					ftb_intlen(int n);
 int					ftb_isspace(char c);
 int					ftb_pow(int n, int pow);
@@ -116,5 +115,6 @@ void				ft_abort(char *msg);
 int					ft_sqrt(int n);
 int					ft_countstrtab(char **tab);
 double				ft_atof(const char *str);
+double				ftb_clamp(double toclamp, double min, double max);
 
 #endif

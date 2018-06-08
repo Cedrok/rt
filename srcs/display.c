@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/08 10:28:44 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/08 11:15:08 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ int	transparency(t_scene scene, t_ray ray, t_intersect intersection, t_point p, 
 	{
 		//rename set_light
 		p.color = set_color(scene, intersection, data);
-		if (intersection.shape_copy.opacity != 100)
-			p.color = interpolate(p.color, transparency(scene, ray, intersection, p, data), intersection.shape_copy.opacity);
+		if (intersection.shape_copy.opacity != 1)
+			p.color = interpolate(transparency(scene, ray, intersection, p, data), p.color, intersection.shape_copy.opacity);
 		return (p.color);
 	}
 	return (0); //noir
@@ -117,7 +117,7 @@ static void	raytrace(t_scene scene, int *colorarray, t_point p, t_data data)
 		//rename set_light
 		p.color = set_color(scene, intersection, data);
 		if (intersection.shape_copy.opacity != 1)
-			p.color = interpolate(p.color, transparency(scene, ray, intersection, p, data), intersection.shape_copy.opacity);
+			p.color = interpolate(transparency(scene, ray, intersection, p, data), p.color, intersection.shape_copy.opacity);
 		colorarray[p.x + p.y * I_WIDTH] = p.color;
 	}
 }

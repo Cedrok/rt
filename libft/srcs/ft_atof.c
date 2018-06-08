@@ -3,39 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/19 14:00:04 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/07 14:26:37 by cvautrai         ###   ########.fr       */
+/*   Created: 2018/06/08 11:16:21 by cvautrai          #+#    #+#             */
+/*   Updated: 2018/06/08 13:34:01 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-double		ft_atof(const char *str)
+static char		*remove_dot(const char *str)
 {
-	double	n;
+	char	*new;
 	int		i;
-	int		k;
-	int		neg;
+	int		j;
+	size_t	len;
+
+	len = ft_strlen(str) - 1;
+	new = (char*)malloc(sizeof(char) * len);
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		if (str[i] != '.')
+		{
+			new[j] = str[i];
+			j++;
+		}
+		i++;
+	}
+	return (new);
+}
+
+static size_t	search_dot(const char *str)
+{
+	int		i;
 
 	i = 0;
-	n = 0;
-	k = 0;
-	neg = 1;
-	if (!str)
-		return (0);
-	while (ftb_isspace(str[i]))
+	while (str[i] && !ft_isdigit(str[i]))
 		i++;
-	neg = (str[i] == '-') ? -neg : neg;
-	i = (str[i] == '-' || str[i] == '+') ? i + 1 : i;
-	while (str[i] >= 48 && str[i] <= 57)
-	{
-		n = n * 10 + (str[i++] - 48);
-		if (str[i] == '.')
-			k = i++;
-	}
-	while (k != 0 && str[++k])
-		neg = neg * 10;
-	return (n / neg);
+	while (str[i] && ft_isdigit(str[i]))
+		i++;
+	if (str[i] == '.')
+		return (i);
+	else
+		return (0);
+}
+
+double			ft_atof(const char *str)
+{
+	int		i;
+	size_t	dot_pos;
+	char	*tmp;
+	double	res;
+
+	if (!ft_strchr(str, '.'))
+		return (ft_atoi(str));
+	i = 0;
+	dot_pos = search_dot(str);
+	if (dot_pos == ft_strlen(str))
+		dot_pos = 0;
+	tmp = remove_dot(str);
+	res = ft_atoi(tmp);
+	ft_strdel(&tmp);
+	if (dot_pos && res < 0)
+		dot_pos--;
+	while (dot_pos && --dot_pos > 0)
+		res = res * 0.1;
+	return (res);
 }

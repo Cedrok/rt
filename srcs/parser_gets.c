@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:03:41 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/08 11:15:27 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/08 13:34:19 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,18 +125,17 @@ static void	grab_obj(t_scene *scene, int *fd)
 		if (!ft_strncmp(line, "\tbrillance:", 11))
 		{
 			obj.brillance = ft_atof(line + 11) * 0.1;
-			printf("obj.brillance: %f\n", ft_atof(line + 11));
+//			printf("obj.brillance: %f\n", ft_atof(line + 11));
 		}
 		if (!ft_strncmp(line, "\topacity:", 9))
 		{
 			obj.opacity = ft_atof(line + 9);
-			printf("obj.opacity: %f\n", ft_atof(line + 9));
+//			printf("obj.opacity: %f\n", ft_atof(line + 9));
 		}
 		if (!ft_strncmp(line, "\ttexture{", 9))
 			grab_texture(&obj, fd);
 	}
 	ft_strdel(&line);
-	printf("type = %i\n", obj.type);
 	ft_lstadd(&scene->shape_lst, ft_lstnew(&obj, sizeof(obj)));
 }
 
@@ -192,7 +191,7 @@ static void	grab_spot(t_scene *scene, int *fd)
 		if (!ft_strncmp(line, "\tintensity:", 11))
 		{
 			light.intensity = ft_atof(line + 11);
-			printf("light.intensity: %f\n", ft_atof(line + 11));
+//			printf("light.intensity: %f\n", ft_atof(line + 11));
 		}
 	}
 	ft_strdel(&line);
