@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:03:41 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/07 19:50:59 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/08 10:49:51 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static int	shape_type(char *str)
 		return (CYLINDER);
 	else if (!ft_strcmp(str, "cone"))
 		return (CONE);
+	else if (!ft_strcmp(str, "torus"))
+		return (TORUS);
 	else
 		ft_abort("incorrect type");
 	return (-1);
@@ -45,7 +47,39 @@ static t_shape	default_shape(int i)
 	obj.rot = new_matrix(0, 0, 0);
 	obj.inv_rot = matrix_inv(obj.rot);
 	obj.textunit.has_texture = 0;
+	obj.textunit.x_scale = 1;
+	obj.textunit.y_scale = 1;
+	obj.textunit.x_offset = 0;
+	obj.textunit.y_offset = 0;
 	return (obj);	
+}
+
+static void	grab_texture(t_shape *obj, int *fd)
+{
+	char	*line;
+	char	*path;
+
+	line = ft_strnew(0);
+	while (ft_strcmp(line, "\t}"))
+	{
+		ft_strdel(&line);
+		if (rt_get_next_line(*fd, &line) <= 0)
+			ft_abort_free("grab_texture: rt_gnl <= 0", line);
+		if (!ft_strncmp(line, "\t\tpath:", 7))
+			path = extract_text(line);
+		if (!ft_strncmp(line, "\t\tx_scale:", 10))
+			obj->textunit.x_scale = ft_atof(line + 10);
+		if (!ft_strncmp(line, "\t\ty_scale:", 10))
+			obj->textunit.y_scale = ft_atof(line + 10);
+		if (!ft_strncmp(line, "\t\tx_offset:", 11))
+			obj->textunit.x_offset = ft_atof(line + 11);
+		if (!ft_strncmp(line, "\t\ty_offset:", 11))
+			obj->textunit.y_offset = ft_atof(line + 11);
+		if (!ft_strcmp(line, "}"))
+				ft_abort_free("no end to texture definition", line);
+	}
+	setup_textunit(path, &obj->textunit);
+	ft_strdel(&path);
 }
 
 static void	grab_obj(t_scene *scene, int *fd)
@@ -53,8 +87,11 @@ static void	grab_obj(t_scene *scene, int *fd)
 	char	*line;
 	t_shape	obj;
 	t_vector3d	tmp;
+	static int	id = 0;
 
 	obj = default_shape(-10);
+	obj.id = id;
+	id++;
 	line = ft_strnew(0);
 	while (ft_strcmp(line, "}"))
 	{
@@ -89,10 +126,11 @@ static void	grab_obj(t_scene *scene, int *fd)
 			obj.brillance = ft_atof(line + 11) * 0.1;
 			printf("obj.brillance: %f\n", ft_atof(line + 11));
 		}
-		if (!ft_strncmp(line, "\ttexture:", 9))
-			setup_textunit(extract_text(line), &obj.textunit, 1, 1);
+		if (!ft_strncmp(line, "\ttexture{", 9))
+			grab_texture(&obj, fd);
 	}
 	ft_strdel(&line);
+	printf("type = %i\n", obj.type);
 	ft_lstadd(&scene->shape_lst, ft_lstnew(&obj, sizeof(obj)));
 }
 

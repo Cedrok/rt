@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 11:11:20 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/07 19:49:15 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/08 10:31:13 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		*surf_to_int_array(SDL_Surface *surf, t_point p)
 	return (tab);
 }
 
-void	setup_textunit(const char *surfpath, t_textunit *textunit, double xscale, double yscale)
+void	setup_textunit(const char *surfpath, t_textunit *textunit)
 {
 	SDL_Surface	*surf;
 
@@ -54,8 +54,6 @@ void	setup_textunit(const char *surfpath, t_textunit *textunit, double xscale, d
 		return ;
 	textunit->has_texture = 1;
 	textunit->texture_width = surf->w;
-	textunit->xscale = xscale;
-	textunit->yscale = yscale;
 	SDL_LockSurface(surf);
 	textunit->texture = surf_to_int_array(surf, new_point(-1, -1, 0));
 	SDL_UnlockSurface(surf);

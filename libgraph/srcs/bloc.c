@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 10:50:45 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/07 17:19:45 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/07 18:44:55 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_bloc			new_bloc(t_vector2d w_sz, t_color c, t_vector4d r_m, int pos)
 
 	new.pos = calc_position(new_vector_4d(0, 0, w_sz.x, w_sz.y), r_m, pos);
 	new.color = c;
-	new.title = new.title = new_label("", c, new_vector_4d(0, 0, 0, 0), 0);
+	new.title = new.title = new_label(NULL, c, new_vector_4d(0, 0, 0, 0), 0);
 	new.lst_obj = NULL;
 	return (new);
 }

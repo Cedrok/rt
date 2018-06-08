@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 10:16:03 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/07 18:08:22 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/07 18:45:23 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	draw_bloc(t_bloc bloc, SDL_Renderer *rend)
 
 	i = 0;
 	draw_fill_render(bloc.pos, bloc.color, rend);
-	put_string(bloc.title, bloc.pos, rend);
+	if (bloc.title.title != NULL)
+		put_string(bloc.title, bloc.pos, rend);
 	if (bloc.lst_obj != NULL)
 		while (bloc.lst_obj[i].type != 0)
 		{

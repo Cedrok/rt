@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 15:20:58 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/04 17:01:23 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/08 09:59:13 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ t_vector3d	set_axe(int x, int y, t_camera *cam)
 	t_vector3d	plan_cam;
 	t_vector3d	direction;
 
-	ndc_space.x = (x + 0.5) / W_WIDTH;
-	ndc_space.y = (y + 0.5) / W_HEIGHT;
+	ndc_space.x = (x + 0.5) / I_WIDTH;
+	ndc_space.y = (y + 0.5) / I_HEIGHT;
 	new_axe.x = (2 * ndc_space.x - 1) * cam->aspect_ratio;
 	new_axe.y = 1 - 2 * ndc_space.y;
 	plan_cam.x = new_axe.x * tan((cam->fov * 0.5) * DEG2RAD);

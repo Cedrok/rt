@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/07 18:55:13 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/08 10:49:55 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 # define PLANE				3
 # define CONE				4
 # define CYLINDER			5
+# define TORUS				6
 
 /*
 ** Basic structs
@@ -90,15 +91,18 @@ typedef struct		s_light
 
 typedef struct		s_textunit
 {
-	int	has_texture;
-	int	*texture;
-	int	texture_width;
-	double	xscale;
-	double	yscale;
+	int				has_texture;
+	int				*texture;
+	int				texture_width;
+	double			x_scale;
+	double			y_scale;
+	double			x_offset;
+	double			y_offset;
 }					t_textunit;
 
 typedef struct		s_shape
 {
+	int				id;
 	int				type;
 	int				color;
 	t_vector3d		origin;
@@ -236,8 +240,7 @@ void				setup_multithread(t_all param);
 */
 
 int			texture(int color, t_intersect i, t_shape s);
-void		setup_textunit(const char *surfpath, t_textunit *textunit,
-		double xscale, double yscale);
+void		setup_textunit(const char *surfpath, t_textunit *textunit);
 
 /*
  ** Limiters

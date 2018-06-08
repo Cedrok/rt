@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/27 14:06:23 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/07 14:16:23 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/08 10:49:49 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ int	coloralter(int color, double u, double v)
 
 int	checker_pattern(int color, double u, double v)
 {
-	u *= 10;
-	v *= 10;
+	u *= 100;
+	v *= 100;
 	if (((int)u % 2 == 0 && (int)v % 2 == 0)
 	|| (((int)u % 2 != 0 && (int)v % 2 != 0)))
 			color = interpolate(color, (0xFFFFFF - color), 0.3);
@@ -71,25 +71,26 @@ int	checker_pattern(int color, double u, double v)
 
 int	get_texture_color(double u, double v, t_shape s)
 {
-	double	modif;
+	double	modi;
 
-	modif = s.textunit.texture_width;
-	u = u * modif / (s.textunit.xscale);
-	v = v * modif / (s.textunit.yscale);
-	if (s.textunit.xscale < 1)
-		u -= (modif - modif * s.textunit.xscale) / (2 * s.textunit.xscale) - modif;
+	modi = s.textunit.texture_width;
+	u = u * modi / (s.textunit.x_scale);
+	v = v * modi / (s.textunit.y_scale);
+	if (s.textunit.x_scale < 1)
+		u -= (modi - modi * s.textunit.x_scale) / (2 * s.textunit.x_scale);
 	else
-		u += (modif * s.textunit.xscale - modif) / (2 * s.textunit.xscale);
-	if (s.textunit.yscale < 1)
-		v -= (modif - modif * s.textunit.yscale) / (2 * s.textunit.yscale) - modif;
+		u += (modi * s.textunit.x_scale - modi) / (2 * s.textunit.x_scale);
+	if (s.textunit.y_scale < 1)
+		v -= (modi - modi * s.textunit.y_scale) / (2 * s.textunit.y_scale);
 	else
-		v += (modif * s.textunit.yscale - modif) / (2 * s.textunit.yscale);
-	u = (int)u % (int)modif;
-	v = (int)v % (int)modif;
-	if ((int)u + (int)v * modif < modif * modif && (int)u >= 0 && (int)v >= 0 && (int)v < modif && (int)u < modif)
-		return (s.textunit.texture[(int)u + (int)((int)v * modif)]);
-	else
-		return(0);
+		v += (modi * s.textunit.y_scale - modi) / (2 * s.textunit.y_scale);
+	while (v < 0)
+		v += modi;
+	while (u < 0)
+		u += modi;
+	u = (int)u % (int)modi;
+	v = (int)v % (int)modi;
+	return (s.textunit.texture[(int)u + (int)((int)v * modi)]);
 }
 
 void		get_uv_mapping_coord(double *u, double *v, t_intersect i, t_shape s)
@@ -123,7 +124,7 @@ int			texture(int color, t_intersect i, t_shape s)
 
 	get_uv_mapping_coord(&u, &v, i, s);
 	if (s.textunit.has_texture)
-		color = get_texture_color(u, v, s);
+		color = interpolate(get_texture_color(u, v, s), color, 0);
 	//color = checker_pattern(color, u, v);
 	//color = coloralter(color, u, v);
 	return (color);

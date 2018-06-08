@@ -15,9 +15,16 @@ object{
 	rot: {0, 0, -60}
 	height: 40
 	width: a
-	radius: 1
+	radius: 1 
 	brillance: 0.6
-	texture: "path"
+	texture{
+		path: "textures/stones.bmp"
+		x_scale: 1
+		y_scale: 1
+		x_offset: 0
+		y_offset: 0
+	}
+
 }
 object{
 	type: "cone"
@@ -105,9 +112,16 @@ object{
 	rot: {x, y, z}
 	height: a
 	width: a
-	radius: a
-	brillance: a
-	texture: "path"
+	radius: a [0+]
+	brillance: a [0 -> 1]
+	texture{
+		path: "path"
+		x_scale: a
+		y_scale: a
+		x_offset: a
+		y_offset: a
+	}
+
 }
 sphere -> pos, radius, color, brillance[, texture]
 plane -> pos, rot, color, brillance[, width, height]
@@ -117,5 +131,5 @@ cone -> pos, rot, radius, color, height
 spot{
 	pos: {x, y, z}
 	color: "RRGGBB"
-	intensity: a
+	intensity: a [0 -> 10]
 }

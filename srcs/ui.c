@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 11:06:00 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/07 18:19:21 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/07 19:08:22 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,28 @@
 static t_bloc		create_bloc_center(t_all *param)
 {
 	t_bloc		bloc;
-	t_button	btn_shp;
+	t_button	btn_sph;
+	t_button	btn_cyl;
+	t_button	btn_pla;
+	t_button	btn_cne;
+	t_button	btn_lgt;
 
 	bloc = new_bloc(new_vector_2d(param->env->w, param->env->h), new_color(0x00, 0x3a, 0x42), new_vector_4d(63, 10, 1.5f, 2), HORIZONTAL_CENTER);
 	set_title_bloc(&bloc, "Ajouter des objets :", new_vector_4d(96, 70, 2, 5), new_color(255, 255, 255));
-	//if (!(bloc.lst_obj = (t_obj*)malloc(sizeof(t_obj) * 2)))
-	//	return (bloc);
-	btn_shp = new_button(bloc.pos, new_color(101, 42, 19), new_vector_4d(25, 25, 45, 0), LEFT_DOWN_CONER);
+	if (!(bloc.lst_obj = (t_obj*)malloc(sizeof(t_obj) * 6)))
+		return (bloc);
+	btn_sph = new_button(bloc.pos, new_color(42, 101, 19), new_vector_4d(3.5, 38, 35, -3), LEFT_DOWN_CONER);
+	btn_cyl = new_button(bloc.pos, new_color(42, 101, 19), new_vector_4d(3.5, 38, 40, -3), LEFT_DOWN_CONER);
+	btn_pla = new_button(bloc.pos, new_color(42, 101, 19), new_vector_4d(3.5, 38, 45, -3), LEFT_DOWN_CONER);
+	btn_cne = new_button(bloc.pos, new_color(42, 101, 19), new_vector_4d(3.5, 38, 50, -3), LEFT_DOWN_CONER);
+	btn_lgt = new_button(bloc.pos, new_color(42, 101, 19), new_vector_4d(3.5, 38, 55, -3), LEFT_DOWN_CONER);
+	//set_title_btn(&btn_sph, "Sphere", new_vector_4d(0, 30, 0, 0), new_color(255, 255, 255));
+	bloc.lst_obj[0] = new_obj(&btn_sph, sizeof(btn_sph), BUTTON);
+	bloc.lst_obj[1] = new_obj(&btn_cyl, sizeof(btn_cyl), BUTTON);
+	bloc.lst_obj[2] = new_obj(&btn_pla, sizeof(btn_pla), BUTTON);
+	bloc.lst_obj[3] = new_obj(&btn_cne, sizeof(btn_cne), BUTTON);
+	bloc.lst_obj[4] = new_obj(&btn_lgt, sizeof(btn_lgt), BUTTON);
+	bloc.lst_obj[5] = new_obj(NULL, 0, 0);
 	return (bloc);
 }
 
