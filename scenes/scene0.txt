@@ -55,7 +55,7 @@ object{
 object{
 	type: "sphere"
 	color: "000F0F"
-	pos: {4, -3.5, 6}
+	pos: {4, -3.15, 6}
 	rot: {x, y, z}
 	height: a
 	width: a
@@ -67,7 +67,7 @@ object{
 object{
 	type: "plane"
 	color: "00FF00"
-	pos: {-50, -5, -4}
+	pos: {-49.444555666777888999, -5, -4}
 	rot: {0, 0, 0}
 	height: a
 	width: 100
@@ -94,8 +94,8 @@ spot{
 	color: "FFFFFF"
 	intensity: 0.6
 }
--spot{
-	pos: {2, 10, 0}
+spot{
+	pos: {2.55, 999999999999999999999910, 0}
 	color: "FFFFFF"
 	intensity: 0.2
 }

@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 16:47:24 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/08 11:18:07 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/11 12:22:12 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,6 @@ int					ft_sqrt(int n);
 int					ft_countstrtab(char **tab);
 double				ft_atof(const char *str);
 double				ftb_clamp(double toclamp, double min, double max);
+long				ft_atol(const char *str);
 
 #endif

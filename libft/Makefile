@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 18:38:31 by tmilon            #+#    #+#              #
-#    Updated: 2018/06/04 10:17:23 by cpieri           ###   ########.fr        #
+#    Updated: 2018/06/11 11:42:24 by cvautrai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,7 +103,8 @@ SRCS = 		ft_atoi.c					\
 			ftb_find_closest_offset.c	\
 			ftb_abs.c					\
 			ft_countstrtab.c			\
-			ft_atof.c
+			ft_atof.c					\
+			ft_atol.c
 
 OBJS	=	$(SRCS:.c=.o)
 
