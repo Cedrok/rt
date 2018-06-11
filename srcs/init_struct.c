@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 11:55:34 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/04 17:01:18 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/08 15:39:37 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_ray	new_ray(t_vector3d o, t_vector3d d)
 
 	ret.origin = o;
 	ret.direction = d;
+	ret.previous_inter_id = -1;
 	return (ret);
 }
 

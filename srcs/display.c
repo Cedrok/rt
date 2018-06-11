@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/08 11:15:08 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/08 17:33:14 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_intersect	new_intersection(t_shape shape, t_ray ray, double point_dist)
 	return (ret);
 }
 
-int			get_nearest_intersection(t_ray *ray, t_scene scene,
+double	get_nearest_intersection(t_ray *ray, t_scene scene,
 		t_intersect *nearest_intersect, double maxdist)
 {
 	int			(*collisions[10])(t_shape shape, t_ray ray, double *t);
@@ -75,7 +75,7 @@ int			get_nearest_intersection(t_ray *ray, t_scene scene,
 		shape = *(t_shape*)scene.shape_lst->content;
 		if (shape.type == -1)
 			break ;
-		if (collisions[shape.type](shape,
+		if (ray->previous_inter_id != shape.id && collisions[shape.type](shape,
 					adapt_ray(*ray, shape.inv_rot), &maxdist))
 			nearest_shape = shape;
 		scene.shape_lst = scene.shape_lst->next;
@@ -88,7 +88,7 @@ int			get_nearest_intersection(t_ray *ray, t_scene scene,
 				vector_op(ray->direction, new_vector_3d_unicoord(maxdist), '*'),
 				'+');
 	}
-	return (nearest_shape.color ? 1 : 0);
+	return (nearest_shape.color ? maxdist : 0);
 }
 
 int	transparency(t_scene scene, t_ray ray, t_intersect intersection, t_point p, t_data data)
@@ -98,7 +98,10 @@ int	transparency(t_scene scene, t_ray ray, t_intersect intersection, t_point p, 
 		//rename set_light
 		p.color = set_color(scene, intersection, data);
 		if (intersection.shape_copy.opacity != 1)
+		{
+			ray.previous_inter_id = intersection.shape_copy.id;
 			p.color = interpolate(transparency(scene, ray, intersection, p, data), p.color, intersection.shape_copy.opacity);
+		}
 		return (p.color);
 	}
 	return (0); //noir

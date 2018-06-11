@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 15:09:23 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/07 19:51:10 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/08 19:14:06 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ static void		launch(t_all *param, t_env *env)
 			env->loop = 0;
 		else if (event.type == SDL_KEYDOWN)
 			sdl_key(param, event.key.keysym.sym);
-		if (event.type == SDL_WINDOWEVENT){
+		if (event.type == SDL_WINDOWEVENT)
 			if (event.window.event == SDL_WINDOWEVENT_RESIZED)
 			{
 				SDL_GetWindowSize(env->win, &env->w, &env->h);
+				new_ui(param);
 				refresh_img(param);
 			}
-		}
 		//else if (event.type == SDL_MOUSEBUTTONDOWN)
 		//	event_button(param, event.button.x, event.button.y);
 	}
@@ -66,6 +66,7 @@ int				main(int ac, char **av)
 	parse(&param, av[1]);
 	param = init_param(param);
 	printf("parsing & init OK\n");//
+	new_ui(&param);
 	create_render(&param);
 	launch(&param, param.env);
 	quit_exe(param);

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 10:16:03 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/07 18:45:23 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/08 19:11:19 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void     put_string(t_label str, t_vector4d pos_p, SDL_Renderer *rend)
 	SDL_DestroyTexture(texture);
 }
 
-void		draw_fill_render(t_vector4d pos, t_color c, SDL_Renderer *rend)
+void		draw_rect(t_vector4d pos, t_color c, SDL_Renderer *rend)
 {
 	t_vector2d	point;
 
@@ -56,31 +56,32 @@ void		draw_fill_render(t_vector4d pos, t_color c, SDL_Renderer *rend)
 	}
 }
 
-void	draw_bloc(t_bloc bloc, SDL_Renderer *rend)
+void	draw_bloc(t_bloc *bc, SDL_Renderer *rend)
 {
-	t_button	btn;
-	t_label		label;
 	int			i;
+	t_button	*btn;
 
 	i = 0;
-	draw_fill_render(bloc.pos, bloc.color, rend);
-	if (bloc.title.title != NULL)
-		put_string(bloc.title, bloc.pos, rend);
-	if (bloc.lst_obj != NULL)
-		while (bloc.lst_obj[i].type != 0)
+	draw_rect(bc->pos, bc->color, rend);
+	if (bc->title.title != NULL)
+		put_string(bc->title, bc->pos, rend);
+	if (bc->lst_obj != NULL)
+		while (bc->lst_obj[i] != NULL)
 		{
-			if (bloc.lst_obj[i].type == LABEL)
+			if (bc->lst_obj[i]->type == BUTTON)
 			{
-				label = *((t_label*)bloc.lst_obj[i].obj);
-				put_string(label, bloc.pos, rend);
-			}
-			if (bloc.lst_obj[i].type == BUTTON)
-			{
-				btn = *((t_button*)bloc.lst_obj[i].obj);
-				draw_fill_render(btn.pos, btn.color, rend);
-				if (btn.title.title != NULL)
-					put_string(btn.title, btn.pos, rend);
+				btn = ((t_button*)bc->lst_obj[i]->obj);
+				draw_rect(btn->pos, btn->color, rend);
+				if (btn->title.title != NULL)
+					put_string(btn->title, btn->pos, rend);
 			}
 			i++;
 		}
+}
+
+void	draw_ui(t_all *param)
+{
+	draw_bloc(param->ui.bc_rght, param->env->rend);
+	draw_bloc(param->ui.bc_lft, param->env->rend);
+	draw_bloc(param->ui.bc_center, param->env->rend);
 }

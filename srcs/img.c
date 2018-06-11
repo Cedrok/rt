@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:47:21 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/07 18:12:32 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/08 19:11:32 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,7 @@
 
 void		create_render(t_all *param)
 {
-	new_ui(param);
-/*
-	t_all *p = param;
-//	printf("ambiant = %f\n", param->data.ambiantlight);
-//	printf("camera.ori.z = %f\n", param->scene.camera.origin.z);
-//	printf("camera.w = %f\n", param->scene.camera.w);
-//	printf("camera.h = %f\n", param->scene.camera.h);
-//	printf("camera.fov = %f\n", param->scene.camera.fov);
-	while (param->scene.shape_lst)
-	{
-		printf("obj type = %i\n",
-				((t_shape*)p->scene.shape_lst->content)->type);
-		printf("obj color = %i\n",
-				((t_shape*)p->scene.shape_lst->content)->color);
-		printf("obj brillance = %f\n",
-				((t_shape*)p->scene.shape_lst->content)->brillance);
-		printf("obj pos =  %f, %f, %f\n",
-				((t_shape*)p->scene.shape_lst->content)->origin.x,
-				((t_shape*)p->scene.shape_lst->content)->origin.y,
-				((t_shape*)p->scene.shape_lst->content)->origin.z);
-		param->scene.shape_lst = param->scene.shape_lst->next;
-	}
-	while (param->scene.light_lst)
-	{
-		printf("light color = %i\n",
-				((t_light*)p->scene.light_lst->content)->color);
-		printf("light intensity = %f\n",
-				((t_light*)p->scene.light_lst->content)->intensity);
-		printf("light pos.x = %f\n",
-				((t_light*)p->scene.light_lst->content)->origin.x);
-		param->scene.light_lst = param->scene.light_lst->next;
-	}
-	printf("checkpoint\n");//
-*/
+	draw_ui(param);
 	setup_multithread(*param);
 	if (param->data.filter < 4)
 		put_filter(*param);

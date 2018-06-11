@@ -55,19 +55,45 @@ static int		brillance(int start, t_intersect inter, t_light light)
 	return (color_to_int(a));
 }
 
-static int			shadows(t_scene scene, t_intersect *inter, t_light light)
+static int			shadows(t_scene scene, t_intersect inter, t_light light,
+		int *color, t_data data)
 {
 	t_ray		ray;
 	t_vector3d	dir;
 	t_vector3d	rayorigin;
 	double		dist;
+	double		tmp;
 
-	rayorigin = vector_op(inter->normal, new_vector_3d_unicoord(0.00001), '*');
-	rayorigin = vector_op(inter->point, rayorigin, '+');
+	rayorigin = vector_op(inter.normal, new_vector_3d_unicoord(0.00001), '*');
+	rayorigin = vector_op(inter.point, rayorigin, '+');
 	dir = vector_op(light.origin, rayorigin, '-');
 	ray = new_ray(rayorigin, normalize(dir));
 	dist = get_length(dir);
-	return (get_nearest_intersection(&ray, scene, inter, dist));
+	tmp = get_nearest_intersection(&ray, scene, &inter, dist);
+	while (tmp)
+	{
+		if (inter.shape_copy.textunit.has_texture)
+		{
+			inter.shape_copy.color = interpolate(0, inter.shape_copy.color,
+	ftb_clamp(1 - inter.shape_copy.opacity, 0, 1));
+			*color = interpolate(inter.shape_copy.color, *color,
+	ftb_clamp(1 - inter.shape_copy.opacity, 0, 1));
+		}
+		*color = interpolate(0, *color, ftb_clamp(data.ambiantlight + 1 - inter.shape_copy.opacity, 0, 1));
+		if (inter.shape_copy.opacity != 1.0)
+		{
+			dist -= tmp;
+			ray.previous_inter_id = inter.shape_copy.id;
+			tmp = get_nearest_intersection(&ray, scene, &inter, dist);
+			if (tmp)
+			*color = interpolate(0, *color, ftb_clamp(data.ambiantlight + 1 - inter.shape_copy.opacity, 0, 1));
+			else
+				return (1);
+		}
+		else
+			return (1);
+	}
+	return (0);
 }
 
 int				set_color(t_scene scene,
@@ -76,23 +102,18 @@ int				set_color(t_scene scene,
 	int			ret;
 	int			tmp;
 	double		intensity;
-	t_intersect	shadowinter;
 	t_light		light;
 
 	ret = 0;
 	while (scene.light_lst != NULL)
 	{
-		shadowinter = intersection;
 		light = *(t_light*)scene.light_lst->content;
 		if (light.color == -1)
 			break ;
 		intensity = get_intensity(intersection, light, data);
 		tmp = interpolate(0, intersection.shape_copy.color, intensity);
-		if (!shadows(scene, &shadowinter, light))
+		if (!shadows(scene, intersection, light, &tmp, data))
 			tmp = brillance(tmp, intersection, light);
-		else
-			tmp = interpolate(0, tmp,
-	ftb_clamp(data.ambiantlight + 1 - shadowinter.shape_copy.opacity, 0, 1));
 		ret = fuse(ret, tmp, light.color);
 		scene.light_lst = scene.light_lst->next;
 	}

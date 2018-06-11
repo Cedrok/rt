@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 10:50:45 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/07 18:44:55 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/08 18:06:25 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,16 @@ t_vector4d		calc_position(t_vector4d parent_size, t_vector4d ratio_marge, int po
 	return (new_vector_4d(left_p.x, left_p.y, size.x, size.y));
 }
 
-t_bloc			new_bloc(t_vector2d w_sz, t_color c, t_vector4d r_m, int pos)
+t_bloc			*new_bloc(t_vector2d w_sz, t_color c, t_vector4d r_m, int pos)
 {
-	t_bloc		new;
+	t_bloc		*new;
 
-	new.pos = calc_position(new_vector_4d(0, 0, w_sz.x, w_sz.y), r_m, pos);
-	new.color = c;
-	new.title = new.title = new_label(NULL, c, new_vector_4d(0, 0, 0, 0), 0);
-	new.lst_obj = NULL;
+	if (!(new = (t_bloc*)malloc(sizeof(t_bloc))))
+		return (NULL);
+	new->pos = calc_position(new_vector_4d(0, 0, w_sz.x, w_sz.y), r_m, pos);
+	new->color = c;
+	new->title = new_label(NULL, c, new_vector_4d(0, 0, 0, 0), 0);
+	new->lst_obj = NULL;
 	return (new);
 }
 
@@ -61,12 +63,22 @@ void			set_title_bloc(t_bloc *bloc, char *title, t_vector4d pos, t_color c)
 	bloc->title = new_label(title, c, pos, font_size);
 }
 
-t_obj			new_obj(const void *obj, size_t obj_size, int type)
+t_obj			*new_obj(void *obj, size_t obj_size, int type)
 {
-	t_obj	new;
+	t_obj	*new;
 
-	new.obj = (void *)obj;
-	new.obj_size = obj_size;
-	new.type = type;
+	if (!(new = (t_obj*)ft_memalloc(sizeof(t_obj))))
+		return (NULL);
+	new->obj = obj;
+	new->obj_size = obj_size;
+	new->type = type;
 	return (new);
+}
+
+int		init_lstobj(t_bloc *bloc, int size)
+{
+	if (!(bloc->lst_obj = (t_obj**)malloc(sizeof(t_obj*) * (size + 1))))
+		return (0);
+	bloc->lst_obj[size] = NULL;
+	return (1);
 }

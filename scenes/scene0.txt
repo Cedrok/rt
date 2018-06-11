@@ -9,6 +9,18 @@ ambiant: 0
 
 # Objects
 object{
+	type: "cone"
+	color: "F0FF00"
+	pos: {5, -5, 9}
+	rot: {0, 0, 50}
+	height: 40
+	width: a
+	radius: 0.5
+	opacity: 0.2
+	brillance: 0.6
+-	texture: "path"
+}
+object{
 	type: "cylinder"
 	color: "FF0FF0"
 	pos: {-5, -5, 10}
@@ -17,8 +29,8 @@ object{
 	width: a
 	radius: 1 
 	brillance: 1
-	opacity: 1
-	-texture{
+	opacity: 0.2
+	texture{
 		path: "textures/stones.bmp"
 		x_scale: 1
 		y_scale: 0.1
@@ -26,17 +38,6 @@ object{
 		y_offset: 40
 	}
 
-}
-object{
-	type: "cone"
-	color: "F0FF00"
-	pos: {5, -5, 9}
-	rot: {0, 0, 50}
-	height: 40
-	width: a
-	radius: 0.5
-	brillance: 0.6
--	texture: "path"
 }
 object{
 	type: "sphere"
@@ -47,8 +48,8 @@ object{
 -	height: a
 -	width: a
 	radius: 1
-	opacity: 0.1
-	brillance: 0.1
+	opacity: 0.9
+	brillance: 0.5
 -	texture: "path"
 }
 object{
@@ -58,7 +59,7 @@ object{
 	rot: {x, y, z}
 	height: a
 	width: a
-	opacity: 0.3
+	opacity: 0.9
 	radius: 0.6
 	brillance: 0.5
 -	texture: "path"
@@ -89,14 +90,14 @@ object{
 
 # Lights
 spot{
-	pos: {2, 10, 0}
-	color: "FFFFFF"
-	intensity: 0.2
-}
-spot{
 	pos: {-2, 5, -3}
 	color: "FFFFFF"
 	intensity: 0.6
+}
+-spot{
+	pos: {2, 10, 0}
+	color: "FFFFFF"
+	intensity: 0.2
 }
 #
 
