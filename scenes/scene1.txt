@@ -4,22 +4,27 @@ camera{
 	pos: {0, 0, -10}
 	rot: {0, 0, 0}
 }
-ambiant: 0.2
+ambiant: 0
 #
 
 # Objects
 object{
 	type: "plane"
 	pos: {0, -7, 0}
-	rot: {0, -30, 0}
+	rot: {0, 0, 0}
 	color: "FA9696"
 	width: 100
 	brillance: 0.7
+	texture{
+		path: "textures/stones.bmp"
+		x_scale: 0.08
+		y_scale: 0.08
+	}
 }
 object{
 	type: "plane"
 	pos: {0, 0, 42}
-	rot: {0, 0, 0}
+	rot: {90, 0, 0}
 	color: "6464646"
 	width: 100
 	brillance: 0.7
@@ -35,38 +40,42 @@ object{
 
 object{
 	type: "cylinder"
-	pos: {-8, 0, 15}
+	pos: {-8, -12, 15}
 	rot: {0, 0, 0}
 	radius: 1
 	color: "FAC8C8"
-	height: 20
+	height: 42
+	brillance: 1
+	texture{
+		path: "textures/stones.bmp"
+		y_scale: 0.1
+	}
+}
+object{
+	type: "cylinder"
+	pos: {-8, -12, 30}
+	ros: {0, 0, 0}
+	radius: 1
+	color: "FAC8C8"
+	height: 42
 	brillance: 1
 }
 object{
 	type: "cylinder"
-	pos: {-8, 0, 30}
-	axis: {0, 0, 0}
+	pos: {8, -12, 15}
+	rot: {0, 0, 0}
 	radius: 1
 	color: "FAC8C8"
-	height: 20
+	height: 42
 	brillance: 1
 }
 object{
 	type: "cylinder"
-	pos: {8, 0, 15}
-	axis: {0, 0, 0}
+	pos: {8, -12, 30}
+	rot: {0, 0, 0}
 	radius: 1
 	color: "FAC8C8"
-	height: 20
-	brillance: 1
-}
-object{
-	type: "cylinder"
-	pos: {8, 0, 30}
-	axis: {0, 0, 0}
-	radius: 1
-	color: "FAC8C8"
-	height: 20
+	height: 42
 	brillance: 1
 }
 
@@ -76,6 +85,9 @@ object{
 	radius: 2
 	color: "FAC8C8"
 	brillance: 1
+	texture{
+		path: "textures/stones.bmp"
+	}
 }
 object{
 	type: "sphere"
@@ -105,6 +117,10 @@ object{
 	radius: 2
 	color: "FAC8C8"
 	brillance: 1
+	texture{
+		path: "textures/stones.bmp"
+		y_offset: 2
+	}
 }
 object{
 	type: "sphere"
@@ -122,7 +138,7 @@ object{
 }
 object{
 	type: "sphere"
-	center: {8, 7, 30}
+	pos: {8, 7, 30}
 	radius: 2
 	color: "FAC8C8"
 	brillance: 1
@@ -130,11 +146,11 @@ object{
 
 object{
 	type: "cone"
-	pos: {0, 7, 22}
-	rot: {0, 0, 0}
-	radius: 5
+	pos: {0, 10, 22}
+	rot: {180, 0, 0}
+	radius: 2
 	color: "0C7B7B"
-	height: 7
+	height: 100
 	brillance: 0.6
 	opacity: 0.4
 }
@@ -166,7 +182,7 @@ spot{
 	intensity: 0.8
 }
 spot{
-	pos: {-12, 0, 20}
+	pos: {-12, 1, 20}
 	color: "FFFF2A"
 }
 spot{
@@ -174,7 +190,7 @@ spot{
 	color: "14B42A"
 }
 
-spot{
+-spot{
 	pos: {5, 12, 4}
 	color: "FF2B96"
 }
