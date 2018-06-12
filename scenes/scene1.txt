@@ -1,134 +1,160 @@
 # Scene informations
-title: "rtv1 - scene 1"
+title: "rt - scene 1"
 camera{
 	pos: {0, 0, -10}
 	rot: {0, 0, 0}
 }
+ambiant: 0.2
 #
 
 # Objects
 object{
 	type: "plane"
-	center: {0, -7, 0}
-	axis: {0, -30, 0}
-	color: {250, 150, 150}
+	pos: {0, -7, 0}
+	rot: {0, -30, 0}
+	color: "FA9696"
+	width: 100
+	brillance: 0.7
 }
 object{
 	type: "plane"
-	center: {0, 0, 42}
-	axis: {0, 0, 1}
-	color: {100, 100, 100}
+	pos: {0, 0, 42}
+	rot: {0, 0, 0}
+	color: "6464646"
+	width: 100
+	brillance: 0.7
 }
 object{
 	type: "plane"
-	center: {0, 7, 0}
-	axis: {0, -30, 0}
-	color: {250, 220, 220}
+	pos: {0, 7, 0}
+	rot: {0, -30, 0}
+	color: "FADCDC"
+	width: 100
+	brillance: 0.7
 }
 
 object{
 	type: "cylinder"
-	center: {-8, 0, 15}
-	axis: {0, 0, 0}
+	pos: {-8, 0, 15}
+	rot: {0, 0, 0}
 	radius: 2
-	color: {250, 200, 200}
+	color: "FAC8C8"
+	height: 20
+	brillance: 1
 }
 object{
 	type: "cylinder"
-	center: {-8, 0, 30}
+	pos: {-8, 0, 30}
 	axis: {0, 0, 0}
 	radius: 2
-	color: {250, 200, 200}
+	color: "FAC8C8"
+	height: 20
+	brillance: 1
 }
 object{
 	type: "cylinder"
-	center: {8, 0, 15}
+	pos: {8, 0, 15}
 	axis: {0, 0, 0}
 	radius: 2
-	color: {250, 200, 200}
+	color: "FAC8C8"
+	height: 20
+	brillance: 1
 }
 object{
 	type: "cylinder"
-	center: {8, 0, 30}
+	pos: {8, 0, 30}
 	axis: {0, 0, 0}
 	radius: 2
-	color: {250, 200, 200}
+	color: "FAC8C8"
+	height: 20
+	brillance: 1
 }
 
 object{
 	type: "sphere"
-	center: {-8, -7, 15}
+	pos: {-8, -7, 15}
 	radius: 2
-	color: {250, 200, 200}
+	color: "FAC8C8"
+	brillance: 1
 }
 object{
 	type: "sphere"
-	center: {-8, -7, 30}
+	pos: {-8, -7, 30}
 	radius: 2
-	color: {250, 200, 200}
+	color: "FAC8C8"
+	brillance: 1
 }
 object{
 	type: "sphere"
-	center: {8, -7, 15}
+	pos: {8, -7, 15}
 	radius: 2
-	color: {250, 200, 200}
+	color: "FAC8C8"
+	brillance: 1
 }
 object{
 	type: "sphere"
-	center: {8, -7, 30}
+	pos: {8, -7, 30}
 	radius: 2
-	color: {250, 200, 200}
+	color: "FAC8C8"
+	brillance: 1
 }
 
 object{
 	type: "sphere"
-	center: {-8, 7, 15}
+	pos: {-8, 7, 15}
 	radius: 2
-	color: {250, 200, 200}
+	color: "FAC8C8"
+	brillance: 1
 }
 object{
 	type: "sphere"
-	center: {-8, 7, 30}
+	pos: {-8, 7, 30}
 	radius: 2
-	color: {250, 200, 200}
+	color: "FAC8C8"
+	brillance: 1
 }
 object{
 	type: "sphere"
-	center: {8, 7, 15}
+	pos: {8, 7, 15}
 	radius: 2
-	color: {250, 200, 200}
+	color: "FAC8C8"
+	brillance: 1
 }
 object{
 	type: "sphere"
 	center: {8, 7, 30}
 	radius: 2
-	color: {250, 200, 200}
+	color: "FAC8C8"
+	brillance: 1
 }
 
 object{
 	type: "cone"
-	center: {0, 7, 22}
-	axis: {0, 0, 1}
-	radius: 10
-	color: {12, 123, 123}
+	pos: {0, 7, 22}
+	rot: {0, 0, 0}
+	radius: 5
+	color: "0C7B7B"
+	height: 7
+	brillance: 0.6
+	opacity: 0.4
 }
 object{
 	type: "sphere"
-	center: {-2, 4, 23}
+	pos: {-2, 4, 23}
 	radius: 1
-	color: {50, 50, 255}
+	color: "3232FF"
 }
 object{
 	type: "sphere"
-	center: {1, 2, 24}
+	pos: {1, 2, 24}
 	radius: 1
-	color: {50, 50, 255}
+	color: "3232FF"
 }
 object{
 	type: "sphere"
-	center: {0, -1, 20}
+	pos: {0, -1, 20}
 	radius: 1
-	color: {50, 50, 255}
+	color: "3232FF"
 }
 
 #
@@ -136,20 +162,20 @@ object{
 # Lights
 spot{
 	pos: {0, 0, 10}
-	color: {255, 255, 255}
+	color: "FFFFFF"
 }
 spot{
 	pos: {-12, 0, 20}
-	color: {255, 255, 42}
+	color: "FFFF2A"
 }
 spot{
 	pos: {10, 2, 12}
-	color: {20, 180, 40}
+	color: "14B42A"
 }
 
-spot{
+-spot{
 	pos: {5, 12, 4}
-	color: {255, 43, 150}
+	color: "FF2B96"
 }
 #
 
@@ -160,19 +186,32 @@ camera{
 	rot: {x, y, z}
 }
 
+ambiant: a [0 -> 1]
+
 object{
 	type: "sphere/plane/cylinder/cone"
-	center: {x, y, z}
-	axis: {x, y, z}
-	color: {r, g, b}
-	radius: a
+	color: "RRGGBB"
+	pos: {x, y, z}
+    rot: {x, y, z}
+	height: a
+	width: a
+	radius: a [0+]
+	brillance: a [0 -> 1]
+	texture{
+		path: "path"
+		x_scale: a
+		y_scale: a
+		x_offset: a
+		y_offset: a
+	}	
 }
-sphere -> center, radius, color
-plane -> center, axis, color
-cylinder -> center, axis, radius, color
-cone -> center, axis, radius, color
+sphere -> pos, radius, color, brillance[, texture]
+plane -> pos, rot, color, brillance[, width, height]
+cylinder -> pos, rot, radius, color, height
+cone -> pos, rot, radius, color, height
 
 spot{
 	pos: {x, y, z}
-	color: {r, g, b}
+	color: "RRGGBB"
+	intensity: a [0 -> 10]
 }
