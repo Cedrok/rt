@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/09 10:43:19 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/12 10:33:30 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,6 +302,8 @@ void				get_scene_infos(t_all *param, int *fd);
 void				get_ligths(t_all *param, int *fd);
 void				get_objs(t_all *param, int *fd);
 void				print_infos(int a, int b);
+t_shape				check_obj(t_shape *obj);
+t_light				check_light(t_light *spot);
 
 char				*extract_text(char *line);
 t_vector3d			extract_vd3(char *line);

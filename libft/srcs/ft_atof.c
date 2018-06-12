@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 11:16:21 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/11 17:56:43 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/12 14:14:20 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,24 +120,24 @@ double			ft_atof(const char *str)
 	char				*tmp;
 	double				res;
 
-	printf("_____\n");//
-	printf("\'%s\' => atof: %f\n", str, atof(str));//
+//	printf("_____\n");//
+//	printf("\'%s\' => atof: %f\n", str, atof(str));//
 	i = 0;
 	dot_pos = search_dot(str);
 	if ((size_t)dot_pos == ft_strlen(str) || dot_pos == -1)
 	{//
-		printf("go to ft_atol\n");//
+//		printf("go to ft_atol\n");//
 		return (ft_atol(str));
 	}//
 	tmp = remove_dot(str);
 	res = atod(tmp, find_stop(str));
 //	printf("tmp = %s, res = %f\n", tmp, res);//
-	ft_strdel(&tmp);
 	while (dot_pos && dot_pos > 0)
 	{
 		res = res * 0.1;
 //		printf("-> %i, res = %f\n", dot_pos, res);//
 		dot_pos--;
 	}
+	ft_strdel(&tmp);
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:03:41 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/11 16:53:40 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/12 14:24:28 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,23 @@
 
 static int	shape_type(char *str)
 {
+	int		res;
+	
+	res = -10;
 	if (!ft_strcmp(str, "sphere"))
-		return (SPHERE);
+		res = SPHERE;
 	else if (!ft_strcmp(str, "plane"))
-		return (PLANE);
+		res = PLANE;
 	else if (!ft_strcmp(str, "cylinder"))
-		return (CYLINDER);
+		res = CYLINDER;
 	else if (!ft_strcmp(str, "cone"))
-		return (CONE);
+		res = CONE;
 	else if (!ft_strcmp(str, "torus"))
-		return (TORUS);
-	else
-		ft_abort("incorrect type");
+		res = TORUS;
+	ft_strdel(&str);
+	if (res >= 0)
+		return (res);
+	ft_abort("incorrect type");
 	return (-1);
 }
 
@@ -81,13 +86,16 @@ static void	grab_texture(t_shape *obj, int *fd)
 	}
 	setup_textunit(path, &obj->textunit);
 	ft_strdel(&path);
+	ft_strdel(&line);
 }
+
 
 static void	grab_obj(t_scene *scene, int *fd)
 {
-	char	*line;
-	t_shape	obj;
+	char		*line;
+	t_shape		obj;
 	t_vector3d	tmp;
+	char		*str_tmp;
 	static int	id = 0;
 
 	obj = default_shape(-10);
@@ -110,7 +118,11 @@ static void	grab_obj(t_scene *scene, int *fd)
 			obj.inv_rot = matrix_inv(obj.rot);
 		}
 		if (!ft_strncmp(line, "\tcolor:", 7))
-			obj.color = hex2int(extract_text(line));
+		{
+			str_tmp = extract_text(line);
+			obj.color = hex2int(str_tmp);
+			ft_strdel(&str_tmp);
+		}
 		if (!ft_strncmp(line, "\tradius:", 8))
 		{
 			if (obj.type == CONE)
@@ -123,19 +135,14 @@ static void	grab_obj(t_scene *scene, int *fd)
 		if (!ft_strncmp(line, "\twidth:", 7))
 			obj.width = ft_atof(line + 7);
 		if (!ft_strncmp(line, "\tbrillance:", 11))
-		{
 			obj.brillance = ft_atof(line + 11) * 0.1;
-//			printf("obj.brillance: %f\n", ft_atof(line + 11));
-		}
 		if (!ft_strncmp(line, "\topacity:", 9))
-		{
 			obj.opacity = ft_atof(line + 9);
-//			printf("obj.opacity: %f\n", ft_atof(line + 9));
-		}
 		if (!ft_strncmp(line, "\ttexture{", 9))
 			grab_texture(&obj, fd);
 	}
 	ft_strdel(&line);
+	obj = check_obj(&obj);
 	ft_lstadd(&scene->shape_lst, ft_lstnew(&obj, sizeof(obj)));
 }
 
@@ -176,6 +183,7 @@ static void	grab_spot(t_scene *scene, int *fd)
 {
 	char	*line;
 	t_light	light;
+	char	*str_tmp;
 
 	light = default_light();
 	line = ft_strnew(0);
@@ -187,7 +195,11 @@ static void	grab_spot(t_scene *scene, int *fd)
 		if (!ft_strncmp(line, "\tpos:", 5))
 			light.origin = extract_vd3(line);
 		if (!ft_strncmp(line, "\tcolor:", 7))
-			light.color = hex2int(extract_text(line));
+		{
+			str_tmp = extract_text(line);
+			light.color = hex2int(str_tmp);
+			ft_strdel(&str_tmp);
+		}
 		if (!ft_strncmp(line, "\tintensity:", 11))
 		{
 			light.intensity = ft_atof(line + 11);
@@ -195,6 +207,7 @@ static void	grab_spot(t_scene *scene, int *fd)
 		}
 	}
 	ft_strdel(&line);
+	light = check_light(&light);
 	ft_lstadd(&scene->light_lst, ft_lstnew(&light, sizeof(light)));
 }
 

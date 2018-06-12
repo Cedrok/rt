@@ -37,7 +37,7 @@ object{
 	type: "cylinder"
 	pos: {-8, 0, 15}
 	rot: {0, 0, 0}
-	radius: 2
+	radius: 1
 	color: "FAC8C8"
 	height: 20
 	brillance: 1
@@ -46,7 +46,7 @@ object{
 	type: "cylinder"
 	pos: {-8, 0, 30}
 	axis: {0, 0, 0}
-	radius: 2
+	radius: 1
 	color: "FAC8C8"
 	height: 20
 	brillance: 1
@@ -55,7 +55,7 @@ object{
 	type: "cylinder"
 	pos: {8, 0, 15}
 	axis: {0, 0, 0}
-	radius: 2
+	radius: 1
 	color: "FAC8C8"
 	height: 20
 	brillance: 1
@@ -64,7 +64,7 @@ object{
 	type: "cylinder"
 	pos: {8, 0, 30}
 	axis: {0, 0, 0}
-	radius: 2
+	radius: 1
 	color: "FAC8C8"
 	height: 20
 	brillance: 1
@@ -161,8 +161,9 @@ object{
 
 # Lights
 spot{
-	pos: {0, 0, 10}
+	pos: {1, 1, 10}
 	color: "FFFFFF"
+	intensity: 0.8
 }
 spot{
 	pos: {-12, 0, 20}
@@ -173,7 +174,7 @@ spot{
 	color: "14B42A"
 }
 
--spot{
+spot{
 	pos: {5, 12, 4}
 	color: "FF2B96"
 }
@@ -197,6 +198,7 @@ object{
 	width: a
 	radius: a [0+]
 	brillance: a [0 -> 1]
+	opacity: a [0 -> 1]
 	texture{
 		path: "path"
 		x_scale: a

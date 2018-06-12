@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/08 17:33:14 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/12 14:53:49 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ t_intersect	new_intersection(t_shape shape, t_ray ray, double point_dist)
 	ret.point = adjust_direction(ret.point, shape.rot);
 	ret.normal = adjust_direction(ret.normal, shape.rot);
 	ret.normal = normalize(ret.normal);
-	ret.normal = bump_mapping(ret.normal, shape.color);
+	if (shape.textunit.has_texture)
+		ret.normal = bump_mapping(ret.normal, shape.color);
 	ret.dir_to_cam = adjust_direction(ray.direction, shape.rot);
 	return (ret);
 }

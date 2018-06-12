@@ -6,71 +6,46 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:03:42 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/06 18:07:23 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/12 15:21:15 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-/*
-static double		double_norm(double n, int min, int max)
+static t_vector3d	vd3_norm(t_vector3d n, double min, double max)
 {
-	if (n < min)
-		return (min);
-	else if (n > max)
-		return (max);
-	else
-		return (n);
-}
+	t_vector3d	new;
 
-static t_vect_d3	vd3_norm(t_vect_d3 n, int min, int max)
-{
-	t_vect_d3	new;
-
-	new.x = double_norm(n.x, min, max);
-	new.y = double_norm(n.y, min, max);
-	new.z = double_norm(n.z, min, max);
+	new.x = ftb_clamp(n.x, min, max);
+	new.y = ftb_clamp(n.y, min, max);
+	new.z = ftb_clamp(n.z, min, max);
 	return (new);
 }
 
-static void			check_obj(t_object *obj)
+t_shape		check_obj(t_shape *obj)
 {
-	if (!obj->name)
-		obj->name = ft_strdup("empty");
-	obj->center = vd3_norm(obj->center, -20000, 20000);
-	if (!ft_strcmp("sphere", obj->name))
-		obj->axis = vd3_norm(obj->axis, -20000, 20000);
-	else
-		obj->axis = lambda_product_d3(CONV,
-				vd3_norm(obj->axis, -20000, 20000));
-	obj->color = vd3_norm(obj->color, 0, 255);
-	if (ft_strcmp("cone", obj->name))
-		obj->radius = double_norm(obj->radius, 0, 10000);
-	else
-		obj->radius = tan(double_norm(obj->radius, 0, 10000) * CONV);
+	obj->color = ftb_clamp(obj->color, 0, 0xFFFFFF);
+	obj->origin = vd3_norm(obj->origin, -20000, 20000);
+	obj->height = ftb_clamp(obj->height, 0, 10000);
+	obj->width = ftb_clamp(obj->width, 0, 10000);
+	obj->radius = ftb_clamp(obj->radius, 0, 10000);
+	obj->brillance = ftb_clamp(obj->brillance, 0, 1);
+	obj->opacity = ftb_clamp(obj->opacity, 0, 1);
+	obj->textunit.x_scale = ftb_clamp(obj->textunit.x_scale, 0, 1000);
+	obj->textunit.y_scale = ftb_clamp(obj->textunit.y_scale, 0, 1000);
+	obj->textunit.x_offset = ftb_clamp(obj->textunit.x_offset, -1000, 1000);
+	obj->textunit.y_offset = ftb_clamp(obj->textunit.y_offset, -1000, 1000);
+	return (*obj);
 }
 
-void				check_items(t_scene *scene)
+t_light		check_light(t_light *spot)
 {
-	int			i;
-
-	scene->cam.pos = vd3_norm(scene->cam.pos, -20000, 20000);
-	scene->cam.dir = vd3_norm(scene->cam.dir, -20000, 20000);
-	i = 0;
-	while (i < scene->obj_nbr)
-	{
-		check_obj(&scene->obj[i]);
-		i++;
-	}
-	i = 0;
-	while (i < scene->spot_nbr)
-	{
-		scene->spot[i].pos = vd3_norm(scene->spot[i].pos, -20000, 20000);
-		scene->spot[i].color = vd3_norm(scene->spot[i].color, 0, 255);
-		i++;
-	}
+	spot->origin = vd3_norm(spot->origin, -20000, 20000);
+	spot->color = ftb_clamp(spot->color, 0, 0xFFFFFF);
+	spot->intensity = ftb_clamp(spot->intensity, 0, 10);
+	return (*spot);
 }
-*/
+
 void				print_infos(int a, int b)
 {
 	if (a == 0)

@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 13:39:25 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/07 10:25:47 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/12 13:52:06 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	which_section(t_all *param, int *fd, char *line)
 	static int		b_objs = 1;
 	static int		b_lights = 1;
 
+	(void)fd;
 	if (!ft_strcmp(line, "# Scene informations") && b_infos)
 	{
 		get_scene_infos(param, fd);
@@ -87,6 +88,5 @@ void		parse(t_all *param, char *arg)
 		ft_strdel(&line);
 	}
 	close(fd);
-//	check_items(scene);
 	print_infos(param->data.nb_shape, param->data.nb_light);
 }

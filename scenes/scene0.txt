@@ -1,7 +1,7 @@
 # Scene informations
 title: "rt - scene 0"
 camera{
-	pos: {0, 0, -1.5}
+	pos: {0, -5, -1.5}
 	rot: {1, 1, 1}
 }
 ambiant: 0
@@ -16,20 +16,20 @@ object{
 	height: 40
 	width: a
 	radius: 0.5
-	opacity: 0.2
+	opacity: 1
 	brillance: 0.6
 -	texture: "path"
 }
 object{
 	type: "cylinder"
 	color: "FF0FF0"
-	pos: {-5, -5, 10}
+	pos: {-5, -10, 10}
 	rot: {0, 0, -60}
 	height: 40
 	width: a
 	radius: 1 
 	brillance: 1
-	opacity: 0.2
+	opacity: 1
 	texture{
 		path: "textures/stones.bmp"
 		x_scale: 1
@@ -48,7 +48,7 @@ object{
 -	height: a
 -	width: a
 	radius: 1
-	opacity: 0.9
+	opacity: 1
 	brillance: 0.5
 -	texture: "path"
 }
@@ -119,6 +119,7 @@ object{
 	width: a
 	radius: a [0+]
 	brillance: a [0 -> 1]
+	opacity: a [0 -> 1]
 	texture{
 		path: "path"
 		x_scale: a

@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/07 18:55:29 by cvautrai         ###   ########.fr        #
+#    Updated: 2018/06/12 15:32:37 by tmilon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,8 @@ SRC_NAME= 	main.c				\
 			parser_sc_infos.c	\
 			parser_utils.c		\
 			draw_ui.c			\
-			parsing.c	\
+			parsing.c			\
+			textures_setup.c	\
 			parse_2.c
 			
 
