@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 12:36:24 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/04 17:01:18 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/13 15:39:31 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ static int		translation(t_all *param, int key)
 		move_offset(&org->x, '+');
 	else if (key == SDLK_LEFT)
 		move_offset(&org->x, '-');
-	else if (key == SDLK_UP)
+	else if (key == SDLK_PAGEUP)
 		move_offset(&org->y, '+');
-	else if (key == SDLK_DOWN)
+	else if (key == SDLK_PAGEDOWN)
 		move_offset(&org->y, '-');
-	else if (key == SDLK_KP_PLUS)
+	else if (key == SDLK_DOWN)
 		move_offset(&org->z, '-');
-	else if (key == SDLK_KP_MINUS)
+	else if (key == SDLK_UP)
 		move_offset(&org->z, '+');
 	return (1);
 }
@@ -59,7 +59,7 @@ int				sdl_key(t_all *param, int key)
 
 	valid_key = 0;
 	if (key == SDLK_RIGHT || key == SDLK_LEFT || key == SDLK_UP
-			|| key == SDLK_DOWN || key == SDLK_KP_PLUS || key == SDLK_KP_MINUS)
+			|| key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 		valid_key = translation(param, key);
 	else if (key == SDLK_q || key == SDLK_w || key == SDLK_e || key == SDLK_a
 			|| key == SDLK_s || key == SDLK_d)
