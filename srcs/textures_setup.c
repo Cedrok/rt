@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 15:31:26 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/12 19:50:41 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/13 11:01:57 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	get_uv_mapping_coord(double *u, double *v, t_intersect i, t_shape s)
 {
 	if (s.type == PLANE)
 	{
-		*u = (i.point.x + s.width) / (2 * s.width);
-		*v = (-i.point.z + s.width) / (2 * s.width);
+		*u = (i.point.x + s.width) / (2 * (s.width == 0 ? s.textunit.x_scale : s.width));
+		*v = (-i.point.z + s.width) / (2 * (s.width == 0 ? s.textunit.y_scale : s.width));
 	}
 	if (s.type == SPHERE)
 	{
@@ -74,12 +74,12 @@ void	get_uv_mapping_coord(double *u, double *v, t_intersect i, t_shape s)
 	else if (s.type == CYLINDER)
 	{
 		*u = 0.5 + atan2(i.normal.z, i.normal.x) / (2 * PI);
-		*v = i.point.y / s.height;
+		*v = i.point.y / (s.height == 0 ? s.textunit.y_scale : s.height);
 	}
 	else if (s.type == CONE)
 	{
 		*u = 0.5 + atan2(i.normal.z, i.normal.x) / (2 * PI);
-		*v = i.point.y / s.height;
+		*v = i.point.y / (s.height == 0 ? s.textunit.y_scale : s.height);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 19:48:17 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/13 09:39:01 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/13 10:56:38 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	rainbow(int color, double v, int r_number)
 
 	size = 60;
 	rainbowsize = size * 6;
+	while (v < 0)
+		v += rainbowsize;
 	v *= rainbowsize * r_number;
 	position = (int)v % rainbowsize;
 	if (position < size)
