@@ -23,9 +23,9 @@ static int		fuse(int start, int finish, int tresh)
 	a = int_to_color(start);
 	b = int_to_color(finish);
 	threshold = int_to_color(tresh);
-	a.r = a.r + (b.r > threshold.r ? threshold.r : b.r);
-	a.g = a.g + (b.g > threshold.g ? threshold.g : b.g);
-	a.b = a.b + (b.b > threshold.b ? threshold.r : b.b);
+	a.r = a.r + ftb_clamp(b.r, 0, threshold.r);
+	a.g = a.g + ftb_clamp(b.g, 0, threshold.g);
+	a.b = a.b + ftb_clamp(b.b, 0, threshold.b);
 	return (color_to_int(a));
 }
 
