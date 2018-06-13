@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:03:41 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/13 10:06:16 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/13 10:41:51 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ static t_shape	default_shape(int i)
 	obj.type = i;
 	obj.color = 0xFFFFFF;
 	obj.origin = new_vector_3d(0, 0, 0);
-	obj.height = 1;
-	obj.width = 1;
+	obj.height = 0;
+	obj.width = 0;
 	obj.radius = 1;
 	obj.brillance = 0;
 	obj.opacity = 1;
