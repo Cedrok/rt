@@ -58,7 +58,10 @@ object{
 	radius: 1
 	color: "FAC8C8"
 	height: 42
-	brillance: 1
+	brillance: 0.5
+	texture{
+		rainbow: 1
+	}
 }
 object{
 	type: "cylinder"
@@ -67,7 +70,10 @@ object{
 	radius: 1
 	color: "FAC8C8"
 	height: 42
-	brillance: 1
+	brillance: 0.5
+	texture{
+		checker: 1
+	}
 }
 object{
 	type: "cylinder"
@@ -76,7 +82,11 @@ object{
 	radius: 1
 	color: "FAC8C8"
 	height: 42
-	brillance: 1
+	brillance: 0.5
+	texture{
+		rainbow: 1
+		checker: 1
+	}
 }
 
 object{
@@ -145,7 +155,7 @@ object{
 }
 
 object{
-	type: "cone"
+-	type: "cone"
 	pos: {0, 10, 22}
 	rot: {180, 0, 0}
 	radius: 2
@@ -179,7 +189,7 @@ object{
 spot{
 	pos: {1, 1, 10}
 	color: "FFFFFF"
-	intensity: 0.8
+	intensity: 0.2
 }
 spot{
 	pos: {-12, 1, 20}
