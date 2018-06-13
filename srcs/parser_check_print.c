@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:03:42 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/13 11:38:13 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/13 12:32:37 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,16 @@ t_shape		check_obj(t_shape *obj)
 	obj->radius = ftb_clamp(obj->radius, 0, 10000);
 	obj->brillance = ftb_clamp(obj->brillance, 0, 1);
 	obj->opacity = ftb_clamp(obj->opacity, 0, 1);
-	obj->textunit.x_scale = ftb_clamp(obj->textunit.x_scale, 0, 1000);
-	obj->textunit.y_scale = ftb_clamp(obj->textunit.y_scale, 0, 1000);
+	obj->textunit.x_scale = ftb_clamp(obj->textunit.x_scale, 0.05, 1000);
+	obj->textunit.y_scale = ftb_clamp(obj->textunit.y_scale, 0.05, 1000);
 	obj->textunit.x_offset = ftb_clamp(obj->textunit.x_offset, -1000, 1000);
 	obj->textunit.y_offset = ftb_clamp(obj->textunit.y_offset, -1000, 1000);
 	obj->textunit.has_rainbow = ftb_clamp(obj->textunit.has_rainbow, 0, 1);
 	obj->textunit.has_checker = ftb_clamp(obj->textunit.has_checker, 0, 1);
+	obj->limunit.cut_amount = vd3_norm(obj->limunit.cut_amount, -1, 1);
+	obj->limunit.cut_radius = ftb_clamp(obj->limunit.cut_radius, 0, 10000);
+	obj->limunit.real_position =
+		ftb_clamp(obj->limunit.real_position, 0, 10000);
 	return (*obj);
 }
 
