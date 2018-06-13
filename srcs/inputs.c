@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 12:36:24 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/13 15:39:31 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/13 17:15:51 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int				sdl_key(t_all *param, int key)
 	int			valid_key;
 
 	valid_key = 0;
+	if (key == SDLK_ESCAPE)
+		quit_exe(*param);
 	if (key == SDLK_RIGHT || key == SDLK_LEFT || key == SDLK_UP
 			|| key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 		valid_key = translation(param, key);

@@ -31,10 +31,11 @@ object{
 }
 object{
 	type: "plane"
-	pos: {0, 7, 0}
-	rot: {0, -30, 0}
+	pos: {3, 7, 20}
+	rot: {0, -20, 0}
 	color: "FADCDC"
-	width: 100
+	width: 20
+	height: 20
 	brillance: 0.7
 }
 
@@ -155,7 +156,7 @@ object{
 }
 
 object{
--	type: "cone"
+	type: "cone"
 	pos: {0, 10, 22}
 	rot: {180, 0, 0}
 	radius: 2
@@ -179,8 +180,12 @@ object{
 object{
 	type: "sphere"
 	pos: {0, -1, 20}
+	rot: {15, 45 90}
 	radius: 1
 	color: "3232FF"
+	cut{
+		amount: {0, 0, 1}
+	}
 }
 
 #
@@ -220,8 +225,8 @@ object{
 	color: "RRGGBB"
 	pos: {x, y, z}
     rot: {x, y, z}
-	height: a
-	width: a
+	height: a [0+] if 0, infinite
+	width: a [0+] if 0, infinite
 	radius: a [0+]
 	brillance: a [0 -> 1]
 	opacity: a [0 -> 1]
@@ -231,7 +236,12 @@ object{
 		y_scale: a
 		x_offset: a
 		y_offset: a
-	}	
+	}
+	cut{
+		amount: {x, y, z} [-1 -> 1]
+		radius: a [0+]
+		real_pos: a [0 / 1]
+	}
 }
 sphere -> pos, radius, color, brillance[, texture]
 plane -> pos, rot, color, brillance[, width, height]
