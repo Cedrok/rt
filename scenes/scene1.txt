@@ -4,7 +4,7 @@ camera{
 	pos: {0, 0, -10}
 	rot: {0, 0, 0}
 }
-ambiant: 0
+ambiant: 0.1
 #
 
 # Objects
@@ -37,6 +37,9 @@ object{
 	width: 20
 	height: 20
 	brillance: 0.7
+	texture{
+		rainbow: 0.9
+	}
 }
 
 object{
@@ -197,12 +200,13 @@ spot{
 	intensity: 0.2
 }
 spot{
-	pos: {-12, 1, 20}
+	pos: {-12, -5, 20}
 	color: "FFFF2A"
 }
 spot{
 	pos: {10, 2, 12}
 	color: "14B42A"
+	intensity: 0.1
 }
 
 -spot{
