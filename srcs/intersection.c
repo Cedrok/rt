@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 17:50:46 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/06 10:41:36 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/13 11:44:12 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int	intersect_sphere(t_shape shape, t_ray ray, double *t)
 int	intersect_plane(t_shape shape, t_ray ray, double *t)
 {
 	double		a;
-	double		width;
-	double		length;
 	double		dist;
 	t_vector3d	norm;
 
@@ -62,12 +60,7 @@ int	intersect_plane(t_shape shape, t_ray ray, double *t)
 	dist = -dotprod(shape.origin, norm) / a;
 	if (dist <= DIST_MIN || dist >= *t)
 		return (0);
-	width = shape.origin.x + (dist * ray.direction.x);
-	length = shape.origin.z + (dist * ray.direction.z);
-	if ((width >= -shape.width) && (width < shape.width)
-			&& (length >= -shape.width) && (length < shape.width)
-			&& width * width + length * length < 10000)
-		*t = dist;
+	limit_plane(shape, ray, t, dist);
 	return (*t == dist ? 1 : 0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/13 09:38:22 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/13 12:04:39 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define I_HEIGHT			720
 # define W_WIDTH			1920
 # define W_HEIGHT			1080
-# define PIC_LIMIT			W_WIDTH * W_HEIGHT
+# define PIC_LIMIT			I_WIDTH * I_HEIGHT
 # define DIST_MAX			2000000
 # define DIST_MIN			0.00000001
 # define THREAD_LIMIT		4
@@ -102,6 +102,13 @@ typedef struct		s_textunit
 	double			y_offset;
 }					t_textunit;
 
+typedef struct		s_limunit
+{
+	t_vector3d	cut_amount;
+	double		cut_radius;
+	int			real_position;
+}					t_limunit;
+
 typedef struct		s_shape
 {
 	int				id;
@@ -116,6 +123,7 @@ typedef struct		s_shape
 	t_mat3d			rot;
 	t_mat3d			inv_rot;
 	t_textunit		textunit;
+	t_limunit		limunit;
 }					t_shape;
 
 /*
@@ -264,6 +272,8 @@ void				limit_cylinder(t_shape shape, t_ray ray,
 		double *t, t_calcunit calc);
 void				limit_cone(t_shape shape, t_ray ray,
 		double *t, t_calcunit calc);
+void				limit_plane(t_shape shape, t_ray ray,
+		double *t, double dist);
 
 /*
  **	Img file
