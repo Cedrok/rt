@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:03:41 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/13 12:09:27 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/13 12:10:21 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ static t_shape	default_shape(int i)
 	obj.textunit.x_offset = 0;
 	obj.textunit.y_offset = 0;
 	obj.limunit.cut_amount = new_vector_3d_unicoord(1);
+	obj.limunit.cut_radius = 0;
+	obj.limunit.real_position = 0;
 	return (obj);
 }
 
