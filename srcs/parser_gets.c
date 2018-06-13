@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:03:41 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/13 10:41:51 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/13 11:52:58 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ static int	shape_type(char *str)
 	else if (!ft_strcmp(str, "torus"))
 		res = TORUS;
 	ft_strdel(&str);
-	if (res >= 0)
-		return (res);
-	ft_abort("incorrect type");
-	return (-1);
+	return (res);
 }
 
 static t_shape	default_shape(int i)
 {
 	t_shape	obj;
+	static int	id = 0;
 
+	obj.id = id;
+	id++;
 	obj.type = i;
 	obj.color = 0xFFFFFF;
 	obj.origin = new_vector_3d(0, 0, 0);
@@ -84,9 +84,9 @@ static void	grab_texture(t_shape *obj, int *fd)
 		if (!ft_strncmp(line, "\t\ty_offset:", 11))
 			obj->textunit.y_offset = ft_atof(line + 11);
 		if (!ft_strncmp(line, "\t\trainbow:", 10))
-			obj->textunit.has_rainbow = ft_atol(line + 10);
+			obj->textunit.has_rainbow = ft_atof(line + 10);
 		if (!ft_strncmp(line, "\t\tchecker:", 10))
-			obj->textunit.has_checker = ft_atol(line + 10);
+			obj->textunit.has_checker = ft_atof(line + 10);
 		if (!ft_strcmp(line, "}"))
 				ft_abort_free("no end to texture definition", line);
 	}
@@ -102,11 +102,8 @@ static void	grab_obj(t_scene *scene, int *fd)
 	t_shape		obj;
 	t_vector3d	tmp;
 	char		*str_tmp;
-	static int	id = 0;
 
 	obj = default_shape(-10);
-	obj.id = id;
-	id++;
 	line = ft_strnew(0);
 	while (ft_strcmp(line, "}"))
 	{
@@ -208,10 +205,7 @@ static void	grab_spot(t_scene *scene, int *fd)
 			ft_strdel(&str_tmp);
 		}
 		if (!ft_strncmp(line, "\tintensity:", 11))
-		{
 			light.intensity = ft_atof(line + 11);
-//			printf("light.intensity: %f\n", ft_atof(line + 11));
-		}
 	}
 	ft_strdel(&line);
 	light = check_light(&light);

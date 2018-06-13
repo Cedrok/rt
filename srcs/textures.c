@@ -6,14 +6,14 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 19:48:17 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/13 10:56:38 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/13 11:57:17 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include <math.h>
 
-int	rainbow(int color, double v, int r_number)
+int	rainbow(int color, double v, int r_number, t_shape s)
 {
 	int size;
 	int rainbowsize;
@@ -38,17 +38,17 @@ int	rainbow(int color, double v, int r_number)
 		rainbow = new_color(0, (position % size) * 255 / size, 255);
 	else
 		rainbow = new_color(0, 255, (size - position % size) * 255 / size);
-	color = interpolate(color, color_to_int(rainbow), 1);
+	color = interpolate(color, color_to_int(rainbow), s.textunit.has_rainbow);
 	return (color);
 }
 
-int	checker_pattern(int color, double u, double v)
+int	checker_pattern(int color, double u, double v, t_shape s)
 {
 	u *= 100;
 	v *= 100;
 	if (((int)u % 2 == 0 && (int)v % 2 == 0)
 	|| (((int)u % 2 != 0 && (int)v % 2 != 0)))
-		color = interpolate(color, (0xFFFFFF - color), 0.3);
+		color = interpolate(color, (0xFFFFFF - color), s.textunit.has_checker);
 	return (color);
 	
 }
@@ -88,8 +88,8 @@ int			texture(int color, t_intersect i, t_shape s)
 	if (s.textunit.has_texture)
 		color = interpolate(get_texture_color(u, v, s), color, 0);
 	if (s.textunit.has_rainbow)
-		color = rainbow(color, v, 1);
+		color = rainbow(color, v, 1, s);
 	if (s.textunit.has_checker)
-		color = checker_pattern(color, u, v);
+		color = checker_pattern(color, u, v, s);
 	return (color);
 }
