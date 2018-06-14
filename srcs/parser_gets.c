@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:03:41 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/13 12:10:21 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/13 12:33:00 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,26 @@ static t_shape	default_shape(int i)
 	obj.limunit.cut_radius = 0;
 	obj.limunit.real_position = 0;
 	return (obj);
+}
+
+static void	grab_cut(t_shape *obj, int *fd)
+{
+	char	*line;
+
+	line = ft_strnew(0);
+	while (ft_strcmp(line, "\t}"))
+	{
+		ft_strdel(&line);
+		if (rt_get_next_line(*fd, &line) <= 0)
+			ft_abort_free("grab_cut: rt_gnl <= 0", line);
+		if (!ft_strncmp(line, "\t\tamount:", 9))
+			obj->limunit.cut_amount = extract_vd3(line);
+		if (!ft_strncmp(line, "\t\tradius:", 9))
+			obj->limunit.cut_radius = ft_atof(line + 9);
+		if (!ft_strncmp(line, "\t\treal_pos:", 11))
+			obj->limunit.real_position = ft_atof(line + 11);
+	}
+	ft_strdel(&line);
 }
 
 static void	grab_texture(t_shape *obj, int *fd)
@@ -144,8 +164,10 @@ static void	grab_obj(t_scene *scene, int *fd)
 			obj.brillance = ft_atof(line + 11) * 0.1;
 		if (!ft_strncmp(line, "\topacity:", 9))
 			obj.opacity = ft_atof(line + 9);
-		if (!ft_strncmp(line, "\ttexture{", 9))
+		if (!ft_strcmp(line, "\ttexture{"))
 			grab_texture(&obj, fd);
+		if (!ft_strcmp(line, "\tcut{"))
+			grab_cut(&obj, fd);
 	}
 	ft_strdel(&line);
 	obj = check_obj(&obj);

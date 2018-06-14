@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/13 13:35:35 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/04 17:01:11 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/13 15:43:48 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ int		rotate_event(t_all *param, int key)
 		rotate_z(&mat, modif);
 	if (key == SDLK_e)
 		rotate_z(&mat, -modif);
-	if (key == SDLK_w)
-		rotate_x(&mat, modif);
 	if (key == SDLK_s)
+		rotate_x(&mat, modif);
+	if (key == SDLK_w)
 		rotate_x(&mat, -modif);
-	if (key == SDLK_a)
-		rotate_y(&mat, modif);
 	if (key == SDLK_d)
+		rotate_y(&mat, modif);
+	if (key == SDLK_a)
 		rotate_y(&mat, -modif);
 	cam->rot = matrix_mult(cam->rot, mat);
 	return (1);

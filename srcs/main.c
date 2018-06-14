@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 15:09:23 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/12 15:19:16 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/13 18:20:37 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void		launch(t_all *param, t_env *env)
 	while (env->loop)
 	{
 		SDL_WaitEvent(&event);
-		if (event.type == SDL_QUIT || event.key.keysym.sym == SDLK_ESCAPE)
+		if (event.type == SDL_QUIT)
 			env->loop = 0;
 		else if (event.type == SDL_KEYDOWN)
 			sdl_key(param, event.key.keysym.sym);
@@ -65,7 +65,6 @@ int				main(int ac, char **av)
 //	parse_old(av[1], &param.scene);
 	parse(&param, av[1]);
 	param = init_param(param);
-	printf("parsing & init OK\n");//
 	new_ui(&param);
 	create_render(&param);
 	launch(&param, param.env);

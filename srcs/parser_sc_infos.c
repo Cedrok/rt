@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 14:39:34 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/08 17:47:16 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/13 18:26:33 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void		get_scene_infos(t_all *param, int *fd)
 			b_cam = 0;
 		}
 		if (!ft_strncmp(line, "ambiant:", 8))
-			param->data.ambiantlight = ft_atof(line + 8);
+			param->data.ambiantlight = ftb_clamp(ft_atof(line + 8), 0, 1);
 	}
 	ft_strdel(&line);
 }
