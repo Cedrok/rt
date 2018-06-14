@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/27 17:20:02 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/13 12:14:21 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/13 12:32:49 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static t_calcunit	limiter_setup(t_shape shape, t_ray ray, t_calcunit calc)
 	return (calc);
 }
 
-void		limit_sphere(t_shape shape, t_ray ray, double *t, t_calcunit calc)
+void				limit_sphere(t_shape shape, t_ray ray,
+								double *t, t_calcunit calc)
 {
 	t_vector3d	min;
 	t_vector3d	max;
@@ -35,18 +36,17 @@ void		limit_sphere(t_shape shape, t_ray ray, double *t, t_calcunit calc)
 	if (calc.t0 != -1
 			&& calc.get_in.x >= min.x && calc.get_in.x < max.x
 			&& calc.get_in.y >= min.y && calc.get_in.y < max.y
-			&& calc.get_in.z >= min.z && calc.get_in.z < max.z
-			)
+			&& calc.get_in.z >= min.z && calc.get_in.z < max.z)
 		*t = calc.t0;
 	else if (calc.t1 != -1
 			&& calc.get_out.x >= min.x && calc.get_out.x < max.x
 			&& calc.get_out.y >= min.y && calc.get_out.y < max.y
-			&& calc.get_out.z >= min.z && calc.get_out.z < max.z
-			)
+			&& calc.get_out.z >= min.z && calc.get_out.z < max.z)
 		*t = calc.t1;
 }
 
-void		limit_plane(t_shape shape, t_ray ray, double *t, double dist)
+void				limit_plane(t_shape shape, t_ray ray,
+								double *t, double dist)
 {
 	t_vector3d	min;
 	t_vector3d	max;
@@ -61,10 +61,8 @@ void		limit_plane(t_shape shape, t_ray ray, double *t, double dist)
 	if (shape.width == 0 && shape.height == 0)
 		*t = dist;
 	else if (shape.limunit.cut_radius != 0.0)
-	{
-		if (width * width + length * length < shape.limunit.cut_radius)
-			*t = dist;
-	}
+		*t = (width * width + length * length < shape.limunit.cut_radius ?
+																dist : *t);
 	else if (shape.width == 0)
 		*t = (length >= min.z && length < max.z ? dist : *t);
 	else if (shape.height == 0)
@@ -74,7 +72,8 @@ void		limit_plane(t_shape shape, t_ray ray, double *t, double dist)
 		*t = dist;
 }
 
-void		limit_cylinder(t_shape shape, t_ray ray, double *t, t_calcunit calc)
+void				limit_cylinder(t_shape shape, t_ray ray,
+								double *t, t_calcunit calc)
 {
 	t_vector3d	min;
 	t_vector3d	max;
@@ -82,26 +81,26 @@ void		limit_cylinder(t_shape shape, t_ray ray, double *t, t_calcunit calc)
 	calc = limiter_setup(shape, ray, calc);
 	min = new_vector_3d(-shape.radius, 0, -shape.radius);
 	max = shape.limunit.cut_amount;
-	max = vector_op(max, new_vector_3d(shape.radius, shape.height, shape.radius), '*');
+	max = vector_op(max, new_vector_3d(shape.radius,
+				shape.height, shape.radius), '*');
 	if (shape.height == 0)
 		*t = calc.t0 == -1 ? calc.t1 : calc.t0;
 	else if (calc.t0 != -1
 			&& calc.get_in.x >= min.x && calc.get_in.x < max.x
 			&& calc.get_in.y >= min.y && calc.get_in.y < max.y
 			&& calc.get_in.y < shape.height
-			&& calc.get_in.z >= min.z && calc.get_in.z < max.z
-			)
+			&& calc.get_in.z >= min.z && calc.get_in.z < max.z)
 		*t = calc.t0;
 	else if (calc.t1 != -1
 			&& calc.get_out.x >= min.x && calc.get_out.x < max.x
 			&& calc.get_out.y >= min.y && calc.get_out.y < max.y
 			&& calc.get_out.y < shape.height
-			&& calc.get_out.z >= min.z && calc.get_out.z < max.z
-			)
+			&& calc.get_out.z >= min.z && calc.get_out.z < max.z)
 		*t = calc.t1;
 }
 
-void		limit_cone(t_shape shape, t_ray ray, double *t, t_calcunit calc)
+void				limit_cone(t_shape shape, t_ray ray,
+								double *t, t_calcunit calc)
 {
 	t_vector3d	min;
 	t_vector3d	max;
@@ -112,18 +111,16 @@ void		limit_cone(t_shape shape, t_ray ray, double *t, t_calcunit calc)
 	max = vector_op(max, new_vector_3d_unicoord(shape.height), '*');
 	if (shape.height == 0)
 		*t = calc.t0 == -1 ? calc.t1 : calc.t0;
-	else if ((calc.t0 != -1
+	else if (calc.t0 != -1
 			&& calc.get_in.x >= min.x && calc.get_in.x < max.x
 			&& calc.get_in.y >= min.y && calc.get_in.y < max.y
 			&& calc.get_in.y < shape.height
 			&& calc.get_in.z >= min.z && calc.get_in.z < max.z)
-			)
 		*t = calc.t0;
-	else if (shape.height == 0 || (calc.t1 != -1
+	else if (calc.t1 != -1
 			&& calc.get_out.x >= min.x && calc.get_out.x < max.x
 			&& calc.get_out.y >= min.y && calc.get_out.y < max.y
 			&& calc.get_out.y < shape.height
 			&& calc.get_out.z >= min.z && calc.get_out.z < max.z)
-			)
 		*t = calc.t1;
 }

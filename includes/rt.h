@@ -6,7 +6,11 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2018/06/14 09:58:13 by cvautrai         ###   ########.fr       */
+=======
+/*   Updated: 2018/06/14 12:38:16 by tmilon           ###   ########.fr       */
+>>>>>>> 77ed435fda3f68717140c0f0dc3162783bdab119
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,7 +221,7 @@ typedef struct		s_thread_param
  ** Initstruct
  */
 
-t_light				new_light(t_vector3d origin, double intensity, int color);//?
+t_light				new_light(t_vector3d origin, double intensity, int color);
 t_ray				new_ray(t_vector3d o, t_vector3d d);
 t_point				new_point(int x, int y, int color);
 t_shape				new_shape(int type, void *shape, int color);
@@ -232,6 +236,7 @@ int					intersect_sphere(t_shape shape, t_ray ray, double *t);
 int					intersect_plane(t_shape shape, t_ray ray, double *t);
 int					intersect_cylinder(t_shape shape, t_ray ray, double *t);
 int					intersect_cone(t_shape shape, t_ray ray, double *t);
+int					intersect_torus(t_shape shape, t_ray ray, double *t);
 
 /*
  ** Normal fetchers
@@ -241,6 +246,7 @@ t_vector3d			sphere_normal(t_shape shape, t_vector3d intersection_point);
 t_vector3d			plane_normal(t_shape shape, t_vector3d intersection_point);
 t_vector3d			cylinder_normal(t_shape shape, t_vector3d intersection_point);
 t_vector3d			cone_normal(t_shape shape, t_vector3d intersection_point);
+t_vector3d			torus_normal(t_shape shape, t_vector3d intersection);
 
 /*
  ** Display functs
@@ -250,11 +256,9 @@ int					no_collisions(t_list *shape_lst,
 		t_intersect inter, t_light light);
 int					set_color(t_scene scene, t_intersect intersection, t_data data);
 int					interpolate(int start, int finish, float ratio);
-//void				raytrace(t_scene scene, t_env *unit, t_point p, t_data data);
 double			get_nearest_intersection(t_ray *ray, t_scene scene,
 		t_intersect *nearest_intersect, double maxdist);
 void				setup_multithread(t_all param);
-//void				setup_multithread(t_scene scene, t_env *unit, t_data data);
 
 /*
  ** Texture
@@ -311,7 +315,6 @@ t_vector3d			set_axe(int x, int y, t_camera *cam);
  **	Parse
  */
 
-int					parse_old(char *file, t_scene *scene);
 void				parse(t_all *param, char *arg);
 void				get_scene_infos(t_all *param, int *fd);
 void				get_ligths(t_all *param, int *fd);
@@ -324,11 +327,6 @@ char				*extract_text(char *line);
 t_vector3d			extract_vd3(char *line);
 int					rt_get_next_line(int fd, char **line);
 
-t_light				cpy_light(char **tab);
-void				cpy_cone(t_shape *shape, char **tab);
-void				cpy_cylinder(t_shape *shape, char **tab);
-void				cpy_sphere(t_shape *shape, char **tab);
-void				cpy_plane(t_shape *shape, char **tab);
 void				create_scene(char *s, t_scene *scene,
 		int *nb_cam, int *nb_lght);
 void				ft_abort_free(char *msg, char *line);

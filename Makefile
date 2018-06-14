@@ -6,7 +6,11 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2018/06/14 13:44:47 by cvautrai         ###   ########.fr        #
+=======
+#    Updated: 2018/06/14 12:37:58 by tmilon           ###   ########.fr        #
+>>>>>>> 77ed435fda3f68717140c0f0dc3162783bdab119
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +46,7 @@ SRC_NAME= 	main.c				\
 			inputs.c			\
 			utils.c				\
 			intersection.c		\
+			intersection_torus.c	\
 			normal.c			\
 			camera.c			\
 			img.c				\
@@ -54,7 +59,6 @@ SRC_NAME= 	main.c				\
 			textures.c			\
 			limit.c				\
 			sdl_init.c			\
-			create_obj.c		\
 			parser.c			\
 			parser_check_print.c\
 			parser_gets.c		\
@@ -62,9 +66,7 @@ SRC_NAME= 	main.c				\
 			parser_utils.c		\
 			draw_ui.c			\
 			parsing.c			\
-			textures_setup.c	\
-			parse_2.c
-			
+			textures_setup.c
 
 OBJ_NAME=	$(SRC_NAME:.c=.o)
 

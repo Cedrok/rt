@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 17:51:48 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/04 17:01:15 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/13 19:03:14 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,17 @@ t_vector3d	cone_normal(t_shape shape, t_vector3d intersection_point)
 
 	normal = new_vector_3d(intersection_point.x, shape.radius,
 			intersection_point.z);
+	return (normal);
+}
+
+t_vector3d	torus_normal(t_shape shape, t_vector3d intersection)
+{
+	t_vector3d	normal;
+	t_vector3d	unit;
+
+	unit = new_vector_3d(intersection.x, intersection.y, 0);
+	unit = normalize(unit);
+	unit = lambda_product_d3(shape.radius, unit);
+	normal = vector_op(intersection, unit, '-');
 	return (normal);
 }

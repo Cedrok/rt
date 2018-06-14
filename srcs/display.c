@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/12 14:53:49 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/14 12:19:08 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_intersect	new_intersection(t_shape shape, t_ray ray, double point_dist)
 	normals[PLANE] = &plane_normal;
 	normals[CYLINDER] = &cylinder_normal;
 	normals[CONE] = &cone_normal;
+	normals[TORUS] = &torus_normal;
 	shape.origin = adjust_direction(shape.origin, shape.inv_rot);
 	ret.point = vector_op(ray.origin, shape.origin, '-');
 	tmp = vector_op(ray.direction, new_vector_3d_unicoord(point_dist), '*');
@@ -45,14 +46,11 @@ t_intersect	new_intersection(t_shape shape, t_ray ray, double point_dist)
 	shape.color = texture(shape.color, ret, shape);
 	ret.shape_copy = shape;
 	if (shape.type == PLANE)
-	{
 		if (dotprod(ray.direction, ret.normal) > DIST_MIN)
 			ret.normal = vector_op(ret.normal, new_vector_3d_unicoord(-1), '*');
-	}
 	ret.point = vector_op(ret.point, shape.origin, '+');
 	ret.point = adjust_direction(ret.point, shape.rot);
 	ret.normal = adjust_direction(ret.normal, shape.rot);
-	ret.normal = normalize(ret.normal);
 	if (shape.textunit.has_texture)
 		ret.normal = bump_mapping(ret.normal, shape.color);
 	ret.dir_to_cam = adjust_direction(ray.direction, shape.rot);
@@ -70,6 +68,7 @@ double	get_nearest_intersection(t_ray *ray, t_scene scene,
 	collisions[PLANE] = &intersect_plane;
 	collisions[CYLINDER] = &intersect_cylinder;
 	collisions[CONE] = &intersect_cone;
+	collisions[TORUS] = &intersect_torus;
 	nearest_shape.color = 0;
 	while (scene.shape_lst != NULL)
 	{
@@ -115,7 +114,7 @@ static void	raytrace(t_scene scene, int *colorarray, t_point p, t_data data)
 	t_intersect	intersection;
 
 	direction = set_axe(p.x, p.y, &(scene.camera));
-	ray = new_ray(scene.camera.origin, normalize(direction));
+	ray = new_ray(scene.camera.origin, direction);
 	if (get_nearest_intersection(&ray, scene, &intersection, DIST_MAX))
 	{
 		//rename set_light
