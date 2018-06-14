@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 14:39:34 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/14 15:31:09 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/14 17:38:30 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,6 @@ void		get_scene_infos(t_all *param, int *fd)
 			param->data.ambiantlight = ftb_clamp(ft_atof(line + 8), 0, 1);
 	}
 	ft_strdel(&line);
+	if (b_cam)
+		ft_abort("Where is the cam \?\?!");
 }
