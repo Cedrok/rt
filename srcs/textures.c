@@ -6,19 +6,19 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 19:48:17 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/14 14:28:22 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/14 14:36:38 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include <math.h>
 
-int	rainbow(double v, int r_number)
+static int	rainbow(double v, int r_number)
 {
-	int size;
-	int rainbowsize;
+	int		size;
+	int		rainbowsize;
 	t_color	rainbow;
-	int	position;
+	int		position;
 
 	size = 60;
 	rainbowsize = size * 6;
@@ -41,7 +41,7 @@ int	rainbow(double v, int r_number)
 	return (color_to_int(rainbow));
 }
 
-int	checker_pattern(int color, double u, double v)
+static int	checker_pattern(int color, double u, double v)
 {
 	u *= 10;
 	v *= 100;
@@ -49,10 +49,9 @@ int	checker_pattern(int color, double u, double v)
 	|| (((int)u % 2 != 0 && (int)v % 2 != 0)))
 		color = 0xFFFFFF - color;
 	return (color);
-	
 }
 
-int	get_texture_color(double u, double v, t_shape s)
+static int	get_texture_color(double u, double v, t_shape s)
 {
 	double	modi;
 
@@ -89,6 +88,7 @@ int			texture(int color, t_intersect i, t_shape s)
 	if (s.textunit.has_rainbow)
 		color = interpolate(color, rainbow(v, 2), s.textunit.has_rainbow);
 	if (s.textunit.has_checker)
-		color = interpolate(color, checker_pattern(color, u, v), s.textunit.has_checker);
+		color = interpolate(color, checker_pattern(color, u, v),
+											s.textunit.has_checker);
 	return (color);
 }

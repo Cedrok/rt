@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 15:31:26 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/14 13:34:28 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/14 14:35:17 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
-static int		*surf_to_int_array(SDL_Surface *surf, t_point p)
+static int	*surf_to_int_array(SDL_Surface *surf, t_point p)
 {
-	t_color	c;
-	Uint8	r;
-	Uint8	g;
-	Uint8	b;
-	Uint8	a;
-	int		*tab;
+	t_color		c;
+	Uint8		a;
+	int			*tab;
 	uint32_t	*pixels;
 	SDL_Surface	*rgbaimage;
 
@@ -34,8 +31,7 @@ static int		*surf_to_int_array(SDL_Surface *surf, t_point p)
 		while (++p.x < surf->w)
 		{
 			SDL_GetRGBA(pixels[p.x + p.y * rgbaimage->w], rgbaimage->format,
-					&r, &g, &b, &a);
-			c = new_color((int)r, (int)g, (int)b);
+					(Uint8*)&c.r, (Uint8*)&c.g, (Uint8*)&c.b, &a);
 			tab[p.y * surf->w + p.x] = color_to_int(c);
 		}
 	}
@@ -43,7 +39,7 @@ static int		*surf_to_int_array(SDL_Surface *surf, t_point p)
 	return (tab);
 }
 
-void	setup_textunit(const char *surfpath, t_textunit *textunit)
+void		setup_textunit(const char *surfpath, t_textunit *textunit)
 {
 	SDL_Surface	*surf;
 
@@ -59,12 +55,14 @@ void	setup_textunit(const char *surfpath, t_textunit *textunit)
 	SDL_FreeSurface(surf);
 }
 
-void	get_uv_mapping_coord(double *u, double *v, t_intersect i, t_shape s)
+void		get_uv_mapping_coord(double *u, double *v, t_intersect i, t_shape s)
 {
 	if (s.type == PLANE)
 	{
-		*u = (i.point.x + s.width) / (2 * (s.width == 0 ? s.textunit.x_scale : s.width));
-		*v = (-i.point.z + s.width) / (2 * (s.width == 0 ? s.textunit.y_scale : s.width));
+		*u = (i.point.x + s.width) / (2 *
+				(s.width == 0 ? s.textunit.x_scale : s.width));
+		*v = (-i.point.z + s.width) / (2 *
+				(s.width == 0 ? s.textunit.y_scale : s.width));
 	}
 	if (s.type == SPHERE)
 	{
@@ -82,4 +80,3 @@ void	get_uv_mapping_coord(double *u, double *v, t_intersect i, t_shape s)
 		*v = i.point.y / (s.height == 0 ? s.textunit.y_scale : s.height);
 	}
 }
-
