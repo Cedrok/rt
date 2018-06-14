@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:03:41 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/14 14:26:07 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/14 18:04:05 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static t_shape	default_shape(int i)
 	obj.textunit.has_texture = 0;
 	obj.textunit.has_rainbow = 0;
 	obj.textunit.has_checker = 0;
+	obj.textunit.has_waves = 0;
 	obj.textunit.x_scale = 1;
 	obj.textunit.y_scale = 1;
 	obj.textunit.x_offset = 0;
@@ -110,6 +111,8 @@ static void	grab_texture(t_shape *obj, int *fd)
 			obj->textunit.has_rainbow = ft_atof(line + 10);
 		if (!ft_strncmp(line, "\t\tchecker:", 10))
 			obj->textunit.has_checker = ft_atof(line + 10);
+		if (!ft_strncmp(line, "\t\twaves:", 8))
+			obj->textunit.has_waves = ft_atof(line + 8);
 		if (!ft_strcmp(line, "}"))
 				ft_abort_free("no end to texture definition", line);
 	}

@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 19:48:17 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/14 17:52:32 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/14 18:12:39 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,16 +81,16 @@ void	norm_perturb(t_intersect *i, double v, t_shape s)
 {
 	if (s.type == PLANE)
 		i->normal = vector_op(i->normal,
-				new_vector_3d_unicoord((sin(v * 10 * s.width) + 1) / 2), '*');
+				new_vector_3d_unicoord((sin(v * s.textunit.has_waves * s.width) + 1) / 2), '*');
 	else if (s.type == SPHERE)
 		i->normal = vector_op(i->normal,
-				new_vector_3d_unicoord((sin(v * 100 * s.radius) + 1) / 2), '*');
+				new_vector_3d_unicoord((sin(v * s.textunit.has_waves * s.radius) + 1) / 2), '*');
 	else if (s.type == CYLINDER)
 		i->normal = vector_op(i->normal,
-				new_vector_3d_unicoord((sin(v * 10 * s.height) + 1) / 2), '*');
+				new_vector_3d_unicoord((sin(v * s.textunit.has_waves * s.height) + 1) / 2), '*');
 	else if (s.type == CONE)
 		i->normal = vector_op(i->normal,
-				new_vector_3d_unicoord((sin(v * 10 * s.height) + 1) / 2), '*');
+				new_vector_3d_unicoord((sin(v * s.textunit.has_waves * s.height) + 1) / 2), '*');
 }
 
 t_shape		texture(t_intersect *i, t_shape s)
@@ -106,6 +106,7 @@ t_shape		texture(t_intersect *i, t_shape s)
 	if (s.textunit.has_checker)
 		s.color = interpolate(s.color, checker_pattern(s.color, u, v),
 											s.textunit.has_checker);
-	norm_perturb(i, v, s);
+	if (s.textunit.has_waves)
+		norm_perturb(i, v, s);
 	return (s);
 }

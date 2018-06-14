@@ -83,6 +83,7 @@ object{
 	brillance: 0.5
 	texture{
 		checker: 1
+		waves: 50
 	}
 }
 object{

@@ -28,7 +28,7 @@ object{
 		y_offset: a
 		rainbow: a [0 -> 1]
 		checker: a [0 -> 1]
-		waves: a [a -> b]
+		waves: a [0 -> 100]
 	}
 	cut{
 		amount: {x, y, z} [-1 -> 1]

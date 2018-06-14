@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/14 17:20:36 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/14 18:01:26 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct		s_textunit
 	int				has_texture;
 	double			has_rainbow;
 	double			has_checker;
+	double			has_waves;
 	int				*texture;
 	int				texture_width;
 	double			x_scale;
