@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/14 10:31:39 by tmilon           ###   ########.fr        #
+#    Updated: 2018/06/14 12:37:58 by tmilon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,6 @@ SRC_NAME= 	main.c				\
 			textures.c			\
 			limit.c				\
 			sdl_init.c			\
-			create_obj.c		\
 			parser.c			\
 			parser_check_print.c\
 			parser_gets.c		\
@@ -63,9 +62,7 @@ SRC_NAME= 	main.c				\
 			parser_utils.c		\
 			draw_ui.c			\
 			parsing.c			\
-			textures_setup.c	\
-			parse_2.c
-			
+			textures_setup.c
 
 OBJ_NAME=	$(SRC_NAME:.c=.o)
 

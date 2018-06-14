@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/14 10:33:04 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/14 12:38:16 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -309,7 +309,6 @@ t_vector3d			set_axe(int x, int y, t_camera *cam);
  **	Parse
  */
 
-int					parse_old(char *file, t_scene *scene);
 void				parse(t_all *param, char *arg);
 void				get_scene_infos(t_all *param, int *fd);
 void				get_ligths(t_all *param, int *fd);
@@ -322,11 +321,6 @@ char				*extract_text(char *line);
 t_vector3d			extract_vd3(char *line);
 int					rt_get_next_line(int fd, char **line);
 
-t_light				cpy_light(char **tab);
-void				cpy_cone(t_shape *shape, char **tab);
-void				cpy_cylinder(t_shape *shape, char **tab);
-void				cpy_sphere(t_shape *shape, char **tab);
-void				cpy_plane(t_shape *shape, char **tab);
 void				create_scene(char *s, t_scene *scene,
 		int *nb_cam, int *nb_lght);
 void				ft_abort_free(char *msg, char *line);
