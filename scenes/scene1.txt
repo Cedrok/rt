@@ -94,8 +94,8 @@ object{
 	height: 42
 	brillance: 0.5
 	texture{
-		rainbow: 1
-		checker: 1
+		rainbow: 0.9
+		checker: 0.3
 	}
 }
 

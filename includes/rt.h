@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/14 14:13:06 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/14 14:25:54 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ typedef struct		s_light
 typedef struct		s_textunit
 {
 	int				has_texture;
-	int				has_rainbow;
-	int				has_checker;
+	double			has_rainbow;
+	double			has_checker;
 	int				*texture;
 	int				texture_width;
 	double			x_scale;

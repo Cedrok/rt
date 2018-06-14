@@ -6,14 +6,14 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 19:48:17 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/14 12:21:38 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/14 14:28:22 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include <math.h>
 
-int	rainbow(int color, double v, int r_number, t_shape s)
+int	rainbow(double v, int r_number)
 {
 	int size;
 	int rainbowsize;
@@ -38,17 +38,16 @@ int	rainbow(int color, double v, int r_number, t_shape s)
 		rainbow = new_color(0, (position % size) * 255 / size, 255);
 	else
 		rainbow = new_color(0, 255, (size - position % size) * 255 / size);
-	color = interpolate(color, color_to_int(rainbow), s.textunit.has_rainbow);
-	return (color);
+	return (color_to_int(rainbow));
 }
 
-int	checker_pattern(int color, double u, double v, t_shape s)
+int	checker_pattern(int color, double u, double v)
 {
 	u *= 10;
 	v *= 100;
 	if (((int)u % 2 == 0 && (int)v % 2 == 0)
 	|| (((int)u % 2 != 0 && (int)v % 2 != 0)))
-		color = interpolate(color, (0xFFFFFF - color), s.textunit.has_checker);
+		color = 0xFFFFFF - color;
 	return (color);
 	
 }
@@ -86,10 +85,10 @@ int			texture(int color, t_intersect i, t_shape s)
 
 	get_uv_mapping_coord(&u, &v, i, s);
 	if (s.textunit.has_texture)
-		color = interpolate(get_texture_color(u, v, s), color, 0);
+		color = get_texture_color(u, v, s);
 	if (s.textunit.has_rainbow)
-		color = rainbow(color, v, 1, s);
+		color = interpolate(color, rainbow(v, 2), s.textunit.has_rainbow);
 	if (s.textunit.has_checker)
-		color = checker_pattern(color, u, v, s);
+		color = interpolate(color, checker_pattern(color, u, v), s.textunit.has_checker);
 	return (color);
 }
