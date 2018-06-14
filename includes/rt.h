@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/13 12:04:39 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/14 09:58:13 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define RT_H
 
 # include <SDL.h>
+# include <SDL_ttf.h>
+# include <SDL_image.h>
 # include "../libgraph/include/libgraph.h"
 # include "../libft/include/libft.h"
 

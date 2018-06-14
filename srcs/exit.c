@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 09:05:16 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/04 17:01:21 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/14 10:00:27 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	quit_exe(t_all param)
 {
 	SDL_DestroyRenderer(param.env->rend);
 	SDL_DestroyWindow(param.env->win);
+	IMG_Quit();
+	TTF_Quit();
 	SDL_Quit();
 	free(param.env);
 	exit(0);

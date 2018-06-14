@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 15:31:26 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/13 11:01:57 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/14 13:34:28 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	setup_textunit(const char *surfpath, t_textunit *textunit)
 	SDL_Surface	*surf;
 
 	surf = NULL;
-	surf = SDL_LoadBMP(surfpath);
+	surf = IMG_Load(surfpath);
 	if (!surf)
 		return ;
 	textunit->has_texture = 1;

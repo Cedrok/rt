@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:03:41 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/13 12:33:00 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/14 13:59:52 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ static void	grab_texture(t_shape *obj, int *fd)
 		if (!ft_strcmp(line, "}"))
 				ft_abort_free("no end to texture definition", line);
 	}
+	if (path)
 	setup_textunit(path, &obj->textunit);
 	ft_strdel(&path);
 	ft_strdel(&line);

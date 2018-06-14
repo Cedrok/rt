@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/12 15:32:37 by tmilon           ###   ########.fr        #
+#    Updated: 2018/06/14 13:44:47 by cvautrai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	=	rt
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror -O3 -flto
+CFLAGS	=	-Wall -Wextra -Werror -O3 -flto #-fsanitize=address -fno-omit-frame-pointer
 
 FW_PATH = frameworks
 
@@ -119,7 +119,7 @@ fclean:		clean
 
 norm:		clean
 			@echo "$(CYAN)Running norminette...$(NONE)"
-			@norminette $(SRC_PATH) $(INCLUDE) $(LIB1_PATH) \
+			@norminette $(SRC_PATH) $(INCLUDE) libft/ libraph/ \
 				| grep -B 1 '^Error' 2> /dev/null || echo '$(GREEN)Norme OK !$(NONE)';
 
 re:			fclean all

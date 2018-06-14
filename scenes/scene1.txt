@@ -16,7 +16,7 @@ object{
 	width: 100
 	brillance: 0.7
 	texture{
-		path: "textures/stones.bmp"
+		path: "textures/metal_floor.jpg"
 		x_scale: 0.08
 		y_scale: 0.08
 	}
@@ -28,6 +28,11 @@ object{
 	color: "6464646"
 	width: 100
 	brillance: 0.7
+	texture{
+		path: "textures/stones.bmp"
+		x_scale: 0.05
+		y_scale: 0.05
+	}
 }
 object{
 	type: "plane"
@@ -38,7 +43,8 @@ object{
 	height: 20
 	brillance: 0.7
 	texture{
-		rainbow: 0.9
+		path: "textures/floor.png"
+		rainbow: 0.5
 	}
 }
 
@@ -109,6 +115,9 @@ object{
 	radius: 2
 	color: "FAC8C8"
 	brillance: 1
+	texture{
+		rainbow: 1
+	}
 }
 object{
 	type: "sphere"
@@ -116,6 +125,9 @@ object{
 	radius: 2
 	color: "FAC8C8"
 	brillance: 1
+	texture{
+		path: "textures/metal_floor.jpg"
+	}
 }
 object{
 	type: "sphere"
@@ -123,6 +135,9 @@ object{
 	radius: 2
 	color: "FAC8C8"
 	brillance: 1
+	texture{
+		checker: 1
+	}
 }
 
 object{
@@ -149,6 +164,9 @@ object{
 	radius: 2
 	color: "FAC8C8"
 	brillance: 1
+	texture{
+		path: "textures/floor.png"
+	}
 }
 object{
 	type: "sphere"

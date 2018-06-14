@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 22:13:20 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/07 10:08:27 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/14 12:43:03 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,8 @@
 
 void	ft_strdel(char **as)
 {
-	ft_memdel((void **)as);
+	if (!as)
+		return ;
+	free(*as);
+	*as = NULL;
 }

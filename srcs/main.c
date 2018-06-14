@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 15:09:23 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/13 18:20:37 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/14 13:35:43 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static t_all	init_param(t_all param)
 		ft_abort("Error SDL_Init");
 	if (TTF_Init() != 0)
 		ft_abort("Error TTF_Init");
+	if (!(IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG)))
+		ft_abort("Error IMG_Init");
 	create_win_render(param.env);
 	create_all_surface(param.env);
 	clear_render(param.env);
