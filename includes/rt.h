@@ -6,11 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/06/14 09:58:13 by cvautrai         ###   ########.fr       */
-=======
-/*   Updated: 2018/06/14 12:38:16 by tmilon           ###   ########.fr       */
->>>>>>> 77ed435fda3f68717140c0f0dc3162783bdab119
+/*   Updated: 2018/06/14 14:13:06 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +48,8 @@
 # define TORUS				6
 
 /*
- ** Basic structs
- */
+** Basic structs
+*/
 
 typedef struct		s_point
 {
@@ -75,8 +71,8 @@ typedef struct		s_calcunit
 }					t_calcunit;
 
 /*
- ** Objects struct
- */
+** Objects struct
+*/
 
 typedef struct		s_camera
 {
@@ -133,8 +129,8 @@ typedef struct		s_shape
 }					t_shape;
 
 /*
- ** Structs for raytracing
- */
+** Structs for raytracing
+*/
 
 typedef struct		s_ray
 {
@@ -153,8 +149,8 @@ typedef struct		s_intersect
 }					t_intersect;
 
 /*
- ** SDL handling structs
- */
+** SDL handling structs
+*/
 
 typedef struct		s_env
 {
@@ -169,8 +165,8 @@ typedef struct		s_env
 }					t_env;
 
 /*
- ** Environement Struct
- */
+** Environement Struct
+*/
 
 typedef struct		s_data
 {
@@ -207,8 +203,8 @@ typedef struct		s_all
 }					t_all;
 
 /*
- **	Calc_struct
- */
+**	Calc_struct
+*/
 
 typedef struct		s_thread_param
 {
@@ -229,8 +225,8 @@ t_scene				new_env(t_list *shape_lst, t_list *lightlist);
 t_camera			new_cam(t_vector3d orig, double x, double y, double z);
 
 /*
- ** Intersection checking
- */
+** Intersection checking
+*/
 
 int					intersect_sphere(t_shape shape, t_ray ray, double *t);
 int					intersect_plane(t_shape shape, t_ray ray, double *t);
@@ -239,8 +235,8 @@ int					intersect_cone(t_shape shape, t_ray ray, double *t);
 int					intersect_torus(t_shape shape, t_ray ray, double *t);
 
 /*
- ** Normal fetchers
- */
+** Normal fetchers
+*/
 
 t_vector3d			sphere_normal(t_shape shape, t_vector3d intersection_point);
 t_vector3d			plane_normal(t_shape shape, t_vector3d intersection_point);
@@ -249,8 +245,8 @@ t_vector3d			cone_normal(t_shape shape, t_vector3d intersection_point);
 t_vector3d			torus_normal(t_shape shape, t_vector3d intersection);
 
 /*
- ** Display functs
- */
+** Display functs
+*/
 
 int					no_collisions(t_list *shape_lst,
 		t_intersect inter, t_light light);
@@ -261,16 +257,16 @@ double			get_nearest_intersection(t_ray *ray, t_scene scene,
 void				setup_multithread(t_all param);
 
 /*
- ** Texture
- */
+** Texture
+*/
 
 int			texture(int color, t_intersect i, t_shape s);
 void		setup_textunit(const char *surfpath, t_textunit *textunit);
 void	get_uv_mapping_coord(double *u, double *v, t_intersect i, t_shape s);
 
 /*
- ** Limiters
- */
+** Limiters
+*/
 
 void				limit_sphere(t_shape shape, t_ray ray,
 		double *t,t_calcunit calc);
@@ -282,8 +278,8 @@ void				limit_plane(t_shape shape, t_ray ray,
 		double *t, double dist);
 
 /*
- **	Img file
- */
+**	Img file
+*/
 
 void				blur_mode(t_env *env, t_point p);
 t_color				get_color_pixel(SDL_Surface *surf, t_point p);
@@ -292,28 +288,28 @@ void				img_put_pixel(SDL_Surface *surf, t_point point);
 void				refresh_img(t_all *param);
 
 /*
- **	Utils file
- */
+**	Utils file
+*/
 
 double				get_vect_dist(t_vector3d a, t_vector3d b);
 double				magnitude(t_vector3d v);
 
 /*
- **	rotate_matrice
- */
+**	rotate_matrice
+*/
 
 t_ray				adapt_ray(t_ray ray, t_mat3d mat);
 int					rotate_event(t_all *param, int key);
 
 /*
- **	Camera
- */
+**	Camera
+*/
 
 t_vector3d			set_axe(int x, int y, t_camera *cam);
 
 /*
- **	Parse
- */
+**	Parse
+*/
 
 void				parse(t_all *param, char *arg);
 void				get_scene_infos(t_all *param, int *fd);
@@ -333,8 +329,8 @@ void				ft_abort_free(char *msg, char *line);
 void				parsing_quit(char *msg, char **splt_ln, char *ln);
 
 /*
- **	Misc
- */
+**	Misc
+*/
 
 int					sdl_key(t_all *param, int key);
 
