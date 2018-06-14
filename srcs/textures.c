@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 19:48:17 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/13 11:57:17 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/14 12:21:38 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	rainbow(int color, double v, int r_number, t_shape s)
 
 int	checker_pattern(int color, double u, double v, t_shape s)
 {
-	u *= 100;
+	u *= 10;
 	v *= 100;
 	if (((int)u % 2 == 0 && (int)v % 2 == 0)
 	|| (((int)u % 2 != 0 && (int)v % 2 != 0)))

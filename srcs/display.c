@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/14 12:08:11 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/14 12:19:08 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,8 @@ t_intersect	new_intersection(t_shape shape, t_ray ray, double point_dist)
 	shape.color = texture(shape.color, ret, shape);
 	ret.shape_copy = shape;
 	if (shape.type == PLANE)
-	{
 		if (dotprod(ray.direction, ret.normal) > DIST_MIN)
 			ret.normal = vector_op(ret.normal, new_vector_3d_unicoord(-1), '*');
-	}
 	ret.point = vector_op(ret.point, shape.origin, '+');
 	ret.point = adjust_direction(ret.point, shape.rot);
 	ret.normal = adjust_direction(ret.normal, shape.rot);

@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:33:37 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/13 12:33:38 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/14 12:18:27 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static double	get_intensity(t_intersect inter, t_light light, t_data data)
 	double		intensity;
 
 	lightdir = vector_op(light.origin, inter.point, '-');
-	intensity = dotprod(normalize(lightdir), normalize(inter.normal));
+	intensity = dotprod(normalize(lightdir), inter.normal);
 	intensity = intensity <= 0 ? data.ambiantlight :
 		intensity * light.intensity + data.ambiantlight;
 	intensity = intensity >= 1 ? 1 : intensity;
