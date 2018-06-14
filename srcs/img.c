@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:47:21 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/13 16:49:01 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/14 14:45:39 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ t_color		get_color_pixel(SDL_Surface *surf, t_point p)
 	pixel += ((int)p.y * surf->pitch) + ((int)p.x * sizeof(Uint32));
 	SDL_GetRGB(*((Uint32*)pixel), surf->format, &r, &g, &b);
 	SDL_UnlockSurface(surf);
-	c.r = (int)r;
-	c.g = (int)g;
-	c.b = (int)b;
+	c = new_color((int)r, (int)g, (int)b);
 	return (c);
 }
 

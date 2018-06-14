@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/14 12:19:08 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/14 17:52:57 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,16 @@ t_intersect	new_intersection(t_shape shape, t_ray ray, double point_dist)
 	tmp = vector_op(ray.direction, new_vector_3d_unicoord(point_dist), '*');
 	ret.point = vector_op(ret.point, tmp, '+');
 	ret.normal = normalize(normals[shape.type](shape, ret.point));
-	shape.color = texture(shape.color, ret, shape);
-	ret.shape_copy = shape;
 	if (shape.type == PLANE)
 		if (dotprod(ray.direction, ret.normal) > DIST_MIN)
 			ret.normal = vector_op(ret.normal, new_vector_3d_unicoord(-1), '*');
+	shape = texture(&ret, shape);
+	ret.shape_copy = shape;
+	if (shape.textunit.has_texture)
+		ret.normal = bump_mapping(ret.normal, shape.color);
 	ret.point = vector_op(ret.point, shape.origin, '+');
 	ret.point = adjust_direction(ret.point, shape.rot);
 	ret.normal = adjust_direction(ret.normal, shape.rot);
-	if (shape.textunit.has_texture)
-		ret.normal = bump_mapping(ret.normal, shape.color);
 	ret.dir_to_cam = adjust_direction(ray.direction, shape.rot);
 	return (ret);
 }

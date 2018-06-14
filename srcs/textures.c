@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 19:48:17 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/14 14:36:38 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/14 17:52:32 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	rainbow(double v, int r_number)
 static int	checker_pattern(int color, double u, double v)
 {
 	u *= 10;
-	v *= 100;
+	v *= 10;
 	if (((int)u % 2 == 0 && (int)v % 2 == 0)
 	|| (((int)u % 2 != 0 && (int)v % 2 != 0)))
 		color = 0xFFFFFF - color;
@@ -77,18 +77,35 @@ static int	get_texture_color(double u, double v, t_shape s)
 	return (s.textunit.texture[(int)u + (int)((int)v * modi)]);
 }
 
-int			texture(int color, t_intersect i, t_shape s)
+void	norm_perturb(t_intersect *i, double v, t_shape s)
+{
+	if (s.type == PLANE)
+		i->normal = vector_op(i->normal,
+				new_vector_3d_unicoord((sin(v * 10 * s.width) + 1) / 2), '*');
+	else if (s.type == SPHERE)
+		i->normal = vector_op(i->normal,
+				new_vector_3d_unicoord((sin(v * 100 * s.radius) + 1) / 2), '*');
+	else if (s.type == CYLINDER)
+		i->normal = vector_op(i->normal,
+				new_vector_3d_unicoord((sin(v * 10 * s.height) + 1) / 2), '*');
+	else if (s.type == CONE)
+		i->normal = vector_op(i->normal,
+				new_vector_3d_unicoord((sin(v * 10 * s.height) + 1) / 2), '*');
+}
+
+t_shape		texture(t_intersect *i, t_shape s)
 {
 	double u;
 	double v;
 
-	get_uv_mapping_coord(&u, &v, i, s);
+	get_uv_mapping_coord(&u, &v, *i, s);
 	if (s.textunit.has_texture)
-		color = get_texture_color(u, v, s);
+		s.color = get_texture_color(u, v, s);
 	if (s.textunit.has_rainbow)
-		color = interpolate(color, rainbow(v, 2), s.textunit.has_rainbow);
+		s.color = interpolate(s.color, rainbow(v, 2), s.textunit.has_rainbow);
 	if (s.textunit.has_checker)
-		color = interpolate(color, checker_pattern(color, u, v),
+		s.color = interpolate(s.color, checker_pattern(s.color, u, v),
 											s.textunit.has_checker);
-	return (color);
+	norm_perturb(i, v, s);
+	return (s);
 }

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/14 14:25:54 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/14 17:20:36 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,7 +260,7 @@ void				setup_multithread(t_all param);
 ** Texture
 */
 
-int			texture(int color, t_intersect i, t_shape s);
+t_shape			texture(t_intersect *i, t_shape s);
 void		setup_textunit(const char *surfpath, t_textunit *textunit);
 void	get_uv_mapping_coord(double *u, double *v, t_intersect i, t_shape s);
 
