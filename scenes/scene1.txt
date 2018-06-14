@@ -258,6 +258,9 @@ object{
 		y_scale: a
 		x_offset: a
 		y_offset: a
+		rainbow: a [0 -> 1]
+		checker: a [0 -> 1]
+		waves: a []
 	}
 	cut{
 		amount: {x, y, z} [-1 -> 1]

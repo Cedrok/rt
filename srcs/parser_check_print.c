@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:03:42 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/13 12:32:37 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/14 17:23:09 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,9 @@ t_light		check_light(t_light *spot)
 void				print_infos(int a, int b)
 {
 	if (a == 0)
-	{
-		ft_putendl("Nothing to see here...");
-		return ;
-	}
+		ft_abort("Nothing to see here...");
 	if (b == 0)
-	{
-		ft_putendl("I'M BLIND !!!\nOh wait... turn on the light !");
-		return ;
-	}
+		ft_abort("I'M BLIND !!!\nOh wait... turn on the light !");
 	ft_putstr("[] ");
 	ft_putnbr(a);
 	if (a <= 1)
