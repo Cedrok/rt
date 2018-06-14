@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/12 15:32:37 by tmilon           ###   ########.fr        #
+#    Updated: 2018/06/14 10:31:39 by tmilon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRC_NAME= 	main.c				\
 			inputs.c			\
 			utils.c				\
 			intersection.c		\
+			intersection_torus.c	\
 			normal.c			\
 			camera.c			\
 			img.c				\

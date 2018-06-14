@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/13 12:04:39 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/14 10:33:04 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,7 +215,7 @@ typedef struct		s_thread_param
  ** Initstruct
  */
 
-t_light				new_light(t_vector3d origin, double intensity, int color);//?
+t_light				new_light(t_vector3d origin, double intensity, int color);
 t_ray				new_ray(t_vector3d o, t_vector3d d);
 t_point				new_point(int x, int y, int color);
 t_shape				new_shape(int type, void *shape, int color);
@@ -230,6 +230,7 @@ int					intersect_sphere(t_shape shape, t_ray ray, double *t);
 int					intersect_plane(t_shape shape, t_ray ray, double *t);
 int					intersect_cylinder(t_shape shape, t_ray ray, double *t);
 int					intersect_cone(t_shape shape, t_ray ray, double *t);
+int					intersect_torus(t_shape shape, t_ray ray, double *t);
 
 /*
  ** Normal fetchers
@@ -239,6 +240,7 @@ t_vector3d			sphere_normal(t_shape shape, t_vector3d intersection_point);
 t_vector3d			plane_normal(t_shape shape, t_vector3d intersection_point);
 t_vector3d			cylinder_normal(t_shape shape, t_vector3d intersection_point);
 t_vector3d			cone_normal(t_shape shape, t_vector3d intersection_point);
+t_vector3d			torus_normal(t_shape shape, t_vector3d intersection);
 
 /*
  ** Display functs
@@ -248,11 +250,9 @@ int					no_collisions(t_list *shape_lst,
 		t_intersect inter, t_light light);
 int					set_color(t_scene scene, t_intersect intersection, t_data data);
 int					interpolate(int start, int finish, float ratio);
-//void				raytrace(t_scene scene, t_env *unit, t_point p, t_data data);
 double			get_nearest_intersection(t_ray *ray, t_scene scene,
 		t_intersect *nearest_intersect, double maxdist);
 void				setup_multithread(t_all param);
-//void				setup_multithread(t_scene scene, t_env *unit, t_data data);
 
 /*
  ** Texture
