@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 16:26:18 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/07 19:26:19 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/14 15:35:24 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 void			create_win_render(t_env *env)
 {
+	if (!env->title)
+		env->title = ft_strdup("RT");
 	env->win = SDL_CreateWindow(env->title, SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED, W_WIDTH, W_HEIGHT, SDL_WINDOW_RESIZABLE);
 	SDL_SetWindowMinimumSize(env->win, W_WIDTH, W_HEIGHT);
