@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/14 18:01:26 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/15 09:18:45 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -334,6 +334,7 @@ void				parsing_quit(char *msg, char **splt_ln, char *ln);
 */
 
 int					sdl_key(t_all *param, int key);
+void				screenshot(t_all *param);
 
 void				draw_rect(t_vector4d pos, t_color c, SDL_Renderer *rend);
 void				put_string(t_label str, t_vector4d pos_p, SDL_Renderer *rend);
