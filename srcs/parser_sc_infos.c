@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 14:39:34 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/14 17:38:30 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/15 10:47:55 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@
 **      Read Scene infos part and process
 */
 
-static void	grab_cam(t_scene *scene, int *fd)
+static void	grab_cam(t_scene *scene, int *fd, int *b_cam)
 {
-	char	*line;
+	char		*line;
 	t_vector3d	origin;
 	t_vector3d	tmp;
 
+	*b_cam = 0;
 	line = ft_strnew(0);
 	while (ft_strcmp(line, "}"))
 	{
@@ -33,7 +34,6 @@ static void	grab_cam(t_scene *scene, int *fd)
 		if (!ft_strncmp(line, "\trot:", 5))
 			tmp = extract_vd3(line);
 	}
-	//origin.z = origin.z * 10; //rustine!
 	scene->camera = new_cam(origin, tmp.x, tmp.y, tmp.z);
 	ft_strdel(&line);
 }
@@ -58,14 +58,11 @@ void		get_scene_infos(t_all *param, int *fd)
 			b_title = 0;
 		}
 		if (!ft_strcmp(line, "camera{") && b_cam)
-		{
-			grab_cam(&param->scene, fd);
-			b_cam = 0;
-		}
+			grab_cam(&param->scene, fd, &b_cam);
 		if (!ft_strncmp(line, "ambiant:", 8))
 			param->data.ambiantlight = ftb_clamp(ft_atof(line + 8), 0, 1);
 	}
 	ft_strdel(&line);
 	if (b_cam)
-		ft_abort("Where is the cam \?\?!");
+		ft_abort("Who forgot the camera \?\?!");
 }

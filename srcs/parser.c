@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 13:39:25 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/12 13:52:06 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/15 10:42:12 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,7 @@ void		parse(t_all *param, char *arg)
 		if (do_it)
 			which_section(param, &fd, line);
 		if (!ft_strcmp(line, "##END##"))
-		{
-			do_it = 0;//break ; ?
-		}
+			do_it = 0;
 		ft_strdel(&line);
 	}
 	close(fd);

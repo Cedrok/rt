@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/15 09:24:08 by cvautrai         ###   ########.fr        #
+#    Updated: 2018/06/15 10:46:21 by cvautrai         ###   ########.fr        #
 #    Updated: 2018/06/14 12:37:58 by tmilon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -58,7 +58,8 @@ SRC_NAME= 	main.c				\
 			sdl_init.c			\
 			parser.c			\
 			parser_check_print.c\
-			parser_gets.c		\
+			parser_get_objs.c	\
+			parser_get_lights.c	\
 			parser_sc_infos.c	\
 			parser_utils.c		\
 			draw_ui.c			\

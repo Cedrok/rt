@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:03:42 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/14 18:04:03 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/15 10:50:36 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_vector3d	vd3_norm(t_vector3d n, double min, double max)
 	return (new);
 }
 
-t_shape		check_obj(t_shape *obj)
+t_shape				check_obj(t_shape *obj)
 {
 	obj->color = ftb_clamp(obj->color, 0, 0xFFFFFF);
 	obj->origin = vd3_norm(obj->origin, -20000, 20000);
@@ -41,11 +41,11 @@ t_shape		check_obj(t_shape *obj)
 	obj->limunit.cut_amount = vd3_norm(obj->limunit.cut_amount, -1, 1);
 	obj->limunit.cut_radius = ftb_clamp(obj->limunit.cut_radius, 0, 10000);
 	obj->limunit.real_position =
-		ftb_clamp(obj->limunit.real_position, 0, 10000);
+		ftb_clamp(obj->limunit.real_position, 0, 1);
 	return (*obj);
 }
 
-t_light		check_light(t_light *spot)
+t_light				check_light(t_light *spot)
 {
 	spot->origin = vd3_norm(spot->origin, -20000, 20000);
 	spot->color = ftb_clamp(spot->color, 0, 0xFFFFFF);

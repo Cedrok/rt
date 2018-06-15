@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:19:23 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/15 09:24:12 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/15 10:26:00 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void			screenshot(t_all *param)
 	}
 	put_filter(*param);
 	IMG_SavePNG(param->env->s_filter, str);
+	ft_putstr("[] Screenshot saved: ");
+	ft_putendl(str);
 	ft_strdel(&str);
 	i++;
-	ft_putendl("Screenshot saved");
 }

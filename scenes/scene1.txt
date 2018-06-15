@@ -207,6 +207,7 @@ object{
 	color: "3232FF"
 	cut{
 		amount: {0, 0, 1}
+		real_pos: 1
 	}
 }
 
