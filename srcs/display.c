@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/14 17:52:57 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/15 13:55:47 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,4 +182,5 @@ void		setup_multithread(t_all param)
 		}
 	}
 	SDL_BlitSurface(param.env->surf, NULL, param.env->s_filter, NULL);
+	free(param.colorarray);
 }
