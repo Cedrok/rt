@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/15 10:46:21 by cvautrai         ###   ########.fr        #
+#    Updated: 2018/06/15 11:29:59 by cvautrai         ###   ########.fr        #
 #    Updated: 2018/06/14 12:37:58 by tmilon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -65,7 +65,8 @@ SRC_NAME= 	main.c				\
 			draw_ui.c			\
 			button_event.c		\
 			textures_setup.c	\
-			screenshot.c
+			screenshot.c		\
+			new_objs.c
 
 OBJ_NAME=	$(SRC_NAME:.c=.o)
 

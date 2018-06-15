@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 10:33:36 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/15 10:38:09 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/15 11:33:27 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 **      Read lights part and process
 */
 
-static t_light	default_light(void)
+t_light			default_light(void)
 {
 	t_light	light;
 

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/15 10:50:40 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/15 11:34:15 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,7 +221,7 @@ typedef struct		s_thread_param
 t_light				new_light(t_vector3d origin, double intensity, int color);
 t_ray				new_ray(t_vector3d o, t_vector3d d);
 t_point				new_point(int x, int y, int color);
-t_shape				new_shape(int type, void *shape, int color);
+//t_shape				new_shape(int type, void *shape, int color);
 t_scene				new_env(t_list *shape_lst, t_list *lightlist);
 t_camera			new_cam(t_vector3d orig, double x, double y, double z);
 
@@ -335,6 +335,11 @@ void				parsing_quit(char *msg, char **splt_ln, char *ln);
 
 int					sdl_key(t_all *param, int key);
 void				screenshot(t_all *param);
+
+void				new_shape(int type, t_scene *sc);
+t_shape				default_shape(int i);
+void				new_spot(t_scene *sc);
+t_light				default_light(void);
 
 void				draw_rect(t_vector4d pos, t_color c, SDL_Renderer *rend);
 void				put_string(t_label str, t_vector4d pos_p, SDL_Renderer *rend);
