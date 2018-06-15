@@ -100,7 +100,7 @@ static void		refresh_surf(t_all *param)
 {
 	param->data.filter = (param->data.filter < 4) ? param->data.filter + 1 : 0;
 	clear_render(param->env);
-	new_ui(param);
+	draw_ui(param);
 	put_filter(*param);
 	param->env->rend = surface_2_rend(param->env);
 }

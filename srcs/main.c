@@ -32,8 +32,8 @@ static void		launch(t_all *param, t_env *env)
 				new_ui(param);
 				refresh_img(param);
 			}
-		//else if (event.type == SDL_MOUSEBUTTONDOWN)
-		//	event_button(param, event.button.x, event.button.y);
+		if (event.type == SDL_MOUSEBUTTONDOWN)
+			event_button(param, event.button.x, event.button.y);
 	}
 }
 

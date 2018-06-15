@@ -43,7 +43,7 @@ SRC_NAME= 	main.c				\
 			inputs.c			\
 			utils.c				\
 			intersection.c		\
-			intersection_torus.c	\
+			intersection_torus.c\
 			normal.c			\
 			camera.c			\
 			img.c				\
@@ -62,6 +62,7 @@ SRC_NAME= 	main.c				\
 			parser_sc_infos.c	\
 			parser_utils.c		\
 			draw_ui.c			\
+			button_event.c		\
 			textures_setup.c
 
 OBJ_NAME=	$(SRC_NAME:.c=.o)

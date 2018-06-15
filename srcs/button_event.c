@@ -12,26 +12,31 @@
 
 #include "rt.h"
 
+static void	check_btn(t_bloc *bc, int x, int y)
+{
+	t_vector2d	lst_pt;
+	t_button	*btn;
+	int			i;
+
+	i = 0;
+	if (bc->lst_obj != NULL)
+		while (bc->lst_obj[i] != NULL)
+		{
+			if (bc->lst_obj[i]->type == BUTTON)
+			{
+				btn = ((t_button*)bc->lst_obj[i]->obj);
+				lst_pt.x = btn->pos.x + btn->pos.z;
+				lst_pt.y = btn->pos.y + btn->pos.w;
+				if (x >= btn->pos.x && x <= lst_pt.x && y >= btn->pos.y && y <= lst_pt.y)
+					ft_putendl("Welcome Delay");
+			}
+			i++;
+		}
+}
+
 void	event_button(t_all *param, int x, int y)
 {
-	int 			b_x;
-	int 			b_y;
-	int 			b_z;
-	int 			b_w;
-
-	printf("pos_mouse.x = %d, pos_mouse.y = %d\n", x, y);
-	b_x = param->btn_teste.pos.x;
-	b_y = param->btn_teste.pos.y;
-	b_z = param->btn_teste.pos.z;
-	b_w = param->btn_teste.pos.w;
-	printf("b_x = %d, b_x = %d, b_z = %d, b_w = %d\n", b_x, b_y, b_z, b_w);
-	if (x >= b_x && x <= b_z && y >= b_y && y <= b_w)
-	{
-		printf("lol\n");
-		param->data.filter = (param->data.filter < 4) ? param->data.filter + 1 : 0;
-		clear_render(param->env);
-		new_ui(param);
-		put_filter(*param);
-		param->env->rend = surface_2_rend(param->env);
-	}
+	check_btn(param->ui.bc_rght, x, y);
+	check_btn(param->ui.bc_center, x, y);
+	check_btn(param->ui.bc_lft, x, y);
 }
