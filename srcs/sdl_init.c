@@ -6,7 +6,7 @@
 /*   By: clementpieri <clementpieri@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 16:26:18 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/16 16:13:27 by clementpier      ###   ########.fr       */
+/*   Updated: 2018/06/16 19:58:55 by clementpier      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ void			clear_render(t_env *env)
 SDL_Renderer	*surface_2_rend(t_env *env)
 {
 	SDL_Texture	*text;
-	t_vector4d	teste;
+	t_vector4d	size;
 	SDL_Rect	rectd;
 
-	teste = size_rend(env->w, env->h);
-	rectd.x = teste.x;
-	rectd.y = teste.y;
-	rectd.w = teste.z;
-	rectd.h = teste.w;
+	size = size_rend(env->w, env->h);
+	rectd.x = size.x;
+	rectd.y = size.y;
+	rectd.w = size.z;
+	rectd.h = size.w;
 	text = SDL_CreateTextureFromSurface(env->rend, env->s_filter);
 	SDL_BlitSurface(env->surf, NULL, env->s_filter, NULL);
 	SDL_RenderCopy(env->rend, text, NULL, &rectd);
