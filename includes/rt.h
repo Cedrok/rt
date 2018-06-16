@@ -6,7 +6,7 @@
 /*   By: clementpieri <clementpieri@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/16 16:37:56 by clementpier      ###   ########.fr       */
+/*   Updated: 2018/06/16 19:23:10 by clementpier      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -334,7 +334,7 @@ void				parsing_quit(char *msg, char **splt_ln, char *ln);
 */
 
 int					sdl_key(t_all *param, int key);
-void				screenshot(t_all *param);
+void				screenshot(void *p, int c);
 
 void				new_shape(void *p, int type);
 t_shape				default_shape(int i);

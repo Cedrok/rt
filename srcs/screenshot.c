@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screenshot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bocal <bocal@student.42.fr>                +#+  +:+       +#+        */
+/*   By: clementpieri <clementpieri@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:19:23 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/15 15:13:11 by bocal            ###   ########.fr       */
+/*   Updated: 2018/06/16 19:22:52 by clementpier      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,14 @@ static char		*build_name(char *title, int i)
 	return (str3);
 }
 
-void			screenshot(t_all *param)
+void			screenshot(void *p, int c)
 {
 	static int	i = 1;
 	char		*str;
+	t_all		*param;
 
+	c = 0;
+	param = (t_all*)p;
 	mkdir("screenshots", S_IRWXU | S_IRWXG | S_IRWXO);
 	str = build_name(param->env->title, i);
 	while (open(str, O_RDONLY) != -1)

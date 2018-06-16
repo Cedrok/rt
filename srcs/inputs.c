@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inputs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bocal <bocal@student.42.fr>                +#+  +:+       +#+        */
+/*   By: clementpieri <clementpieri@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 12:36:24 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/15 16:23:00 by bocal            ###   ########.fr       */
+/*   Updated: 2018/06/16 19:25:39 by clementpier      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int				sdl_key(t_all *param, int key)
 	if (key == SDLK_ESCAPE)
 		quit_exe(*param);
 	if (key == SDLK_p)
-		screenshot(param);
+		screenshot(param, 0);
 	if (key == SDLK_RIGHT || key == SDLK_LEFT || key == SDLK_UP
 			|| key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 		valid_key = translation(param, key);
