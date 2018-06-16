@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sdl_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: clementpieri <clementpieri@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 16:26:18 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/15 15:00:27 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/16 16:13:27 by clementpier      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,14 @@ void			clear_render(t_env *env)
 SDL_Renderer	*surface_2_rend(t_env *env)
 {
 	SDL_Texture	*text;
+	t_vector4d	teste;
 	SDL_Rect	rectd;
-	int 		x, y;
 
-	SDL_GetWindowSize(env->win, &x, &y);
-	t_vector4d teste = calc_position(new_vector_4d(0, 0, x, y), new_vector_4d((I_WIDTH * 100 / x),(I_HEIGHT * 100 / y),0,0), CENTER);
+	teste = size_rend(env->w, env->h);
 	rectd.x = teste.x;
 	rectd.y = teste.y;
-	rectd.w = I_WIDTH;
-	rectd.h = I_HEIGHT;
+	rectd.w = teste.z;
+	rectd.h = teste.w;
 	text = SDL_CreateTextureFromSurface(env->rend, env->s_filter);
 	SDL_BlitSurface(env->surf, NULL, env->s_filter, NULL);
 	SDL_RenderCopy(env->rend, text, NULL, &rectd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bocal <bocal@student.42.fr>                +#+  +:+       +#+        */
+/*   By: clementpieri <clementpieri@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 15:09:23 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/15 16:16:30 by bocal            ###   ########.fr       */
+/*   Updated: 2018/06/16 16:08:24 by clementpier      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,18 @@ static t_all	init_param(t_all param)
 	param.data.fastmode = 1;
 	param.data.filter = 4;
 	return (param);
+}
+
+t_vector4d		size_rend(int w, int h)
+{
+	t_vector4d	ret;
+	t_vector4d	size_win;
+	t_vector4d	ratio_marge;
+
+	size_win = new_vector_4d(0, 0, w, h);
+	ratio_marge = new_vector_4d(63, 66.5, 15, 2);
+	ret = calc_position(size_win, ratio_marge, CENTER);
+	return (ret);
 }
 
 int				main(int ac, char **av)
