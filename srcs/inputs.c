@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inputs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bocal <bocal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 12:36:24 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/15 09:24:10 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/15 16:23:00 by bocal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,12 @@ static int		translation(t_all *param, int key)
 	return (1);
 }
 
-static void		refresh_surf(t_all *param)
+void		refresh_surf(void *delay, int type)
 {
-	param->data.filter = (param->data.filter < 4) ? param->data.filter + 1 : 0;
+	t_all	*param;
+
+	param = (t_all*)delay;
+	param->data.filter = type;
 	clear_render(param->env);
 	draw_ui(param);
 	put_filter(*param);
@@ -71,7 +74,7 @@ int				sdl_key(t_all *param, int key)
 	else if (key == SDLK_r)
 		valid_key = set_fastmode(&param->data.fastmode);
 	else if (key == SDLK_c)
-		refresh_surf(param);
+		refresh_surf(param, 0);
 	if (valid_key)
 		refresh_img(param);
 	return (0);

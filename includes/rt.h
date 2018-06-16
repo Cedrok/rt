@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bocal <bocal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/15 11:34:15 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/15 17:47:35 by bocal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@
 
 typedef struct		s_point
 {
-	int			x;
-	int			y;
-	int			color;
+	int				x;
+	int				y;
+	int				color;
 }					t_point;
 
 typedef struct		s_calcunit
@@ -336,15 +336,18 @@ void				parsing_quit(char *msg, char **splt_ln, char *ln);
 int					sdl_key(t_all *param, int key);
 void				screenshot(t_all *param);
 
-void				new_shape(int type, t_scene *sc);
+void				new_shape(void *p, int type);
 t_shape				default_shape(int i);
-void				new_spot(t_scene *sc);
+void				new_spot(void *p, int c);
 t_light				default_light(void);
 
 void				draw_rect(t_vector4d pos, t_color c, SDL_Renderer *rend);
 void				put_string(t_label str, t_vector4d pos_p, SDL_Renderer *rend);
 void                draw_bloc(t_bloc *bloc, SDL_Renderer *rend);
 void				draw_ui(t_all *param);
+void				setf_btn_r(t_bloc *bc, t_all *param);
+void				setf_btn_c(t_bloc *bc, t_all *param);
+void				refresh_surf(void *delay, int type);
 
 SDL_Renderer		*surface_2_rend(t_env *env);
 void				create_win_render(t_env *env);

@@ -3,13 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
+#    By: bocal <bocal@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/15 11:29:59 by cvautrai         ###   ########.fr        #
-#    Updated: 2018/06/14 12:37:58 by tmilon           ###   ########.fr        #
+#    Updated: 2018/06/15 14:34:01 by bocal            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME	=	rt
 
@@ -63,6 +63,7 @@ SRC_NAME= 	main.c				\
 			parser_sc_infos.c	\
 			parser_utils.c		\
 			draw_ui.c			\
+			setf_btn.c			\
 			button_event.c		\
 			textures_setup.c	\
 			screenshot.c		\

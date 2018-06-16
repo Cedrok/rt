@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   button.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bocal <bocal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:43:34 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/08 17:54:11 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/15 14:39:09 by bocal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@
 typedef struct	s_button
 {
 	int			is_center;
-	void		*cllbck_param;
-	void		(*callback)(void *);
+	int			type;
+	void		*f_param;
+	void		(*f)(void *, int);
 	t_color		color;
 	t_vector4d	pos;
 	t_vector4d	ratio_marge;
@@ -31,7 +32,7 @@ typedef struct	s_button
 
 t_button		*new_button(t_vector4d parent_pos, t_color c, t_vector4d ratio_marge, int pos);
 void			set_title_btn(t_button *btn, char *title, t_vector4d pos, t_color c);
-void			set_btn_callback(t_button *btn, void (*clback)(void *),
-					void *p);
+void			set_btn_callback(t_button *btn, void (*f)(void *, int),
+					void *p, int type);
 
 #endif

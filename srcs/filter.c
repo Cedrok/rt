@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bocal <bocal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/25 10:14:20 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/14 16:59:50 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/15 17:20:18 by bocal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void			put_filter(t_all param)
 	f[0] = sepia_mode;
 	f[1] = neg_mode;
 	f[2] = black_mode;
-	//printf("filter : %d\n", filter);
 	while (++p.y < I_HEIGHT)
 	{
 		p.x = -1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bocal <bocal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 15:09:23 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/14 15:31:16 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/15 16:16:30 by bocal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void		launch(t_all *param, t_env *env)
 		SDL_WaitEvent(&event);
 		if (event.type == SDL_QUIT)
 			env->loop = 0;
-		else if (event.type == SDL_KEYDOWN)
+		if (event.type == SDL_KEYDOWN)
 			sdl_key(param, event.key.keysym.sym);
 		if (event.type == SDL_WINDOWEVENT)
 			if (event.window.event == SDL_WINDOWEVENT_RESIZED)
@@ -49,7 +49,6 @@ static t_all	init_param(t_all param)
 	create_all_surface(param.env);
 	clear_render(param.env);
 	SDL_GetWindowSize(param.env->win, &param.env->w, &param.env->h);
-	//	param.data.ambiantlight = 0;
 	param.env->loop = 1;
 	param.data.fastmode = 1;
 	param.data.filter = 4;

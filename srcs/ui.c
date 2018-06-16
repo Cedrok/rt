@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bocal <bocal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 11:06:00 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/08 19:10:42 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/15 17:46:15 by bocal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,23 @@ static t_bloc		*create_bloc_filter(int w, int h)
 	t_button	*btn_sepia;
 	t_button	*btn_gray;
 	t_button	*btn_neg;
+	t_button	*btn_def;
 
 	bc = new_bloc(new_vector_2d(w, h), new_color(0x00, 0x3a, 0x42), new_vector_4d(15, 96, 1.5f, 2), RIGHT_UP_CONER);
 	set_title_bloc(bc, "Les Filtres :", new_vector_4d(96, 10, 2, 5), new_color(255, 255, 255));
-	init_lstobj(bc, 3);
+	init_lstobj(bc, 4);
 	btn_sepia = new_button(bc->pos, new_color(102, 59, 42), new_vector_4d(90, 5, 2, 10), HORIZONTAL_CENTER);
 	btn_gray = new_button(bc->pos, new_color(101, 101, 101), new_vector_4d(90, 5, 2, 17.5), HORIZONTAL_CENTER);
 	btn_neg = new_button(bc->pos, new_color(101, 101, 42), new_vector_4d(90, 5, 2, 25), HORIZONTAL_CENTER);
+	btn_def = new_button(bc->pos, new_color(42, 101, 0x19), new_vector_4d(90, 5, 2, 32.5), HORIZONTAL_CENTER);
 	set_title_btn(btn_sepia, "Sepia", new_vector_4d(101, 55, 0, 0), new_color(255, 255, 255));
 	set_title_btn(btn_gray, "Black & White", new_vector_4d(101, 55, 0, 0), new_color(255, 255, 255));
 	set_title_btn(btn_neg, "Negative", new_vector_4d(101, 55, 0, 0), new_color(255, 255, 255));
+	set_title_btn(btn_def, "Default", new_vector_4d(101, 55, 0, 0), new_color(255, 255, 255));
 	bc->lst_obj[0] = new_obj(btn_sepia, sizeof(btn_sepia), BUTTON);
 	bc->lst_obj[1] = new_obj(btn_gray, sizeof(btn_gray), BUTTON);
 	bc->lst_obj[2] = new_obj(btn_neg, sizeof(btn_neg), BUTTON);
+	bc->lst_obj[3] = new_obj(btn_def, sizeof(btn_def), BUTTON);
 	return (bc);
 }
 
@@ -90,6 +94,8 @@ int	    	new_ui(t_all *param)
 	bc_right = create_bloc_filter(param->env->w, param->env->h);
 	bc_center = create_bloc_center(param->env->w, param->env->h);
 	bc_left = create_bloc_left(param->env->w, param->env->h);
+	setf_btn_r(bc_right, param);
+	setf_btn_c(bc_center, param);
 	param->ui.bc_rght = bc_right;
 	param->ui.bc_center = bc_center;
 	param->ui.bc_lft = bc_left;
