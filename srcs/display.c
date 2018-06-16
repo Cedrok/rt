@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: clementpieri <clementpieri@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/15 13:55:47 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/16 16:38:56 by clementpier      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,8 +150,8 @@ static void	*raytrace_thread(void *voidparam)
 
 void		setup_multithread(t_all param)
 {
-	t_point	p;
-	t_all	tparam[THREAD_LIMIT];
+	t_point		p;
+	t_all		tparam[THREAD_LIMIT];
 	pthread_t	thread_id[THREAD_LIMIT];
 	int			i;
 

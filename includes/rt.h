@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bocal <bocal@student.42.fr>                +#+  +:+       +#+        */
+/*   By: clementpieri <clementpieri@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/15 17:47:35 by bocal            ###   ########.fr       */
+/*   Updated: 2018/06/16 16:37:56 by clementpier      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 
 # define I_WIDTH			1280
 # define I_HEIGHT			720
-# define W_WIDTH			1920
-# define W_HEIGHT			1080
+# define W_WIDTH			1280
+# define W_HEIGHT			720
 # define PIC_LIMIT			I_WIDTH * I_HEIGHT
 # define DIST_MAX			2000000
 # define DIST_MIN			0.00000001
@@ -340,6 +340,7 @@ void				new_shape(void *p, int type);
 t_shape				default_shape(int i);
 void				new_spot(void *p, int c);
 t_light				default_light(void);
+t_vector4d			size_rend(int w, int h);
 
 void				draw_rect(t_vector4d pos, t_color c, SDL_Renderer *rend);
 void				put_string(t_label str, t_vector4d pos_p, SDL_Renderer *rend);
