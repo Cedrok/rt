@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 16:10:40 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/06 10:13:39 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/17 09:24:53 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ int				interpolate(int start, int finish, float ratio);
 int				color_to_int(t_color c);
 t_color			int_to_color(int n);
 t_color			new_color(int red, int green, int blue);
-
+t_color			color_prod(t_color color, double lambda);
 #endif

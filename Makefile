@@ -6,7 +6,7 @@
 #    By: bocal <bocal@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/15 14:34:01 by bocal            ###   ########.fr        #
+#    Updated: 2018/06/17 10:28:09 by bspindle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,9 @@ SRC_NAME= 	main.c				\
 			button_event.c		\
 			textures_setup.c	\
 			screenshot.c		\
-			new_objs.c
+			new_objs.c			\
+			perlin.c			\
+			perlin_init.c
 
 OBJ_NAME=	$(SRC_NAME:.c=.o)
 

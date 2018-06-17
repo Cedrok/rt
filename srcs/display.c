@@ -6,7 +6,7 @@
 /*   By: clementpieri <clementpieri@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/16 16:38:56 by clementpier      ###   ########.fr       */
+/*   Updated: 2018/06/16 20:33:28 by cedric           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,8 +169,12 @@ void		setup_multithread(t_all param)
 			i++;
 		}
 	}
+	i--;
 	while (i >= 0)
-		pthread_join(thread_id[--i], NULL);
+	{
+		pthread_join(thread_id[i], NULL);
+		i--;
+	}
 	p = new_point (-1, -1, 0);
 	while (++p.y < I_HEIGHT)
 	{
