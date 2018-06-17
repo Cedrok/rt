@@ -6,7 +6,7 @@
 /*   By: clementpieri <clementpieri@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/17 10:58:13 by bspindle         ###   ########.fr       */
+/*   Updated: 2018/06/17 17:52:33 by clementpier      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,37 @@ typedef struct		s_perlin_stuff
 	t_vector2d		grad_c;
 	t_vector2d		grad_d;
 }					t_perlin_stuff;
+
+/*
+**	Struct for ui
+*/
+
+typedef struct		s_left
+{
+	t_button		*btn_up;
+	t_button		*btn_down;
+	t_button		*btn_rght;
+	t_button		*btn_lft;
+}					t_left;
+
+typedef struct		s_center
+{
+	t_button		*btn_sph;
+	t_button		*btn_cyl;
+	t_button		*btn_pla;
+	t_button		*btn_cne;
+	t_button		*btn_lgt;
+}					t_center;
+
+typedef struct		s_right
+{
+	t_button		*btn_sepia;
+	t_button		*btn_gray;
+	t_button		*btn_neg;
+	t_button		*btn_def;
+	t_label			*opt;
+	t_button		*btn_shot;
+}					t_right;
 
 /*
 ** SDL handling structs
@@ -368,7 +399,7 @@ t_light				default_light(void);
 t_vector4d			size_rend(int w, int h);
 
 void				draw_rect(t_vector4d pos, t_color c, SDL_Renderer *rend);
-void				put_string(t_label str, t_vector4d pos_p, SDL_Renderer *rend);
+void				put_string(t_label *str, t_vector4d pos_p, SDL_Renderer *rend);
 void                draw_bloc(t_bloc *bloc, SDL_Renderer *rend);
 void				draw_ui(t_all *param);
 void				setf_btn_r(t_bloc *bc, t_all *param);
