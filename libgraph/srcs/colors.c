@@ -6,11 +6,12 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/10 16:53:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/04 10:08:34 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/17 09:31:21 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color.h"
+#include <math.h>
 
 int			color_to_int(t_color c)
 {
@@ -50,4 +51,14 @@ t_color		new_color(int red, int green, int blue)
 	ret.g = green;
 	ret.b = blue;
 	return (ret);
+}
+
+t_color		color_prod(t_color color, double lambda)
+{
+	t_color	new;
+
+	new.r = fmax(0, fmin(255, lambda * color.r));
+	new.g = fmax(0, fmin(255, lambda * color.g));
+	new.b = fmax(0, fmin(255, lambda * color.b));
+	return (new);
 }

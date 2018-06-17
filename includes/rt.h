@@ -6,7 +6,7 @@
 /*   By: clementpieri <clementpieri@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/16 20:23:32 by cedric           ###   ########.fr       */
+/*   Updated: 2018/06/17 09:44:52 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,20 @@ typedef struct		s_intersect
 	t_vector3d		dir_to_cam;
 	t_shape			shape_copy;
 }					t_intersect;
+
+/*
+** Structs for Perlin's noise
+*/
+
+typedef struct		s_perlin_stuff
+{
+	int				*permutation;
+	t_vector2d		*grad_tab;
+	t_vector2d		grad_a;
+	t_vector2d		grad_b;
+	t_vector2d		grad_c;
+	t_vector2d		grad_d;
+}					t_perlin_stuff;
 
 /*
 ** SDL handling structs
