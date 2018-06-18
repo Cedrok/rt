@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:33:37 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/18 08:51:48 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/18 20:03:39 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,17 @@ static int		fuse(int start, int finish, int tresh)
 	return (color_to_int(a));
 }
 
+double	cartoon(double intensity)
+{
+	if (intensity < 0.3)
+		intensity = 0.1;
+	else if (intensity < 0.6)
+		intensity = 0.4;
+	else if (intensity < 1)
+		intensity = 0.7;
+	return (intensity);
+}
+
 static int		brillance(int start, t_intersect inter, t_light light)
 {
 	t_color		a;
@@ -59,6 +70,8 @@ static int		brillance(int start, t_intersect inter, t_light light)
 	intensity = pow(intensity, 14 / (get_length(lightdir) + 0.1));
 	intensity *= inter.shape_copy.brillance * light.intensity;
 	intensity = ftb_clamp(intensity, 0, 1);
+	if (!inter.shape_copy.textunit.has_texture)
+		intensity = cartoon(intensity);
 	a = int_to_color(start);
 	b = int_to_color(light.color);
 	a.r += b.r * intensity;
@@ -123,6 +136,8 @@ int				set_color(t_scene scene,
 		if (light.color == -1)
 			break ;
 		intensity = get_intensity(intersection, light, data);
+		if (!intersection.shape_copy.textunit.has_texture)
+			intensity = cartoon(intensity);
 		tmp = interpolate(0, intersection.shape_copy.color, intensity);
 		if (!shadows(scene, intersection, light, &tmp, data))
 			tmp = brillance(tmp, intersection, light);

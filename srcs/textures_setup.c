@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 15:31:26 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/18 19:38:54 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/18 21:50:41 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void		setup_textunit(const char *surfpath, t_textunit *textunit)
 	surf = NULL;
 	if (ft_strcmp(surfpath, "perlin") == 0)
 	{
-		textunit->texture_width = 400;
+		textunit->texture_width = 800;
 		textunit->texture = perlin_texture(new_color(5, 255, 0),
-				100, 100, textunit->texture_width);
+				10, 10, textunit->texture_width);
 	}
 	else
 	{
