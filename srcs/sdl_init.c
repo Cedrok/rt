@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 16:26:18 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/18 08:52:22 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/18 19:29:13 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,12 @@ void			create_win_render(t_env *env)
 
 void			create_all_surface(t_env *env)
 {
-	env->surf = SDL_CreateRGBSurface(0, I_WIDTH, I_HEIGHT, 32,
+	t_vector4d	size;
+
+	size = size_rend(env->w, env->h);
+	env->surf = SDL_CreateRGBSurface(0, size.z, size.w, 32,
 			0xff000000, 0x00ff0000, 0x0000ff00, 0x000000ff);
-	env->s_filter = SDL_CreateRGBSurface(0, I_WIDTH, I_HEIGHT, 32,
+	env->s_filter = SDL_CreateRGBSurface(0, size.z, size.w, 32,
 			0xff000000, 0x00ff0000, 0x0000ff00, 0x000000ff);
 }
 

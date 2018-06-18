@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:03:42 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/15 10:50:36 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/18 13:47:46 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ t_shape				check_obj(t_shape *obj)
 	obj->textunit.has_waves = ftb_clamp(obj->textunit.has_waves, 0, 100);
 	obj->limunit.cut_amount = vd3_norm(obj->limunit.cut_amount, -1, 1);
 	obj->limunit.cut_radius = ftb_clamp(obj->limunit.cut_radius, 0, 10000);
-	obj->limunit.real_position =
-		ftb_clamp(obj->limunit.real_position, 0, 1);
+	obj->limunit.real_position = ftb_clamp(obj->limunit.real_position, 0, 1);
 	return (*obj);
 }
 

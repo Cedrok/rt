@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/18 16:15:44 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/18 19:25:57 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,8 @@
  ******************************* Disp defines *********************************
  */
 
-# define I_WIDTH			1280
-# define I_HEIGHT			720
 # define W_WIDTH			1280
 # define W_HEIGHT			720
-# define PIC_LIMIT			I_WIDTH * I_HEIGHT
 # define DIST_MAX			2000000
 # define DIST_MIN			0.00000001
 # define THREAD_LIMIT		4

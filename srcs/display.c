@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/18 12:41:45 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/18 19:27:31 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,22 +109,22 @@ int			transparency(t_scene scene, t_ray ray, t_intersect intersection,
 	return (0); //noir
 }
 
-static void	raytrace(t_scene scene, int *colorarray, t_point p, t_data data)
+static void	raytrace(t_all *param, t_point p)
 {
 	t_ray		ray;
 	t_vector3d	direction;
 	t_intersect	intersection;
 
-	direction = set_axe(p.x, p.y, &(scene.camera));
-	ray = new_ray(scene.camera.origin, direction);
-	if (get_nearest_intersection(&ray, scene, &intersection, DIST_MAX))
+	direction = set_axe(p.x, p.y, &(param->scene.camera));
+	ray = new_ray(param->scene.camera.origin, direction);
+	if (get_nearest_intersection(&ray, param->scene, &intersection, DIST_MAX))
 	{
 		//rename set_light
-		p.color = set_color(scene, intersection, data);
+		p.color = set_color(param->scene, intersection, param->data);
 		if (intersection.shape_copy.opacity != 1)
-			p.color = interpolate(transparency(scene, ray, intersection, p, data),
-					p.color, intersection.shape_copy.opacity);
-		colorarray[p.x + p.y * I_WIDTH] = p.color;
+			p.color = interpolate(transparency(param->scene, ray, intersection, p,
+						param->data), p.color, intersection.shape_copy.opacity);
+		param->colorarray[p.x + p.y * param->env->surf->w] = p.color;
 	}
 }
 
@@ -143,9 +143,9 @@ static void	*raytrace_thread(void *voidparam)
 	{
 		p.x = -1;
 		if (p.y % 5 == 0 || data.fastmode == -1)
-			while (++p.x < I_WIDTH)
+			while (++p.x < param->env->surf->w)
 				if (p.x % 5 == 0 || data.fastmode == -1)
-					raytrace(env, param->colorarray, p, data);
+					raytrace(param, p);
 		p.y++;
 	}
 	pthread_exit(0);
@@ -160,14 +160,16 @@ void		setup_multithread(t_all param)
 
 	i = 0;
 	p = new_point(-1, -1, 0);
-	param.colorarray = ft_memalloc(PIC_LIMIT * sizeof(int));
-	while (++p.y < I_HEIGHT)
+	printf("surf: %i x %i...\n", param.env->surf->w, param.env->surf->h);
+	param.colorarray = ft_memalloc((param.env->surf->w * param.env->surf->h)
+			* sizeof(int));
+	while (++p.y < param.env->surf->h)
 	{
-		if (p.y % (I_HEIGHT / THREAD_LIMIT) == 0)
+		if (p.y % (param.env->surf->h / THREAD_LIMIT) == 0 && i < THREAD_LIMIT)
 		{
 			ft_memcpy((void*)&tparam[i], (void*)&param, sizeof(t_all));
 			tparam[i].point = p;
-			tparam[i].maxy = p.y + (I_HEIGHT / THREAD_LIMIT);
+			tparam[i].maxy = p.y + (param.env->surf->h / THREAD_LIMIT);
 			pthread_create(&thread_id[i], NULL, raytrace_thread, &tparam[i]);
 			i++;
 		}
@@ -179,12 +181,12 @@ void		setup_multithread(t_all param)
 		i--;
 	}
 	p = new_point (-1, -1, 0);
-	while (++p.y < I_HEIGHT)
+	while (++p.y < param.env->surf->h)
 	{
 		p.x = -1;
-		while (++p.x < I_WIDTH)
+		while (++p.x < param.env->surf->w)
 		{
-			p.color = param.colorarray[p.x + p.y * I_WIDTH];
+			p.color = param.colorarray[p.x + p.y * param.env->surf->w];
 			img_put_pixel(param.env->surf, p);
 		}
 	}

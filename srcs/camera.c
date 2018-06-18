@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 15:20:58 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/18 10:16:51 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/18 19:28:25 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,15 @@ t_camera	new_cam(t_vector3d orig, double x, double y, double z)
 	return (camera);
 }
 
+/*
+**	Depreciated
+*/
+
 t_camera	update_cam(t_all *param)
 {
 	t_camera	new;
 
-	new.aspect_ratio = param->env->w / (double)param->env->h;
+	new.aspect_ratio = param->env->surf->w / (double)param->env->surf->h;
 	new.origin = param->scene.camera.origin;
 	new.rot = param->scene.camera.rot;
 	new.fov = param->scene.camera.fov;
@@ -46,8 +50,8 @@ t_vector3d	set_axe(int x, int y, t_camera *cam)
 	t_vector3d	plan_cam;
 	t_vector3d	direction;
 
-	ndc_space.x = (x + 0.5) / I_WIDTH;
-	ndc_space.y = (y + 0.5) / I_HEIGHT;
+	ndc_space.x = (x + 0.5) / W_WIDTH;
+	ndc_space.y = (y + 0.5) / W_HEIGHT;
 	new_axe.x = (2 * ndc_space.x - 1) * cam->aspect_ratio;
 	new_axe.y = 1 - 2 * ndc_space.y;
 	plan_cam.x = new_axe.x * tan((cam->fov * 0.5) * DEG2RAD);

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/25 10:14:20 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/18 08:51:23 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/18 17:03:06 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ void			put_filter(t_all param)
 	f[0] = sepia_mode;
 	f[1] = neg_mode;
 	f[2] = black_mode;
-	while (++p.y < I_HEIGHT)
+	while (++p.y < param.env->s_filter->h)
 	{
 		p.x = -1;
 		if ((int)p.y % 5 == 0 || param.data.fastmode == -1)
-			while (++p.x < I_WIDTH)
+			while (++p.x < param.env->s_filter->w)
 				if ((int)p.x % 5 == 0 || param.data.fastmode == -1)
 					if (param.data.filter < 3)
 						(*f[param.data.filter])(param.env, p);
