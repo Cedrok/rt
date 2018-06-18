@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 15:26:19 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/18 16:25:54 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/18 19:35:36 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ static double	noise(double x, double y, t_perlin_stuff per)
 	//printf("grads arreee %f %f %f %f\n", per.grad_a.x, (per.grad_b.x), per.grad_c.x, per.grad_d.x);
 	//printf("grads arreee %f %f %f %f\n", per.grad_a.y, (per.grad_b.y), per.grad_c.y, per.grad_d.y);
 	//printf("vars %f %f %f %f %f %f\n", per.a, (per.b), per.c, per.d, coef_inter_x, coef_inter_y);
-	ab_lisse = per.a + coef_inter_x * (per.b - per.a);
-	cd_lisse = per.c + coef_inter_x * (per.d - per.c);
+	ab_lisse = per.a + coef_inter_x * (per.d - per.a);
+	cd_lisse = per.b + coef_inter_x * (per.c - per.b);
 	//printf("noise is %f\n", (ab_lisse + coef_inter_y * (cd_lisse - ab_lisse)));
 	return (ab_lisse + coef_inter_y * (cd_lisse - ab_lisse));
 }
@@ -62,29 +62,22 @@ static double	noise(double x, double y, t_perlin_stuff per)
 int				*perlin_texture(t_color color, double res_x, double res_y, int limit)
 {
 	t_perlin_stuff	perlin;
-	int				x;
-	int				y;
+	t_point			p;
 	int				*tab;
 
 	perlin_init(&perlin);
-	//tab = perlin_tab_init();
 	tab = ft_memalloc(sizeof(int) * (limit * limit));
-	x = 0;
-	//(void)res_x;
+	p = new_point(-1, -1, 0);
 	//(void)res_y;
-	while (x < limit)
+	while (++p.y < limit)
 	{
-		y = 0;
-		while (y < limit)
+		p.x = -1;
+		while (++p.x < limit)
 		{
 			color.r = 0;
-			tab[x * limit + y] = interpolate (0, 0xFFFFFF,
-			//(noise((double)x, (double)y, perlin) + 1) / 2);
-			(noise((double)x / res_x, (double)y / res_y, perlin) + 1) / 2);
-			//printf("added color of %d\n", tab[x * limit + y]);
-			y++;
+			tab[p.y * limit + p.x] = interpolate (0, 0xFFFFFF,
+			(noise((double)p.x / res_x , (double)p.y / res_y, perlin) + 1) / 2);
 		}
-		x++;
 	}
 	return (tab);
 }

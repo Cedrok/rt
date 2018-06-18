@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 15:26:19 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/18 15:36:00 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/18 19:31:28 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ static void	perlin_grad_tab(t_perlin_stuff *per)
 
 	tab = (t_vector2d*)ft_memalloc(sizeof(t_vector2d) * 8);
 	unit = 0.5 * sqrt(2);
-	tab[0] = new_vector_2d(1, 0);
-	tab[1] = new_vector_2d(-1, 0);
-	tab[2] = new_vector_2d(0, 1);
-	tab[3] = new_vector_2d(0, -1);
-	tab[4] = new_vector_2d(unit, unit);
-	tab[5] = new_vector_2d(-unit, unit);
-	tab[6] = new_vector_2d(-unit, -unit);
-	tab[7] = new_vector_2d(unit, -unit);
+	tab[4] = new_vector_2d(1, 0);
+	tab[5] = new_vector_2d(-1, 0);
+	tab[6] = new_vector_2d(0, 1);
+	tab[7] = new_vector_2d(0, -1);
+	tab[0] = new_vector_2d(unit, unit);
+	tab[1] = new_vector_2d(-unit, unit);
+	tab[2] = new_vector_2d(-unit, -unit);
+	tab[3] = new_vector_2d(unit, -unit);
 	per->grad_tab = tab;
 }
 

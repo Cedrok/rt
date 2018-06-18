@@ -26,7 +26,7 @@ object{
 	width: 1
 	brillance: 0.3
 	texture{
-		path: "textures/stones.bmp"
+		path: "perlin"
 		x_scale: 1
 		y_scale: 1
 	}

@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 15:31:26 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/18 16:27:18 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/18 19:38:54 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,22 @@ void		setup_textunit(const char *surfpath, t_textunit *textunit)
 	SDL_Surface	*surf;
 
 	surf = NULL;
-	surf = IMG_Load(surfpath);
-	if (!surf)
-		return ;
+	if (ft_strcmp(surfpath, "perlin") == 0)
+	{
+		textunit->texture_width = 400;
+		textunit->texture = perlin_texture(new_color(5, 255, 0),
+				100, 100, textunit->texture_width);
+	}
+	else
+	{
+		surf = IMG_Load(surfpath);
+		if (!surf)
+			return ;
+		textunit->texture_width = surf->w;
+		textunit->texture = surf_to_int_array(surf, new_point(-1, -1, 0));
+		SDL_FreeSurface(surf);
+	}
 	textunit->has_texture = 1;
-	textunit->texture_width = surf->w;
-	SDL_LockSurface(surf);
-	textunit->texture = surf_to_int_array(surf, new_point(-1, -1, 0));
-	//surf_to_int_array(surf, new_point(-1, -1, 0));
-	//textunit->texture_width = 2048;
-	//textunit->texture = perlin_texture(new_color(255, 0, 0), 1024, 1024, textunit->texture_width);
-	SDL_UnlockSurface(surf);
-	SDL_FreeSurface(surf);
 }
 
 void		get_uv_mapping_coord(double *u, double *v, t_intersect i, t_shape s)
