@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/18 10:09:30 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/18 16:15:44 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -350,7 +350,7 @@ double				magnitude(t_vector3d v);
 
 void				perlin_init(t_perlin_stuff *perlin);
 int					**perlin_tab_init(void);
-int					**perlin_texture(t_color color, double res_x, double res_y);
+int					*perlin_texture(t_color color, double res_x, double res_yi, int limit);
 /*
 **	rotate_matrice
 */

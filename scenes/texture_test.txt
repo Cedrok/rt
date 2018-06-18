@@ -1,0 +1,81 @@
+# Scene informations
+title: "rt - scene 0"
+camera{
+	pos: {0, 0, 0}
+	rot: {90, 0, 0}
+}
+ambiant: 0
+#
+
+# Objects
+object{
+	type: "plane"
+	color: "FFFF00"
+	pos: {0, -6, 0}
+	rot: {0, 0, 0}
+	height: 3
+	width: 3
+	brillance: 0.3
+}
+object{
+	type: "plane"
+	color: "FF9900"
+	pos: {0, -5, 0}
+	rot: {0, 0, 0}
+	height: 1
+	width: 1
+	brillance: 0.3
+	texture{
+		path: "textures/stones.bmp"
+		x_scale: 1
+		y_scale: 1
+	}
+}
+#
+
+# Lights
+spot{
+	pos: {0, 0, 0}
+	color: "FFFFFF"
+	intensity: 0.6
+}
+#
+
+##END##
+
+camera{
+	pos: {x, y, z}
+	rot: {x, y, z}
+}
+
+ambiant: a [0 -> 1]
+
+object{
+	type: "sphere/plane/cylinder/cone"
+	color: "RRGGBB"
+	pos: {x, y, z}
+	rot: {x, y, z}
+	height: a
+	width: a
+	radius: a [0+]
+	brillance: a [0 -> 1]
+	opacity: a [0 -> 1]
+	texture{
+		path: "path"
+		x_scale: a
+		y_scale: a
+		x_offset: a
+		y_offset: a
+	}
+
+}
+sphere -> pos, radius, color, brillance[, texture]
+plane -> pos, rot, color, brillance[, width, height]
+cylinder -> pos, rot, radius, color, height
+cone -> pos, rot, radius, color, height
+
+spot{
+	pos: {x, y, z}
+	color: "RRGGBB"
+	intensity: a [0 -> 10]
+}

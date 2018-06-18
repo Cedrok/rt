@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 15:31:26 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/17 11:23:07 by bspindle         ###   ########.fr       */
+/*   Updated: 2018/06/18 16:27:18 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ void		setup_textunit(const char *surfpath, t_textunit *textunit)
 	textunit->texture_width = surf->w;
 	SDL_LockSurface(surf);
 	textunit->texture = surf_to_int_array(surf, new_point(-1, -1, 0));
+	//surf_to_int_array(surf, new_point(-1, -1, 0));
+	//textunit->texture_width = 2048;
+	//textunit->texture = perlin_texture(new_color(255, 0, 0), 1024, 1024, textunit->texture_width);
 	SDL_UnlockSurface(surf);
 	SDL_FreeSurface(surf);
 }

@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 15:26:19 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/17 10:54:37 by bspindle         ###   ########.fr       */
+/*   Updated: 2018/06/18 15:36:00 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ static void	perlin_permutation(t_perlin_stuff *per)
 static void	perlin_grad_tab(t_perlin_stuff *per)
 {
 	double		unit;
-	t_vector2d	tab[8];
+	t_vector2d	*tab;
 
+	tab = (t_vector2d*)ft_memalloc(sizeof(t_vector2d) * 8);
 	unit = 0.5 * sqrt(2);
 	tab[0] = new_vector_2d(1, 0);
 	tab[1] = new_vector_2d(-1, 0);
@@ -72,29 +73,4 @@ void		perlin_init(t_perlin_stuff *perlin)
 	perlin_permutation(perlin);
 	perlin_grad_tab(perlin);
 	random_tab(perlin);
-}
-
-int			**perlin_tab_init(void)
-{
-	int	i;
-	int	**tab;
-
-	i = 0;
-	tab = (int**)malloc(sizeof(int) * 256);
-	if (!tab)
-	{
-		ft_putstr("malloc failed in perlin_tab_init()\n");
-		exit(EXIT_FAILURE);
-	}
-	i = 0;
-	while (i < 256)
-	{
-		tab[i] = (int*)malloc(sizeof(int) * 256);
-		if (!tab[i])
-		{
-			ft_putstr("malloc failed in perlin_tab_init()\n");
-			exit(EXIT_FAILURE);
-		}
-	}
-	return (tab);
 }
