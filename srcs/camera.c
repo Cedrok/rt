@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 15:20:58 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/08 09:59:13 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/18 10:16:51 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,19 @@ t_camera	new_cam(t_vector3d orig, double x, double y, double z)
 	camera.h = atan(camera.fov);
 	camera.w = camera.h * camera.aspect_ratio;
 	return (camera);
+}
+
+t_camera	update_cam(t_all *param)
+{
+	t_camera	new;
+
+	new.aspect_ratio = param->env->w / (double)param->env->h;
+	new.origin = param->scene.camera.origin;
+	new.rot = param->scene.camera.rot;
+	new.fov = param->scene.camera.fov;
+	new.h = param->scene.camera.h;
+	new.w = new.h * new.aspect_ratio;
+	return (new);
 }
 
 t_vector3d	set_axe(int x, int y, t_camera *cam)
