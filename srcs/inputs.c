@@ -6,25 +6,25 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 12:36:24 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/18 08:51:33 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/18 12:46:15 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include <stdlib.h>
 
-static void		move_offset(double *offset, char c)
+static void	move_offset(double *offset, char c)
 {
 	*offset += (c == '+') ? 0.1f : -0.1f;
 }
 
-static int		set_fastmode(int *fast)
+static int	set_fastmode(int *fast)
 {
 	*fast *= -1;
 	return (1);
 }
 
-static int		translation(t_all *param, int key)
+static int	translation(t_all *param, int key)
 {
 	t_vector3d	*org;
 
@@ -56,7 +56,7 @@ void		refresh_surf(void *delay, int type)
 	param->env->rend = surface_2_rend(param->env);
 }
 
-int				sdl_key(t_all *param, int key)
+int			sdl_key(t_all *param, int key)
 {
 	int			valid_key;
 

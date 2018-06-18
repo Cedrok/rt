@@ -6,18 +6,18 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 10:10:13 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/06 15:03:58 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/18 12:44:08 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static void     put_string(t_env *env, SDL_Point pt, SDL_Color color, char *str)
+static void	put_string(t_env *env, SDL_Point pt, SDL_Color color, char *str)
 {
-	TTF_Font        *font;
+	TTF_Font		*font;
 	SDL_Rect		pos;
-	SDL_Surface     *text;
-	SDL_Texture     *texture;
+	SDL_Surface		*text;
+	SDL_Texture		*texture;
 
 	if ((font = TTF_OpenFont("fonts/neue.ttf", 16)) == NULL)
 		error_exit("OpenFont fail");
@@ -33,19 +33,3 @@ static void     put_string(t_env *env, SDL_Point pt, SDL_Color color, char *str)
 	SDL_FreeSurface(text);
 	SDL_DestroyTexture(texture);
 }
-
-/*
-void            put_string_shadow(t_env *env, int x, int y, char *str)
-{
-	t_color_4	light;
-	t_vector2d	pt;
-
-	light.r = 254;
-	light.g = 252;
-	light.b = 242;
-	light.a = 255;
-	pt.x = x;
-	pt.y = y;
-	put_string(env, pt, light, str);
-}
-*/

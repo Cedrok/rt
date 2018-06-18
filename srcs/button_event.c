@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 14:06:51 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/18 08:50:18 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/18 12:36:30 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ static void	check_btn(t_bloc *bc, t_all *param, int x, int y)
 				lst_pt.x = btn->pos.x + btn->pos.z;
 				lst_pt.y = btn->pos.y + btn->pos.w;
 				test = btn->f;
-				if (test != NULL && x >= btn->pos.x && x <= lst_pt.x && y >= btn->pos.y
-					&& y <= lst_pt.y)
+				if (test != NULL && x >= btn->pos.x && x <= lst_pt.x &&
+						y >= btn->pos.y && y <= lst_pt.y)
 					(*test)(param, btn->type);
 			}
 			i++;
 		}
 }
 
-void	event_button(t_all *param, int x, int y)
+void		event_button(t_all *param, int x, int y)
 {
 	check_btn(param->ui.bc_rght, param, x, y);
 	check_btn(param->ui.bc_center, param, x, y);

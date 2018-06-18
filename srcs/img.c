@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:47:21 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/18 08:51:28 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/18 12:45:12 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_color		get_color_pixel(SDL_Surface *surf, t_point p)
 	return (c);
 }
 
-void	img_put_pixel(SDL_Surface *surf, t_point point)
+void		img_put_pixel(SDL_Surface *surf, t_point point)
 {
 	t_color c;
 	Uint32	color;
@@ -52,7 +52,7 @@ void	img_put_pixel(SDL_Surface *surf, t_point point)
 	SDL_UnlockSurface(surf);
 }
 
-void	refresh_img(t_all *param)
+void		refresh_img(t_all *param)
 {
 	SDL_FreeSurface(param->env->surf);
 	SDL_FreeSurface(param->env->s_filter);
