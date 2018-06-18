@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/18 08:50:13 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/18 09:03:01 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -397,7 +397,7 @@ t_shape				default_shape(int i);
 void				new_spot(void *p, int c);
 t_light				default_light(void);
 t_vector4d			size_rend(int w, int h);
-
+void				free_ui(t_all *param);
 void				draw_rect(t_vector4d pos, t_color c, SDL_Renderer *rend);
 void				put_string(t_label *str, t_vector4d pos_p, SDL_Renderer *rend);
 void                draw_bloc(t_bloc *bloc, SDL_Renderer *rend);

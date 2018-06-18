@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bocal <bocal@student.42.fr>                +#+  +:+       +#+         #
+#    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/17 10:28:09 by bspindle         ###   ########.fr        #
+#    Updated: 2018/06/18 09:02:21 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,8 @@ SRC_NAME= 	main.c				\
 			screenshot.c		\
 			new_objs.c			\
 			perlin.c			\
-			perlin_init.c
+			perlin_init.c		\
+			free_ui.c
 
 OBJ_NAME=	$(SRC_NAME:.c=.o)
 
