@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 17:50:46 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/13 11:44:12 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/19 18:23:27 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	resolve_quadratic_equation(t_calcunit *calc, double *t)
 {
 	double	tmp;
 
+	calc->t0 = 0;
+	calc->t1 = 0;
 	calc->delta = (calc->b * calc->b) - (4.0 * calc->a * calc->c);
 	if (calc->delta < 0)
 		return (0);
