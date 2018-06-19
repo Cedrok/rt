@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_shape.c                                        :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/19 10:23:06 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/19 15:42:45 by Pringles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include <stdlib.h>
 #include <math.h>
-#include <pthread.h>
 
 static int	get_nearest_shape_id(t_ray *ray, t_scene scene)
 {
@@ -38,4 +37,23 @@ static int	get_nearest_shape_id(t_ray *ray, t_scene scene)
 		scene.shape_lst = scene.shape_lst->next;
 	}
 	return (nearest_shape.id);
+}
+
+static t_ray	get_ray_on_clic(int x, int y, t_camera *cam)
+{
+	t_vector3d	axe;
+	t_ray		ray;
+
+	axe = set_axe(x, y, cam);
+	ray = new_ray(cam->origin, axe);
+	return (ray);
+}
+
+void			select_shape(t_all *param, int x, int y)
+{
+	t_ray	ray;
+	int		id;
+
+	ray = get_ray_on_clic(x, y, &(param->scene.cam));
+	id = get_nearest_shape_id(&ray, param->scene);
 }
