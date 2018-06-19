@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:57:07 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/18 09:29:06 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/19 10:32:43 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,14 @@ void	free_bloc(t_bloc *bc)
 				if (btn->title.title != NULL)
 					free(btn->title.title);
 				free(btn);
-				free(bc->lst_obj[i]);
 			}
 			if (bc->lst_obj[i]->type == LABEL)
 			{
 				opt = ((t_label*)bc->lst_obj[i]->obj);
 				free(opt->title);
 				free(opt);
-				free(bc->lst_obj[i]);
 			}
+			free(bc->lst_obj[i]);
 			i++;
 		}
 	free(bc->lst_obj);
