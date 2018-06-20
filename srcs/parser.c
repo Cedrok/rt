@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 13:39:25 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/20 10:09:01 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/20 10:32:18 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,11 @@ static void	which_section(t_all *param, int *fd, char *line)
 	{
 		get_objs(param, fd);
 		b_objs = 0;
-		printf("objs OK\n");
 	}
 	if (!ft_strcmp(line, "# Lights") && b_lights)
 	{
 		get_ligths(param, fd);
 		b_lights = 0;
-		printf("lights OK\n");
 	}
 	if (!ft_strcmp(line, "##END##"))
 		check_booleans(param, b_objs, b_lights);
@@ -64,6 +62,13 @@ static void	end_lst(t_scene *scene)
 	scene->light_lst = ft_lstnew(&light, sizeof(light));
 }
 
+static void	awake(t_all *param)
+{
+	param->data.ambiantlight = 0;
+	param->data.nb_shape = 0;
+	param->data.nb_light = 0;
+}
+
 void		parse(t_all *param, char *arg)
 {
 	int		fd;
@@ -71,8 +76,7 @@ void		parse(t_all *param, char *arg)
 	char	*line;
 	int		do_it;
 
-	param->data.nb_shape = 0;
-	param->data.nb_light = 0;
+	awake(param);
 	if ((fd = open(arg, O_RDONLY)) <= 0)
 		ft_abort("open fail");
 	end_lst(&param->scene);
