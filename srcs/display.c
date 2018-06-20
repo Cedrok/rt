@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 14:17:27 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/20 15:39:32 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,11 @@ t_intersect	new_intersection(t_shape shape, t_ray ray, double point_dist)
 	if (shape.type == PLANE)
 		if (dotprod(ray.direction, ret.normal) > DIST_MIN)
 			ret.normal = vector_op(ret.normal, new_vector_3d_unicoord(-1), '*');
-	shape = texture(&ret, shape);
-	ret.shape_copy = shape;
+	ret.normal = vector_op(ret.normal, new_vector_3d_unicoord(ray.normal_dir), '*');
+	shape = texture(&ret, shape, ray.normal_dir);
 	if (shape.textunit.has_texture)
 		ret.normal = bump_mapping(ret.normal, shape.color);
+	ret.shape_copy = shape;
 	ret.point = vector_op(ret.point, shape.origin, '+');
 	ret.point = adjust_direction(ret.point, shape.rot);
 	ret.normal = adjust_direction(ret.normal, shape.rot);
@@ -64,6 +65,7 @@ double		get_nearest_intersection(t_ray *ray, t_scene scene,
 	int			(*collisions[10])(t_shape shape, t_ray ray, double *t);
 	t_shape		shape;
 	t_shape		nearest_shape;
+	int			tmp;
 
 	collisions[SPHERE] = &intersect_sphere;
 	collisions[PLANE] = &intersect_plane;
@@ -71,14 +73,18 @@ double		get_nearest_intersection(t_ray *ray, t_scene scene,
 	collisions[CONE] = &intersect_cone;
 	collisions[TORUS] = &intersect_torus;
 	nearest_shape.color = 0;
+	tmp = 0;
 	while (scene.shape_lst != NULL)
 	{
 		shape = *(t_shape*)scene.shape_lst->content;
 		if (shape.type == -1)
 			break ;
-		if (ray->previous_inter_id != shape.id && collisions[shape.type](shape,
-					adapt_ray(*ray, shape.inv_rot), &maxdist))
+		if (ray->previous_inter_id != shape.id && (tmp = collisions[shape.type](shape,
+					adapt_ray(*ray, shape.inv_rot), &maxdist)))
+		{
+			ray->normal_dir = tmp;
 			nearest_shape = shape;
+		}
 		scene.shape_lst = scene.shape_lst->next;
 	}
 	if (nearest_shape.color)

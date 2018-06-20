@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 12:12:04 by Pringles         ###   ########.fr       */
+/*   Updated: 2018/06/20 15:17:45 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ typedef struct		s_ray
 	t_vector3d		origin;
 	t_vector3d		direction;
 	int				previous_inter_id;
+	int				normal_dir;
 }					t_ray;
 
 typedef struct		s_intersect
@@ -310,7 +311,7 @@ void				fastmode_complete(t_all *param);
 ** Texture
 */
 
-t_shape			texture(t_intersect *i, t_shape s);
+t_shape			texture(t_intersect *i, t_shape s, int normal_dir);
 void		setup_textunit(const char *surfpath, t_textunit *textunit);
 void	get_uv_mapping_coord(double *u, double *v, t_intersect i, t_shape s);
 
