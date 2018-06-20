@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 15:17:45 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/20 16:15:07 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -364,7 +364,7 @@ int					rotate_event(t_all *param, int key);
 */
 
 t_vector3d			set_axe(int x, int y, t_camera *cam, SDL_Surface *surf);
-t_camera			update_cam(t_all *param);//
+t_camera			update_cam(t_all *param);
 
 /*
 **	Parse

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 17:50:46 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/19 18:23:27 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/20 14:37:28 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ int	intersect_sphere(t_shape shape, t_ray ray, double *t)
 	calc.c = dotprod(shape.origin, shape.origin) - shape.radius * shape.radius;
 	if (resolve_quadratic_equation(&calc, t))
 		limit_sphere(shape, ray, t, calc);
-	return (*t == calc.t0 || *t == calc.t1 ? 1 : 0);
+	if (*t == calc.t0)
+		return (1);
+	else if (*t == calc.t1)
+		return (-1);
+	return (0);
 }
 
 int	intersect_plane(t_shape shape, t_ray ray, double *t)
@@ -80,7 +84,11 @@ int	intersect_cylinder(t_shape shape, t_ray ray, double *t)
 		shape.origin.z * shape.origin.z - shape.radius * shape.radius;
 	if (resolve_quadratic_equation(&calc, t))
 		limit_cylinder(shape, ray, t, calc);
-	return (*t == calc.t0 || *t == calc.t1 ? 1 : 0);
+	if (*t == calc.t0)
+		return (1);
+	else if (*t == calc.t1)
+		return (-1);
+	return (0);
 }
 
 int	intersect_cone(t_shape shape, t_ray ray, double *t)
@@ -97,5 +105,9 @@ int	intersect_cone(t_shape shape, t_ray ray, double *t)
 	* shape.origin.z) + (-shape.radius * shape.origin.y * shape.origin.y);
 	if (resolve_quadratic_equation(&calc, t))
 		limit_cone(shape, ray, t, calc);
-	return (*t == calc.t0 || *t == calc.t1 ? 1 : 0);
+	if (*t == calc.t0)
+		return (1);
+	else if (*t == calc.t1)
+		return (-1);
+	return (0);
 }

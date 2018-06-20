@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 12:36:24 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 11:21:51 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/20 14:20:22 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static void	move_offset(double *offset, char c)
 {
-	*offset += (c == '+') ? 0.1f : -0.1f;
+	*offset += (c == '+') ? 1 : -1;
 }
 
 static int	set_fastmode(int *fast)

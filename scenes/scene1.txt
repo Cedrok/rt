@@ -226,7 +226,10 @@ spot{
 spot{
 	pos: {10, 2, 12}
 	color: "14B42A"
-	intensity: 0.1
+}
+spot{
+	pos: {0, 10.5, 22}
+	color: "FFFF2A"
 }
 
 -spot{

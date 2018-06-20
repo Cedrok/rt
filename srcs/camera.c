@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 15:20:58 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/20 11:15:28 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/20 15:38:51 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ t_camera	new_cam(t_vector3d orig, t_vector3d rot)
 	return (camera);
 }
 
-/*
-**	Depreciated
-*/
-
 t_camera	update_cam(t_all *param)
 {
 	t_camera	new;
@@ -38,7 +34,7 @@ t_camera	update_cam(t_all *param)
 	new.origin = param->scene.camera.origin;
 	new.rot = param->scene.camera.rot;
 	new.fov = 60;
-	new.h = atan(new.fov);
+	new.h = atan(new.fov) * (1.686192 / new.aspect_ratio);
 	new.w = new.h * new.aspect_ratio;
 	return (new);
 }

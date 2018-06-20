@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:33:37 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 11:35:12 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/20 16:15:39 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static double	get_intensity(t_intersect inter, t_light light, t_data data)
 	intensity = dotprod(normalize(lightdir), inter.normal);
 	intensity = intensity <= 0 ? data.ambiantlight :
 		intensity * light.intensity + data.ambiantlight;
-	intensity = intensity >= 1 ? 1 : intensity;
+	intensity = ftb_clamp(intensity, 0, 1);
 	return (intensity);
 }
 
@@ -87,20 +87,24 @@ static int			shadows(t_scene scene, t_intersect inter, t_light light,
 	t_vector3d	dir;
 	t_vector3d	rayorigin;
 	double		dist;
-	double		tmp;
+	//double		tmp;
 
 	rayorigin = vector_op(inter.normal, new_vector_3d_unicoord(0.00001), '*');
 	rayorigin = vector_op(inter.point, rayorigin, '+');
 	dir = vector_op(light.origin, rayorigin, '-');
 	ray = new_ray(rayorigin, normalize(dir));
 	dist = get_length(dir);
-	tmp = get_nearest_intersection(&ray, scene, &inter, dist);
+	//tmp = get_nearest_intersection(&ray, scene, &inter, dist);
+	if (get_nearest_intersection(&ray, scene, &inter, dist))
+	{
+		*color = interpolate(0, *color, ftb_clamp(data.ambiantlight + 1 - inter.shape_copy.opacity, 0, 1));
+	/*
 	while (tmp)
 	{
 		if (inter.shape_copy.textunit.has_texture)
 		{
 			inter.shape_copy.color = interpolate(0, inter.shape_copy.color,
-	ftb_clamp(1 - inter.shape_copy.opacity, 0, 1));
+	ftb_clamp( 1 - inter.shape_copy.opacity, 0, 1));
 			*color = interpolate(inter.shape_copy.color, *color,
 	ftb_clamp(1 - inter.shape_copy.opacity, 0, 1));
 		}
@@ -115,7 +119,7 @@ static int			shadows(t_scene scene, t_intersect inter, t_light light,
 			else
 				return (1);
 		}
-		else
+		else*/
 			return (1);
 	}
 	return (0);

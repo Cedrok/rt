@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 15:09:23 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 10:28:42 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/20 16:25:14 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void		launch(t_all *param, t_env *env)
 				SDL_GetWindowSize(env->win, &env->w, &env->h);
 				free_ui(param);
 				new_ui(param);
-				param->scene.camera = update_cam(param);
 				refresh_img(param);
 			}
 		if (event.type == SDL_MOUSEBUTTONDOWN)
