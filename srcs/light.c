@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:33:37 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 16:15:39 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/20 16:58:55 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,8 @@ int				set_color(t_scene scene,
 	t_light		light;
 
 	ret = 0;
+	if (data.filter == 3)
+		intersection.normal = normalize(intersection.normal);
 	while (scene.light_lst != NULL)
 	{
 		light = *(t_light*)scene.light_lst->content;
