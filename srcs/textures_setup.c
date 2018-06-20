@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 15:31:26 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 10:57:17 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/20 19:00:38 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,19 @@ static int	*surf_to_int_array(SDL_Surface *surf, t_point p)
 	return (tab);
 }
 
+t_vector3d	bump_mapping(t_vector3d normal, int colorint)
+{
+	double	mult;
+	t_color	color;
+
+	color = int_to_color(colorint);
+	mult = color.b / 255.0
+		+ color.r / 255.0
+		+ color.g / 255.0;
+	mult /= 3.0;
+	return (vector_op(normal, new_vector_3d_unicoord(mult), '*'));
+}
+
 void		setup_textunit(const char *surfpath, t_textunit *textunit)
 {
 	SDL_Surface	*surf;
@@ -49,7 +62,7 @@ void		setup_textunit(const char *surfpath, t_textunit *textunit)
 	{
 		textunit->texture_width = 800;
 		textunit->texture = perlin_texture(new_color(5, 255, 0),
-				10, 10, textunit->texture_width);
+				50, 50, textunit->texture_width);
 	}
 	else
 	{

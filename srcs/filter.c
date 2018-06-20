@@ -6,13 +6,13 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/25 10:14:20 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/20 18:02:29 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/20 19:28:39 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-double	cartoon(double intensity)
+double			cartoon(double intensity)
 {
 	if (intensity < 0.3)
 		intensity = 0.1;

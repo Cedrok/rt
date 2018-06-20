@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 16:14:22 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/20 19:24:23 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,39 +15,21 @@
 #include <math.h>
 #include <pthread.h>
 
-t_vector3d	bump_mapping(t_vector3d normal, int colorint)
-{
-	double	mult;
-	t_color	color;
-
-	color = int_to_color(colorint);
-	mult = color.b / 255.0
-		+ color.r / 255.0
-		+ color.g / 255.0;
-	mult /= 3.0;
-	return (vector_op(normal, new_vector_3d_unicoord(mult), '*'));
-}
-
 t_intersect	new_intersection(t_shape shape, t_ray ray, double point_dist)
 {
 	t_vector3d	tmp;
 	t_intersect	ret;
-	t_vector3d	(*normals[10])(t_shape shape, t_vector3d inter);
 
-	normals[SPHERE] = &sphere_normal;
-	normals[PLANE] = &plane_normal;
-	normals[CYLINDER] = &cylinder_normal;
-	normals[CONE] = &cone_normal;
-	normals[TORUS] = &torus_normal;
 	shape.origin = adjust_direction(shape.origin, shape.inv_rot);
 	ret.point = vector_op(ray.origin, shape.origin, '-');
 	tmp = vector_op(ray.direction, new_vector_3d_unicoord(point_dist), '*');
 	ret.point = vector_op(ret.point, tmp, '+');
-	ret.normal = normalize(normals[shape.type](shape, ret.point));
+	ret.normal = normals(shape, ret.point);
 	if (shape.type == PLANE)
 		if (dotprod(ray.direction, ret.normal) > DIST_MIN)
 			ret.normal = vector_op(ret.normal, new_vector_3d_unicoord(-1), '*');
-	ret.normal = vector_op(ret.normal, new_vector_3d_unicoord(ray.normal_dir), '*');
+	ret.normal = vector_op(ret.normal,
+			new_vector_3d_unicoord(ray.normal_dir), '*');
 	shape = texture(&ret, shape, ray.normal_dir);
 	if (shape.textunit.has_texture)
 		ret.normal = bump_mapping(ret.normal, shape.color);
@@ -62,24 +44,17 @@ t_intersect	new_intersection(t_shape shape, t_ray ray, double point_dist)
 double		get_nearest_intersection(t_ray *ray, t_scene scene,
 		t_intersect *nearest_intersect, double maxdist)
 {
-	int			(*collisions[10])(t_shape shape, t_ray ray, double *t);
 	t_shape		shape;
 	t_shape		nearest_shape;
 	int			tmp;
 
-	collisions[SPHERE] = &intersect_sphere;
-	collisions[PLANE] = &intersect_plane;
-	collisions[CYLINDER] = &intersect_cylinder;
-	collisions[CONE] = &intersect_cone;
-	collisions[TORUS] = &intersect_torus;
 	nearest_shape.color = 0;
-	tmp = 0;
 	while (scene.shape_lst != NULL)
 	{
 		shape = *(t_shape*)scene.shape_lst->content;
 		if (shape.type == -1)
 			break ;
-		if (ray->previous_inter_id != shape.id && (tmp = collisions[shape.type](shape,
+		if (ray->previous_inter_id != shape.id && (tmp = collisions(shape,
 					adapt_ray(*ray, shape.inv_rot), &maxdist)))
 		{
 			ray->normal_dir = tmp;
@@ -102,13 +77,12 @@ int			transparency(t_scene scene, t_ray ray, t_intersect intersection,
 {
 	if (get_nearest_intersection(&ray, scene, &intersection, DIST_MAX))
 	{
-		//rename set_light
 		p.color = set_color(scene, intersection, data);
 		if (intersection.shape_copy.opacity != 1)
 		{
 			ray.previous_inter_id = intersection.shape_copy.id;
-			p.color = interpolate(transparency(scene, ray, intersection, p, data),
-					p.color, intersection.shape_copy.opacity);
+			p.color = interpolate(transparency(scene, ray,
+						intersection, p, data), p.color, intersection.shape_copy.opacity);
 		}
 		return (p.color);
 	}
@@ -126,14 +100,14 @@ static void	raytrace(t_all *param, t_point p)
 	if (get_nearest_intersection(&ray, param->scene, &intersection, DIST_MAX))
 	{
 		if (param->data.fastmode == 1)
-			param->colorarray[p.x + p.y * param->env->surf->w] = intersection.shape_copy.color;
+			param->colorarray[p.x + p.y * param->env->surf->w] =
+												intersection.shape_copy.color;
 		else
 		{
-			//rename set_light
 			p.color = set_color(param->scene, intersection, param->data);
 			if (intersection.shape_copy.opacity != 1)
-				p.color = interpolate(transparency(param->scene, ray, intersection, p,
-							param->data), p.color, intersection.shape_copy.opacity);
+				p.color = interpolate(transparency(param->scene, ray,
+	intersection, p, param->data), p.color, intersection.shape_copy.opacity);
 			param->colorarray[p.x + p.y * param->env->surf->w] = p.color;
 		}
 	}
@@ -164,6 +138,22 @@ static void	*raytrace_thread(void *voidparam)
 	pthread_exit(0);
 }
 
+void		int_array_to_surf(SDL_Surface *surf, int *colorarray)
+{
+	t_point	p;
+
+	p = new_point(-1, -1, 0);
+	while (++p.y < surf->h)
+	{
+		p.x = -1;
+		while (++p.x < surf->w)
+		{
+			p.color = colorarray[p.x + p.y * surf->w];
+			img_put_pixel(surf, p);
+		}
+	}
+}
+
 void		setup_multithread(t_all param)
 {
 	t_point		p;
@@ -186,22 +176,9 @@ void		setup_multithread(t_all param)
 			i++;
 		}
 	}
-	i--;
-	while (i >= 0)
-	{
+	while (--i >= 0)
 		pthread_join(thread_id[i], NULL);
-		i--;
-	}
-	p = new_point (-1, -1, 0);
-	while (++p.y < param.env->surf->h)
-	{
-		p.x = -1;
-		while (++p.x < param.env->surf->w)
-		{
-			p.color = param.colorarray[p.x + p.y * param.env->surf->w];
-			img_put_pixel(param.env->surf, p);
-		}
-	}
+	int_array_to_surf(param.env->surf, param.colorarray);
 	SDL_BlitSurface(param.env->surf, NULL, param.env->s_filter, NULL);
 	free(param.colorarray);
 }
