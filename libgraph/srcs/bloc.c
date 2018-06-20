@@ -6,14 +6,15 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 10:50:45 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/18 08:50:46 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/20 19:43:44 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "bloc.h"
 
-t_vector4d		calc_position(t_vector4d parent_size, t_vector4d ratio_marge, int pos)
+t_vector4d	calc_position(t_vector4d parent_size, t_vector4d ratio_marge,
+		int pos)
 {
 	t_vector2d	margin;
 	t_vector2d	left_p;
@@ -42,7 +43,7 @@ t_vector4d		calc_position(t_vector4d parent_size, t_vector4d ratio_marge, int po
 	return (new_vector_4d(left_p.x, left_p.y, size.x, size.y));
 }
 
-t_bloc			*new_bloc(t_vector2d w_sz, t_color c, t_vector4d r_m, int pos)
+t_bloc		*new_bloc(t_vector2d w_sz, t_color c, t_vector4d r_m, int pos)
 {
 	t_bloc		*new;
 
@@ -55,7 +56,7 @@ t_bloc			*new_bloc(t_vector2d w_sz, t_color c, t_vector4d r_m, int pos)
 	return (new);
 }
 
-void			set_title_bloc(t_bloc *bloc, char *title, t_vector4d pos, t_color c)
+void		set_title_bloc(t_bloc *bloc, char *title, t_vector4d pos, t_color c)
 {
 	int		font_size;
 
@@ -63,7 +64,7 @@ void			set_title_bloc(t_bloc *bloc, char *title, t_vector4d pos, t_color c)
 	bloc->title = new_label(title, c, pos, font_size);
 }
 
-t_obj			*new_obj(void *obj, size_t obj_size, int type)
+t_obj		*new_obj(void *obj, size_t obj_size, int type)
 {
 	t_obj	*new;
 
@@ -75,7 +76,7 @@ t_obj			*new_obj(void *obj, size_t obj_size, int type)
 	return (new);
 }
 
-int		init_lstobj(t_bloc *bloc, int size)
+int			init_lstobj(t_bloc *bloc, int size)
 {
 	if (!(bloc->lst_obj = (t_obj**)malloc(sizeof(t_obj*) * (size + 1))))
 		return (0);

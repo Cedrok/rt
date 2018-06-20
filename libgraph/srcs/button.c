@@ -6,14 +6,15 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 13:24:25 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/18 08:50:03 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/20 19:41:45 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "button.h"
 #include <stdio.h>
 
-t_button	*new_button(t_vector4d parent_pos, t_color c, t_vector4d ratio_marge, int pos)
+t_button	*new_button(t_vector4d parent_pos, t_color c,
+					t_vector4d ratio_marge, int pos)
 {
 	t_button	*new;
 
@@ -26,7 +27,8 @@ t_button	*new_button(t_vector4d parent_pos, t_color c, t_vector4d ratio_marge, i
 	return (new);
 }
 
-void		set_btn_callback(t_button *btn, void (*clback)(void *, int), void *p, int type)
+void		set_btn_callback(t_button *btn, void (*clback)(void *, int),
+					void *p, int type)
 {
 	btn->type = type;
 	btn->f = clback;

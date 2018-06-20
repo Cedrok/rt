@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 15:24:24 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/18 08:50:50 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/20 19:42:18 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ t_label		new_label(char *s, t_color c, t_vector4d ratio_marge, int f_size)
 	return (new);
 }
 
-t_label		*new_m_label(char *s, t_color c, t_vector4d ratio_marge, int parent_w)
+t_label		*new_m_label(char *s, t_color c, t_vector4d ratio_marge,
+					int parent_w)
 {
 	t_label		*new;
 
