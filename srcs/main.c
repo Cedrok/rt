@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 15:09:23 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 16:25:14 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/20 17:00:21 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int				main(int ac, char **av)
 	t_all	param;
 
 	if (ac != 2)
-		ft_abort("Usage: ./rtv1 [scene_file.csv]");
+		ft_abort("Usage: ./rtv1 [scene_file]");
 	if (!(param.env = (t_env*)malloc(sizeof(t_env))))
 		ft_abort("Malloc Failed: struct env");
 	parse(&param, av[1]);

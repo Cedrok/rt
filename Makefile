@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/20 15:34:46 by cvautrai         ###   ########.fr        #
+#    Updated: 2018/06/20 17:05:05 by cvautrai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ NAME	=	rt
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address -fno-omit-frame-pointer
-#CFLAGS	=	-Wall -Wextra -Werror -O3 -flto -g -fsanitize=address -fno-omit-frame-pointer
+#CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address -fno-omit-frame-pointer
+CFLAGS	=	-Wall -Wextra -Werror -O3 -flto -g -fsanitize=address -fno-omit-frame-pointer
 #CFLAGS=
 
 FW_PATH = frameworks
@@ -74,7 +74,9 @@ SRC_NAME= 	main.c				\
 			perlin_init.c		\
 			free_ui.c			\
 			filter_2.c			\
-			fastmode_complete.c
+			fastmode_complete.c	\
+			parser_grab_objs.c	\
+			parser_grab_extras.c
 
 OBJ_NAME=	$(SRC_NAME:.c=.o)
 
