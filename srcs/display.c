@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 12:15:43 by Pringles         ###   ########.fr       */
+/*   Updated: 2018/06/20 14:17:27 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int			transparency(t_scene scene, t_ray ray, t_intersect intersection,
 		}
 		return (p.color);
 	}
-	return (0); //noir
+	return (0);
 }
 
 static void	raytrace(t_all *param, t_point p)
@@ -119,12 +119,17 @@ static void	raytrace(t_all *param, t_point p)
 	ray = new_ray(param->scene.camera.origin, direction);
 	if (get_nearest_intersection(&ray, param->scene, &intersection, DIST_MAX))
 	{
-		//rename set_light
-		p.color = set_color(param->scene, intersection, param->data);
-		if (intersection.shape_copy.opacity != 1)
-			p.color = interpolate(transparency(param->scene, ray, intersection, p,
-						param->data), p.color, intersection.shape_copy.opacity);
-		param->colorarray[p.x + p.y * param->env->surf->w] = p.color;
+		if (param->data.fastmode == 1)
+			param->colorarray[p.x + p.y * param->env->surf->w] = intersection.shape_copy.color;
+		else
+		{
+			//rename set_light
+			p.color = set_color(param->scene, intersection, param->data);
+			if (intersection.shape_copy.opacity != 1)
+				p.color = interpolate(transparency(param->scene, ray, intersection, p,
+							param->data), p.color, intersection.shape_copy.opacity);
+			param->colorarray[p.x + p.y * param->env->surf->w] = p.color;
+		}
 	}
 }
 
