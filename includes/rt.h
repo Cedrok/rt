@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 11:56:18 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/20 12:12:04 by Pringles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,6 +304,7 @@ int					interpolate(int start, int finish, float ratio);
 double			get_nearest_intersection(t_ray *ray, t_scene scene,
 		t_intersect *nearest_intersect, double maxdist);
 void				setup_multithread(t_all param);
+void				fastmode_complete(t_all *param);
 
 /*
 ** Texture

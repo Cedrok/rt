@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 09:47:24 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/20 12:15:43 by Pringles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,8 @@ static void	*raytrace_thread(void *voidparam)
 					raytrace(param, p);
 		p.y++;
 	}
+	if (data.fastmode != -1)
+		fastmode_complete(param);
 	pthread_exit(0);
 }
 
