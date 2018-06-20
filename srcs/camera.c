@@ -6,20 +6,20 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 15:20:58 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/18 19:28:25 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/20 11:15:28 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "rt.h"
 
-t_camera	new_cam(t_vector3d orig, double x, double y, double z)
+t_camera	new_cam(t_vector3d orig, t_vector3d rot)
 {
 	t_camera	camera;
 
 	camera.aspect_ratio = W_WIDTH / (double)W_HEIGHT;
 	camera.origin = orig;
-	camera.rot = new_matrix(x, y, z);
+	camera.rot = new_matrix(rot.x, rot.y, rot.z);
 	camera.fov = 60;
 	camera.h = atan(camera.fov);
 	camera.w = camera.h * camera.aspect_ratio;
@@ -37,21 +37,21 @@ t_camera	update_cam(t_all *param)
 	new.aspect_ratio = param->env->surf->w / (double)param->env->surf->h;
 	new.origin = param->scene.camera.origin;
 	new.rot = param->scene.camera.rot;
-	new.fov = param->scene.camera.fov;
-	new.h = param->scene.camera.h;
+	new.fov = 60;
+	new.h = atan(new.fov);
 	new.w = new.h * new.aspect_ratio;
 	return (new);
 }
 
-t_vector3d	set_axe(int x, int y, t_camera *cam)
+t_vector3d	set_axe(int x, int y, t_camera *cam, SDL_Surface *surf)
 {
 	t_vector3d	new_axe;
 	t_vector3d	ndc_space;
 	t_vector3d	plan_cam;
 	t_vector3d	direction;
 
-	ndc_space.x = (x + 0.5) / W_WIDTH;
-	ndc_space.y = (y + 0.5) / W_HEIGHT;
+	ndc_space.x = (x + 0.5) / surf->w;
+	ndc_space.y = (y + 0.5) / surf->h;
 	new_axe.x = (2 * ndc_space.x - 1) * cam->aspect_ratio;
 	new_axe.y = 1 - 2 * ndc_space.y;
 	plan_cam.x = new_axe.x * tan((cam->fov * 0.5) * DEG2RAD);

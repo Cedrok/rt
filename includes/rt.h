@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/18 19:25:57 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/20 09:46:15 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,7 +269,8 @@ t_ray				new_ray(t_vector3d o, t_vector3d d);
 t_point				new_point(int x, int y, int color);
 //t_shape				new_shape(int type, void *shape, int color);
 t_scene				new_env(t_list *shape_lst, t_list *lightlist);
-t_camera			new_cam(t_vector3d orig, double x, double y, double z);
+
+t_camera			new_cam(t_vector3d orig, t_vector3d rot);
 
 /*
 ** Intersection checking
@@ -359,8 +360,8 @@ int					rotate_event(t_all *param, int key);
 **	Camera
 */
 
-t_vector3d			set_axe(int x, int y, t_camera *cam);
-t_camera			update_cam(t_all *param);
+t_vector3d			set_axe(int x, int y, t_camera *cam, SDL_Surface *surf);
+t_camera			update_cam(t_all *param);//
 
 /*
 **	Parse
@@ -378,8 +379,8 @@ char				*extract_text(char *line);
 t_vector3d			extract_vd3(char *line);
 int					rt_get_next_line(int fd, char **line);
 
-void				create_scene(char *s, t_scene *scene,
-		int *nb_cam, int *nb_lght);
+void				create_scene(char *s, t_scene *scene, int *nb_cam,
+						int *nb_lght);
 void				ft_abort_free(char *msg, char *line);
 void				parsing_quit(char *msg, char **splt_ln, char *ln);
 

@@ -1,7 +1,7 @@
 # Scene informations
 title: "rt - scene 2"
 camera{
-	pos: {0, 0, -10}
+	pos: {5, -3, -20}
 	rot: {0, 0, 0}
 }
 ambiant: 0
@@ -9,7 +9,7 @@ ambiant: 0
 
 # Objects
 
-object{
+-object{
 	type: "sphere"
 	pos:{0,0,0}
 	radius: 1
@@ -79,12 +79,13 @@ object{
 	pos: {-3, 5, 25}
 	rot: {-15, 120, -42}
 	radius: 5
-	color: "1996ff"
+	color: "ffdf0f"
+-	color: "1996ff"
 }
 object{
 	type: "cone"
-	pos: {5, -2, 10}
-	rot: {12, 0, -142}
+	pos: {5, -2, 7}
+	rot: {12, 40, -14}
 	radius: 3
 	color: "19fa7d"
 }
