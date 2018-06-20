@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 15:31:26 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/18 21:50:41 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/20 10:57:17 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static int	*surf_to_int_array(SDL_Surface *surf, t_point p)
 	rgbaimage = SDL_ConvertSurfaceFormat(surf, SDL_PIXELFORMAT_RGBA32, 0);
 	tab = ft_memalloc(sizeof(int) * (surf->h * surf->w));
 	pixels = (uint32_t *)(rgbaimage->pixels);
+	c = new_color(0, 0, 0);
 	while (++p.y < surf->h)
 	{
 		p.x = -1;
