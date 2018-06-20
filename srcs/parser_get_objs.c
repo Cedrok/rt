@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:03:41 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/15 12:18:40 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/20 10:20:15 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ static void	grab_texture(t_shape *obj, int *fd)
 	char	*path;
 
 	line = ft_strnew(0);
+	path = NULL;
 	while (ft_strcmp(line, "\t}"))
 	{
 		ft_strdel(&line);
