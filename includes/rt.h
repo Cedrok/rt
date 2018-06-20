@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 12:12:04 by Pringles         ###   ########.fr       */
+/*   Updated: 2018/06/20 17:39:05 by Pringles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@
 # define W_HEIGHT			720
 # define DIST_MAX			2000000
 # define DIST_MIN			0.00000001
-# define THREAD_LIMIT		4
+# define THREAD_LIMIT		8
 # define PI					3.141592653
+# define MOVE				0.1f
 
 /*
  ******************************* Item defines *********************************
@@ -248,6 +249,7 @@ typedef struct		s_all
 	t_point			point;
 	int				maxy;
 	int				*colorarray;
+	double			move;
 }					t_all;
 
 /*

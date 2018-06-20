@@ -6,16 +6,16 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 12:36:24 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 11:21:51 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/20 17:42:49 by Pringles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include <stdlib.h>
 
-static void	move_offset(double *offset, char c)
+static void	move_offset(double *offset, char c, double move)
 {
-	*offset += (c == '+') ? 0.1f : -0.1f;
+	*offset += (c == '+') ? move : -move;
 }
 
 static int	set_fastmode(int *fast)
@@ -30,17 +30,17 @@ static int	translation(t_all *param, int key)
 
 	org = &param->scene.camera.origin;
 	if (key == SDLK_RIGHT)
-		move_offset(&org->x, '+');
+		move_offset(&org->x, '+', param->move);
 	else if (key == SDLK_LEFT)
-		move_offset(&org->x, '-');
+		move_offset(&org->x, '-', param->move);
 	else if (key == SDLK_PAGEUP)
-		move_offset(&org->y, '+');
+		move_offset(&org->y, '+', param->move);
 	else if (key == SDLK_PAGEDOWN)
-		move_offset(&org->y, '-');
+		move_offset(&org->y, '-', param->move);
 	else if (key == SDLK_DOWN)
-		move_offset(&org->z, '-');
+		move_offset(&org->z, '-', param->move);
 	else if (key == SDLK_UP)
-		move_offset(&org->z, '+');
+		move_offset(&org->z, '+', param->move);
 	return (1);
 }
 
@@ -75,6 +75,8 @@ int			sdl_key(t_all *param, int key)
 		valid_key = set_fastmode(&param->data.fastmode);
 	else if (key == SDLK_c)
 		refresh_surf(param, 0);
+	else if (key == SDLK_m)
+		param->move = (param->move == 0.1f ? 0.8f : 0.1f);
 	if (valid_key)
 		refresh_img(param);
 	return (0);
