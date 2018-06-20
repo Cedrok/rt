@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 11:06:00 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/18 08:52:29 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/20 11:17:59 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,12 @@ static t_right		right_obj(t_vector4d p_pos)
 		new_vector_4d(90, 5, 2, 25), HORIZONTAL_CENTER);
 	r.btn_sepia = new_button(p_pos, new_color(102, 59, 42),
 		new_vector_4d(90, 5, 2, 32.5), HORIZONTAL_CENTER);
+	r.btn_cart = new_button(p_pos, new_color(0x42, 0x00, 0xc9),
+		new_vector_4d(90, 5, 2, 40), HORIZONTAL_CENTER);
 	r.opt = new_m_label("Tools :", new_color(0xff, 0xff, 0xff),
-		new_vector_4d(96, 10, 2, 40), p_pos.w);
+		new_vector_4d(96, 10, 2, 47.5), p_pos.w);
 	r.btn_shot = new_button(p_pos, new_color(42, 0x101, 0x19),
-		new_vector_4d(90, 5, 2, 47.5), HORIZONTAL_CENTER);
+		new_vector_4d(90, 5, 2, 55), HORIZONTAL_CENTER);
 	return (r);
 }
 
@@ -70,19 +72,21 @@ static t_bloc		*create_bloc_filter(int w, int h)
 	bc = new_bloc(new_vector_2d(w, h), new_color(0x00, 0x3a, 0x42),
 		new_vector_4d(15, 96, 1.5f, 2), RIGHT_UP_CONER);
 	set_title_bloc(bc, "Filters :", new_vector_4d(96, 10, 2, 2), white);
-	init_lstobj(bc, 6);
+	init_lstobj(bc, 7);
 	r = right_obj(bc->pos);
 	set_title_btn(r.btn_def, "Default", btn_s, white);
 	set_title_btn(r.btn_gray, "Black & White", btn_s, white);
 	set_title_btn(r.btn_neg, "Negative", btn_s, white);
 	set_title_btn(r.btn_sepia, "Sepia", btn_s, white);
+	set_title_btn(r.btn_cart, "Cartoon", btn_s, white);
 	set_title_btn(r.btn_shot, "ScreenShot", btn_s, white);
 	bc->lst_obj[0] = new_obj(r.btn_def, sizeof(r.btn_def), BUTTON);
 	bc->lst_obj[1] = new_obj(r.btn_gray, sizeof(r.btn_gray), BUTTON);
 	bc->lst_obj[2] = new_obj(r.btn_neg, sizeof(r.btn_neg), BUTTON);
 	bc->lst_obj[3] = new_obj(r.btn_sepia, sizeof(r.btn_sepia), BUTTON);
-	bc->lst_obj[4] = new_obj(r.opt, sizeof(r.opt), LABEL);
-	bc->lst_obj[5] = new_obj(r.btn_shot, sizeof(r.btn_shot), BUTTON);
+	bc->lst_obj[4] = new_obj(r.btn_cart, sizeof(r.btn_cart), BUTTON);
+	bc->lst_obj[5] = new_obj(r.opt, sizeof(r.opt), LABEL);
+	bc->lst_obj[6] = new_obj(r.btn_shot, sizeof(r.btn_shot), BUTTON);
 	return (bc);
 }
 

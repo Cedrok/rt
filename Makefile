@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/18 19:30:14 by cvautrai         ###   ########.fr        #
+#    Updated: 2018/06/20 11:48:11 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,8 @@ SRC_NAME= 	main.c				\
 			new_objs.c			\
 			perlin.c			\
 			perlin_init.c		\
-			free_ui.c
+			free_ui.c			\
+			filter_2.c
 
 OBJ_NAME=	$(SRC_NAME:.c=.o)
 

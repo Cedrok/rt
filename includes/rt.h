@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/18 19:25:57 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/20 11:47:51 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ typedef struct		s_right
 	t_button		*btn_gray;
 	t_button		*btn_neg;
 	t_button		*btn_def;
+	t_button		*btn_cart;
 	t_label			*opt;
 	t_button		*btn_shot;
 }					t_right;
@@ -403,7 +404,7 @@ void				draw_ui(t_all *param);
 void				setf_btn_r(t_bloc *bc, t_all *param);
 void				setf_btn_c(t_bloc *bc, t_all *param);
 void				refresh_surf(void *delay, int type);
-
+void				cartoon_mode(void *p, int type);
 SDL_Renderer		*surface_2_rend(t_env *env);
 void				create_win_render(t_env *env);
 void				create_all_surface(t_env *env);
