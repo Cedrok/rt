@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 15:09:23 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 17:40:13 by Pringles         ###   ########.fr       */
+/*   Updated: 2018/06/20 17:49:39 by Pringles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void		launch(t_all *param, t_env *env)
 				SDL_GetWindowSize(env->win, &env->w, &env->h);
 				free_ui(param);
 				new_ui(param);
-				param->scene.camera = update_cam(param);
 				refresh_img(param);
 			}
 		if (event.type == SDL_MOUSEBUTTONDOWN)
@@ -76,7 +75,7 @@ int				main(int ac, char **av)
 	t_all	param;
 
 	if (ac != 2)
-		ft_abort("Usage: ./rtv1 [scene_file.csv]");
+		ft_abort("Usage: ./rtv1 [scene_file]");
 	if (!(param.env = (t_env*)malloc(sizeof(t_env))))
 		ft_abort("Malloc Failed: struct env");
 	parse(&param, av[1]);

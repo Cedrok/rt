@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 17:39:05 by Pringles         ###   ########.fr       */
+/*   Updated: 2018/06/20 17:49:57 by Pringles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ typedef struct		s_ray
 	t_vector3d		origin;
 	t_vector3d		direction;
 	int				previous_inter_id;
+	int				normal_dir;
 }					t_ray;
 
 typedef struct		s_intersect
@@ -270,7 +271,6 @@ typedef struct		s_thread_param
 t_light				new_light(t_vector3d origin, double intensity, int color);
 t_ray				new_ray(t_vector3d o, t_vector3d d);
 t_point				new_point(int x, int y, int color);
-//t_shape				new_shape(int type, void *shape, int color);
 t_scene				new_env(t_list *shape_lst, t_list *lightlist);
 
 t_camera			new_cam(t_vector3d orig, t_vector3d rot);
@@ -312,7 +312,7 @@ void				fastmode_complete(t_all *param);
 ** Texture
 */
 
-t_shape			texture(t_intersect *i, t_shape s);
+t_shape			texture(t_intersect *i, t_shape s, int normal_dir);
 void		setup_textunit(const char *surfpath, t_textunit *textunit);
 void	get_uv_mapping_coord(double *u, double *v, t_intersect i, t_shape s);
 
@@ -365,7 +365,7 @@ int					rotate_event(t_all *param, int key);
 */
 
 t_vector3d			set_axe(int x, int y, t_camera *cam, SDL_Surface *surf);
-t_camera			update_cam(t_all *param);//
+t_camera			update_cam(t_all *param);
 
 /*
 **	Parse
@@ -375,6 +375,9 @@ void				parse(t_all *param, char *arg);
 void				get_scene_infos(t_all *param, int *fd);
 void				get_ligths(t_all *param, int *fd);
 void				get_objs(t_all *param, int *fd);
+void				grab_obj(t_scene *scene, int *fd);
+void				grab_texture(t_shape *obj, int *fd);
+void				grab_cut(t_shape *obj, int *fd);
 void				print_infos(int a, int b);
 t_shape				check_obj(t_shape *obj);
 t_light				check_light(t_light *spot);

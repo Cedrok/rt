@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/19 15:42:45 by Pringles         ###   ########.fr       */
+/*   Updated: 2018/06/20 17:22:59 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-static int	get_nearest_shape_id(t_ray *ray, t_scene scene)
+static int		get_nearest_shape_id(t_ray *ray, t_scene scene)
 {
 	int			(*collisions[10])(t_shape shape, t_ray ray, double *t);
 	t_shape		shape;
