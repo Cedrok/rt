@@ -6,13 +6,13 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 11:06:00 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/20 11:17:59 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/20 17:38:58 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static t_bloc		*create_bloc_center(int w, int h)
+static t_bloc	*create_bloc_center(int w, int h)
 {
 	t_bloc		*bc;
 	t_center	c;
@@ -39,7 +39,7 @@ static t_bloc		*create_bloc_center(int w, int h)
 	return (bc);
 }
 
-static t_right		right_obj(t_vector4d p_pos)
+static t_right	right_obj(t_vector4d p_pos)
 {
 	t_right		r;
 
@@ -60,7 +60,7 @@ static t_right		right_obj(t_vector4d p_pos)
 	return (r);
 }
 
-static t_bloc		*create_bloc_filter(int w, int h)
+static t_bloc	*create_bloc_filter(int w, int h)
 {
 	t_bloc		*bc;
 	t_right		r;
@@ -90,7 +90,7 @@ static t_bloc		*create_bloc_filter(int w, int h)
 	return (bc);
 }
 
-static t_bloc		*create_bloc_left(int w, int h)
+static t_bloc	*create_bloc_left(int w, int h)
 {
 	t_bloc		*bc;
 	t_left		l;
@@ -117,7 +117,7 @@ static t_bloc		*create_bloc_left(int w, int h)
 	return (bc);
 }
 
-int	    	new_ui(t_all *param)
+int				new_ui(t_all *param)
 {
 	t_bloc	*bc_right;
 	t_bloc	*bc_center;

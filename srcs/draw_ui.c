@@ -6,19 +6,19 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 10:16:03 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/18 08:51:17 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/20 17:45:24 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "SDL_ttf.h"
 #include "rt.h"
 
-void     put_string(t_label *str, t_vector4d pos_p, SDL_Renderer *rend)
+void	put_string(t_label *str, t_vector4d pos_p, SDL_Renderer *rend)
 {
-	TTF_Font        *font;
+	TTF_Font		*font;
 	SDL_Rect		pos;
-	SDL_Surface     *text;
-	SDL_Texture     *texture;
+	SDL_Surface		*text;
+	SDL_Texture		*texture;
 	SDL_Color		c;
 
 	c.r = str->color.r;
@@ -33,14 +33,15 @@ void     put_string(t_label *str, t_vector4d pos_p, SDL_Renderer *rend)
 		ft_putendl("SDL Create Texture Failed");
 	SDL_QueryTexture(texture, NULL, NULL, &pos.w, &pos.h);
 	pos.x = (pos_p.x + (pos_p.z / 2)) - (pos.w / 2);
-	pos.y = pos_p.y + ((pos_p.w * str->ratio_marge.w) / 100) + (str->font_size / 2);
+	pos.y = pos_p.y + ((pos_p.w * str->ratio_marge.w) / 100) +
+		(str->font_size / 2);
 	SDL_RenderCopy(rend, texture, NULL, &pos);
 	TTF_CloseFont(font);
 	SDL_FreeSurface(text);
 	SDL_DestroyTexture(texture);
 }
 
-void		draw_rect(t_vector4d pos, t_color c, SDL_Renderer *rend)
+void	draw_rect(t_vector4d pos, t_color c, SDL_Renderer *rend)
 {
 	t_vector2d	point;
 
