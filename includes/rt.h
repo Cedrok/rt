@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 19:21:37 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/20 19:35:17 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 # include "../libgraph/include/libgraph.h"
 # include "../libft/include/libft.h"
 
-#include <stdio.h>
+#include <stdio.h> // A VIRER
 
 /*
  ******************************* Disp defines *********************************
- */
+*/
 
 # define W_WIDTH			1280
 # define W_HEIGHT			720
@@ -35,7 +35,7 @@
 
 /*
  ******************************* Item defines *********************************
- */
+*/
 
 # define SPHERE				0
 # define CAMERA				1
@@ -105,9 +105,9 @@ typedef struct		s_textunit
 
 typedef struct		s_limunit
 {
-	t_vector3d	cut_amount;
-	double		cut_radius;
-	int			real_position;
+	t_vector3d		cut_amount;
+	double			cut_radius;
+	int				real_position;
 }					t_limunit;
 
 typedef struct		s_shape
@@ -254,7 +254,7 @@ typedef struct		s_all
 }					t_all;
 
 /*
-**	Calc_struct
+** Calc_struct
 */
 
 typedef struct		s_thread_param
@@ -266,13 +266,12 @@ typedef struct		s_thread_param
 
 /*
  ** Initstruct
- */
+*/
 
 t_light				new_light(t_vector3d origin, double intensity, int color);
 t_ray				new_ray(t_vector3d o, t_vector3d d);
 t_point				new_point(int x, int y, int color);
 t_scene				new_env(t_list *shape_lst, t_list *lightlist);
-
 t_camera			new_cam(t_vector3d orig, t_vector3d rot);
 
 /*
@@ -291,7 +290,8 @@ int					intersect_torus(t_shape shape, t_ray ray, double *t);
 
 t_vector3d			sphere_normal(t_shape shape, t_vector3d intersection_point);
 t_vector3d			plane_normal(t_shape shape, t_vector3d intersection_point);
-t_vector3d			cylinder_normal(t_shape shape, t_vector3d intersection_point);
+t_vector3d			cylinder_normal(t_shape shape,
+												t_vector3d intersection_point);
 t_vector3d			cone_normal(t_shape shape, t_vector3d intersection_point);
 t_vector3d			torus_normal(t_shape shape, t_vector3d intersection);
 
@@ -300,11 +300,12 @@ t_vector3d			torus_normal(t_shape shape, t_vector3d intersection);
 */
 
 int					no_collisions(t_list *shape_lst,
-		t_intersect inter, t_light light);
-int					set_color(t_scene scene, t_intersect intersection, t_data data);
+				t_intersect inter, t_light light);
+int					set_color(t_scene scene, t_intersect intersection,
+				t_data data);
 int					interpolate(int start, int finish, float ratio);
-double			get_nearest_intersection(t_ray *ray, t_scene scene,
-		t_intersect *nearest_intersect, double maxdist);
+double				get_nearest_intersection(t_ray *ray, t_scene scene,
+				t_intersect *nearest_intersect, double maxdist);
 void				setup_multithread(t_all param);
 void				fastmode_complete(t_all *param);
 
@@ -323,7 +324,7 @@ t_vector3d			bump_mapping(t_vector3d normal, int colorint);
 */
 
 void				limit_sphere(t_shape shape, t_ray ray,
-		double *t,t_calcunit calc);
+		double *t, t_calcunit calc);
 void				limit_cylinder(t_shape shape, t_ray ray,
 		double *t, t_calcunit calc);
 void				limit_cone(t_shape shape, t_ray ray,
@@ -357,7 +358,8 @@ int					collisions(t_shape shape, t_ray ray, double *t);
 
 void				perlin_init(t_perlin_stuff *perlin);
 int					**perlin_tab_init(void);
-int					*perlin_texture(t_color color, double res_x, double res_yi, int limit);
+int					*perlin_texture(t_color color, double res_x,
+									double res_yi, int limit);
 /*
 **	rotate_matrice
 */
@@ -410,8 +412,9 @@ t_light				default_light(void);
 t_vector4d			size_rend(int w, int h);
 void				free_ui(t_all *param);
 void				draw_rect(t_vector4d pos, t_color c, SDL_Renderer *rend);
-void				put_string(t_label *str, t_vector4d pos_p, SDL_Renderer *rend);
-void                draw_bloc(t_bloc *bloc, SDL_Renderer *rend);
+void				put_string(t_label *str, t_vector4d pos_p,
+				SDL_Renderer *rend);
+void				draw_bloc(t_bloc *bloc, SDL_Renderer *rend);
 void				draw_ui(t_all *param);
 void				setf_btn_r(t_bloc *bc, t_all *param);
 void				setf_btn_c(t_bloc *bc, t_all *param);
@@ -423,8 +426,8 @@ void				create_all_surface(t_env *env);
 void				clear_render(t_env *env);
 void				create_render(t_all *param);
 void				quit_exe(t_all param);
-void    			init_sdl(void);
-int				    new_ui(t_all *param);
+void				init_sdl(void);
+int					new_ui(t_all *param);
 void				event_button(t_all *param, int x, int y);
 
 #endif

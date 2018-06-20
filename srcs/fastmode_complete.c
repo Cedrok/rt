@@ -6,7 +6,7 @@
 /*   By: Pringles <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 12:01:37 by Pringles          #+#    #+#             */
-/*   Updated: 2018/06/20 12:29:45 by Pringles         ###   ########.fr       */
+/*   Updated: 2018/06/20 19:37:44 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,24 @@ static void	color_closest_point(t_all *param, t_point p)
 			* param->env->surf->w];
 	else if (p.x >= 3 && p.y < 3)
 		param->colorarray[p.x + p.y * param->env->surf->w] =
-			param->colorarray[(int)fmin(p.x + 5 - (p.x % 5), param->env->surf->w - 1) + (p.y - p.y % 5)
+			param->colorarray[
+			(int)fmin(p.x + 5 - (p.x % 5),param->env->surf->w - 1)
+			+ (p.y - p.y % 5)
 			* param->env->surf->w];
 	else if (p.x >= 3 && p.y >= 3)
 		param->colorarray[p.x + p.y * param->env->surf->w] =
-			param->colorarray[(int)fmin(p.x + 5 - (p.x % 5), param->env->surf->w - 1) + (int)fmin((p.y + 5 - p.y % 5), param->maxy - 1)
+			param->colorarray[
+			(int)fmin(p.x + 5 - (p.x % 5), param->env->surf->w - 1)
+			+ (int)fmin((p.y + 5 - p.y % 5), param->maxy - 1)
 			* param->env->surf->w];
 	else if (p.x < 3 && p.y >= 3)
 		param->colorarray[p.x + p.y * param->env->surf->w] =
-			param->colorarray[p.x - (p.x % 5) + (int)fmin(p.y + 5 - p.y % 5, param->maxy - 1)
+			param->colorarray[
+			p.x - (p.x % 5) + (int)fmin(p.y + 5 - p.y % 5, param->maxy - 1)
 			* param->env->surf->w];
 }
 
-void	fastmode_complete(t_all *param)
+void		fastmode_complete(t_all *param)
 {
 	t_point	p;
 
