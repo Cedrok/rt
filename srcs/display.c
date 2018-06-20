@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/18 19:27:31 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/20 09:47:24 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ static void	raytrace(t_all *param, t_point p)
 	t_vector3d	direction;
 	t_intersect	intersection;
 
-	direction = set_axe(p.x, p.y, &(param->scene.camera));
+	direction = set_axe(p.x, p.y, &(param->scene.camera), param->env->surf);
 	ray = new_ray(param->scene.camera.origin, direction);
 	if (get_nearest_intersection(&ray, param->scene, &intersection, DIST_MAX))
 	{
@@ -160,7 +160,7 @@ void		setup_multithread(t_all param)
 
 	i = 0;
 	p = new_point(-1, -1, 0);
-	printf("surf: %i x %i...\n", param.env->surf->w, param.env->surf->h);
+//	printf("surf: %i x %i...\n", param.env->surf->w, param.env->surf->h);
 	param.colorarray = ft_memalloc((param.env->surf->w * param.env->surf->h)
 			* sizeof(int));
 	while (++p.y < param.env->surf->h)

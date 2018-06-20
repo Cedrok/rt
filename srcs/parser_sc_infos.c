@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 14:39:34 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/15 10:47:55 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/20 09:36:50 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	grab_cam(t_scene *scene, int *fd, int *b_cam)
 {
 	char		*line;
 	t_vector3d	origin;
-	t_vector3d	tmp;
+	t_vector3d	rot;
 
 	*b_cam = 0;
 	line = ft_strnew(0);
@@ -32,9 +32,9 @@ static void	grab_cam(t_scene *scene, int *fd, int *b_cam)
 		if (!ft_strncmp(line, "\tpos:", 5))
 			origin = extract_vd3(line);
 		if (!ft_strncmp(line, "\trot:", 5))
-			tmp = extract_vd3(line);
+			rot = extract_vd3(line);
 	}
-	scene->camera = new_cam(origin, tmp.x, tmp.y, tmp.z);
+	scene->camera = new_cam(origin, rot);
 	ft_strdel(&line);
 }
 
