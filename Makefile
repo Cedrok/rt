@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/20 12:05:25 by Pringles         ###   ########.fr        #
+#    Updated: 2018/06/20 15:34:46 by cvautrai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME	=	rt
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror -g #-fsanitize=address -fno-omit-frame-pointer
+CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address -fno-omit-frame-pointer
 #CFLAGS	=	-Wall -Wextra -Werror -O3 -flto -g -fsanitize=address -fno-omit-frame-pointer
 #CFLAGS=
 

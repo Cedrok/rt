@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 14:17:27 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/20 15:35:05 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,6 @@ void		setup_multithread(t_all param)
 
 	i = 0;
 	p = new_point(-1, -1, 0);
-//	printf("surf: %i x %i...\n", param.env->surf->w, param.env->surf->h);
 	param.colorarray = ft_memalloc((param.env->surf->w * param.env->surf->h)
 			* sizeof(int));
 	while (++p.y < param.env->surf->h)

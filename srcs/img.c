@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 17:47:21 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/18 17:25:19 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/20 15:28:24 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void		refresh_img(t_all *param)
 	SDL_FreeSurface(param->env->surf);
 	SDL_FreeSurface(param->env->s_filter);
 	create_all_surface(param->env);
+	param->scene.camera = update_cam(param);
 	clear_render(param->env);
 	create_render(param);
 	param->env->rend = surface_2_rend(param->env);
