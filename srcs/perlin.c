@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 15:26:19 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/18 21:27:09 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/20 18:00:41 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,6 @@ static void		grad(double x, double y, t_perlin_stuff *per)
 	per->grad_d = per->grad_tab[n];
 }
 
-/*
-	per.a = dotprod_2d(per.grad_a, vector_op_2d(new_vector_2d(x, y),
-				new_vector_2d(x0, y0), '-'));
-	per.d = dotprod_2d(per.grad_d, vector_op_2d(new_vector_2d(x, y),
-				new_vector_2d(x0 + 1, y0), '-'));
-	per.b = dotprod_2d(per.grad_b, vector_op_2d(new_vector_2d(x, y),
-				new_vector_2d(x0, y0 + 1), '-'));
-	per.c = dotprod_2d(per.grad_c, vector_op_2d(new_vector_2d(x, y),
-				new_vector_2d(x0 + 1, y0 + 1), '-'));
-				*/
 static double	noise(double x, double y, t_perlin_stuff per)
 {
 	double	coef_inter_x;
@@ -65,7 +55,8 @@ static double	noise(double x, double y, t_perlin_stuff per)
 	return (ab_lisse + coef_inter_y * (cd_lisse - ab_lisse));
 }
 
-int				*perlin_texture(t_color color, double res_x, double res_y, int limit)
+int				*perlin_texture(t_color color, double res_x, double res_y,
+		int limit)
 {
 	t_perlin_stuff	perlin;
 	t_point			p;
@@ -80,8 +71,8 @@ int				*perlin_texture(t_color color, double res_x, double res_y, int limit)
 		while (++p.x < limit)
 		{
 			color.r = 0;
-			tab[p.y * limit + p.x] = interpolate (0, 0xFFFFFF,
-			(noise((double)p.x / res_x , (double)p.y / res_y, perlin) + 1) / 2);
+			tab[p.y * limit + p.x] = interpolate(0, 0xFFFFFF,
+			(noise((double)p.x / res_x, (double)p.y / res_y, perlin) + 1) / 2);
 		}
 	}
 	return (tab);

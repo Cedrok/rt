@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 17:49:57 by Pringles         ###   ########.fr       */
+/*   Updated: 2018/06/20 18:02:54 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -336,6 +336,7 @@ void				limit_plane(t_shape shape, t_ray ray,
 void				blur_mode(t_env *env, t_point p);
 t_color				get_color_pixel(SDL_Surface *surf, t_point p);
 void				put_filter(t_all param);
+double				cartoon(double intensity);
 void				img_put_pixel(SDL_Surface *surf, t_point point);
 void				refresh_img(t_all *param);
 

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:33:37 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 16:58:55 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/20 18:48:54 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ static double	get_intensity(t_intersect inter, t_light light, t_data data)
 	lightdir = vector_op(light.origin, inter.point, '-');
 	intensity = dotprod(normalize(lightdir), inter.normal);
 	intensity = intensity <= 0 ? data.ambiantlight :
-		intensity * light.intensity + data.ambiantlight;
+		intensity * light.intensity + data.ambiantlight * light.intensity;
+	//intensity = intensity <= 0 ? data.ambiantlight :
+	//	(intensity + data.ambiantlight);
 	intensity = ftb_clamp(intensity, 0, 1);
 	return (intensity);
 }
@@ -41,21 +43,8 @@ static int		fuse(int start, int finish, int tresh)
 	return (color_to_int(a));
 }
 
-double	cartoon(double intensity)
-{
-	if (intensity < 0.3)
-		intensity = 0.1;
-	else if (intensity < 0.6)
-		intensity = 0.4;
-	else if (intensity < 1)
-		intensity = 0.7;
-	return (intensity);
-}
-
 static int		brillance(int start, t_intersect inter, t_light light, int filter)
 {
-	t_color		a;
-	t_color		b;
 	t_vector3d	lightdir;
 	double		intensity;
 	t_vector3d	reflect;
@@ -72,12 +61,7 @@ static int		brillance(int start, t_intersect inter, t_light light, int filter)
 	intensity = ftb_clamp(intensity, 0, 1);
 	if (filter == 3)
 		intensity = cartoon(intensity);
-	a = int_to_color(start);
-	b = int_to_color(light.color);
-	a.r += b.r * intensity;
-	a.g += b.g * intensity;
-	a.b += b.b * intensity;
-	return (color_to_int(a));
+	return (interpolate(start, light.color, intensity));
 }
 
 static int			shadows(t_scene scene, t_intersect inter, t_light light,
@@ -87,21 +71,17 @@ static int			shadows(t_scene scene, t_intersect inter, t_light light,
 	t_vector3d	dir;
 	t_vector3d	rayorigin;
 	double		dist;
-	//double		tmp;
+	double		tmp;
 
 	rayorigin = vector_op(inter.normal, new_vector_3d_unicoord(0.00001), '*');
 	rayorigin = vector_op(inter.point, rayorigin, '+');
 	dir = vector_op(light.origin, rayorigin, '-');
 	ray = new_ray(rayorigin, normalize(dir));
 	dist = get_length(dir);
-	//tmp = get_nearest_intersection(&ray, scene, &inter, dist);
-	if (get_nearest_intersection(&ray, scene, &inter, dist))
-	{
-		*color = interpolate(0, *color, ftb_clamp(data.ambiantlight + 1 - inter.shape_copy.opacity, 0, 1));
-	/*
+	tmp = get_nearest_intersection(&ray, scene, &inter, dist);
 	while (tmp)
 	{
-		if (inter.shape_copy.textunit.has_texture)
+		if (inter.shape_copy.opacity != 1.0 && inter.shape_copy.textunit.has_texture)
 		{
 			inter.shape_copy.color = interpolate(0, inter.shape_copy.color,
 	ftb_clamp( 1 - inter.shape_copy.opacity, 0, 1));
@@ -119,7 +99,7 @@ static int			shadows(t_scene scene, t_intersect inter, t_light light,
 			else
 				return (1);
 		}
-		else*/
+		else
 			return (1);
 	}
 	return (0);

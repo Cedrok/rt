@@ -6,11 +6,22 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/25 10:14:20 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/20 11:50:23 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/20 18:02:29 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+double	cartoon(double intensity)
+{
+	if (intensity < 0.3)
+		intensity = 0.1;
+	else if (intensity < 0.6)
+		intensity = 0.4;
+	else if (intensity < 1)
+		intensity = 0.7;
+	return (intensity);
+}
 
 static void		sepia_mode(t_env *env, t_point p)
 {
