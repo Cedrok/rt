@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 10:22:20 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/21 10:22:33 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/21 10:34:31 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,3 @@ int			transparency(t_all *param, t_ray ray, t_intersect intersection)
 	}
 	return (trans_color);
 }
-

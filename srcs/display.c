@@ -6,13 +6,12 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/21 10:23:01 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/21 10:35:08 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include <stdlib.h>
-#include <math.h>
 #include <pthread.h>
 
 t_intersect	new_intersection(t_shape shape, t_ray ray, double point_dist)

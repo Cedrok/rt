@@ -6,7 +6,7 @@
 /*   By: Pringles <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 12:01:37 by Pringles          #+#    #+#             */
-/*   Updated: 2018/06/20 19:37:44 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/21 10:36:03 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	color_closest_point(t_all *param, t_point p)
 	else if (p.x >= 3 && p.y < 3)
 		param->colorarray[p.x + p.y * param->env->surf->w] =
 			param->colorarray[
-			(int)fmin(p.x + 5 - (p.x % 5),param->env->surf->w - 1)
+			(int)fmin(p.x + 5 - (p.x % 5), param->env->surf->w - 1)
 			+ (p.y - p.y % 5)
 			* param->env->surf->w];
 	else if (p.x >= 3 && p.y >= 3)
