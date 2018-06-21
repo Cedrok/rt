@@ -6,13 +6,12 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 19:24:23 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/21 10:35:08 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include <stdlib.h>
-#include <math.h>
 #include <pthread.h>
 
 t_intersect	new_intersection(t_shape shape, t_ray ray, double point_dist)
@@ -48,7 +47,7 @@ double		get_nearest_intersection(t_ray *ray, t_scene scene,
 	t_shape		nearest_shape;
 	int			tmp;
 
-	nearest_shape.color = 0;
+	nearest_shape.color = -1;
 	while (scene.shape_lst != NULL)
 	{
 		shape = *(t_shape*)scene.shape_lst->content;
@@ -62,31 +61,10 @@ double		get_nearest_intersection(t_ray *ray, t_scene scene,
 		}
 		scene.shape_lst = scene.shape_lst->next;
 	}
-	if (nearest_shape.color)
-	{
+	if (nearest_shape.color != -1)
 		*nearest_intersect = new_intersection(nearest_shape,
 				adapt_ray(*ray, nearest_shape.inv_rot), maxdist);
-		ray->origin = vector_op(ray->origin, vector_op(ray->direction,
-					new_vector_3d_unicoord(maxdist), '*'), '+');
-	}
-	return (nearest_shape.color ? maxdist : 0);
-}
-
-int			transparency(t_scene scene, t_ray ray, t_intersect intersection,
-		t_point p, t_data data)
-{
-	if (get_nearest_intersection(&ray, scene, &intersection, DIST_MAX))
-	{
-		p.color = set_color(scene, intersection, data);
-		if (intersection.shape_copy.opacity != 1)
-		{
-			ray.previous_inter_id = intersection.shape_copy.id;
-			p.color = interpolate(transparency(scene, ray,
-						intersection, p, data), p.color, intersection.shape_copy.opacity);
-		}
-		return (p.color);
-	}
-	return (0);
+	return (nearest_shape.color != -1 ? maxdist : 0);
 }
 
 static void	raytrace(t_all *param, t_point p)
@@ -94,22 +72,25 @@ static void	raytrace(t_all *param, t_point p)
 	t_ray		ray;
 	t_vector3d	direction;
 	t_intersect	intersection;
+	double		maxdist;
 
 	direction = set_axe(p.x, p.y, &(param->scene.camera), param->env->surf);
 	ray = new_ray(param->scene.camera.origin, direction);
-	if (get_nearest_intersection(&ray, param->scene, &intersection, DIST_MAX))
+	if ((maxdist = get_nearest_intersection(&ray, param->scene, &intersection,
+					DIST_MAX)))
 	{
+		ray.origin = vector_op(ray.origin, vector_op(ray.direction,
+					new_vector_3d_unicoord(maxdist), '*'), '+');
 		if (param->data.fastmode == 1)
-			param->colorarray[p.x + p.y * param->env->surf->w] =
-												intersection.shape_copy.color;
+			p.color = intersection.shape_copy.color;
 		else
 		{
-			p.color = set_color(param->scene, intersection, param->data);
+			p.color = set_color(param, intersection);
 			if (intersection.shape_copy.opacity != 1)
-				p.color = interpolate(transparency(param->scene, ray,
-	intersection, p, param->data), p.color, intersection.shape_copy.opacity);
-			param->colorarray[p.x + p.y * param->env->surf->w] = p.color;
+				p.color = interpolate(transparency(param, ray, intersection),
+					p.color, intersection.shape_copy.opacity);
 		}
+		param->colorarray[p.x + p.y * param->env->surf->w] = p.color;
 	}
 }
 
@@ -136,22 +117,6 @@ static void	*raytrace_thread(void *voidparam)
 	if (data.fastmode != -1)
 		fastmode_complete(param);
 	pthread_exit(0);
-}
-
-void		int_array_to_surf(SDL_Surface *surf, int *colorarray)
-{
-	t_point	p;
-
-	p = new_point(-1, -1, 0);
-	while (++p.y < surf->h)
-	{
-		p.x = -1;
-		while (++p.x < surf->w)
-		{
-			p.color = colorarray[p.x + p.y * surf->w];
-			img_put_pixel(surf, p);
-		}
-	}
 }
 
 void		setup_multithread(t_all param)
