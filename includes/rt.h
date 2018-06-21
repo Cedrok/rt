@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/21 11:55:29 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/21 11:57:59 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -307,8 +307,7 @@ t_vector3d			torus_normal(t_shape shape, t_vector3d intersection);
 ** Display functs
 */
 
-int					transparency(t_all *param, t_ray ray,
-				t_intersect intersection);
+int					transparency(t_all *param, t_ray ray);
 int					no_collisions(t_list *shape_lst,
 				t_intersect inter, t_light light);
 int					set_color(t_all *param, t_intersect intersection);

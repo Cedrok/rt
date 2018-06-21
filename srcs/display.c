@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/21 10:35:08 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/21 11:50:43 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static void	raytrace(t_all *param, t_point p)
 		{
 			p.color = set_color(param, intersection);
 			if (intersection.shape_copy.opacity != 1)
-				p.color = interpolate(transparency(param, ray, intersection),
+				p.color = interpolate(transparency(param, ray),
 					p.color, intersection.shape_copy.opacity);
 		}
 		param->colorarray[p.x + p.y * param->env->surf->w] = p.color;

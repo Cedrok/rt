@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:33:37 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/21 10:32:44 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/21 11:54:01 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,17 @@ static int		brillance(int start, t_intersect inter, t_light light, int filter)
 	return (interpolate(start, light.color, intensity));
 }
 
-static int			shadows(t_scene scene, t_intersect inter, t_light light,
-		int *color, t_data data)
+static int			shadows(t_all *param, t_intersect inter, t_light light,
+		int *color)
 {
 	t_ray		ray;
 	t_vector3d	dir;
 	t_vector3d	rayorigin;
 	double		dist;
+	t_scene		scene;
 	double		tmp;
 
+	scene = param->scene;
 	rayorigin = vector_op(inter.normal, new_vector_3d_unicoord(0.00001), '*');
 	rayorigin = vector_op(inter.point, rayorigin, '+');
 	dir = vector_op(light.origin, rayorigin, '-');
@@ -88,14 +90,14 @@ static int			shadows(t_scene scene, t_intersect inter, t_light light,
 			*color = interpolate(inter.shape_copy.color, *color,
 	ftb_clamp(1 - inter.shape_copy.opacity, 0, 1));
 		}
-		*color = interpolate(0, *color, ftb_clamp(data.ambiantlight + 1 - inter.shape_copy.opacity, 0, 1));
+		*color = interpolate(0, *color, ftb_clamp(param->data.ambiantlight + 1 - inter.shape_copy.opacity, 0, 1));
 		if (inter.shape_copy.opacity != 1.0)
 		{
 			dist -= tmp;
 			ray.previous_inter_id = inter.shape_copy.id;
 			tmp = get_nearest_intersection(&ray, scene, &inter, dist);
 			if (tmp)
-			*color = interpolate(0, *color, ftb_clamp(data.ambiantlight + 1 - inter.shape_copy.opacity, 0, 1));
+			*color = interpolate(0, *color, ftb_clamp(param->data.ambiantlight + 1 - inter.shape_copy.opacity, 0, 1));
 			else
 				return (1);
 		}
@@ -126,7 +128,7 @@ int				set_color(t_all *param, t_intersect intersection)
 		if (param->data.filter == 3)
 			intensity = cartoon(intensity);
 		tmp = interpolate(0, intersection.shape_copy.color, intensity);
-		if (!shadows(scene, intersection, light, &tmp, param->data))
+		if (!shadows(param, intersection, light, &tmp))
 			tmp = brillance(tmp, intersection, light, param->data.filter);
 		ret = fuse(ret, tmp, light.color);
 		scene.light_lst = scene.light_lst->next;
