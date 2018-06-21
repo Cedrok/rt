@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/21 11:00:44 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/21 11:26:19 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,14 @@
 # define CONE				4
 # define CYLINDER			5
 # define TORUS				6
+
+/*
+ ******************************* Item defines *********************************
+*/
+
+# define PATH1				"scenes/scene0.txt"
+# define PATH2				"scenes/scene1.txt"
+# define PATH3				"scenes/scene2.txt"
 
 /*
 ** Basic structs
@@ -394,6 +402,7 @@ t_light				check_light(t_light *spot);
 char				*extract_text(char *line);
 t_vector3d			extract_vd3(char *line);
 int					rt_get_next_line(int fd, char **line);
+void				end_lst(t_scene *scene);
 
 void				create_scene(char *s, t_scene *scene, int *nb_cam,
 						int *nb_lght);

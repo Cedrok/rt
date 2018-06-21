@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 13:39:25 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/21 10:33:49 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/21 11:22:04 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,24 @@ static void	check_booleans(t_all *param, int b_objs, int b_lights)
 		param->data.nb_light = 0;
 }
 
+static void	check_reset(int *reset, int *b_infos, int *b_objs, int *b_lights)
+{
+	if (*reset)
+	{
+		*b_infos = 1;
+		*b_objs = 1;
+		*b_lights = 1;
+		*reset = 0;
+	}
+}
+
 static void	which_section(t_all *param, int *fd, char *line, int *reset)
 {
 	static int		b_infos = 1;
 	static int		b_objs = 1;
 	static int		b_lights = 1;
 
-	if (*reset)
-	{
-		b_infos = 1;
-		b_objs = 1;
-		b_lights = 1;
-		*reset = 0;
-	}
-//	printf("booleans: infos = %d, objs = %d, lights = %d\n", b_infos, b_objs, b_lights);
+	check_reset(reset, &b_infos, &b_objs, &b_lights);
 	if (!ft_strcmp(line, "# Scene informations") && b_infos)
 	{
 		get_scene_infos(param, fd);
@@ -56,17 +60,6 @@ static void	which_section(t_all *param, int *fd, char *line, int *reset)
 	}
 	if (!ft_strcmp(line, "##END##"))
 		check_booleans(param, b_objs, b_lights);
-}
-
-static void	end_lst(t_scene *scene)
-{
-	t_shape	shape;
-	t_light	light;
-
-	shape.type = -1;
-	light.color = -1;
-	scene->shape_lst = ft_lstnew(&shape, sizeof(shape));
-	scene->light_lst = ft_lstnew(&light, sizeof(light));
 }
 
 static void	awake(t_all *param)
@@ -99,7 +92,6 @@ void		parse(t_all *param, char *arg, int *reset)
 		if (!ft_strcmp(line, "##END##"))
 			do_it = 0;
 		ft_strdel(&line);
-//		printf("reset=%d\n", *reset);
 	}
 	close(fd);
 	print_infos(param->data.nb_shape, param->data.nb_light);
