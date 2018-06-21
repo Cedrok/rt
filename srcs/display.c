@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/21 12:43:34 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/21 15:18:25 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ double		get_nearest_intersection(t_ray *ray, t_scene scene,
 					adapt_ray(*ray, shape.inv_rot), &maxdist)))
 		{
 			ray->normal_dir = tmp;
+			ray->maxdist = maxdist;
 			nearest_shape = shape;
 		}
 		scene.shape_lst = scene.shape_lst->next;

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:33:37 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/21 11:54:01 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/21 15:56:16 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static int		fuse(int start, int finish, int tresh)
 	return (color_to_int(a));
 }
 
-static int		brillance(int start, t_intersect inter, t_light light, int filter)
+static int		brillance(int start, t_intersect inter, t_light light,
+		int filter)
 {
 	t_vector3d	lightdir;
 	double		intensity;
@@ -62,49 +63,26 @@ static int		brillance(int start, t_intersect inter, t_light light, int filter)
 	return (interpolate(start, light.color, intensity));
 }
 
-static int			shadows(t_all *param, t_intersect inter, t_light light,
+static int		shadows(t_all *param, t_intersect inter, t_light light,
 		int *color)
 {
 	t_ray		ray;
 	t_vector3d	dir;
 	t_vector3d	rayorigin;
-	double		dist;
 	t_scene		scene;
-	double		tmp;
+	double		shad_color;
 
 	scene = param->scene;
 	rayorigin = vector_op(inter.normal, new_vector_3d_unicoord(0.00001), '*');
 	rayorigin = vector_op(inter.point, rayorigin, '+');
 	dir = vector_op(light.origin, rayorigin, '-');
 	ray = new_ray(rayorigin, normalize(dir));
-	dist = get_length(dir);
-	tmp = get_nearest_intersection(&ray, scene, &inter, dist);
-	while (tmp)
-	{
-		ray.origin = vector_op(ray.origin, vector_op(ray.direction,
-					new_vector_3d_unicoord(tmp), '*'), '+');
-		if (inter.shape_copy.opacity != 1.0 && inter.shape_copy.textunit.has_texture)
-		{
-			inter.shape_copy.color = interpolate(0, inter.shape_copy.color,
-	ftb_clamp( 1 - inter.shape_copy.opacity, 0, 1));
-			*color = interpolate(inter.shape_copy.color, *color,
-	ftb_clamp(1 - inter.shape_copy.opacity, 0, 1));
-		}
-		*color = interpolate(0, *color, ftb_clamp(param->data.ambiantlight + 1 - inter.shape_copy.opacity, 0, 1));
-		if (inter.shape_copy.opacity != 1.0)
-		{
-			dist -= tmp;
-			ray.previous_inter_id = inter.shape_copy.id;
-			tmp = get_nearest_intersection(&ray, scene, &inter, dist);
-			if (tmp)
-			*color = interpolate(0, *color, ftb_clamp(param->data.ambiantlight + 1 - inter.shape_copy.opacity, 0, 1));
-			else
-				return (1);
-		}
-		else
-			return (1);
-	}
-	return (0);
+	ray.maxdist = get_length(dir);
+	shad_color = shadow_transp(param, ray, *color);
+	if (shad_color != -1)
+		*color = interpolate(*color, shad_color,
+				ftb_clamp(light.intensity, 0, 1));
+	return (shad_color);
 }
 
 int				set_color(t_all *param, t_intersect intersection)
@@ -128,7 +106,7 @@ int				set_color(t_all *param, t_intersect intersection)
 		if (param->data.filter == 3)
 			intensity = cartoon(intensity);
 		tmp = interpolate(0, intersection.shape_copy.color, intensity);
-		if (!shadows(param, intersection, light, &tmp))
+		if (shadows(param, intersection, light, &tmp) == -1)
 			tmp = brillance(tmp, intersection, light, param->data.filter);
 		ret = fuse(ret, tmp, light.color);
 		scene.light_lst = scene.light_lst->next;
