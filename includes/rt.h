@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 19:35:17 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/21 10:27:38 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -378,7 +378,7 @@ t_camera			update_cam(t_all *param);
 **	Parse
 */
 
-void				parse(t_all *param, char *arg);
+void				parse(t_all *param, char *arg, int *reset);
 void				get_scene_infos(t_all *param, int *fd);
 void				get_ligths(t_all *param, int *fd);
 void				get_objs(t_all *param, int *fd);
@@ -404,6 +404,7 @@ void				parsing_quit(char *msg, char **splt_ln, char *ln);
 
 int					sdl_key(t_all *param, int key);
 void				screenshot(void *p, int c);
+int					change_scene(t_all *param, int key);
 
 void				new_shape(void *p, int type);
 t_shape				default_shape(int i);

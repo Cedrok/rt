@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 15:26:19 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 18:00:41 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/21 10:50:33 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,7 @@ int				*perlin_texture(t_color color, double res_x, double res_y,
 			(noise((double)p.x / res_x, (double)p.y / res_y, perlin) + 1) / 2);
 		}
 	}
+	free(perlin.grad_tab);
+	free(perlin.permutation);
 	return (tab);
 }

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 12:36:24 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 17:50:42 by Pringles         ###   ########.fr       */
+/*   Updated: 2018/06/21 10:06:03 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int			sdl_key(t_all *param, int key)
 	int			valid_key;
 
 	valid_key = 0;
+	if (key == SDLK_0 || key == SDLK_1 || key == SDLK_2)
+		valid_key = change_scene(param, key);
 	if (key == SDLK_ESCAPE)
 		quit_exe(*param);
 	if (key == SDLK_p)

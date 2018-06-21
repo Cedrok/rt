@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 13:39:25 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/20 10:32:18 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/21 10:33:49 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,20 @@ static void	check_booleans(t_all *param, int b_objs, int b_lights)
 		param->data.nb_light = 0;
 }
 
-static void	which_section(t_all *param, int *fd, char *line)
+static void	which_section(t_all *param, int *fd, char *line, int *reset)
 {
 	static int		b_infos = 1;
 	static int		b_objs = 1;
 	static int		b_lights = 1;
 
-	(void)fd;
+	if (*reset)
+	{
+		b_infos = 1;
+		b_objs = 1;
+		b_lights = 1;
+		*reset = 0;
+	}
+//	printf("booleans: infos = %d, objs = %d, lights = %d\n", b_infos, b_objs, b_lights);
 	if (!ft_strcmp(line, "# Scene informations") && b_infos)
 	{
 		get_scene_infos(param, fd);
@@ -69,7 +76,7 @@ static void	awake(t_all *param)
 	param->data.nb_light = 0;
 }
 
-void		parse(t_all *param, char *arg)
+void		parse(t_all *param, char *arg, int *reset)
 {
 	int		fd;
 	int		gnl;
@@ -88,10 +95,11 @@ void		parse(t_all *param, char *arg)
 		if ((gnl = get_next_line(fd, &line)) == -1)
 			ft_abort("gnl fail");
 		if (do_it)
-			which_section(param, &fd, line);
+			which_section(param, &fd, line, reset);
 		if (!ft_strcmp(line, "##END##"))
 			do_it = 0;
 		ft_strdel(&line);
+//		printf("reset=%d\n", *reset);
 	}
 	close(fd);
 	print_infos(param->data.nb_shape, param->data.nb_light);

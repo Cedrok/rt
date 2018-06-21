@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 15:09:23 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 17:49:39 by Pringles         ###   ########.fr       */
+/*   Updated: 2018/06/21 10:59:01 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,14 @@ t_vector4d		size_rend(int w, int h)
 int				main(int ac, char **av)
 {
 	t_all	param;
+	int		reset;
 
 	if (ac != 2)
 		ft_abort("Usage: ./rtv1 [scene_file]");
 	if (!(param.env = (t_env*)malloc(sizeof(t_env))))
 		ft_abort("Malloc Failed: struct env");
-	parse(&param, av[1]);
+	reset = 0;
+	parse(&param, av[1], &reset);
 	param = init_param(param);
 	new_ui(&param);
 	create_render(&param);
