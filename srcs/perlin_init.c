@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 15:26:19 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/21 10:48:32 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/21 11:09:17 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static void	random_tab(t_perlin_stuff *per)
 		ret[i] = per->permutation[i % 256];
 		i++;
 	}
-	free(per->permutation);
 	per->permutation = ret;
 }
 
