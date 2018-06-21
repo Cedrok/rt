@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/20 17:05:05 by cvautrai         ###   ########.fr        #
+#    Updated: 2018/06/21 10:23:30 by tmilon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,7 @@ SRC_NAME= 	main.c				\
 			free_ui.c			\
 			filter_2.c			\
 			fastmode_complete.c	\
+			transparency.c		\
 			parser_grab_objs.c	\
 			parser_grab_extras.c
 

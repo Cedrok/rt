@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 19:35:17 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/21 10:22:53 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -299,10 +299,11 @@ t_vector3d			torus_normal(t_shape shape, t_vector3d intersection);
 ** Display functs
 */
 
+int					transparency(t_all *param, t_ray ray,
+				t_intersect intersection);
 int					no_collisions(t_list *shape_lst,
 				t_intersect inter, t_light light);
-int					set_color(t_scene scene, t_intersect intersection,
-				t_data data);
+int					set_color(t_all *param, t_intersect intersection);
 int					interpolate(int start, int finish, float ratio);
 double				get_nearest_intersection(t_ray *ray, t_scene scene,
 				t_intersect *nearest_intersect, double maxdist);
@@ -351,6 +352,7 @@ double				get_vect_dist(t_vector3d a, t_vector3d b);
 double				magnitude(t_vector3d v);
 t_vector3d			normals(t_shape shape, t_vector3d point);
 int					collisions(t_shape shape, t_ray ray, double *t);
+void				int_array_to_surf(SDL_Surface *surf, int *colorarray);
 
 /*
 **	Perlin's  noise

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:33:37 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 18:50:48 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/21 10:32:44 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ static int			shadows(t_scene scene, t_intersect inter, t_light light,
 	tmp = get_nearest_intersection(&ray, scene, &inter, dist);
 	while (tmp)
 	{
+		ray.origin = vector_op(ray.origin, vector_op(ray.direction,
+					new_vector_3d_unicoord(tmp), '*'), '+');
 		if (inter.shape_copy.opacity != 1.0 && inter.shape_copy.textunit.has_texture)
 		{
 			inter.shape_copy.color = interpolate(0, inter.shape_copy.color,
@@ -103,28 +105,29 @@ static int			shadows(t_scene scene, t_intersect inter, t_light light,
 	return (0);
 }
 
-int				set_color(t_scene scene,
-		t_intersect intersection, t_data data)
+int				set_color(t_all *param, t_intersect intersection)
 {
 	int			ret;
 	int			tmp;
 	double		intensity;
 	t_light		light;
+	t_scene		scene;
 
 	ret = 0;
-	if (data.filter == 3)
+	scene = param->scene;
+	if (param->data.filter == 3)
 		intersection.normal = normalize(intersection.normal);
 	while (scene.light_lst != NULL)
 	{
 		light = *(t_light*)scene.light_lst->content;
 		if (light.color == -1)
 			break ;
-		intensity = get_intensity(intersection, light, data);
-		if (data.filter == 3)
+		intensity = get_intensity(intersection, light, param->data);
+		if (param->data.filter == 3)
 			intensity = cartoon(intensity);
 		tmp = interpolate(0, intersection.shape_copy.color, intensity);
-		if (!shadows(scene, intersection, light, &tmp, data))
-			tmp = brillance(tmp, intersection, light, data.filter);
+		if (!shadows(scene, intersection, light, &tmp, param->data))
+			tmp = brillance(tmp, intersection, light, param->data.filter);
 		ret = fuse(ret, tmp, light.color);
 		scene.light_lst = scene.light_lst->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 11:35:29 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 19:27:26 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/21 10:17:55 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,20 @@ int			collisions(t_shape shape, t_ray ray, double *t)
 	collisions[CONE] = &intersect_cone;
 	collisions[TORUS] = &intersect_torus;
 	return (collisions[shape.type](shape, ray, t));
+}
+
+void		int_array_to_surf(SDL_Surface *surf, int *colorarray)
+{
+	t_point	p;
+
+	p = new_point(-1, -1, 0);
+	while (++p.y < surf->h)
+	{
+		p.x = -1;
+		while (++p.x < surf->w)
+		{
+			p.color = colorarray[p.x + p.y * surf->w];
+			img_put_pixel(surf, p);
+		}
+	}
 }
