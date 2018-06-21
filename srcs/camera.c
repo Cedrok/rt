@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 15:20:58 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/20 15:38:51 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/21 16:10:04 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_camera	new_cam(t_vector3d orig, t_vector3d rot)
 	camera.aspect_ratio = W_WIDTH / (double)W_HEIGHT;
 	camera.origin = orig;
 	camera.rot = new_matrix(rot.x, rot.y, rot.z);
-	camera.fov = 60;
+	camera.fov = 40;
 	camera.h = atan(camera.fov);
 	camera.w = camera.h * camera.aspect_ratio;
 	return (camera);
@@ -33,7 +33,7 @@ t_camera	update_cam(t_all *param)
 	new.aspect_ratio = param->env->surf->w / (double)param->env->surf->h;
 	new.origin = param->scene.camera.origin;
 	new.rot = param->scene.camera.rot;
-	new.fov = 60;
+	new.fov = 40;
 	new.h = atan(new.fov) * (1.686192 / new.aspect_ratio);
 	new.w = new.h * new.aspect_ratio;
 	return (new);
