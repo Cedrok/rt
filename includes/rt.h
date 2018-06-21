@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/21 11:26:19 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/21 11:55:29 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -440,6 +440,7 @@ void				create_render(t_all *param);
 void				quit_exe(t_all param);
 void				init_sdl(void);
 int					new_ui(t_all *param);
+t_bloc				*create_bloc_filter(int w, int);
 void				event_button(t_all *param, int x, int y);
 
 #endif
