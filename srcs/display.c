@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/21 11:50:43 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/21 12:43:34 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,27 +71,11 @@ static void	raytrace(t_all *param, t_point p)
 {
 	t_ray		ray;
 	t_vector3d	direction;
-	t_intersect	intersection;
-	double		maxdist;
 
 	direction = set_axe(p.x, p.y, &(param->scene.camera), param->env->surf);
 	ray = new_ray(param->scene.camera.origin, direction);
-	if ((maxdist = get_nearest_intersection(&ray, param->scene, &intersection,
-					DIST_MAX)))
-	{
-		ray.origin = vector_op(ray.origin, vector_op(ray.direction,
-					new_vector_3d_unicoord(maxdist), '*'), '+');
-		if (param->data.fastmode == 1)
-			p.color = intersection.shape_copy.color;
-		else
-		{
-			p.color = set_color(param, intersection);
-			if (intersection.shape_copy.opacity != 1)
-				p.color = interpolate(transparency(param, ray),
-					p.color, intersection.shape_copy.opacity);
-		}
-		param->colorarray[p.x + p.y * param->env->surf->w] = p.color;
-	}
+	p.color = transparency(param, ray, param->data.fastmode);
+	param->colorarray[p.x + p.y * param->env->surf->w] = p.color;
 }
 
 static void	*raytrace_thread(void *voidparam)
