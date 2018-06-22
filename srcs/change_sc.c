@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 10:06:24 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/22 11:49:28 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/22 14:56:35 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static void	load_scene(t_all *param, char *path)
 	ft_lstdel(&param->scene.shape_lst, &delshape_func);
 	ft_lstdel(&param->scene.light_lst, &dellight_func);
 	ft_strdel(&param->env->title);
+	param->data.fastmode = 1;
+	param->data.filter = 4;
 	parse(param, path, &reset);
 	SDL_SetWindowTitle(param->env->win, param->env->title);
 }

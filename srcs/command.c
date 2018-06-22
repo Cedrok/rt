@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 10:01:24 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/22 14:18:28 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/22 15:21:53 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	on_move(void *p, int type)
 	}
 	refresh_surf(param, param->data.filter);
 }
+
 /*
 void	move_shape(void *p, int type)
 {
