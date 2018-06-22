@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 12:36:24 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/22 13:49:51 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/22 15:13:55 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,22 @@ void		refresh_surf(void *delay, int type)
 	param->env->rend = surface_2_rend(param->env);
 }
 
+static void	reset_cam(t_all *param, t_camera *cam, int key)
+{
+	if (key == SDLK_BACKSPACE || key == SDLK_DELETE)
+	{
+		cam->origin = new_vector_3d_unicoord(0);
+		cam->rot = new_matrix(0, 0, 0);
+		ft_putendl("set camera to {0, 0, 0} with 0 rotation");
+		refresh_img(param);
+	}
+}
+
 int			sdl_key(t_all *param, int key)
 {
 	int			valid_key;
 
+	reset_cam(param, &param->scene.camera, key);
 	valid_key = 0;
 	if (key == SDLK_1 || key == SDLK_2 || key == SDLK_3)
 		change_scene(param, key);
