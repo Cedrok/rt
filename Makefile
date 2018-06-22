@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/22 13:44:29 by cpieri           ###   ########.fr        #
+#    Updated: 2018/06/22 14:51:06 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,8 @@ SRC_NAME= 	main.c				\
 			command.c			\
 			ui_command.c		\
 			get_intersection.c	\
-			cam_move.c
+			cam_move.c			\
+			get_shape.c
 
 OBJ_NAME=	$(SRC_NAME:.c=.o)
 
