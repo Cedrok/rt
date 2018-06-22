@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/22 15:19:46 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/22 15:29:59 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int		get_nearest_shape_id(t_ray *ray, t_scene scene)
 	{
 		shape = *(t_shape*)scene.shape_lst->content;
 		if (shape.type == -1)
-			return (-1);
+			break ;
 		if (collisions(shape, adapt_ray(*ray, shape.inv_rot), &maxdist))
 			nearest_shape_id = shape.id;
 		scene.shape_lst = scene.shape_lst->next;

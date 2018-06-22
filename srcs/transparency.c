@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 10:22:20 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/21 15:57:02 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/21 16:27:20 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,5 @@ int	shadow_transp(t_all *param, t_ray ray, int start_color)
 							shad_color, inter.shape_copy.opacity);
 		}
 	}
-	return (shad_color);
+	return (interpolate(0, shad_color, inter.shape_copy.opacity));
 }
