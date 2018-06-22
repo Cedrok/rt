@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 10:01:24 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/22 17:56:17 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/22 18:25:56 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,20 @@ void	on_move(void *p, int type)
 	{
 		on_off = new_color(0, 0x42, 0x19);
 		on->color = on_off;
+		free(on->title.title);
 		set_title_btn(on, "Move Obj: ON", btn_s, white);
 	}
 	if (type == 1)
 	{
 		on_off = new_color(0x42, 0, 0x19);
 		on->color = on_off;
+		free(on->title.title);
 		set_title_btn(on, "Move Obj: OFF", btn_s, white);
 	}
 	refresh_surf(param, param->data.filter);
 }
 
-static t_shape	*get_shape_with_id(int id, t_scene sc)
+t_shape		*get_shape_with_id(int id, t_scene sc)
 {
 	t_shape	*shape;
 
@@ -76,50 +78,14 @@ void	move_shape(void *p, int type)
 	{
 		shape = get_shape_with_id(param->ui.g_id, sc);
 		if (type == 3 || type == 5)
-			shape->origin.y = (type == 3) ? m_value(shape->origin.y, '-') : m_value(shape->origin.y, '+');
+			shape->origin.y = (type == 3) ? m_value(shape->origin.y, '-') :
+				m_value(shape->origin.y, '+');
 		if (type == 2 || type == 4)
-			shape->origin.x = (type == 2) ? m_value(shape->origin.x, '-') : m_value(shape->origin.x, '+');
+			shape->origin.x = (type == 2) ? m_value(shape->origin.x, '-') :
+				m_value(shape->origin.x, '+');
 		if (type == 0 || type == 1)
-			shape->origin.z = (type == 1) ? m_value(shape->origin.z, '-') : m_value(shape->origin.z, '+');
-		refresh_img(param);
-	}
-}
-
-int		rot_value(t_shape *shape, int value, char c)
-{
-	t_mat3d		mat;
-	double		modif;
-
-	modif = 5;
-	if (value == 4 || value == 5)
-		(c == '+') ? rotate_z(&mat, modif) : rotate_z(&mat, -modif);
-	if (value == 0 || value == 1)
-		(c == '+') ? rotate_x(&mat, modif) : rotate_x(&mat, -modif);
-	if (value == 2 || value == 3)
-		(c == '+') ? rotate_y(&mat, modif) : rotate_y(&mat, -modif);
-	shape->rot = matrix_mult(shape->rot, mat);
-	shape->inv_rot = matrix_inv(shape->rot);
-	return (1);
-}
-
-
-void	rot_shape(void *p, int type)
-{
-	t_all	*param;
-	t_scene	sc;
-	t_shape	*shape;
-	int		is_move;
-
-	param = (t_all*)p;
-	is_move = ((t_button*)param->ui.bc_lft->lst_obj[0]->obj)->type;
-	sc = param->scene;
-	if (is_move == 1)
-	{
-		shape = get_shape_with_id(param->ui.g_id, sc);
-		if (type == 1 || type == 3 || type == 4)
-			rot_value(shape, type, '+');
-		else
-			rot_value(shape, type, '-');
+			shape->origin.z = (type == 1) ? m_value(shape->origin.z, '-')
+				: m_value(shape->origin.z, '+');
 		refresh_img(param);
 	}
 }

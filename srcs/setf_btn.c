@@ -6,15 +6,11 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:57:39 by bocal             #+#    #+#             */
-/*   Updated: 2018/06/22 17:41:05 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/22 18:14:24 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-
-/*
-** set_btn_callback(btn, void(*f)(void*), void *param)
-*/
 
 void	setf_btn_r(t_bloc *bc, t_all *param)
 {
@@ -56,7 +52,7 @@ void	setf_btn_c(t_bloc *bc, t_all *param)
 	set_btn_callback(c.btn_lgt, &new_spot, param, 0);
 }
 
-void	setf_btn_l(t_bloc *bc, t_all *param)
+static t_left	get_left_btn(t_bloc *bc)
 {
 	t_left	l;
 
@@ -73,6 +69,14 @@ void	setf_btn_l(t_bloc *bc, t_all *param)
 	l.rot_3 = ((t_button*)bc->lst_obj[10]->obj);
 	l.rot_4 = ((t_button*)bc->lst_obj[11]->obj);
 	l.rot_5 = ((t_button*)bc->lst_obj[12]->obj);
+	return (l);
+}
+
+void	setf_btn_l(t_bloc *bc, t_all *param)
+{
+	t_left	l;
+
+	l = get_left_btn(bc);
 	set_btn_callback(l.b_bool, &on_move, param, 0);
 	set_btn_callback(l.mv_0, &move_shape, param, 0);
 	set_btn_callback(l.mv_1, &move_shape, param, 1);
