@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/22 13:01:30 by Pringles         ###   ########.fr       */
+/*   Updated: 2018/06/22 13:47:20 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,10 +181,19 @@ typedef struct		s_perlin_stuff
 
 typedef struct		s_left
 {
-	t_button		*btn_up;
-	t_button		*btn_down;
-	t_button		*btn_rght;
-	t_button		*btn_lft;
+	t_button		*b_bool;
+	t_button		*rot_0;
+	t_button		*rot_1;
+	t_button		*rot_2;
+	t_button		*rot_3;
+	t_button		*rot_4;
+	t_button		*rot_5;
+	t_button		*mv_0;
+	t_button		*mv_1;
+	t_button		*mv_2;
+	t_button		*mv_3;
+	t_button		*mv_4;
+	t_button		*mv_5;
 }					t_left;
 
 typedef struct		s_center
@@ -205,6 +214,9 @@ typedef struct		s_right
 	t_button		*btn_cart;
 	t_label			*opt;
 	t_button		*btn_shot;
+	t_button		*btn_sc1;
+	t_button		*btn_sc2;
+	t_button		*btn_sc3;
 }					t_right;
 
 /*
@@ -419,7 +431,7 @@ void				parsing_quit(char *msg, char **splt_ln, char *ln);
 
 int					sdl_key(t_all *param, int key);
 void				screenshot(void *p, int c);
-int					change_scene(t_all *param, int key);
+void				change_scene(void *p, int key);
 
 void				new_shape(void *p, int type);
 t_shape				default_shape(int i);
@@ -434,6 +446,7 @@ void				draw_bloc(t_bloc *bloc, SDL_Renderer *rend);
 void				draw_ui(t_all *param);
 void				setf_btn_r(t_bloc *bc, t_all *param);
 void				setf_btn_c(t_bloc *bc, t_all *param);
+void				setf_btn_l(t_bloc *bc, t_all *param);
 void				refresh_surf(void *delay, int type);
 void				cartoon_mode(void *p, int type);
 SDL_Renderer		*surface_2_rend(t_env *env);
@@ -445,6 +458,8 @@ void				quit_exe(t_all param);
 void				init_sdl(void);
 int					new_ui(t_all *param);
 t_bloc				*create_bloc_filter(int w, int);
+t_bloc				*create_bloc_left(int w, int h);
 void				event_button(t_all *param, int x, int y);
+void				on_move(void *p, int type);
 
 #endif
