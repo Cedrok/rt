@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/22 16:32:00 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/22 17:41:25 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -452,6 +452,7 @@ void				select_shape(t_all *param, int x, int y);
 void				refresh_surf(void *delay, int type);
 void				cartoon_mode(void *p, int type);
 void				move_shape(void *p, int type);
+void				rot_shape(void *p, int type);
 SDL_Renderer		*surface_2_rend(t_env *env);
 void				create_win_render(t_env *env);
 void				create_all_surface(t_env *env);

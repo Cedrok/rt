@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:57:39 by bocal             #+#    #+#             */
-/*   Updated: 2018/06/22 16:49:15 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/22 17:41:05 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ void	setf_btn_l(t_bloc *bc, t_all *param)
 	l.mv_3 = ((t_button*)bc->lst_obj[4]->obj);
 	l.mv_4 = ((t_button*)bc->lst_obj[5]->obj);
 	l.mv_5 = ((t_button*)bc->lst_obj[6]->obj);
-	// l.rot_0 = ((t_button*)bc->lst_obj[7]->obj);
-	// l.rot_1 = ((t_button*)bc->lst_obj[8]->obj);
-	// l.rot_2 = ((t_button*)bc->lst_obj[9]->obj);
-	// l.rot_3 = ((t_button*)bc->lst_obj[10]->obj);
-	// l.rot_4 = ((t_button*)bc->lst_obj[11]->obj);
-	// l.rot_5 = ((t_button*)bc->lst_obj[12]->obj);
+	l.rot_0 = ((t_button*)bc->lst_obj[7]->obj);
+	l.rot_1 = ((t_button*)bc->lst_obj[8]->obj);
+	l.rot_2 = ((t_button*)bc->lst_obj[9]->obj);
+	l.rot_3 = ((t_button*)bc->lst_obj[10]->obj);
+	l.rot_4 = ((t_button*)bc->lst_obj[11]->obj);
+	l.rot_5 = ((t_button*)bc->lst_obj[12]->obj);
 	set_btn_callback(l.b_bool, &on_move, param, 0);
 	set_btn_callback(l.mv_0, &move_shape, param, 0);
 	set_btn_callback(l.mv_1, &move_shape, param, 1);
@@ -80,11 +80,10 @@ void	setf_btn_l(t_bloc *bc, t_all *param)
 	set_btn_callback(l.mv_3, &move_shape, param, 3);
 	set_btn_callback(l.mv_4, &move_shape, param, 4);
 	set_btn_callback(l.mv_5, &move_shape, param, 5);
-	// set_btn_callback(l.rot_0, &move_shape, param, '+');
-	// set_btn_callback(l.rot_1, &move_shape, param, '-');
-	// set_btn_callback(l.rot_2, &move_shape, param, 0);
-	// set_btn_callback(l.rot_3, &move_shape, param, 0);
-	// set_btn_callback(l.rot_4, &move_shape, param, 0);
-	// set_btn_callback(l.rot_5, &move_shape, param, 0);
-
+	set_btn_callback(l.rot_0, &rot_shape, param, 0);
+	set_btn_callback(l.rot_1, &rot_shape, param, 1);
+	set_btn_callback(l.rot_2, &rot_shape, param, 2);
+	set_btn_callback(l.rot_3, &rot_shape, param, 3);
+	set_btn_callback(l.rot_4, &rot_shape, param, 4);
+	set_btn_callback(l.rot_5, &rot_shape, param, 5);
 }
