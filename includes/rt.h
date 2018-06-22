@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/22 13:42:08 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/22 13:47:20 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -446,6 +446,7 @@ void				draw_bloc(t_bloc *bloc, SDL_Renderer *rend);
 void				draw_ui(t_all *param);
 void				setf_btn_r(t_bloc *bc, t_all *param);
 void				setf_btn_c(t_bloc *bc, t_all *param);
+void				setf_btn_l(t_bloc *bc, t_all *param);
 void				refresh_surf(void *delay, int type);
 void				cartoon_mode(void *p, int type);
 SDL_Renderer		*surface_2_rend(t_env *env);
