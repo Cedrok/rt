@@ -6,17 +6,13 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 12:36:24 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/21 11:26:02 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/22 13:06:42 by Pringles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include <stdlib.h>
 
-static void	move_offset(double *offset, char c, double move)
-{
-	*offset += (c == '+') ? move : -move;
-}
 
 static int	set_fastmode(int *fast)
 {
@@ -30,17 +26,17 @@ static int	translation(t_all *param, int key)
 
 	org = &param->scene.camera.origin;
 	if (key == SDLK_RIGHT)
-		move_offset(&org->x, '+', param->move);
+		move_rightward(&param->scene.camera,  param->move, '+');
 	else if (key == SDLK_LEFT)
-		move_offset(&org->x, '-', param->move);
+		move_rightward(&param->scene.camera,  param->move, '-');
 	else if (key == SDLK_PAGEUP)
-		move_offset(&org->y, '+', param->move);
+		move_upward(&param->scene.camera,  param->move, '+');
 	else if (key == SDLK_PAGEDOWN)
-		move_offset(&org->y, '-', param->move);
+		move_upward(&param->scene.camera,  param->move, '-');
 	else if (key == SDLK_DOWN)
-		move_offset(&org->z, '-', param->move);
+		move_forward(&param->scene.camera,  param->move, '-');
 	else if (key == SDLK_UP)
-		move_offset(&org->z, '+', param->move);
+		move_forward(&param->scene.camera,  param->move, '+');
 	return (1);
 }
 
