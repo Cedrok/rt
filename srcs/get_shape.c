@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/22 15:29:59 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/22 15:55:14 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,7 @@ static t_ray	get_ray_on_clic(int x, int y, t_camera *cam, t_all *param)
 void			select_shape(t_all *param, int x, int y)
 {
 	t_ray	ray;
-	int		id;
 
-	printf("x = %d, y = %d\n", x, y);
 	ray = get_ray_on_clic(x, y, &param->scene.camera, param);
-	id = get_nearest_shape_id(&ray, param->scene);
-	printf("id : %d\n", id);
+	param->ui.g_id = get_nearest_shape_id(&ray, param->scene);
 }

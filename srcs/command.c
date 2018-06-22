@@ -6,11 +6,17 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 10:01:24 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/22 15:21:53 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/22 16:58:15 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+static int	m_value(int value, int c)
+{
+	value += (c == '+') ? 1 : -1;
+	return (value);
+}
 
 void	on_move(void *p, int type)
 {
@@ -40,17 +46,33 @@ void	on_move(void *p, int type)
 	refresh_surf(param, param->data.filter);
 }
 
-/*
 void	move_shape(void *p, int type)
 {
 	t_all	*param;
+	t_scene	sc;
+	t_shape	*shape;
 	int		is_move;
 
 	param = (t_all*)p;
 	is_move = ((t_button*)param->ui.bc_lft->lst_obj[0]->obj)->type;
-	if (is_move == 0)
+	sc = param->scene;
+	if (is_move == 1)
 	{
-
+		while (sc.shape_lst != NULL)
+		{
+			shape = (t_shape*)sc.shape_lst->content;
+			if (shape->type == -1)
+				break ;
+			if (shape->id == param->ui.g_id)
+				break ;
+			sc.shape_lst = sc.shape_lst->next;
+		}
+		if (type == 0 || type == 1)
+			shape->origin.y = (type == 1) ? m_value(shape->origin.y, '-') : m_value(shape->origin.y, '+');
+		if (type == 2 || type == 4)
+			shape->origin.x = (type == 2) ? m_value(shape->origin.x, '-') : m_value(shape->origin.x, '+');
+		if (type == 3 || type == 5)
+			shape->origin.z = (type == 3) ? m_value(shape->origin.z, '-') : m_value(shape->origin.z, '+');
 		refresh_img(param);
 	}
-}*/
+}

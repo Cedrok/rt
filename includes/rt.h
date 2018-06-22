@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/22 14:46:13 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/22 16:32:00 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,6 +260,7 @@ typedef struct		s_ui
 	t_bloc			*bc_rght;
 	t_bloc			*bc_center;
 	t_bloc			*bc_lft;
+	int				g_id;
 }					t_ui;
 
 typedef struct		s_all
@@ -450,6 +451,7 @@ void				setf_btn_l(t_bloc *bc, t_all *param);
 void				select_shape(t_all *param, int x, int y);
 void				refresh_surf(void *delay, int type);
 void				cartoon_mode(void *p, int type);
+void				move_shape(void *p, int type);
 SDL_Renderer		*surface_2_rend(t_env *env);
 void				create_win_render(t_env *env);
 void				create_all_surface(t_env *env);
