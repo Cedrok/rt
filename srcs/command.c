@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 10:01:24 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/22 17:38:46 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/22 17:56:17 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,12 @@ void	move_shape(void *p, int type)
 	if (is_move == 1)
 	{
 		shape = get_shape_with_id(param->ui.g_id, sc);
-		if (type == 0 || type == 1)
-			shape->origin.y = (type == 1) ? m_value(shape->origin.y, '-') : m_value(shape->origin.y, '+');
+		if (type == 3 || type == 5)
+			shape->origin.y = (type == 3) ? m_value(shape->origin.y, '-') : m_value(shape->origin.y, '+');
 		if (type == 2 || type == 4)
 			shape->origin.x = (type == 2) ? m_value(shape->origin.x, '-') : m_value(shape->origin.x, '+');
-		if (type == 3 || type == 5)
-			shape->origin.z = (type == 5) ? m_value(shape->origin.z, '-') : m_value(shape->origin.z, '+');
+		if (type == 0 || type == 1)
+			shape->origin.z = (type == 1) ? m_value(shape->origin.z, '-') : m_value(shape->origin.z, '+');
 		refresh_img(param);
 	}
 }
@@ -91,12 +91,12 @@ int		rot_value(t_shape *shape, int value, char c)
 	double		modif;
 
 	modif = 5;
-	if (value == 0 || value == 1)
-		(c == '+') ? rotate_z(&mat, modif) : rotate_z(&mat, -modif);
-	if (value == 2 || value == 3)
-		(c == '+') ? rotate_x(&mat, modif) : rotate_x(&mat, -modif);
 	if (value == 4 || value == 5)
 		(c == '+') ? rotate_z(&mat, modif) : rotate_z(&mat, -modif);
+	if (value == 0 || value == 1)
+		(c == '+') ? rotate_x(&mat, modif) : rotate_x(&mat, -modif);
+	if (value == 2 || value == 3)
+		(c == '+') ? rotate_y(&mat, modif) : rotate_y(&mat, -modif);
 	shape->rot = matrix_mult(shape->rot, mat);
 	shape->inv_rot = matrix_inv(shape->rot);
 	return (1);
@@ -116,7 +116,7 @@ void	rot_shape(void *p, int type)
 	if (is_move == 1)
 	{
 		shape = get_shape_with_id(param->ui.g_id, sc);
-		if (type == 0 || type == 2 || type == 4)
+		if (type == 1 || type == 3 || type == 4)
 			rot_value(shape, type, '+');
 		else
 			rot_value(shape, type, '-');
