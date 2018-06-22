@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:33:37 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/22 16:45:24 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/22 17:33:26 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ static int		shadows(t_all *param, t_intersect inter, t_light light,
 	dir = vector_op(light.origin, rayorigin, '-');
 	ray = new_ray(rayorigin, normalize(dir));
 	ray.maxdist = get_length(dir);
-	ray.previous_inter_id = inter.shape_copy.id;
+	if (inter.shape_copy.opacity != 1.0)
+		ray.previous_inter_id = inter.shape_copy.id;
 	shad_color = shadow_transp(param, ray, *color);
 	if (shad_color != -1)
 		*color = interpolate(shad_color, *color,

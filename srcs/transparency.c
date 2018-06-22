@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 10:22:20 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/22 16:44:41 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/22 19:21:43 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,29 @@ int	shadow_transp(t_all *param, t_ray ray, int start_color)
 	int			shad_color;
 	int			next_point;
 	double		actual_dist;
+	int			actual_id;
 	t_intersect	inter;
 
 	shad_color = -1;
 	actual_dist = ray.maxdist;
+	actual_id = ray.previous_inter_id;
+	ray.previous_inter_id = -1;
 	if (get_nearest_intersection(&ray, param->scene, &inter, ray.maxdist))
 	{
 		if (inter.shape_copy.opacity == 1.0)
 			shad_color = 0;
 		else
 		{
+			//if (actual_id != inter.shape_copy.id)
+			//if (ray.normal_dir == 1)
+			//{
 			shad_color = interpolate(inter.shape_copy.color, 0,
 							inter.shape_copy.opacity);
 			shad_color = interpolate(start_color, shad_color,
 							inter.shape_copy.opacity);
+			//}
+			//else
+			//	shad_color = interpolate(start_color, 0, inter.shape_copy.opacity);
 			ray.origin = vector_op(ray.origin, vector_op(ray.direction,
 							new_vector_3d_unicoord(ray.maxdist), '*'), '+');
 			actual_dist -= ray.maxdist;
