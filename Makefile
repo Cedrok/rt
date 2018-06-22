@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/21 13:47:02 by cvautrai         ###   ########.fr        #
+#    Updated: 2018/06/22 11:31:25 by cvautrai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,7 @@ NAME	=	rt
 
 CC		=	gcc
 
-#CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address -fno-omit-frame-pointer
 CFLAGS	=	-Wall -Wextra -Werror -O3 -flto #-g -fsanitize=address -fno-omit-frame-pointer
-#CFLAGS=
 
 FW_PATH = frameworks
 
@@ -79,7 +77,8 @@ SRC_NAME= 	main.c				\
 			parser_grab_objs.c	\
 			parser_grab_extras.c\
 			change_sc.c			\
-			ui_filters.c
+			ui_filters.c		\
+			get_intersection.c
 
 OBJ_NAME=	$(SRC_NAME:.c=.o)
 
