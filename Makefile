@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/21 13:47:02 by cvautrai         ###   ########.fr        #
+#    Updated: 2018/06/22 13:13:02 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,9 @@ SRC_NAME= 	main.c				\
 			parser_grab_objs.c	\
 			parser_grab_extras.c\
 			change_sc.c			\
-			ui_filters.c
+			ui_filters.c		\
+			command.c			\
+			ui_command.c
 
 OBJ_NAME=	$(SRC_NAME:.c=.o)
 

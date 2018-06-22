@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_sc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 10:06:24 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/21 11:25:37 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/22 11:49:28 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,16 @@ static void	load_scene(t_all *param, char *path)
 	SDL_SetWindowTitle(param->env->win, param->env->title);
 }
 
-int			change_scene(t_all *param, int key)
+void		change_scene(void *p, int key)
 {
+	t_all	*param;
+
+	param = (t_all*)p;
 	if (key == SDLK_1)
 		load_scene(param, PATH1);
 	if (key == SDLK_2)
 		load_scene(param, PATH2);
 	if (key == SDLK_3)
 		load_scene(param, PATH3);
-	return (1);
+	refresh_img(param);
 }
