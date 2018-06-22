@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 11:55:34 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 14:34:05 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/21 14:31:01 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_ray	new_ray(t_vector3d o, t_vector3d d)
 	ret.direction = d;
 	ret.previous_inter_id = -1;
 	ret.normal_dir = 1;
+	ret.maxdist = DIST_MAX;
 	return (ret);
 }
 

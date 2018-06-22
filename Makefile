@@ -6,7 +6,11 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2018/06/22 13:13:02 by cpieri           ###   ########.fr        #
+=======
+#    Updated: 2018/06/22 13:09:27 by Pringles         ###   ########.fr        #
+>>>>>>> c315283f7284480e0a75250667f6ecf93d5f9b8a
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +19,7 @@ NAME	=	rt
 
 CC		=	gcc
 
-#CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address -fno-omit-frame-pointer
 CFLAGS	=	-Wall -Wextra -Werror -O3 -flto #-g -fsanitize=address -fno-omit-frame-pointer
-#CFLAGS=
 
 FW_PATH = frameworks
 
@@ -81,7 +83,9 @@ SRC_NAME= 	main.c				\
 			change_sc.c			\
 			ui_filters.c		\
 			command.c			\
-			ui_command.c
+			ui_command.c		\
+			get_intersection.c	\
+			cam_move.c
 
 OBJ_NAME=	$(SRC_NAME:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/22 13:12:25 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/22 13:42:08 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ typedef struct		s_ray
 	t_vector3d		direction;
 	int				previous_inter_id;
 	int				normal_dir;
+	double			maxdist;
 }					t_ray;
 
 typedef struct		s_intersect
@@ -320,6 +321,7 @@ t_vector3d			torus_normal(t_shape shape, t_vector3d intersection);
 */
 
 int					transparency(t_all *param, t_ray ray, int fastmode);
+int					shadow_transp(t_all * param, t_ray ray, int start_color);
 int					no_collisions(t_list *shape_lst,
 				t_intersect inter, t_light light);
 int					set_color(t_all *param, t_intersect intersection);
@@ -394,6 +396,9 @@ int					rotate_event(t_all *param, int key);
 
 t_vector3d			set_axe(int x, int y, t_camera *cam, SDL_Surface *surf);
 t_camera			update_cam(t_all *param);
+void				move_forward(t_camera *cam, double move, int sign);
+void				move_rightward(t_camera *cam, double move, int sign);
+void				move_upward(t_camera *cam, double move, int sign);
 
 /*
 **	Parse
