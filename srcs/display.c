@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/21 15:18:25 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/22 11:10:06 by Pringles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void		setup_multithread(t_all param)
 		{
 			ft_memcpy((void*)&tparam[i], (void*)&param, sizeof(t_all));
 			tparam[i].point = p;
-			tparam[i].maxy = p.y + (param.env->surf->h / THREAD_LIMIT);
+			tparam[i].maxy = (i < THREAD_LIMIT - 1 ? p.y + (param.env->surf->h / THREAD_LIMIT) : param.env->surf->h);
 			pthread_create(&thread_id[i], NULL, raytrace_thread, &tparam[i]);
 			i++;
 		}
