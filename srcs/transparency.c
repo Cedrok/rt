@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 10:22:20 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/21 16:27:20 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/21 16:54:52 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ int	shadow_transp(t_all *param, t_ray ray, int start_color)
 							new_vector_3d_unicoord(ray.maxdist), '*'), '+');
 			//ray.previous_inter_id = inter.shape_copy.id;
 			next_point = shadow_transp(param, ray, shad_color);
-			shad_color = interpolate((next_point == -1 ? 0 : next_point),
-							shad_color, inter.shape_copy.opacity);
+			shad_color = next_point == -1 ? shad_color : next_point;
+			//shad_color = interpolate(shad_color, 0, inter.shape_copy.opacity);
 		}
 	}
-	return (interpolate(0, shad_color, inter.shape_copy.opacity));
+	return (shad_color);
 }
