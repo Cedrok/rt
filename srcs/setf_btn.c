@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:57:39 by bocal             #+#    #+#             */
-/*   Updated: 2018/06/22 18:14:24 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/23 16:58:33 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ static t_left	get_left_btn(t_bloc *bc)
 	l.rot_3 = ((t_button*)bc->lst_obj[10]->obj);
 	l.rot_4 = ((t_button*)bc->lst_obj[11]->obj);
 	l.rot_5 = ((t_button*)bc->lst_obj[12]->obj);
+	l.del = ((t_button*)bc->lst_obj[13]->obj);
 	return (l);
 }
 
@@ -90,4 +91,5 @@ void	setf_btn_l(t_bloc *bc, t_all *param)
 	set_btn_callback(l.rot_3, &rot_shape, param, 3);
 	set_btn_callback(l.rot_4, &rot_shape, param, 4);
 	set_btn_callback(l.rot_5, &rot_shape, param, 5);
+	set_btn_callback(l.del, &del_shape, param, 0);
 }

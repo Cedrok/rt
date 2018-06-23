@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/22 18:23:39 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/23 15:11:10 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,7 @@ typedef struct		s_left
 	t_button		*mv_3;
 	t_button		*mv_4;
 	t_button		*mv_5;
+	t_button		*del;
 }					t_left;
 
 typedef struct		s_center
@@ -439,6 +440,7 @@ t_shape				default_shape(int i);
 void				new_spot(void *p, int c);
 t_light				default_light(void);
 t_vector4d			size_rend(int w, int h);
+void				delshape_func(void *ptr, size_t ok);
 void				free_ui(t_all *param);
 void				draw_rect(t_vector4d pos, t_color c, SDL_Renderer *rend);
 void				put_string(t_label *str, t_vector4d pos_p,
@@ -466,5 +468,6 @@ t_bloc				*create_bloc_filter(int w, int);
 t_bloc				*create_bloc_left(int w, int h);
 void				event_button(t_all *param, int x, int y);
 void				on_move(void *p, int type);
+void				del_shape(void *p, int type);
 
 #endif

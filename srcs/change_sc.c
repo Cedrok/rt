@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 10:06:24 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/22 14:56:35 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/23 14:43:19 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	dellight_func(void *ptr, size_t ok)
 	(void)ok;
 }
 
-static void	delshape_func(void *ptr, size_t ok)
+void	delshape_func(void *ptr, size_t ok)
 {
 	t_shape *shape;
 

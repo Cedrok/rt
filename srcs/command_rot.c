@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 18:15:21 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/22 18:26:44 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/23 16:35:11 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,33 @@ void	rot_shape(void *p, int type)
 			rot_value(shape, type, '-');
 		refresh_img(param);
 	}
+}
+
+void	del_shape(void *p, int type)
+{
+	t_all	*param;
+	t_shape	*shape;
+	t_list	*lst;
+	t_list	*tmp;
+
+	param = (t_all*)p;
+	(void)type;
+	lst = param->scene.shape_lst;
+	while (lst != NULL)
+	{
+		if (lst->next != NULL)
+			shape = (t_shape*)lst->next->content;
+		else
+			break ;
+		if (shape->id == -1)
+			break ;
+		if (shape->id == param->ui.g_id)
+		{
+			tmp = lst->next;
+			lst->next = lst->next->next;
+			ft_lstdelone(&tmp, &delshape_func);
+		}
+		lst = lst->next;
+	}
+	refresh_img(param);
 }

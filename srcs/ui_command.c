@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 12:03:22 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/22 15:21:19 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/23 16:54:56 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,20 @@ static t_left	left_obj(t_vector4d p_pos)
 	t_left		l;
 	t_color		brun;
 
-	brun = new_color(101, 0x42, 0);
+	brun = new_color(158, 158, 158);
 	l.b_bool = new_button(p_pos, new_color(0x42, 0, 0x19),
 		new_vector_4d(90, 5, 2, 10), HORIZONTAL_CENTER);
-	l.rot_0 = new_button(p_pos, brun, new_vector_4d(19, 5, 0, 34.5),
+	l.rot_0 = new_button(p_pos, brun, new_vector_4d(15, 4.5, 0, 34.5),
 		HORIZONTAL_CENTER);
-	l.rot_1 = new_button(p_pos, brun, new_vector_4d(19, 5, 0, 42),
+	l.rot_1 = new_button(p_pos, brun, new_vector_4d(15, 4.5, 0, 42),
 		HORIZONTAL_CENTER);
-	l.rot_2 = new_button(p_pos, brun, new_vector_4d(19, 5, 12, 42),
+	l.rot_2 = new_button(p_pos, brun, new_vector_4d(15, 4.5, 12, 42),
 		LEFT_UP_CONER);
-	l.rot_3 = new_button(p_pos, brun, new_vector_4d(19, 5, 2, 42),
+	l.rot_3 = new_button(p_pos, brun, new_vector_4d(15, 4.5, 2, 42),
 		RIGHT_UP_CONER);
-	l.rot_4 = new_button(p_pos, brun, new_vector_4d(19, 5, 12, 34.5),
+	l.rot_4 = new_button(p_pos, brun, new_vector_4d(15, 4.5, 12, 34.5),
 		LEFT_UP_CONER);
-	l.rot_5 = new_button(p_pos, brun, new_vector_4d(19, 5, 2, 34.5),
+	l.rot_5 = new_button(p_pos, brun, new_vector_4d(15, 4.5, 2, 34.5),
 		RIGHT_UP_CONER);
 	return (l);
 }
@@ -39,7 +39,7 @@ static t_left	left_obj1(t_vector4d p_pos, t_left l)
 {
 	t_color		brun;
 
-	brun = new_color(101, 0x42, 0);
+	brun = new_color(158, 158, 158);
 	l.mv_0 = new_button(p_pos, brun, new_vector_4d(15, 4.5, 31, 17.5),
 		LEFT_UP_CONER);
 	l.mv_2 = new_button(p_pos, brun, new_vector_4d(15, 4.5, 8, 25),
@@ -52,6 +52,8 @@ static t_left	left_obj1(t_vector4d p_pos, t_left l)
 		LEFT_UP_CONER);
 	l.mv_5 = new_button(p_pos, brun, new_vector_4d(15, 4.5, 77, 17.5),
 		LEFT_UP_CONER);
+	l.del = new_button(p_pos, new_color(0xcf, 0x00, 0x19),
+		new_vector_4d(90, 5, 2, 90), HORIZONTAL_CENTER);
 	return (l);
 }
 
@@ -70,6 +72,7 @@ static void		ladd_2_lst(t_bloc *bc, t_left l)
 	bc->lst_obj[10] = new_obj(l.rot_3, sizeof(l.rot_3), BUTTON);
 	bc->lst_obj[11] = new_obj(l.rot_4, sizeof(l.rot_4), BUTTON);
 	bc->lst_obj[12] = new_obj(l.rot_5, sizeof(l.rot_5), BUTTON);
+	bc->lst_obj[13] = new_obj(l.del, sizeof(l.del), BUTTON);
 }
 
 t_bloc			*create_bloc_left(int w, int h)
@@ -85,10 +88,11 @@ t_bloc			*create_bloc_left(int w, int h)
 		new_vector_4d(15, 96, 1.5f, 2), LEFT_UP_CONER);
 	set_title_bloc(bc, "Commands :", new_vector_4d(96, 10, 2, 2),
 		new_color(255, 255, 255));
-	init_lstobj(bc, 13);
+	init_lstobj(bc, 14);
 	l = left_obj(bc->pos);
 	l = left_obj1(bc->pos, l);
 	set_title_btn(l.b_bool, "Move Obj: OFF", btn_s, white);
+	set_title_btn(l.del, "Delete Obj", btn_s, white);
 	ladd_2_lst(bc, l);
 	return (bc);
 }
