@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 11:06:00 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/22 13:46:44 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/23 21:37:46 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static t_bloc	*create_bloc_center(int w, int h)
 		new_vector_4d(63, 10, 1.5f, 2), HORIZONTAL_CENTER);
 	set_title_bloc(bc, "Add Objects :", new_vector_4d(96, 70, 2, 2),
 		new_color(255, 255, 255));
+	change_bc_fs(new_vector_2d(w, h), bc, new_vector_4d(96, 70, 2, 2));
 	init_lstobj(bc, 5);
 	c.btn_sph = new_button(bc->pos, blue, new_vector_4d(3.5, 38, 37.5, -3), p);
 	c.btn_cyl = new_button(bc->pos, blue, new_vector_4d(3.5, 38, 42.5, -3), p);

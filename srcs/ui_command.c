@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 12:03:22 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/23 16:54:56 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/23 21:38:35 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,14 @@ t_bloc			*create_bloc_left(int w, int h)
 		new_vector_4d(15, 96, 1.5f, 2), LEFT_UP_CONER);
 	set_title_bloc(bc, "Commands :", new_vector_4d(96, 10, 2, 2),
 		new_color(255, 255, 255));
+	change_bc_fs(new_vector_2d(w, h), bc, new_vector_4d(96, 10, 2, 2));
 	init_lstobj(bc, 14);
 	l = left_obj(bc->pos);
 	l = left_obj1(bc->pos, l);
 	set_title_btn(l.b_bool, "Move Obj: OFF", btn_s, white);
 	set_title_btn(l.del, "Delete Obj", btn_s, white);
+	change_btn_fs(new_vector_2d(w, h), l.b_bool, btn_s);
+	change_btn_fs(new_vector_2d(w, h), l.del, btn_s);
 	ladd_2_lst(bc, l);
 	return (bc);
 }

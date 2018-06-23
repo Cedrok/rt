@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/01 15:43:04 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/21 14:14:20 by cvautrai         ###   ########.fr        #
+#    Updated: 2018/06/23 21:39:08 by cpieri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS = 		matrix.c			\
 			colors.c			\
 			button.c			\
 			bloc.c				\
+			bloc_2.c			\
 			label.c				\
 			vector_2d_op.c		\
 			objs.c

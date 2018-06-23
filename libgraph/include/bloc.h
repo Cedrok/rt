@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 10:42:20 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/20 19:44:43 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/23 21:43:45 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,7 @@ t_bloc				*new_bloc(t_vector2d w_sz, t_color c,
 		t_vector4d r_m, int pos);
 t_obj				*new_obj(void *obj, size_t obj_size, int type);
 int					init_lstobj(t_bloc *bloc, int size);
+void				change_bc_fs(t_vector2d win_s, t_bloc *bc, t_vector4d pos);
+void				change_lb_fs(t_vector2d win_s, t_label *lb, t_bloc *bc);
 
 #endif

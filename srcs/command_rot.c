@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 18:15:21 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/23 16:35:11 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/23 19:07:20 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,21 @@ void	rot_shape(void *p, int type)
 	}
 }
 
+static void	check_first(t_list **lst, int id)
+{
+	t_shape	*shape;
+	t_list	*tmp;
+
+	shape = (t_shape*)(*lst)->content;
+	if (shape->id == id)
+	{
+		tmp = *lst;
+		(*lst) = (*lst)->next;
+		tmp->next = NULL;
+		ft_lstdelone(&tmp, &delshape_func);
+	}
+}
+
 void	del_shape(void *p, int type)
 {
 	t_all	*param;
@@ -59,14 +74,13 @@ void	del_shape(void *p, int type)
 
 	param = (t_all*)p;
 	(void)type;
+	check_first(&param->scene.shape_lst, param->ui.g_id);
 	lst = param->scene.shape_lst;
 	while (lst != NULL)
 	{
 		if (lst->next != NULL)
 			shape = (t_shape*)lst->next->content;
-		else
-			break ;
-		if (shape->id == -1)
+		if (shape->id == -1 || lst->next == NULL)
 			break ;
 		if (shape->id == param->ui.g_id)
 		{
