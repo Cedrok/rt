@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 18:15:21 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/23 19:07:20 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/24 16:38:02 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,13 @@ void	del_shape(void *p, int type)
 		lst = lst->next;
 	}
 	refresh_img(param);
+}
+
+void	dselect(void *p, int type)
+{
+	t_all	*param;
+
+	(void)type;
+	param = (t_all*)p;
+	param->ui.g_id = -1;
 }
