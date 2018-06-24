@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fastmode_complete.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Pringles <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 09:49:20 by Pringles          #+#    #+#             */
-/*   Updated: 2018/06/22 10:55:59 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/24 15:25:07 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 #include <stdlib.h>
 #include <math.h>
 #include <pthread.h>
+
+void		btn_fastmode(void *p, int type)
+{
+	t_all	*param;
+
+	param = (t_all*)p;
+	(void)type;
+	param->data.fastmode *= -1;
+	refresh_img(param);
+}
 
 static void	color_closest_point(t_all *param, t_point p, int w)
 {

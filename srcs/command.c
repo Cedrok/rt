@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 10:01:24 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/23 16:50:29 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/24 14:27:09 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	on_move(void *p, int type)
 	on->type = (type == 1) ? 0 : 1;
 	if (type == 0)
 	{
-		on->color = new_color(0, 0x42, 0x19);
+		on->color = new_color(42, 101, 0x19);
 		free(on->title.title);
 		set_title_btn(on, "Move Obj: ON", btn_s, white);
 		color_btn_mv(new_color(0xcf, 111, 125), param->ui.bc_lft);
