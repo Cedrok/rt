@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 11:55:34 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/21 14:31:01 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/24 17:02:04 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_light	new_light(t_vector3d origin, double intensity, int color)
 	ret.origin = origin;
 	ret.intensity = intensity;
 	ret.color = color;
+	ret.is_hidden = 0;
 	return (ret);
 }
 

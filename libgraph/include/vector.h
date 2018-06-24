@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 13:03:51 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/17 09:42:04 by bspindle         ###   ########.fr       */
+/*   Updated: 2018/06/24 17:54:02 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_vector3d		lambda_product_d3(double lambda, t_vector3d vector);
 t_vector2d		lambda_product_d2(double lambda, t_vector2d vector);
 double			dotprod(t_vector3d a, t_vector3d b);
 double			dotprod_2d(t_vector2d a, t_vector2d b);
+double			distance_d3(t_vector3d a, t_vector3d b);
 double			get_length(t_vector3d v);
 
 #endif
