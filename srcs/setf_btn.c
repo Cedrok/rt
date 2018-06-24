@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:57:39 by bocal             #+#    #+#             */
-/*   Updated: 2018/06/24 16:39:47 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/24 16:56:32 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,18 @@ void	setf_btn_r(t_bloc *bc, t_all *param)
 	r.btn_neg = ((t_button*)bc->lst_obj[2]->obj);
 	r.btn_sepia = ((t_button*)bc->lst_obj[3]->obj);
 	r.btn_cart = ((t_button*)bc->lst_obj[4]->obj);
+	r.btn_alias = ((t_button*)bc->lst_obj[5]->obj);
 	r.btn_shot = ((t_button*)bc->lst_obj[7]->obj);
 	r.btn_fst = ((t_button*)bc->lst_obj[8]->obj);
 	r.btn_sc1 = ((t_button*)bc->lst_obj[9]->obj);
 	r.btn_sc2 = ((t_button*)bc->lst_obj[10]->obj);
 	r.btn_sc3 = ((t_button*)bc->lst_obj[11]->obj);
-	set_btn_callback(r.btn_def, &cartoon_mode, NULL, 4);
+	set_btn_callback(r.btn_def, &cartoon_mode, NULL, 5);
 	set_btn_callback(r.btn_sepia, &refresh_surf, NULL, 0);
 	set_btn_callback(r.btn_gray, &refresh_surf, NULL, 2);
 	set_btn_callback(r.btn_neg, &refresh_surf, NULL, 1);
-	set_btn_callback(r.btn_cart, &cartoon_mode, NULL, 3);
+	set_btn_callback(r.btn_cart, &cartoon_mode, NULL, 4);
+	set_btn_callback(r.btn_alias, &refresh_surf, NULL, 3);
 	set_btn_callback(r.btn_shot, &screenshot, NULL, 0);
 	set_btn_callback(r.btn_fst, &btn_fastmode, NULL, 0);
 	set_btn_callback(r.btn_sc1, &change_scene, NULL, SDLK_1);

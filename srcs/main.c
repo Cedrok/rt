@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 15:09:23 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/21 10:59:01 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/24 16:59:26 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static t_all	init_param(t_all param)
 	clear_render(param.env);
 	param.env->loop = 1;
 	param.data.fastmode = 1;
-	param.data.filter = 4;
+	param.data.filter = 5;
 	param.scene.camera = update_cam(&param);
 	param.move = 0.1f;
 	return (param);
