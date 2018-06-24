@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:33:37 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/24 15:21:40 by bspindle         ###   ########.fr       */
+/*   Updated: 2018/06/24 15:47:04 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ static int		brillance(int start, t_intersect inter, t_light light,
 
 	lightdir = normalize(vector_op(light.origin, inter.point, '-'));
 	intensity = 2 * dotprod(normalize(inter.normal), lightdir);
-	reflect = vector_op(new_vector_3d_unicoord(intensity),
-			normalize(inter.normal), '*');
+	reflect = vector_op(new_vector_3d_unicoord(intensity), inter.normal, '*');
 	reflect = vector_op(reflect, lightdir, '-');
 	intensity = dotprod(reflect,
 			vector_op(inter.dir_to_cam, new_vector_3d_unicoord(-1), '*'));

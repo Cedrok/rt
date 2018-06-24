@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/24 16:07:09 by bspindle         ###   ########.fr       */
+/*   Updated: 2018/06/24 16:47:06 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,7 @@ typedef struct		s_left
 	t_button		*mv_3;
 	t_button		*mv_4;
 	t_button		*mv_5;
+	t_button		*dsel;
 	t_button		*del;
 }					t_left;
 
@@ -213,6 +214,7 @@ typedef struct		s_right
 	t_button		*btn_neg;
 	t_button		*btn_def;
 	t_button		*btn_cart;
+	t_button		*btn_alias;
 	t_label			*opt;
 	t_button		*btn_shot;
 	t_button		*btn_fst;
@@ -471,5 +473,6 @@ void				event_button(t_all *param, int x, int y);
 void				on_move(void *p, int type);
 void				del_shape(void *p, int type);
 void				btn_fastmode(void *p, int type);
+void				dselect(void *p, int type);
 
 #endif
