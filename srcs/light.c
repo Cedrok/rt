@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:33:37 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/24 15:47:04 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/24 22:24:14 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int		brillance(int start, t_intersect inter, t_light light,
 	intensity = intensity < 0 ? 0 : intensity;
 	intensity *= inter.shape_copy.brillance * light.intensity;
 	intensity = ftb_clamp(intensity, 0, 1);
-	if (filter == 3)
+	if (filter == 4)
 		intensity = cartoon(intensity);
 	if ((angle = acos(dotprod(normalize(inter.normal), lightdir))) < 0.2)
 	{
@@ -110,7 +110,7 @@ int				set_color(t_all *param, t_intersect intersection)
 		if (light.color == -1)
 			break ;
 		intensity = get_intensity(intersection, light, param->data);
-		if (param->data.filter == 3)
+		if (param->data.filter == 4)
 			intensity = cartoon(intensity);
 		tmp = interpolate(0, intersection.shape_copy.color, intensity);
 		if (shadows(param, intersection, light, &tmp) == -1)
