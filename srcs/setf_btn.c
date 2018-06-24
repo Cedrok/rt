@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:57:39 by bocal             #+#    #+#             */
-/*   Updated: 2018/06/24 15:25:00 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/24 16:06:49 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	setf_btn_r(t_bloc *bc, t_all *param)
 	r.btn_neg = ((t_button*)bc->lst_obj[2]->obj);
 	r.btn_sepia = ((t_button*)bc->lst_obj[3]->obj);
 	r.btn_cart = ((t_button*)bc->lst_obj[4]->obj);
-	r.btn_shot = ((t_button*)bc->lst_obj[6]->obj);
-	r.btn_fst = ((t_button*)bc->lst_obj[7]->obj);
-	r.btn_sc1 = ((t_button*)bc->lst_obj[8]->obj);
-	r.btn_sc2 = ((t_button*)bc->lst_obj[9]->obj);
-	r.btn_sc3 = ((t_button*)bc->lst_obj[10]->obj);
+	r.btn_shot = ((t_button*)bc->lst_obj[7]->obj);
+	r.btn_fst = ((t_button*)bc->lst_obj[8]->obj);
+	r.btn_sc1 = ((t_button*)bc->lst_obj[9]->obj);
+	r.btn_sc2 = ((t_button*)bc->lst_obj[10]->obj);
+	r.btn_sc3 = ((t_button*)bc->lst_obj[11]->obj);
 	set_btn_callback(r.btn_def, &cartoon_mode, param, 4);
 	set_btn_callback(r.btn_sepia, &refresh_surf, param, 0);
 	set_btn_callback(r.btn_gray, &refresh_surf, param, 2);

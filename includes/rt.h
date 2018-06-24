@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/24 15:20:54 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/24 16:03:34 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,6 +213,7 @@ typedef struct		s_right
 	t_button		*btn_neg;
 	t_button		*btn_def;
 	t_button		*btn_cart;
+	t_button		*btn_alias;
 	t_label			*opt;
 	t_button		*btn_shot;
 	t_button		*btn_fst;
