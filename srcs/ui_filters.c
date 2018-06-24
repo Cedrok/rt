@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 11:52:05 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/24 16:06:30 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/24 21:08:39 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ static t_right	right_obj(t_vector4d p_pos)
 		new_vector_4d(90, 5, 2, 47.5), HORIZONTAL_CENTER);
 	r.opt = new_m_label("Tools :", new_color(0xff, 0xff, 0xff),
 		new_vector_4d(96, 10, 2, 55), p_pos.w);
-	r.btn_shot = new_button(p_pos, new_color(42, 0x101, 0x19),
+	r.btn_shot = new_button(p_pos, new_color(0, 0x95, 0xaa),
 		new_vector_4d(90, 5, 2, 62.5), HORIZONTAL_CENTER);
-	r.btn_fst = new_button(p_pos, new_color(42, 0x101, 0x19),
+	r.btn_fst = new_button(p_pos, new_color(0, 0x95, 0xaa),
 		new_vector_4d(90, 5, 2, 70), HORIZONTAL_CENTER);
-	r.btn_sc1 = new_button(p_pos, new_color(42, 0x101, 0x19),
+	r.btn_sc1 = new_button(p_pos, new_color(0, 0x95, 0xaa),
 		new_vector_4d(90, 5, 2, 77.5), HORIZONTAL_CENTER);
-	r.btn_sc2 = new_button(p_pos, new_color(42, 0x101, 0x19),
+	r.btn_sc2 = new_button(p_pos, new_color(0, 0x95, 0xaa),
 		new_vector_4d(90, 5, 2, 85), HORIZONTAL_CENTER);
-	r.btn_sc3 = new_button(p_pos, new_color(42, 0x101, 0x19),
+	r.btn_sc3 = new_button(p_pos, new_color(0, 0x95, 0xaa),
 		new_vector_4d(90, 5, 2, 92.5), HORIZONTAL_CENTER);
 	return (r);
 }

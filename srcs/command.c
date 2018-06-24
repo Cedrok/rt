@@ -6,20 +6,31 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 10:01:24 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/24 14:27:09 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/24 21:45:30 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static void	color_btn_mv(t_color new_color, t_bloc *bc)
+static void	color_btn_mv(int on, t_bloc *bc)
 {
 	int		i;
+	t_color	color;
 
 	i = 1;
+	color = new_color(158, 158, 158);
 	while (i < 13)
 	{
-		((t_button*)bc->lst_obj[i]->obj)->color = new_color;
+		if (on == 0)
+		{
+			if (i == 3 || i == 5 || i == 8 || i == 7)
+				color = new_color(0xd6, 0x11, 0x11);
+			else if (i == 1 || i == 2 || i == 11 || i == 12)
+				color = new_color(0x00, 0x95, 0xaa);
+			else if (i == 6 || i == 4 || i == 9 || i == 10)
+				color = new_color(0x39, 0xb5, 0x4a);
+		}
+		((t_button*)bc->lst_obj[i]->obj)->color = color;
 		i++;
 	}
 }
@@ -47,14 +58,16 @@ void	on_move(void *p, int type)
 		on->color = new_color(42, 101, 0x19);
 		free(on->title.title);
 		set_title_btn(on, "Move Obj: ON", btn_s, white);
-		color_btn_mv(new_color(0xcf, 111, 125), param->ui.bc_lft);
+		change_btn_fs(new_vector_2d(param->env->w, param->env->h), on, btn_s);
+		color_btn_mv(0, param->ui.bc_lft);
 	}
 	if (type == 1)
 	{
 		on->color = new_color(0x42, 0, 0x19);
 		free(on->title.title);
 		set_title_btn(on, "Move Obj: OFF", btn_s, white);
-		color_btn_mv(new_color(158, 158, 158), param->ui.bc_lft);
+		change_btn_fs(new_vector_2d(param->env->w, param->env->h), on, btn_s);
+		color_btn_mv(1, param->ui.bc_lft);
 	}
 	refresh_surf(param, param->data.filter);
 }

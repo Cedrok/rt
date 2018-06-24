@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/24 16:47:06 by bspindle         ###   ########.fr       */
+/*   Updated: 2018/06/24 21:41:51 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,8 @@ typedef struct		s_perlin_stuff
 typedef struct		s_left
 {
 	t_button		*b_bool;
+	t_label			*trot;
+	t_label			*tran;
 	t_button		*rot_0;
 	t_button		*rot_1;
 	t_button		*rot_2;
