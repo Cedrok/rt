@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:33:37 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/22 17:33:26 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/24 15:21:40 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,26 @@ static int		brillance(int start, t_intersect inter, t_light light,
 	t_vector3d	lightdir;
 	double		intensity;
 	t_vector3d	reflect;
+	double		angle;
 
-	lightdir = vector_op(light.origin, inter.point, '-');
-	intensity = 2 * dotprod(inter.normal, lightdir);
-	reflect = vector_op(new_vector_3d_unicoord(intensity), inter.normal, '*');
+	lightdir = normalize(vector_op(light.origin, inter.point, '-'));
+	intensity = 2 * dotprod(normalize(inter.normal), lightdir);
+	reflect = vector_op(new_vector_3d_unicoord(intensity),
+			normalize(inter.normal), '*');
 	reflect = vector_op(reflect, lightdir, '-');
 	intensity = dotprod(reflect,
-			vector_op(inter.dir_to_cam, new_vector_3d_unicoord(-1), '*')) - 0.5;
+			vector_op(inter.dir_to_cam, new_vector_3d_unicoord(-1), '*'));
 	intensity = intensity < 0 ? 0 : intensity;
-	intensity = pow(intensity, 14 / (get_length(lightdir) + 0.1));
 	intensity *= inter.shape_copy.brillance * light.intensity;
 	intensity = ftb_clamp(intensity, 0, 1);
 	if (filter == 3)
 		intensity = cartoon(intensity);
-	return (interpolate(start, light.color, intensity));
+	if ((angle = acos(dotprod(normalize(inter.normal), lightdir))) < 0.2)
+	{
+		return (interpolate(start, light.color, intensity *
+				((0.2 - angle) * 250)));
+	}
+	return (start);
 }
 
 static int		shadows(t_all *param, t_intersect inter, t_light light,
