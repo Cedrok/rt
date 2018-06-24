@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/22 18:23:10 by cpieri           ###   ########.fr        #
+#    Updated: 2018/06/24 16:04:54 by bspindle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,8 @@ SRC_NAME= 	main.c				\
 			get_intersection.c	\
 			cam_move.c			\
 			get_shape.c			\
-			command_rot.c
+			command_rot.c		\
+			anti_aliasing_mode.c
 
 
 OBJ_NAME=	$(SRC_NAME:.c=.o)
