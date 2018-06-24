@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/24 21:41:51 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/24 22:13:14 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct		s_light
 	t_vector3d		origin;
 	double			intensity;
 	int				color;
+	int				is_hidden;
 }					t_light;
 
 typedef struct		s_textunit
@@ -360,6 +361,12 @@ void				limit_cone(t_shape shape, t_ray ray,
 		double *t, t_calcunit calc);
 void				limit_plane(t_shape shape, t_ray ray,
 		double *t, double dist);
+
+/*
+**	Is in checker
+*/
+
+void				is_light_in(t_scene *scene);
 
 /*
 **	Img file

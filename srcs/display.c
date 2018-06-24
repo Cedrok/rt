@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/22 11:31:34 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/24 18:01:04 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void			setup_multithread(t_all param)
 
 	i = 0;
 	p = new_point(-1, -1, 0);
+//	is_light_in(&param.scene);
 	param.colorarray = ft_memalloc((param.env->surf->w * param.env->surf->h)
 			* sizeof(int));
 	while (++p.y < param.env->surf->h)
