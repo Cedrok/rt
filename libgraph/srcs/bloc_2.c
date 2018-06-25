@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 21:35:38 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/23 21:45:40 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/25 08:39:30 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		change_bc_fs(t_vector2d win_s, t_bloc *bc, t_vector4d pos)
 	if (format >= 1.33)
 		font_size = (bc->pos.w * pos.y / 100) / 3;
 	else
-		font_size = ((bc->pos.w * pos.y / 100) / 3) * 0.8;
+		font_size = ((bc->pos.w * pos.y / 100) / 3) * 0.7;
 	bc->title.font_size = font_size;
 }
 
@@ -34,6 +34,6 @@ void		change_lb_fs(t_vector2d win_s, t_label *lb, t_bloc *bc)
 	if (format >= 1.33)
 		font_size = (bc->pos.w * lb->ratio_marge.y / 100) / 3;
 	else
-		font_size = ((bc->pos.w * lb->ratio_marge.y / 100) / 3) * 0.8;
+		font_size = ((bc->pos.w * lb->ratio_marge.y / 100) / 3) * 0.7;
 	lb->font_size = font_size;
 }

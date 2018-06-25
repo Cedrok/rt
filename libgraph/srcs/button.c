@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 13:24:25 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/24 18:20:47 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/25 08:37:38 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ void		change_btn_fs(t_vector2d win_s, t_button *btn, t_vector4d pos)
 	if (format >= 1.33)
 		font_size = (btn->pos.w * pos.y / 100);
 	else
-		font_size = (btn->pos.w * pos.y / 100) * 0.8;
+		font_size = (btn->pos.w * pos.y / 100) * 0.7;
 	btn->title.font_size = font_size;
 }
