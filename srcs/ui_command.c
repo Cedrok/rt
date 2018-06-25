@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 12:03:22 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/24 22:10:50 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/25 08:36:06 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void		set_lft_titles(t_left l, t_vector4d btn_s, t_color white,
 	set_title_btn(l.mv_3, "Y-", btn_s, white);
 	set_title_btn(l.mv_4, "X+", btn_s, white);
 	set_title_btn(l.mv_5, "Y+", btn_s, white);
+	change_btn_fs(win_s, l.b_bool, btn_s);
 	change_btn_fs(win_s, l.mv_0, btn_s);
 	change_btn_fs(win_s, l.mv_1, btn_s);
 	change_btn_fs(win_s, l.mv_2, btn_s);
@@ -39,7 +40,6 @@ static void		set_lft_titles(t_left l, t_vector4d btn_s, t_color white,
 	change_btn_fs(win_s, l.rot_3, btn_s);
 	change_btn_fs(win_s, l.rot_4, btn_s);
 	change_btn_fs(win_s, l.rot_5, btn_s);
-	change_btn_fs(win_s, l.del, btn_s);
 }
 
 static t_left	left_obj(t_vector4d p_pos)
@@ -131,14 +131,14 @@ t_bloc			*create_bloc_left(int w, int h)
 	init_lstobj(bc, 17);
 	l = left_obj(bc->pos);
 	l = left_obj1(bc->pos, l);
-	set_lft_titles(l, btn_s, white, new_vector_2d(w, h));
 	set_title_btn(l.b_bool, "Move Obj: OFF", btn_s, white);
 	set_title_btn(l.dsel, "Deselect Obj", btn_s, white);
 	set_title_btn(l.del, "Delete Obj", btn_s, white);
-	change_btn_fs(new_vector_2d(w, h), l.b_bool, btn_s);
 	change_btn_fs(new_vector_2d(w, h), l.dsel, btn_s);
+	change_btn_fs(new_vector_2d(w, h), l.del, btn_s);
 	change_lb_fs(new_vector_2d(w, h), l.trot, bc);
 	change_lb_fs(new_vector_2d(w, h), l.tran, bc);
+	set_lft_titles(l, btn_s, white, new_vector_2d(w, h));
 	ladd_2_lst(bc, l);
 	return (bc);
 }
