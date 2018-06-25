@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 11:35:29 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/21 10:17:55 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/25 09:11:44 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,17 @@ void		ft_abort_free(char *msg, char *line)
 {
 	free(line);
 	ft_abort(msg);
+}
+
+int		is_in(t_shape shape, t_light light)
+{
+	int		(*is_in[10])(t_shape, t_light);
+
+	is_in[SPHERE] = &is_in_sphere;
+	is_in[CYLINDER] = &is_in_cylinder;
+	is_in[CONE] = &is_in_cone;
+	is_in[PLANE] = &is_in_plane;
+	return (is_in[shape.type](shape, light));
 }
 
 t_vector3d	normals(t_shape shape, t_vector3d point)

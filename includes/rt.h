@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/24 22:13:14 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/25 09:13:17 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -366,7 +366,11 @@ void				limit_plane(t_shape shape, t_ray ray,
 **	Is in checker
 */
 
-void				is_light_in(t_scene *scene);
+void				is_light_in(t_list *light_lst, t_list *shape_lst);
+int					is_in_sphere(t_shape sphere, t_light light);
+int					is_in_cylinder(t_shape cyl, t_light light);
+int					is_in_cone(t_shape cone, t_light light);
+int					is_in_plane(t_shape plane, t_light light);
 
 /*
 **	Img file
@@ -387,6 +391,7 @@ double				get_vect_dist(t_vector3d a, t_vector3d b);
 double				magnitude(t_vector3d v);
 t_vector3d			normals(t_shape shape, t_vector3d point);
 int					collisions(t_shape shape, t_ray ray, double *t);
+int					is_in(t_shape shape, t_light light);
 void				int_array_to_surf(SDL_Surface *surf, int *colorarray);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:33:37 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/24 22:24:14 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/25 09:02:12 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,13 +109,16 @@ int				set_color(t_all *param, t_intersect intersection)
 		light = *(t_light*)scene.light_lst->content;
 		if (light.color == -1)
 			break ;
-		intensity = get_intensity(intersection, light, param->data);
-		if (param->data.filter == 4)
-			intensity = cartoon(intensity);
-		tmp = interpolate(0, intersection.shape_copy.color, intensity);
-		if (shadows(param, intersection, light, &tmp) == -1)
-			tmp = brillance(tmp, intersection, light, param->data.filter);
-		ret = fuse(ret, tmp, light.color);
+		if (!light.is_hidden)
+		{
+			intensity = get_intensity(intersection, light, param->data);
+			if (param->data.filter == 4)
+				intensity = cartoon(intensity);
+			tmp = interpolate(0, intersection.shape_copy.color, intensity);
+			if (shadows(param, intersection, light, &tmp) == -1)
+				tmp = brillance(tmp, intersection, light, param->data.filter);
+			ret = fuse(ret, tmp, light.color);
+		}
 		scene.light_lst = scene.light_lst->next;
 	}
 	return (ret);
