@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:33:37 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/25 09:21:04 by bspindle         ###   ########.fr       */
+/*   Updated: 2018/06/25 21:23:59 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static double	get_intensity(t_intersect inter, t_light light, t_data data)
 
 	lightdir = vector_op(light.origin, inter.point, '-');
 	intensity = dotprod(normalize(lightdir), inter.normal);
-	intensity = intensity <= 0 ? data.ambiantlight :
+	intensity = intensity <= 0 ? data.ambiantlight * light.intensity :
 		intensity * light.intensity + data.ambiantlight * light.intensity;
 	intensity = ftb_clamp(intensity, 0, 1);
 	return (intensity);
@@ -58,12 +58,12 @@ static int		brillance(int start, t_intersect inter, t_light light,
 	intensity = intensity < 0 ? 0 : intensity;
 	intensity *= inter.shape_copy.brillance * light.intensity;
 	intensity = ftb_clamp(intensity, 0, 1);
-	if (filter == 4)
-		intensity = cartoon(intensity);
 	if ((angle = acos(dotprod(normalize(inter.normal), lightdir))) < 0.2)
 	{
-		return (interpolate(start, light.color, intensity *
-				((0.2 - angle) * 250)));
+		intensity *= (0.2 - angle) * 250;
+		if (filter == 4)
+			intensity = cartoon(intensity);
+		return (interpolate(start, light.color, intensity));
 	}
 	return (start);
 }
@@ -102,8 +102,6 @@ int				set_color(t_all *param, t_intersect intersection)
 
 	ret = 0;
 	scene = param->scene;
-	if (param->data.filter == 3)
-		intersection.normal = normalize(intersection.normal);
 	while (scene.light_lst != NULL)
 	{
 		light = *(t_light*)scene.light_lst->content;
@@ -112,9 +110,8 @@ int				set_color(t_all *param, t_intersect intersection)
 		if (!light.is_hidden)
 		{
 			intensity = get_intensity(intersection, light, param->data);
-			if (param->data.filter == 4)
-				intensity = cartoon(intensity);
-			tmp = interpolate(0, intersection.shape_copy.color, intensity);
+			tmp = interpolate(0, intersection.shape_copy.color,
+					param->data.filter == 4 ? cartoon(intensity) : intensity);
 			if (shadows(param, intersection, light, &tmp) == -1)
 				tmp = brillance(tmp, intersection, light, param->data.filter);
 			ret = fuse(ret, tmp, light.color);

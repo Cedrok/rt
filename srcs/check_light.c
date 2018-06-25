@@ -6,7 +6,7 @@
 /*   By: bspindle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 14:50:24 by bspindle          #+#    #+#             */
-/*   Updated: 2018/06/25 09:21:00 by bspindle         ###   ########.fr       */
+/*   Updated: 2018/06/25 21:25:23 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		is_in_cylinder(t_shape cyl, t_light light)
 {
 	t_vector3d	tmp;
 
-	tmp = vector_op(light.origin, lambda_product_d3(-1, cyl.origin), '+');
+	tmp = vector_op(light.origin, cyl.origin, '-');
 	tmp = adjust_direction(tmp, cyl.inv_rot);
 	if (tmp.x * tmp.x + tmp.z * tmp.z == cyl.radius * cyl.radius)
 		return (1);
@@ -35,7 +35,7 @@ int		is_in_cone(t_shape cone, t_light light)
 	t_vector3d	tmp;
 	double		cmp;
 
-	tmp = vector_op(light.origin, lambda_product_d3(-1, cone.origin), '+');
+	tmp = vector_op(light.origin, cone.origin, '-');
 	tmp = adjust_direction(tmp, cone.inv_rot);
 	cmp = tan(cone.radius);
 	if (tmp.x * tmp.x + tmp.z * tmp.z <= tmp.y * tmp.y * cmp * cmp)
@@ -48,7 +48,7 @@ int		is_in_plane(t_shape plane, t_light light)
 	t_vector3d	tmp;
 	double		cmp;
 
-	tmp = vector_op(light.origin, lambda_product_d3(-1, plane.origin), '+');
+	tmp = vector_op(light.origin, plane.origin, '-');
 	tmp = adjust_direction(tmp, plane.inv_rot);
 	cmp = tmp.y;
 	if (cmp == 0)
@@ -58,9 +58,11 @@ int		is_in_plane(t_shape plane, t_light light)
 
 void	is_light_in(t_list *light_lst, t_list *shape_lst)
 {
-	t_shape	shape;
 	t_light	*light;
+	t_list	*head_lst;
+	t_shape	shape;
 
+	head_lst = shape_lst;
 	while (((t_light*)light_lst->content)->color != -1)
 	{
 		light = (t_light*)light_lst->content;
@@ -76,6 +78,7 @@ void	is_light_in(t_list *light_lst, t_list *shape_lst)
 		}
 		if (((t_shape*)shape_lst->content)->type == -1)
 			light->is_hidden = 0;
+		shape_lst = head_lst;
 		light_lst = light_lst->next;
 	}
 }

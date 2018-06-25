@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 10:22:20 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/22 19:21:43 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/25 21:21:45 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	transparency(t_all *param, t_ray ray, int fastmode)
 	{
 		if (fastmode == 1)
 			return (intersection.shape_copy.color);
+		if (param->data.filter == 4)
+			intersection.normal = normalize(intersection.normal);
 		trans_color = set_color(param, intersection);
 		if (intersection.shape_copy.opacity != 1)
 		{
