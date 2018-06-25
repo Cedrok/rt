@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 11:35:29 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/25 09:11:44 by bspindle         ###   ########.fr       */
+/*   Updated: 2018/06/25 09:35:15 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ t_vector3d	normals(t_shape shape, t_vector3d point)
 	normals[PLANE] = &plane_normal;
 	normals[CYLINDER] = &cylinder_normal;
 	normals[CONE] = &cone_normal;
-	normals[TORUS] = &torus_normal;
 	return (normalize(normals[shape.type](shape, point)));
 }
 
@@ -55,7 +54,6 @@ int			collisions(t_shape shape, t_ray ray, double *t)
 	collisions[PLANE] = &intersect_plane;
 	collisions[CYLINDER] = &intersect_cylinder;
 	collisions[CONE] = &intersect_cone;
-	collisions[TORUS] = &intersect_torus;
 	return (collisions[shape.type](shape, ray, t));
 }
 

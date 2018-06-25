@@ -6,13 +6,13 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 18:15:21 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/24 16:38:02 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/25 09:27:29 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-int		rot_value(t_shape *shape, int value, char c)
+int			rot_value(t_shape *shape, int value, char c)
 {
 	t_mat3d		mat;
 	double		modif;
@@ -29,7 +29,7 @@ int		rot_value(t_shape *shape, int value, char c)
 	return (1);
 }
 
-void	rot_shape(void *p, int type)
+void		rot_shape(void *p, int type)
 {
 	t_all	*param;
 	t_scene	sc;
@@ -50,7 +50,7 @@ void	rot_shape(void *p, int type)
 	}
 }
 
-static void	check_first(t_list **lst, int id)
+static void		check_first(t_list **lst, int id)
 {
 	t_shape	*shape;
 	t_list	*tmp;
@@ -65,7 +65,7 @@ static void	check_first(t_list **lst, int id)
 	}
 }
 
-void	del_shape(void *p, int type)
+void		del_shape(void *p, int type)
 {
 	t_all	*param;
 	t_shape	*shape;
@@ -93,7 +93,7 @@ void	del_shape(void *p, int type)
 	refresh_img(param);
 }
 
-void	dselect(void *p, int type)
+void			dselect(void *p, int type)
 {
 	t_all	*param;
 

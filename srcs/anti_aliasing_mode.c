@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 15:27:36 by bspindle          #+#    #+#             */
-/*   Updated: 2018/06/24 17:01:57 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/25 09:26:01 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static t_color	color_filter(t_env *env, t_color c, t_point p, double coef)
 	return (c);
 }
 
-void	anti_aliasing_mode(t_env *env, t_point p)
+void			anti_aliasing_mode(t_env *env, t_point p)
 {
 	double	coef;
 	t_color	c;
@@ -92,7 +92,7 @@ void	anti_aliasing_mode(t_env *env, t_point p)
 	coef = 1;
 	c = unlimited_color_prod(coef, get_color_pixel(env->surf, p));
 	if (!color_to_int(get_color_pixel(env->s_filter, p)) &&
-		   	(p.x < env->surf->w - 1 && !color_to_int(get_color_pixel(
+		(p.x < env->surf->w - 1 && !color_to_int(get_color_pixel(
 			env->s_filter, new_point(p.x + 1, p.y, 0))))
 			&& (p.y < env->surf->h - 1 && !color_to_int(get_color_pixel(
 						env->s_filter, new_point(p.x, p.y + 1, 0)))))
@@ -100,5 +100,5 @@ void	anti_aliasing_mode(t_env *env, t_point p)
 	else
 		c = color_filter(env, c, p, coef);
 	p.color = color_to_int(c);
-    img_put_pixel(env->s_filter, p);
+	img_put_pixel(env->s_filter, p);
 }

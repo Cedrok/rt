@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 11:04:58 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/18 08:52:00 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/25 09:32:34 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ void	new_shape(void *p, int type)
 	param = (t_all*)p;
 	new = default_shape(type);
 	new.origin = param->scene.camera.origin;
-	new.origin.z += 5;
+	new.origin = vector_op(param->scene.camera.origin, lambda_product_d3(5,
+				adjust_direction(new_vector_3d(0, 0, 1),
+					param->scene.camera.rot)), '+');
 	ft_lstadd(&param->scene.shape_lst, ft_lstnew(&new, sizeof(new)));
 	refresh_img(param);
 }

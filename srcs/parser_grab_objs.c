@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:03:41 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/20 17:18:25 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/25 09:34:58 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ static int	shape_type(char *str)
 		res = CYLINDER;
 	else if (!ft_strcmp(str, "cone"))
 		res = CONE;
-	else if (!ft_strcmp(str, "torus"))
-		res = TORUS;
 	ft_strdel(&str);
 	return (res);
 }
