@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 16:02:53 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/25 12:57:43 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/25 14:16:21 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static void		highlight(t_all *param, int id)
 	t_shape	*shape;
 	t_list	*head;
 
-	printf("id = %d\n", id);
 	head = param->scene.shape_lst;
 	while (param->scene.shape_lst != NULL)
 	{

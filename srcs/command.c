@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 10:01:24 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/25 12:58:46 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/25 14:08:54 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,9 @@ void		on_move(void *p, int type)
 {
 	t_all		*param;
 	t_button	*on;
-	t_color		white;
 	t_vector4d	btn_s;
 
 	param = (t_all*)p;
-	white = new_color(0xff, 0xff, 0xff);
 	btn_s = new_vector_4d(101, 55, 0, 0);
 	on = ((t_button*)param->ui.bc_lft->lst_obj[0]->obj);
 	on->type = (type == 1) ? 0 : 1;
@@ -57,7 +55,7 @@ void		on_move(void *p, int type)
 	{
 		on->color = new_color(42, 101, 0x19);
 		free(on->title.title);
-		set_title_btn(on, "Move Obj: ON", btn_s, white);
+		set_title_btn(on, "Move Obj: ON", btn_s, new_color(0xff, 0xff, 0xff));
 		change_btn_fs(new_vector_2d(param->env->w, param->env->h), on, btn_s);
 		color_btn_mv(0, param->ui.bc_lft);
 	}
@@ -65,14 +63,14 @@ void		on_move(void *p, int type)
 	{
 		on->color = new_color(0x42, 0, 0x19);
 		free(on->title.title);
-		set_title_btn(on, "Move Obj: OFF", btn_s, white);
+		set_title_btn(on, "Move Obj: OFF", btn_s, new_color(0xff, 0xff, 0xff));
 		change_btn_fs(new_vector_2d(param->env->w, param->env->h), on, btn_s);
 		color_btn_mv(1, param->ui.bc_lft);
 	}
 	refresh_surf(param, param->data.filter);
 }
 
-t_shape			*get_shape_with_id(int id, t_scene sc)
+t_shape		*get_shape_with_id(int id, t_scene sc)
 {
 	t_shape	*shape;
 

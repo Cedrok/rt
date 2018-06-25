@@ -6,11 +6,21 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 11:52:05 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/24 21:08:39 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/25 14:18:13 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+static void		right_obj_bis(t_right *r, t_vector4d p_pos)
+{
+	r->btn_sc1 = new_button(p_pos, new_color(0, 0x95, 0xaa),
+		new_vector_4d(90, 5, 2, 77.5), HORIZONTAL_CENTER);
+	r->btn_sc2 = new_button(p_pos, new_color(0, 0x95, 0xaa),
+		new_vector_4d(90, 5, 2, 85), HORIZONTAL_CENTER);
+	r->btn_sc3 = new_button(p_pos, new_color(0, 0x95, 0xaa),
+		new_vector_4d(90, 5, 2, 92.5), HORIZONTAL_CENTER);
+}
 
 static t_right	right_obj(t_vector4d p_pos)
 {
@@ -34,12 +44,7 @@ static t_right	right_obj(t_vector4d p_pos)
 		new_vector_4d(90, 5, 2, 62.5), HORIZONTAL_CENTER);
 	r.btn_fst = new_button(p_pos, new_color(0, 0x95, 0xaa),
 		new_vector_4d(90, 5, 2, 70), HORIZONTAL_CENTER);
-	r.btn_sc1 = new_button(p_pos, new_color(0, 0x95, 0xaa),
-		new_vector_4d(90, 5, 2, 77.5), HORIZONTAL_CENTER);
-	r.btn_sc2 = new_button(p_pos, new_color(0, 0x95, 0xaa),
-		new_vector_4d(90, 5, 2, 85), HORIZONTAL_CENTER);
-	r.btn_sc3 = new_button(p_pos, new_color(0, 0x95, 0xaa),
-		new_vector_4d(90, 5, 2, 92.5), HORIZONTAL_CENTER);
+	right_obj_bis(&r, p_pos);
 	return (r);
 }
 
@@ -70,6 +75,22 @@ static void		set_titles(t_right r, t_vector4d btn_s, t_color white,
 	change_btn_fs(win_s, r.btn_sc3, btn_s);
 }
 
+static void		set_bloc_filter(t_bloc *bc, t_right r)
+{
+	bc->lst_obj[0] = new_obj(r.btn_def, sizeof(r.btn_def), BUTTON);
+	bc->lst_obj[1] = new_obj(r.btn_gray, sizeof(r.btn_gray), BUTTON);
+	bc->lst_obj[2] = new_obj(r.btn_neg, sizeof(r.btn_neg), BUTTON);
+	bc->lst_obj[3] = new_obj(r.btn_sepia, sizeof(r.btn_sepia), BUTTON);
+	bc->lst_obj[4] = new_obj(r.btn_cart, sizeof(r.btn_cart), BUTTON);
+	bc->lst_obj[5] = new_obj(r.btn_alias, sizeof(r.btn_alias), BUTTON);
+	bc->lst_obj[6] = new_obj(r.opt, sizeof(r.opt), LABEL);
+	bc->lst_obj[7] = new_obj(r.btn_shot, sizeof(r.btn_shot), BUTTON);
+	bc->lst_obj[8] = new_obj(r.btn_fst, sizeof(r.btn_fst), BUTTON);
+	bc->lst_obj[9] = new_obj(r.btn_sc1, sizeof(r.btn_sc1), BUTTON);
+	bc->lst_obj[10] = new_obj(r.btn_sc2, sizeof(r.btn_sc2), BUTTON);
+	bc->lst_obj[11] = new_obj(r.btn_sc3, sizeof(r.btn_sc3), BUTTON);
+}
+
 t_bloc			*create_bloc_filter(int w, int h)
 {
 	t_bloc		*bc;
@@ -87,17 +108,6 @@ t_bloc			*create_bloc_filter(int w, int h)
 	r = right_obj(bc->pos);
 	set_titles(r, btn_s, white, new_vector_2d(w, h));
 	change_lb_fs(new_vector_2d(w, h), r.opt, bc);
-	bc->lst_obj[0] = new_obj(r.btn_def, sizeof(r.btn_def), BUTTON);
-	bc->lst_obj[1] = new_obj(r.btn_gray, sizeof(r.btn_gray), BUTTON);
-	bc->lst_obj[2] = new_obj(r.btn_neg, sizeof(r.btn_neg), BUTTON);
-	bc->lst_obj[3] = new_obj(r.btn_sepia, sizeof(r.btn_sepia), BUTTON);
-	bc->lst_obj[4] = new_obj(r.btn_cart, sizeof(r.btn_cart), BUTTON);
-	bc->lst_obj[5] = new_obj(r.btn_alias, sizeof(r.btn_alias), BUTTON);
-	bc->lst_obj[6] = new_obj(r.opt, sizeof(r.opt), LABEL);
-	bc->lst_obj[7] = new_obj(r.btn_shot, sizeof(r.btn_shot), BUTTON);
-	bc->lst_obj[8] = new_obj(r.btn_fst, sizeof(r.btn_fst), BUTTON);
-	bc->lst_obj[9] = new_obj(r.btn_sc1, sizeof(r.btn_sc1), BUTTON);
-	bc->lst_obj[10] = new_obj(r.btn_sc2, sizeof(r.btn_sc2), BUTTON);
-	bc->lst_obj[11] = new_obj(r.btn_sc3, sizeof(r.btn_sc3), BUTTON);
+	set_bloc_filter(bc, r);
 	return (bc);
 }

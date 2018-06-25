@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 11:06:00 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/25 08:18:45 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/25 14:04:25 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ static void		set_center_titles(t_center c, t_vector4d btn_s, t_vector2d wis)
 	change_btn_fs(wis, c.btn_pla, btn_s);
 	change_btn_fs(wis, c.btn_cne, btn_s);
 	change_btn_fs(wis, c.btn_lgt, btn_s);
+}
+
+static void		set_bloc_center(t_bloc *bc, t_center c)
+{
+	bc->lst_obj[0] = new_obj(c.btn_sph, sizeof(c.btn_sph), BUTTON);
+	bc->lst_obj[1] = new_obj(c.btn_cyl, sizeof(c.btn_cyl), BUTTON);
+	bc->lst_obj[2] = new_obj(c.btn_pla, sizeof(c.btn_pla), BUTTON);
+	bc->lst_obj[3] = new_obj(c.btn_cne, sizeof(c.btn_cne), BUTTON);
+	bc->lst_obj[4] = new_obj(c.btn_lgt, sizeof(c.btn_lgt), BUTTON);
 }
 
 static t_bloc	*create_bloc_center(int w, int h)
@@ -51,11 +60,7 @@ static t_bloc	*create_bloc_center(int w, int h)
 	c.btn_cne = new_button(bc->pos, blue, new_vector_4d(9, 38, 56, -3), p);
 	c.btn_lgt = new_button(bc->pos, blue, new_vector_4d(9, 38, 66.5, -3), p);
 	set_center_titles(c, new_vector_4d(101, 55, 0, 0), new_vector_2d(w, h));
-	bc->lst_obj[0] = new_obj(c.btn_sph, sizeof(c.btn_sph), BUTTON);
-	bc->lst_obj[1] = new_obj(c.btn_cyl, sizeof(c.btn_cyl), BUTTON);
-	bc->lst_obj[2] = new_obj(c.btn_pla, sizeof(c.btn_pla), BUTTON);
-	bc->lst_obj[3] = new_obj(c.btn_cne, sizeof(c.btn_cne), BUTTON);
-	bc->lst_obj[4] = new_obj(c.btn_lgt, sizeof(c.btn_lgt), BUTTON);
+	set_bloc_center(bc, c);
 	return (bc);
 }
 

@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/25 09:31:48 by bspindle         ###   ########.fr        #
+#    Updated: 2018/06/25 14:11:26 by cvautrai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,7 +114,7 @@ $(NAME):	libft echo $(OBJ)
 			@echo "\n$(GREEN)$(NAME) compilated !$(NONE)"
 
 echo:
-			@ echo -n Compilating files
+			@ echo -n Compiling files
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c includes/rt.h libft/libft.a libgraph/libgraph.a
 			@mkdir $(OBJ_PATH) 2> /dev/null || true
