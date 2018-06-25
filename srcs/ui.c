@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 11:06:00 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/24 15:04:46 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/25 08:18:45 by cpieri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ int				new_ui(t_all *param)
 	param->ui.bc_rght = bc_right;
 	param->ui.bc_center = bc_center;
 	param->ui.bc_lft = bc_left;
+	param->ui.g_id = -1;
 	return (0);
 }
