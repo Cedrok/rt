@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 17:41:51 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/21 11:23:04 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/25 11:59:00 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void		end_lst(t_scene *scene)
 	t_light	light;
 
 	shape.type = -1;
+	shape.id = -1;
 	light.color = -1;
 	scene->shape_lst = ft_lstnew(&shape, sizeof(shape));
 	scene->light_lst = ft_lstnew(&light, sizeof(light));

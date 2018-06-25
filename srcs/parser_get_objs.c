@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:03:41 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/20 17:18:43 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/25 11:56:31 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_shape		default_shape(int i)
 	id++;
 	obj.type = i;
 	obj.color = 0xFFFFFF;
+	obj.base_color = obj.color;
 	obj.origin = new_vector_3d(0, 0, 0);
 	obj.height = 0;
 	obj.width = 0;

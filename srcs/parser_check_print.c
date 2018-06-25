@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:03:42 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/18 13:47:46 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/25 13:13:20 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static t_vector3d	vd3_norm(t_vector3d n, double min, double max)
 t_shape				check_obj(t_shape *obj)
 {
 	obj->color = ftb_clamp(obj->color, 0, 0xFFFFFF);
+	obj->base_color = ftb_clamp(obj->base_color, 0, 0xFFFFFF);
 	obj->origin = vd3_norm(obj->origin, -20000, 20000);
 	obj->height = ftb_clamp(obj->height, 0, 10000);
 	obj->width = ftb_clamp(obj->width, 0, 10000);

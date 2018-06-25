@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 10:01:24 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/24 21:45:30 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/25 12:58:46 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	m_value(int value, int c)
 	return (value);
 }
 
-void	on_move(void *p, int type)
+void		on_move(void *p, int type)
 {
 	t_all		*param;
 	t_button	*on;
@@ -72,7 +72,7 @@ void	on_move(void *p, int type)
 	refresh_surf(param, param->data.filter);
 }
 
-t_shape		*get_shape_with_id(int id, t_scene sc)
+t_shape			*get_shape_with_id(int id, t_scene sc)
 {
 	t_shape	*shape;
 
@@ -88,7 +88,7 @@ t_shape		*get_shape_with_id(int id, t_scene sc)
 	return (shape);
 }
 
-void	move_shape(void *p, int type)
+void		move_shape(void *p, int type)
 {
 	t_all	*param;
 	t_scene	sc;

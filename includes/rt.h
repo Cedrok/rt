@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/25 09:13:17 by bspindle         ###   ########.fr       */
+/*   Updated: 2018/06/25 10:32:00 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ typedef struct		s_shape
 	int				id;
 	int				type;
 	int				color;
+	int				base_color;
 	t_vector3d		origin;
 	double			height;
 	double			width;

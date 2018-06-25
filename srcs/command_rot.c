@@ -6,13 +6,13 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 18:15:21 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/25 09:27:29 by bspindle         ###   ########.fr       */
+/*   Updated: 2018/06/25 13:35:29 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-int			rot_value(t_shape *shape, int value, char c)
+int				rot_value(t_shape *shape, int value, char c)
 {
 	t_mat3d		mat;
 	double		modif;
@@ -29,7 +29,7 @@ int			rot_value(t_shape *shape, int value, char c)
 	return (1);
 }
 
-void		rot_shape(void *p, int type)
+void			rot_shape(void *p, int type)
 {
 	t_all	*param;
 	t_scene	sc;
@@ -65,7 +65,7 @@ static void		check_first(t_list **lst, int id)
 	}
 }
 
-void		del_shape(void *p, int type)
+void			del_shape(void *p, int type)
 {
 	t_all	*param;
 	t_shape	*shape;
@@ -96,8 +96,20 @@ void		del_shape(void *p, int type)
 void			dselect(void *p, int type)
 {
 	t_all	*param;
+	t_shape *shape;
+	t_list	*head;
 
 	(void)type;
 	param = (t_all*)p;
+	head = param->scene.shape_lst;
+	while (param->scene.shape_lst != NULL)
+	{
+		shape = (t_shape*)param->scene.shape_lst->content;
+		if (shape->id == param->ui.g_id)
+			shape->color = shape->base_color;
+		param->scene.shape_lst = param->scene.shape_lst->next;
+	}
+	param->scene.shape_lst = head;
 	param->ui.g_id = -1;
+	refresh_img(param);
 }

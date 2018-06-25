@@ -6,13 +6,13 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:57:39 by bocal             #+#    #+#             */
-/*   Updated: 2018/06/24 16:56:32 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/25 13:41:00 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	setf_btn_r(t_bloc *bc, t_all *param)
+void			setf_btn_r(t_bloc *bc, t_all *param)
 {
 	t_right		r;
 
@@ -41,7 +41,7 @@ void	setf_btn_r(t_bloc *bc, t_all *param)
 	set_btn_callback(r.btn_sc3, &change_scene, NULL, SDLK_3);
 }
 
-void	setf_btn_c(t_bloc *bc, t_all *param)
+void			setf_btn_c(t_bloc *bc, t_all *param)
 {
 	t_center	c;
 
@@ -80,7 +80,7 @@ static t_left	get_left_btn(t_bloc *bc)
 	return (l);
 }
 
-void	setf_btn_l(t_bloc *bc, t_all *param)
+void			setf_btn_l(t_bloc *bc, t_all *param)
 {
 	t_left	l;
 

@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:03:41 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/25 09:34:58 by bspindle         ###   ########.fr       */
+/*   Updated: 2018/06/25 10:19:30 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static void	grab_obj_bis(t_shape *obj, char *line)
 	{
 		str_tmp = extract_text(line);
 		obj->color = hex2int(str_tmp);
+		obj->base_color = obj->color;
 		ft_strdel(&str_tmp);
 	}
 	if (!ft_strncmp(line, "\tradius:", 8))
