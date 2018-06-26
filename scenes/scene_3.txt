@@ -1,5 +1,5 @@
 # Scene informations
-title: "rt - scene 1"
+title: "rt - scene 3"
 camera{
 	pos: {0, 0, -10}
 	rot: {0, 0, 0}

@@ -1,0 +1,178 @@
+# Scene informations
+title: "scene 2"
+camera{
+	pos: {0, 7, -12}
+	rot: {15, 0, 0}
+}
+ambiant: 0
+#
+
+# Objects
+
+object{
+	type: "plane"
+	color: "c2f4f9"
+	pos: {0, -5, 0}
+}
+object{
+	type: "plane"
+	color: "333333"
+	pos: {0, -5, 40}
+	rot: {90, 0, 0}
+}
+
+object{
+	type: "plane"
+	color: "ffffff"
+	pos: {3, 5, 10}
+	rot: {90, 0, 0}
+	width: 2
+	height: 2
+	opacity: 0.5
+	texture{
+		path: "textures/vitrail_rond.jpg"
+	}
+	cut{
+		radius: 2
+	}
+}
+object{
+	type: "sphere"
+	color: "ffffff"
+	pos: {3, 3.4, 10}
+	radius: 1.2
+	cut{
+		amount: {1, 0.3, 1}
+	}
+	texture{
+		path: "textures/stones.bmp"
+		x_scale: 0.8
+		y_scale: 0.8
+	}
+}
+object{
+	type: "cylinder"
+	color: "ffffff"
+	pos: {3, -5, 10}
+	radius: 0.8
+	height: 8
+	texture{
+		path: "textures/stones.bmp"
+		x_scale: 0.4
+		y_scale: 0.3
+	}
+}
+object{
+	type: "plane"
+	color: "cccccc"
+	pos: {-4, 0, 30}
+	rot: {90, 0, 30}
+	width: 3
+	texture{
+		checker: 0.2
+	}
+}
+
+object{
+	type: "sphere"
+	color: "dedede"
+	pos: {-3, -5, 12}
+	radius: 2
+	texture{
+		path: "perlin"
+		x_scale: 0.5
+		y_scale: 0.5
+	}
+}
+object{
+	type: "cone"
+	color: "999999"
+	pos: {-4, 7, 12}
+	rot: {0, 120, 180}
+	radius: 6
+	height: 12
+	cut{
+		amount: {1, 1, 0}
+	}
+	texture{
+		path: "textures/floor.png"
+	}
+}
+
+object{
+	type: "sphere"
+	color: "ffffff"
+	pos: {10, 9, 16}
+	rot: {42, 100, 15}
+	radius: 2
+	brillance: 0.5
+	texture{
+		rainbow: 1
+	}
+}
+
+#
+
+# Lights
+
+spot{
+	pos: {5, 5, 0}
+	color: "ffffff"
+	intensity: 1.6
+}
+spot{
+	pos: {-3, 0, 25}
+	color: "a2760c"
+}
+spot{
+	pos: {-10, 2, 10}
+	intensity: 0.2
+}
+#
+
+##END##
+# Objects
+
+object{
+	type: "sphere/plane/cylinder/cone"
+	color: "RRGGBB"
+	pos: {x, y, z}
+    rot: {x, y, z}
+	height: a [0+] if 0, infinite
+	width: a [0+] if 0, infinite
+	radius: a [0+]
+	brillance: a [0 -> 1]
+	opacity: a [0 -> 1]
+	texture{
+		path: "path"
+		x_scale: a
+		y_scale: a
+		x_offset: a
+		y_offset: a
+		rainbow: a [0 -> 1]
+		checker: a [0 -> 1]
+		waves: a [0 -> 100]
+	}
+	cut{
+		amount: {x, y, z} [-1 -> 1]
+		radius: a [0+]
+		real_pos: a [0 / 1]
+	}
+}
+sphere -> pos, radius, color, brillance[, texture]
+plane -> pos, rot, color, brillance[, width, height]
+cylinder -> pos, rot, radius, color, height
+cone -> pos, rot, radius, color, height
+
+#
+
+# Lights
+
+spot{
+	pos: {x, y, z}
+	color: "RRGGBB"
+	intensity: a [0 -> 10]
+}
+
+
+#

@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 10:33:36 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/15 11:33:27 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/26 13:39:10 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void			get_ligths(t_all *param, int *fd)
 		ft_strdel(&line);
 		if (rt_get_next_line(*fd, &line) <= 0)
 			ft_abort_free("get lights: rt_gnl <= 0", line);
+		if (param->data.nb_light >= 100)
+			return ;
 		if (!ft_strcmp(line, "spot{"))
 		{
 			grab_spot(&param->scene, fd);

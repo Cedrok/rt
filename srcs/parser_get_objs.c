@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:03:41 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/25 11:56:31 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/26 13:43:49 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void		get_objs(t_all *param, int *fd)
 		ft_strdel(&line);
 		if (rt_get_next_line(*fd, &line) <= 0)
 			ft_abort_free("get_objs: rt_gnl <= 0", line);
+		if (param->data.nb_shape >= 100)
+			return ;
 		if (!ft_strcmp(line, "object{"))
 		{
 			grab_obj(&param->scene, fd);

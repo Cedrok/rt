@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/26 08:44:55 by bspindle         ###   ########.fr       */
+/*   Updated: 2018/06/26 15:48:04 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@
  ******************************* Item defines *********************************
 */
 
-# define PATH1				"scenes/scene0.txt"
-# define PATH2				"scenes/scene1.txt"
-# define PATH3				"scenes/scene2.txt"
+# define PATH1				"scenes/scene_1.txt"
+# define PATH2				"scenes/scene_2.txt"
+# define PATH3				"scenes/scene_3.txt"
 
 /*
 ** Basic structs
