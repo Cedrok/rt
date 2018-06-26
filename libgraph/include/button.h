@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:43:34 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/23 19:43:50 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/26 11:36:04 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ void			set_title_btn(t_button *btn, char *title,
 		t_vector4d pos, t_color c);
 void			set_btn_callback(t_button *btn, void (*f)(void *, int),
 					void *p, int type);
-void		change_btn_fs(t_vector2d win_s, t_button *btn, t_vector4d pos);
+void			change_btn_fs(t_vector2d win_s, t_button *btn, t_vector4d pos);
 
 #endif

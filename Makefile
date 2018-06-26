@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/25 14:11:26 by cvautrai         ###   ########.fr        #
+#    Updated: 2018/06/26 11:34:53 by cvautrai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -140,7 +140,7 @@ fclean:		clean
 
 norm:		clean
 			@echo "$(CYAN)Running norminette...$(NONE)"
-			@norminette $(SRC_PATH) $(INCLUDE) libft/srcs/ libgraph/srcs/ \
+			@norminette $(SRC_PATH) $(INCLUDE) libft/ libgraph/ \
 				| grep -B 1 '^Error' 2> /dev/null || echo '$(GREEN)Norme OK !$(NONE)';
 
 re:			fclean all

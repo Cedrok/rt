@@ -232,7 +232,7 @@ spot{
 	color: "FFFF2A"
 }
 
--spot{
+spot{
 	pos: {5, 12, 4}
 	color: "FF2B96"
 }
