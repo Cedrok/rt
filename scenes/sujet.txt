@@ -1,0 +1,122 @@
+# Scene informations
+title: "sujet"
+camera{
+	pos: {0, 0, -10}
+	rot: {0, 0, 0}
+}
+ambiant: 0
+#
+
+# Objects
+
+object{
+	type: "plane"
+	color: "999999"
+	pos: {0, -5, 0}
+}
+
+object{
+	type: "plane"
+	color: "4286f4"
+	pos: {0, -5, 40}
+	rot: {90, 0, 0}
+}
+
+object{
+	type: "cylinder"
+	color: "df25fc"
+	pos: {-3, 0, 20}
+	rot: {0, 0, -45}
+	radius: 2
+	brillance: 1
+}
+
+object{
+	type: "cone"
+	color: "fce325"
+	pos: {5, -3, 20.6}
+	rot: {0, 0, 45}
+	radius: 2.5
+	brillance: 1
+}
+
+object{
+	type: "sphere"
+	color: "ff0000"
+	pos: {-9, -3, 16}
+	radius: 2
+	brillance: 1
+}
+
+object{
+	type: "sphere"
+	color: "00ff00"
+	pos: {8, -3, 16}
+	radius: 2
+	brillance: 1
+}
+
+#
+
+# Lights
+
+spot{
+	pos: {-10, 2, 0}
+	color: "ffffff"
+	intensity: 0.8
+}
+
+spot{
+	pos: {9, 1, 0}
+	color: "ffffff"
+	intensity: 0.8
+}
+
+#
+
+##END##
+# Objects
+
+object{
+	type: "sphere/plane/cylinder/cone"
+	color: "RRGGBB"
+	pos: {x, y, z}
+    rot: {x, y, z}
+	height: a [0+] if 0, infinite
+	width: a [0+] if 0, infinite
+	radius: a [0+]
+	brillance: a [0 -> 1]
+	opacity: a [0 -> 1]
+	texture{
+		path: "path"
+		x_scale: a
+		y_scale: a
+		x_offset: a
+		y_offset: a
+		rainbow: a [0 -> 1]
+		checker: a [0 -> 1]
+		waves: a [0 -> 100]
+	}
+	cut{
+		amount: {x, y, z} [-1 -> 1]
+		radius: a [0+]
+		real_pos: a [0 / 1]
+	}
+}
+sphere -> pos, radius, color, brillance[, texture]
+plane -> pos, rot, color, brillance[, width, height]
+cylinder -> pos, rot, radius, color, height
+cone -> pos, rot, radius, color, height
+
+#
+
+# Lights
+
+spot{
+	pos: {x, y, z}
+	color: "RRGGBB"
+	intensity: a [0 -> 10]
+}
+
+
+#

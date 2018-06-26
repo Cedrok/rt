@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 15:09:23 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/24 16:59:26 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/26 10:11:33 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,18 @@ int				main(int ac, char **av)
 	t_all	param;
 	int		reset;
 
-	if (ac != 2)
-		ft_abort("Usage: ./rtv1 [scene_file]");
+	if (ac > 2)
+	{
+		ft_putendl("Usage: ./rt for default scene");
+		ft_abort("Usage: ./rt [scene_file] for custom scene");
+	}
 	if (!(param.env = (t_env*)malloc(sizeof(t_env))))
 		ft_abort("Malloc Failed: struct env");
 	reset = 0;
-	parse(&param, av[1], &reset);
+	if (ac == 2)
+		parse(&param, av[1], &reset);
+	else
+		parse(&param, PATH1, &reset);
 	param = init_param(param);
 	new_ui(&param);
 	create_render(&param);

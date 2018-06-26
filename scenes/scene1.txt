@@ -53,7 +53,7 @@ object{
 	pos: {-8, -12, 15}
 	rot: {0, 0, 0}
 	radius: 1
-	color: "FAC8C8"
+	color: "ffffff"
 	height: 42
 	brillance: 1
 	texture{

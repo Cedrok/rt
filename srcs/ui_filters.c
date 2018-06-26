@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 11:52:05 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/25 14:18:13 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/26 10:01:10 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static void		right_obj_bis(t_right *r, t_vector4d p_pos)
 {
-	r->btn_sc1 = new_button(p_pos, new_color(0, 0x95, 0xaa),
+	r->btn_sc1 = new_button(p_pos, new_color(42, 86, 0xf4),
 		new_vector_4d(90, 5, 2, 77.5), HORIZONTAL_CENTER);
-	r->btn_sc2 = new_button(p_pos, new_color(0, 0x95, 0xaa),
+	r->btn_sc2 = new_button(p_pos, new_color(42, 86, 0xf4),
 		new_vector_4d(90, 5, 2, 85), HORIZONTAL_CENTER);
-	r->btn_sc3 = new_button(p_pos, new_color(0, 0x95, 0xaa),
+	r->btn_sc3 = new_button(p_pos, new_color(42, 86, 0xf4),
 		new_vector_4d(90, 5, 2, 92.5), HORIZONTAL_CENTER);
 }
 
