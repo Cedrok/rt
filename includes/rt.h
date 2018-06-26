@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/25 10:32:00 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/26 08:44:55 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -401,7 +401,7 @@ void				int_array_to_surf(SDL_Surface *surf, int *colorarray);
 
 void				perlin_init(t_perlin_stuff *perlin);
 int					**perlin_tab_init(void);
-int					*perlin_texture(t_color color, double res_x,
+int					*perlin_texture(double res_x,
 									double res_yi, int limit);
 /*
 **	rotate_matrice

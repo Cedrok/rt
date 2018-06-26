@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 15:26:19 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/21 11:45:22 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/26 08:44:14 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static double	noise(double x, double y, t_perlin_stuff per)
 	return (ab_lisse + coef_inter_y * (cd_lisse - ab_lisse));
 }
 
-int				*perlin_texture(t_color color, double res_x, double res_y,
+int				*perlin_texture(double res_x, double res_y,
 		int limit)
 {
 	t_perlin_stuff	perlin;
@@ -70,7 +70,6 @@ int				*perlin_texture(t_color color, double res_x, double res_y,
 		p.x = -1;
 		while (++p.x < limit)
 		{
-			color.r = 0;
 			tab[p.y * limit + p.x] = interpolate(0, 0xFFFFFF,
 			(noise((double)p.x / res_x, (double)p.y / res_y, perlin) + 1) / 2);
 		}
