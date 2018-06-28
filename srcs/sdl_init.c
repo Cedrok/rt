@@ -6,11 +6,10 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 16:26:18 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/18 19:29:13 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/28 09:53:48 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "rt.h"
 
 void			create_win_render(t_env *env)

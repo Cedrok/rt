@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/28 09:49:05 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/28 10:03:09 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -470,16 +470,11 @@ void				grab_cut(t_shape *obj, int *fd);
 void				print_infos(int a, int b);
 t_shape				check_obj(t_shape *obj);
 t_light				check_light(t_light *spot);
-
 char				*extract_text(char *line);
 t_vector3d			extract_vd3(char *line);
 int					rt_get_next_line(int fd, char **line);
 void				end_lst(t_scene *scene);
-
-void				create_scene(char *s, t_scene *scene, int *nb_cam,
-						int *nb_lght);
 void				ft_abort_free(char *msg, char *line);
-void				parsing_quit(char *msg, char **splt_ln, char *ln);
 
 /*
 **	Misc

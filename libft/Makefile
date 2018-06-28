@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 18:38:31 by tmilon            #+#    #+#              #
-#    Updated: 2018/06/11 11:42:24 by cvautrai         ###   ########.fr        #
+#    Updated: 2018/06/28 10:37:46 by cvautrai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,25 +112,27 @@ SRC		=	$(addprefix $(SRC_PATH)/,$(SRCS) )
 
 OBJ		=	$(addprefix $(OBJ_PATH)/,$(OBJS) )
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re echo
 
 all:		$(NAME)
 
-$(NAME): 	$(OBJ)
-				@echo "compiling libft.a"
+$(NAME): 	echo $(OBJ)
 				@ar rc $(NAME) $(OBJ)
 				@ranlib $(NAME)
+
+echo:
+				@echo -n Compiling libft
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 				@mkdir $(OBJ_PATH) 2> /dev/null || true
 				@$(CC) $(CFLAGS) $(CPPFLAG) -o $@ -c $<
+				@echo -n .
 
 clean:
 				@/bin/rm -f $(OBJ)
 				@rmdir $(OBJ_PATH) 2> /dev/null || true
 
 fclean:		clean
-				@echo "cleaning libft.a"
 				@/bin/rm -f $(NAME)
 
 re:			fclean all

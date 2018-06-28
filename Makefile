@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/28 08:55:06 by bspindle         ###   ########.fr        #
+#    Updated: 2018/06/28 10:37:43 by cvautrai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ SRC_NAME= 	main.c				\
 			cam_move.c			\
 			get_shape.c			\
 			command_rot.c		\
-			blur_mode.c\
+			blur_mode.c			\
 			check_light.c
 
 
@@ -101,7 +101,7 @@ BLUE = \033[34m
 MAGENTA = \033[35m
 CYAN = \033[36m
 
-.PHONY:	all clean fclean re
+.PHONY:	all clean fclean re echo norm
 
 all:		LFT LGRAPH $(NAME)
 
@@ -111,7 +111,7 @@ $(NAME):	libft echo $(OBJ)
 			else \
 			$(CC) $(CFLAGS) $(FLAGSFT) -o $(NAME) $(OBJ) $(CPPFLAGS) $(SDL_FLAGS); \
 			fi
-			@echo "\n$(GREEN)$(NAME) compilated !$(NONE)"
+			@echo "\n$(GREEN)$(NAME) compiled !$(NONE)"
 
 echo:
 			@ echo -n Compiling files
@@ -126,7 +126,7 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c includes/rt.h libft/libft.a libgraph/libgraph.a
 			@echo -n .
 
 clean:
-			@echo "cleaning"
+			@echo "$(YELLOW)Cleaning...$(NONE)"
 			@make clean -C ./libft/
 			@make clean -C ./libgraph/
 			@/bin/rm -f $(OBJ)
@@ -135,8 +135,11 @@ clean:
 
 fclean:		clean
 			@make fclean -C ./libft/
+			@echo "$(RED)Libft.a deleted$(NONE)"
 			@make fclean -C ./libgraph/
+			@echo "$(RED)Libgraph.a deleted$(NONE)"
 			@/bin/rm -f $(NAME)
+			@echo "$(RED)$(NAME) deleted !$(NONE)"
 
 norm:		clean
 			@echo "$(CYAN)Running norminette...$(NONE)"
@@ -148,6 +151,7 @@ re:			fclean all
 LFT:
 		@if [ ! -d "./libft/libft.a" ]; then \
 			make -C ./libft/; \
+			echo "\n$(GREEN)Libft compiled !$(NONE)";\
 		else \
 			echo "Libft was already installed"; \
 		fi
@@ -155,6 +159,7 @@ LFT:
 LGRAPH:
 		@if [ ! -d "./libgraph/libgraph.a" ]; then \
 			make -C ./libgraph/; \
+			echo "\n$(GREEN)Libgraph compiled !$(NONE)";\
 		else \
 			echo "Libgraph was already installed"; \
 		fi
