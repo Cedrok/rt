@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/26 15:48:04 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/28 08:57:41 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,13 @@ typedef struct		s_calcunit
 	t_vector3d		get_out;
 }					t_calcunit;
 
+typedef struct		s_shadunit
+{
+	int				shad_color;
+	double			actual_dist;
+	int				actual_id;
+}					t_shadunit;
+
 /*
 ** Objects struct
 */
@@ -116,7 +123,6 @@ typedef struct		s_limunit
 {
 	t_vector3d		cut_amount;
 	double			cut_radius;
-	int				real_position;
 }					t_limunit;
 
 typedef struct		s_shape
@@ -284,7 +290,7 @@ typedef struct		s_all
 }					t_all;
 
 /*
-** Calc_struct
+** Thread building struct
 */
 
 typedef struct		s_thread_param
