@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 17:41:51 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/25 11:59:00 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/28 09:07:38 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ char		*extract_text(char *line)
 	while (line[i] != '"' && i < len - 1)
 		i++;
 	i++;
-	new = (char*)malloc(sizeof(char) * len - i + 1);
+	if (!(new = (char*)malloc(sizeof(char) * len - i + 1)))
+		ft_abort("Malloc failed while parsing\n");
 	j = 0;
 	while (line[i] != '"' && i < len - 1)
 	{

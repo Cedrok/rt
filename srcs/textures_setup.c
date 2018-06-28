@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 15:31:26 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/26 08:44:27 by bspindle         ###   ########.fr       */
+/*   Updated: 2018/06/28 09:12:12 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static int	*surf_to_int_array(SDL_Surface *surf, t_point p)
 	SDL_Surface	*rgbaimage;
 
 	rgbaimage = SDL_ConvertSurfaceFormat(surf, SDL_PIXELFORMAT_RGBA32, 0);
-	tab = ft_memalloc(sizeof(int) * (surf->h * surf->w));
+	if (!(tab = ft_memalloc(sizeof(int) * (surf->h * surf->w))))
+		ft_abort("Malloc failed in texture init.\n");
 	pixels = (uint32_t *)(rgbaimage->pixels);
 	c = new_color(0, 0, 0);
 	while (++p.y < surf->h)

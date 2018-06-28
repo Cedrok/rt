@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 15:26:19 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/21 11:09:17 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/28 09:10:59 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static void	perlin_grad_tab(t_perlin_stuff *per)
 	double		unit;
 	t_vector2d	*tab;
 
-	tab = (t_vector2d*)ft_memalloc(sizeof(t_vector2d) * 8);
+	if (!(tab = (t_vector2d*)ft_memalloc(sizeof(t_vector2d) * 8)))
+		ft_abort("Malloc failed in perlin texture\n");
 	unit = 1 / sqrt(2);
 	tab[4] = new_vector_2d(1, 0);
 	tab[5] = new_vector_2d(-1, 0);
@@ -59,7 +60,8 @@ static void	random_tab(t_perlin_stuff *per)
 	int	*ret;
 	int	i;
 
-	ret = (int*)ft_memalloc(sizeof(int) * 512);
+	if (!(ret = (int*)ft_memalloc(sizeof(int) * 512)))
+		ft_abort("Memalloc failed in perlin texture\n");
 	i = 0;
 	while (i < 512)
 	{

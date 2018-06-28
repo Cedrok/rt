@@ -6,7 +6,7 @@
 /*   By: tmilon <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 15:26:19 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/26 08:44:14 by bspindle         ###   ########.fr       */
+/*   Updated: 2018/06/28 09:08:36 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int				*perlin_texture(double res_x, double res_y,
 	int				*tab;
 
 	perlin_init(&perlin);
-	tab = ft_memalloc(sizeof(int) * (limit * limit));
+	if (!(tab = ft_memalloc(sizeof(int) * (limit * limit))))
+		ft_abort("Malloc fail in perlin texture.\n");
 	p = new_point(-1, -1, 0);
 	while (++p.y < limit)
 	{
