@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/25 10:14:20 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/24 16:55:26 by cpieri           ###   ########.fr       */
+/*   Updated: 2018/06/28 08:46:22 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void			put_filter(t_all param)
 	f[0] = sepia_mode;
 	f[1] = neg_mode;
 	f[2] = black_mode;
-	f[3] = anti_aliasing_mode;
+	f[3] = blur_mode;
 	if (param.data.filter != 4)
 		while (++p.y < param.env->s_filter->h)
 		{

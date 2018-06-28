@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/26 11:34:53 by cvautrai         ###   ########.fr        #
+#    Updated: 2018/06/28 08:55:06 by bspindle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ SRC_NAME= 	main.c				\
 			cam_move.c			\
 			get_shape.c			\
 			command_rot.c		\
-			anti_aliasing_mode.c\
+			blur_mode.c\
 			check_light.c
 
 

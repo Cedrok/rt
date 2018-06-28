@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/26 15:48:04 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/28 08:49:14 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <SDL_image.h>
 # include "../libgraph/include/libgraph.h"
 # include "../libft/include/libft.h"
-
-#include <stdio.h> // A VIRER
 
 /*
  ******************************* Disp defines *********************************
@@ -379,7 +377,7 @@ int					is_in_plane(t_shape plane, t_light light);
 
 t_color				get_color_pixel(SDL_Surface *surf, t_point p);
 void				put_filter(t_all param);
-void				anti_aliasing_mode(t_env *env, t_point point);
+void				blur_mode(t_env *env, t_point point);
 double				cartoon(double intensity);
 void				img_put_pixel(SDL_Surface *surf, t_point point);
 void				refresh_img(t_all *param);
