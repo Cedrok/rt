@@ -1,7 +1,7 @@
 # Scene informations
 title: "rt - scene 1"
 camera{
-	pos: {5, -3, -20}
+	pos: {3, -1, -20}
 	rot: {0, 0, 0}
 }
 ambiant: 0
@@ -9,11 +9,12 @@ ambiant: 0
 
 # Objects
 
--object{
+object{
 	type: "sphere"
-	pos:{0,0,0}
+	pos:{8,0,0}
 	radius: 1
 	color: "FAFAFA"
+	brillance: 0.3
 }
 
 object{
@@ -29,18 +30,21 @@ object{
 	pos: {4, 2, 10}
 	radius: 1
 	color: "FF0000"
+	brillance: 0.3
 }
 object{
 	type:"sphere"
 	pos: {-3, 1, 5}
 	radius: 1
 	color: "19FF19"
+	brillance: 0.3
 }
 object{
 	type: "sphere"
 	pos: {-3, -5, 20}
 	color: "FFFF2A"
 	radius: 1
+	brillance: 0.3
 }
 object{
 	type: "plane"
@@ -66,6 +70,7 @@ object{
 	rot: {0, 0, 0}
 	radius: 5
 	color: "19FFFF"
+	brillance: 0.1
 }
 object{
 	type: "cylinder"
@@ -73,6 +78,7 @@ object{
 	rot: {-60, 0, -40}
 	radius: 3
 	color: "ff9b64"
+	brillance: 0.3
 }
 object{
 	type: "cone"
@@ -88,6 +94,7 @@ object{
 	rot: {12, 40, -14}
 	radius: 3
 	color: "19fa7d"
+	brillance: 0.7
 }
 #
 

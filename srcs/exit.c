@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 09:05:16 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/14 10:00:27 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/27 09:59:59 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	quit_exe(t_all param)
 	IMG_Quit();
 	TTF_Quit();
 	SDL_Quit();
+	free_ui(&param);
 	free(param.env);
 	exit(0);
 }

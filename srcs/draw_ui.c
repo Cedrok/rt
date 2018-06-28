@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 10:16:03 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/20 17:45:24 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/28 09:51:52 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void	put_string(t_label *str, t_vector4d pos_p, SDL_Renderer *rend)
 	c.b = str->color.b;
 	c.a = 255;
 	if ((font = TTF_OpenFont("fonts/neue.ttf", str->font_size)) == NULL)
-		ft_putendl("TTF Open Failed");
+		ft_abort("TTF Open Failed");
 	if ((text = TTF_RenderText_Blended(font, str->title, c)) == NULL)
-		ft_putendl("TTF Render Text Failed");
+		ft_abort("TTF Render Text Failed");
 	if ((texture = SDL_CreateTextureFromSurface(rend, text)) == NULL)
-		ft_putendl("SDL Create Texture Failed");
+		ft_abort("SDL Create Texture Failed");
 	SDL_QueryTexture(texture, NULL, NULL, &pos.w, &pos.h);
 	pos.x = (pos_p.x + (pos_p.z / 2)) - (pos.w / 2);
 	pos.y = pos_p.y + ((pos_p.w * str->ratio_marge.w) / 100) +
