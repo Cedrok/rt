@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 11:06:00 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/28 09:44:56 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/28 14:34:58 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ int				new_ui(t_all *param)
 	bc_right = create_bloc_filter(param->env->w, param->env->h);
 	bc_center = create_bloc_center(param->env->w, param->env->h);
 	bc_left = create_bloc_left(param->env->w, param->env->h);
-	setf_btn_r(bc_right, param);
-	setf_btn_c(bc_center, param);
-	setf_btn_l(bc_left, param);
+	setf_btn_r(bc_right);
+	setf_btn_c(bc_center);
+	setf_btn_l(bc_left);
 	param->ui.bc_rght = bc_right;
 	param->ui.bc_center = bc_center;
 	param->ui.bc_lft = bc_left;

@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 18:15:21 by cpieri            #+#    #+#             */
-/*   Updated: 2018/06/28 09:45:03 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/28 14:34:50 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,15 @@ void			rot_shape(void *p, int type)
 	t_all	*param;
 	t_scene	sc;
 	t_shape	*shape;
-	int		is_move;
 
 	param = (t_all*)p;
-	is_move = ((t_button*)param->ui.bc_lft->lst_obj[0]->obj)->type;
 	sc = param->scene;
-	if (is_move == 1)
-	{
-		shape = get_shape_with_id(param->ui.g_id, sc);
-		if (type == 1 || type == 3 || type == 4)
-			rot_value(shape, type, '+');
-		else
-			rot_value(shape, type, '-');
-		refresh_img(param);
-	}
+	shape = get_shape_with_id(param->ui.g_id, sc);
+	if (type == 1 || type == 3 || type == 4)
+		rot_value(shape, type, '+');
+	else
+		rot_value(shape, type, '-');
+	refresh_img(param);
 }
 
 static void		check_first(t_list **lst, int id)

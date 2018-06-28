@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/28 10:03:09 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/28 14:34:47 by cvautrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,6 @@ typedef struct		s_perlin_stuff
 
 typedef struct		s_left
 {
-	t_button		*b_bool;
 	t_label			*trot;
 	t_label			*tran;
 	t_button		*rot_0;
@@ -400,7 +399,6 @@ int					new_ui(t_all *param);
 t_bloc				*create_bloc_filter(int w, int h);
 t_bloc				*create_bloc_left(int w, int h);
 void				event_button(t_all *param, int x, int y);
-void				on_move(void *p, int type);
 void				del_shape(void *p, int type);
 void				btn_fastmode(void *p, int type);
 void				dselect(void *p, int type);
@@ -412,15 +410,16 @@ void				put_string(t_label *str, t_vector4d pos_p,
 				SDL_Renderer *rend);
 void				draw_bloc(t_bloc *bloc, SDL_Renderer *rend);
 void				draw_ui(t_all *param);
-void				setf_btn_r(t_bloc *bc, t_all *param);
-void				setf_btn_c(t_bloc *bc, t_all *param);
-void				setf_btn_l(t_bloc *bc, t_all *param);
+void				setf_btn_r(t_bloc *bc);
+void				setf_btn_c(t_bloc *bc);
+void				setf_btn_l(t_bloc *bc);
 void				select_shape(t_all *param, int x, int y);
 void				cartoon_mode(void *p, int type);
 void				move_shape(void *p, int type);
 void				rot_shape(void *p, int type);
 t_shape				*get_shape_with_id(int id, t_scene sc);
 SDL_Renderer		*surface_2_rend(t_env *env);
+void				color_btn_mv(t_bloc *bc);
 
 /*
 **	Utils func
