@@ -6,7 +6,7 @@
 /*   By: cvautrai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 15:03:41 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/20 17:18:40 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/28 09:00:24 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void		grab_cut(t_shape *obj, int *fd)
 			obj->limunit.cut_amount = extract_vd3(line);
 		if (!ft_strncmp(line, "\t\tradius:", 9))
 			obj->limunit.cut_radius = ft_atof(line + 9);
-		if (!ft_strncmp(line, "\t\treal_pos:", 11))
-			obj->limunit.real_position = ft_atof(line + 11);
 	}
 	ft_strdel(&line);
 }
