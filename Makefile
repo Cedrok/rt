@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/28 12:01:07 by tmilon           ###   ########.fr        #
+#    Updated: 2018/06/28 12:42:51 by cvautrai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,11 @@ FLAGSFT	=	-L./libft -lft -L./libgraph -lgraph
 SRC_PATH=	srcs
 
 OBJ_PATH=	obj
+
+DEPS =		Makefile			\
+			includes/rt.h		\
+			libft/libft.a		\
+			libgraph/libgraph.a	
 
 SRC_NAME= 	main.c				\
 			display.c			\
@@ -116,7 +121,7 @@ $(NAME):	libft echo $(OBJ)
 echo:
 			@ echo -n Getting $(NAME) ready
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c includes/rt.h
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(DEPS)
 			@mkdir $(OBJ_PATH) 2> /dev/null || true
 			@if [ -d "/Library/Frameworks/SDL2.framework" ]; then \
 			$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -I/Library/Frameworks/SDL2.framework/Headers/ -I $(IMG_PATH)/Headers -I $(TTF_PATH)/Headers -o $@; \

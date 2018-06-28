@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 18:38:31 by tmilon            #+#    #+#              #
-#    Updated: 2018/06/28 11:38:01 by tmilon           ###   ########.fr        #
+#    Updated: 2018/06/28 12:46:36 by cvautrai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,9 @@ SRC_PATH=	srcs
 OBJ_PATH=	obj
 
 CPPFLAG	=	-Iinclude
+
+DEPS =		Makefile					\
+			include/libft.h
 
 SRCS = 		ft_atoi.c					\
  			ft_bzero.c					\
@@ -114,16 +117,16 @@ OBJ		=	$(addprefix $(OBJ_PATH)/,$(OBJS) )
 
 .PHONY: all clean fclean re echo
 
-all:		$(NAME)
+all:		echo $(NAME)
 
-$(NAME): 	echo $(OBJ)
+$(NAME): 	$(OBJ)
 				@ar rc $(NAME) $(OBJ)
 				@ranlib $(NAME)
 
 echo:
 				@echo -n Getting libft ready
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(DEPS)
 				@mkdir $(OBJ_PATH) 2> /dev/null || true
 				@$(CC) $(CFLAGS) $(CPPFLAG) -o $@ -c $<
 				@echo -n .
