@@ -80,8 +80,6 @@ object{
 	radius: 2
 	texture{
 		path: "perlin"
-		x_scale: 0.5
-		y_scale: 0.5
 	}
 }
 object{
