@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 11:52:05 by cvautrai          #+#    #+#             */
-/*   Updated: 2018/06/26 10:01:10 by cvautrai         ###   ########.fr       */
+/*   Updated: 2018/06/28 08:51:01 by bspindle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void		set_titles(t_right r, t_vector4d btn_s, t_color white,
 	set_title_btn(r.btn_neg, "Negative", btn_s, white);
 	set_title_btn(r.btn_sepia, "Sepia", btn_s, white);
 	set_title_btn(r.btn_cart, "Cartoon", btn_s, white);
-	set_title_btn(r.btn_alias, "Anti-Aliasing", btn_s, white);
+	set_title_btn(r.btn_alias, "Blur", btn_s, white);
 	set_title_btn(r.btn_shot, "ScreenShot", btn_s, white);
 	set_title_btn(r.btn_fst, "Fast Mode", btn_s, white);
 	set_title_btn(r.btn_sc1, "Scene 1", btn_s, white);
