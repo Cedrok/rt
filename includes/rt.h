@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/28 08:58:07 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/28 09:22:45 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -334,7 +334,7 @@ t_vector3d			torus_normal(t_shape shape, t_vector3d intersection);
 */
 
 int					transparency(t_all *param, t_ray ray, int fastmode);
-int					shadow_transp(t_all * param, t_ray ray, int start_color);
+int					shadow_transp(t_all *param, t_ray ray, int start_color);
 int					no_collisions(t_list *shape_lst,
 				t_intersect inter, t_light light);
 int					set_color(t_all *param, t_intersect intersection);
@@ -486,7 +486,7 @@ void				create_render(t_all *param);
 void				quit_exe(t_all param);
 void				init_sdl(void);
 int					new_ui(t_all *param);
-t_bloc				*create_bloc_filter(int w, int);
+t_bloc				*create_bloc_filter(int w, int h);
 t_bloc				*create_bloc_left(int w, int h);
 void				event_button(t_all *param, int x, int y);
 void				on_move(void *p, int type);
