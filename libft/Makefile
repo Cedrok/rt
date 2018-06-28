@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 18:38:31 by tmilon            #+#    #+#              #
-#    Updated: 2018/06/28 10:37:46 by cvautrai         ###   ########.fr        #
+#    Updated: 2018/06/28 11:38:01 by tmilon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,7 +121,7 @@ $(NAME): 	echo $(OBJ)
 				@ranlib $(NAME)
 
 echo:
-				@echo -n Compiling libft
+				@echo -n Getting libft ready
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 				@mkdir $(OBJ_PATH) 2> /dev/null || true

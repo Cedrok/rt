@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/01 15:43:04 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/28 10:37:44 by cvautrai         ###   ########.fr        #
+#    Updated: 2018/06/28 11:33:02 by tmilon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ $(NAME): 	echo $(OBJ)
 			@ranlib $(NAME)
 
 echo:
-			@echo -n Compiling libgraph
+			@echo -n Getting libgraph ready
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 			@mkdir $(OBJ_PATH) 2> /dev/null || true

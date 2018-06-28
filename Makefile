@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/28 11:24:52 by cvautrai         ###   ########.fr        #
+#    Updated: 2018/06/28 12:01:07 by tmilon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,12 +111,12 @@ $(NAME):	libft echo $(OBJ)
 			else \
 			$(CC) $(CFLAGS) $(FLAGSFT) -o $(NAME) $(OBJ) $(CPPFLAGS) $(SDL_FLAGS); \
 			fi
-			@echo "\n$(GREEN)$(NAME) compiled !$(NONE)"
+			@echo "\n$(GREEN)$(NAME) ready!$(NONE)"
 
 echo:
-			@ echo -n Compiling files
+			@ echo -n Getting $(NAME) ready
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c includes/rt.h libft/libft.a libgraph/libgraph.a
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c includes/rt.h
 			@mkdir $(OBJ_PATH) 2> /dev/null || true
 			@if [ -d "/Library/Frameworks/SDL2.framework" ]; then \
 			$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -I/Library/Frameworks/SDL2.framework/Headers/ -I $(IMG_PATH)/Headers -I $(TTF_PATH)/Headers -o $@; \
@@ -149,17 +149,9 @@ norm:		clean
 re:			fclean all
 
 LFT:
-		@if [ ! "./libft/libft.a" ]; then \
-			make -C ./libft/; \
-			echo "\n$(GREEN)Libft compiled !$(NONE)";\
-		else \
-			echo "$(GREEN)Libft was already installed$(NONE)"; \
-		fi
+		@make -C ./libft/;
+		@echo "\n$(GREEN)Libft ready!$(NONE)";
 
 LGRAPH:
-		@if [ ! "./libgraph/libgraph.a" ]; then \
-			make -C ./libgraph/; \
-			echo "\n$(GREEN)Libgraph compiled !$(NONE)";\
-		else \
-			echo "$(GREEN)Libgraph was already installed$(NONE)"; \
-		fi
+		@make -C ./libgraph/;
+		@echo "\n$(GREEN)Libgraph ready!$(NONE)";
