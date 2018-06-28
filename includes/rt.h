@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/18 17:15:16 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/28 09:22:45 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/28 09:49:05 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,11 +302,13 @@ typedef struct		s_thread_param
  ** Initstruct
 */
 
-t_light				new_light(t_vector3d origin, double intensity, int color);
 t_ray				new_ray(t_vector3d o, t_vector3d d);
 t_point				new_point(int x, int y, int color);
-t_scene				new_env(t_list *shape_lst, t_list *lightlist);
 t_camera			new_cam(t_vector3d orig, t_vector3d rot);
+void				new_shape(void *p, int type);
+t_shape				default_shape(int i);
+void				new_spot(void *p, int c);
+t_light				default_light(void);
 
 /*
 ** Intersection checking
@@ -316,7 +318,6 @@ int					intersect_sphere(t_shape shape, t_ray ray, double *t);
 int					intersect_plane(t_shape shape, t_ray ray, double *t);
 int					intersect_cylinder(t_shape shape, t_ray ray, double *t);
 int					intersect_cone(t_shape shape, t_ray ray, double *t);
-int					intersect_torus(t_shape shape, t_ray ray, double *t);
 
 /*
 ** Normal fetchers
@@ -327,7 +328,6 @@ t_vector3d			plane_normal(t_shape shape, t_vector3d intersection_point);
 t_vector3d			cylinder_normal(t_shape shape,
 												t_vector3d intersection_point);
 t_vector3d			cone_normal(t_shape shape, t_vector3d intersection_point);
-t_vector3d			torus_normal(t_shape shape, t_vector3d intersection);
 
 /*
 ** Display functs
@@ -335,10 +335,7 @@ t_vector3d			torus_normal(t_shape shape, t_vector3d intersection);
 
 int					transparency(t_all *param, t_ray ray, int fastmode);
 int					shadow_transp(t_all *param, t_ray ray, int start_color);
-int					no_collisions(t_list *shape_lst,
-				t_intersect inter, t_light light);
 int					set_color(t_all *param, t_intersect intersection);
-int					interpolate(int start, int finish, float ratio);
 double				get_nearest_intersection(t_ray *ray, t_scene scene,
 				t_intersect *nearest_intersect, double maxdist);
 void				setup_multithread(t_all param);
@@ -378,7 +375,7 @@ int					is_in_cone(t_shape cone, t_light light);
 int					is_in_plane(t_shape plane, t_light light);
 
 /*
-**	Img file
+**	Img & SDL func
 */
 
 t_color				get_color_pixel(SDL_Surface *surf, t_point p);
@@ -387,13 +384,48 @@ void				blur_mode(t_env *env, t_point point);
 double				cartoon(double intensity);
 void				img_put_pixel(SDL_Surface *surf, t_point point);
 void				refresh_img(t_all *param);
+int					sdl_key(t_all *param, int key);
+void				refresh_surf(void *delay, int type);
+void				init_sdl(void);
+void				create_win_render(t_env *env);
+void				create_all_surface(t_env *env);
+void				clear_render(t_env *env);
+void				create_render(t_all *param);
 
 /*
-**	Utils file
+**	UI func
 */
 
-double				get_vect_dist(t_vector3d a, t_vector3d b);
-double				magnitude(t_vector3d v);
+int					new_ui(t_all *param);
+t_bloc				*create_bloc_filter(int w, int h);
+t_bloc				*create_bloc_left(int w, int h);
+void				event_button(t_all *param, int x, int y);
+void				on_move(void *p, int type);
+void				del_shape(void *p, int type);
+void				btn_fastmode(void *p, int type);
+void				dselect(void *p, int type);
+t_vector4d			size_rend(int w, int h);
+void				delshape_func(void *ptr, size_t ok);
+void				free_ui(t_all *param);
+void				draw_rect(t_vector4d pos, t_color c, SDL_Renderer *rend);
+void				put_string(t_label *str, t_vector4d pos_p,
+				SDL_Renderer *rend);
+void				draw_bloc(t_bloc *bloc, SDL_Renderer *rend);
+void				draw_ui(t_all *param);
+void				setf_btn_r(t_bloc *bc, t_all *param);
+void				setf_btn_c(t_bloc *bc, t_all *param);
+void				setf_btn_l(t_bloc *bc, t_all *param);
+void				select_shape(t_all *param, int x, int y);
+void				cartoon_mode(void *p, int type);
+void				move_shape(void *p, int type);
+void				rot_shape(void *p, int type);
+t_shape				*get_shape_with_id(int id, t_scene sc);
+SDL_Renderer		*surface_2_rend(t_env *env);
+
+/*
+**	Utils func
+*/
+
 t_vector3d			normals(t_shape shape, t_vector3d point);
 int					collisions(t_shape shape, t_ray ray, double *t);
 int					is_in(t_shape shape, t_light light);
@@ -453,45 +485,8 @@ void				parsing_quit(char *msg, char **splt_ln, char *ln);
 **	Misc
 */
 
-int					sdl_key(t_all *param, int key);
 void				screenshot(void *p, int c);
 void				change_scene(void *p, int key);
-
-void				new_shape(void *p, int type);
-t_shape				default_shape(int i);
-void				new_spot(void *p, int c);
-t_light				default_light(void);
-t_vector4d			size_rend(int w, int h);
-void				delshape_func(void *ptr, size_t ok);
-void				free_ui(t_all *param);
-void				draw_rect(t_vector4d pos, t_color c, SDL_Renderer *rend);
-void				put_string(t_label *str, t_vector4d pos_p,
-				SDL_Renderer *rend);
-void				draw_bloc(t_bloc *bloc, SDL_Renderer *rend);
-void				draw_ui(t_all *param);
-void				setf_btn_r(t_bloc *bc, t_all *param);
-void				setf_btn_c(t_bloc *bc, t_all *param);
-void				setf_btn_l(t_bloc *bc, t_all *param);
-void				select_shape(t_all *param, int x, int y);
-void				refresh_surf(void *delay, int type);
-void				cartoon_mode(void *p, int type);
-void				move_shape(void *p, int type);
-void				rot_shape(void *p, int type);
-t_shape				*get_shape_with_id(int id, t_scene sc);
-SDL_Renderer		*surface_2_rend(t_env *env);
-void				create_win_render(t_env *env);
-void				create_all_surface(t_env *env);
-void				clear_render(t_env *env);
-void				create_render(t_all *param);
 void				quit_exe(t_all param);
-void				init_sdl(void);
-int					new_ui(t_all *param);
-t_bloc				*create_bloc_filter(int w, int h);
-t_bloc				*create_bloc_left(int w, int h);
-void				event_button(t_all *param, int x, int y);
-void				on_move(void *p, int type);
-void				del_shape(void *p, int type);
-void				btn_fastmode(void *p, int type);
-void				dselect(void *p, int type);
 
 #endif

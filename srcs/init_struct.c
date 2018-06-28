@@ -6,23 +6,12 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 11:55:34 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/24 17:02:04 by bspindle         ###   ########.fr       */
+/*   Updated: 2018/06/28 09:44:28 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include <math.h>
-
-t_light	new_light(t_vector3d origin, double intensity, int color)
-{
-	t_light	ret;
-
-	ret.origin = origin;
-	ret.intensity = intensity;
-	ret.color = color;
-	ret.is_hidden = 0;
-	return (ret);
-}
 
 t_point	new_point(int x, int y, int color)
 {
