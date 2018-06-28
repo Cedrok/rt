@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:33:37 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/25 21:23:59 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/28 08:33:31 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,12 @@ static int		shadows(t_all *param, t_intersect inter, t_light light,
 		ray.previous_inter_id = inter.shape_copy.id;
 	shad_color = shadow_transp(param, ray, *color);
 	if (shad_color != -1)
+	{
+		shad_color = interpolate(0, shad_color,
+				ftb_clamp(light.intensity, 0, 1));
 		*color = interpolate(shad_color, *color,
-				ftb_clamp(param->data.ambiantlight, 0, 1));
+				ftb_clamp(param->data.ambiantlight * light.intensity, 0, 1));
+	}
 	return (shad_color);
 }
 
