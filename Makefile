@@ -6,7 +6,7 @@
 #    By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 11:20:25 by cpieri            #+#    #+#              #
-#    Updated: 2018/06/28 10:37:43 by cvautrai         ###   ########.fr        #
+#    Updated: 2018/06/28 11:24:52 by cvautrai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -149,17 +149,17 @@ norm:		clean
 re:			fclean all
 
 LFT:
-		@if [ ! -d "./libft/libft.a" ]; then \
+		@if [ ! "./libft/libft.a" ]; then \
 			make -C ./libft/; \
 			echo "\n$(GREEN)Libft compiled !$(NONE)";\
 		else \
-			echo "Libft was already installed"; \
+			echo "$(GREEN)Libft was already installed$(NONE)"; \
 		fi
 
 LGRAPH:
-		@if [ ! -d "./libgraph/libgraph.a" ]; then \
+		@if [ ! "./libgraph/libgraph.a" ]; then \
 			make -C ./libgraph/; \
 			echo "\n$(GREEN)Libgraph compiled !$(NONE)";\
 		else \
-			echo "Libgraph was already installed"; \
+			echo "$(GREEN)Libgraph was already installed$(NONE)"; \
 		fi
