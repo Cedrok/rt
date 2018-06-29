@@ -6,7 +6,7 @@
 /*   By: cpieri <cpieri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 17:50:46 by tmilon            #+#    #+#             */
-/*   Updated: 2018/06/20 14:37:28 by tmilon           ###   ########.fr       */
+/*   Updated: 2018/06/28 14:53:25 by tmilon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 int	resolve_quadratic_equation(t_calcunit *calc, double *t)
 {
-	double	tmp;
-
 	calc->t0 = 0;
 	calc->t1 = 0;
 	calc->delta = (calc->b * calc->b) - (4.0 * calc->a * calc->c);
@@ -25,9 +23,6 @@ int	resolve_quadratic_equation(t_calcunit *calc, double *t)
 	calc->delta = sqrt(calc->delta);
 	calc->t0 = (-calc->b - calc->delta) / (2.0 * calc->a);
 	calc->t1 = (-calc->b + calc->delta) / (2.0 * calc->a);
-	tmp = calc->t0;
-	calc->t0 = (calc->t0 < calc->t1 ? calc->t0 : calc->t1);
-	calc->t1 = (calc->t1 == calc->t0 ? tmp : calc->t1);
 	calc->t0 = ((calc->t0 > *t) || (calc->t0 <= DIST_MIN)) ? -1 : calc->t0;
 	calc->t1 = ((calc->t1 > *t) || (calc->t1 <= DIST_MIN)) ? -1 : calc->t1;
 	return (calc->t0 == -1 && calc->t1 == -1 ? 0 : 1);

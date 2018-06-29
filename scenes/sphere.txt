@@ -1,0 +1,36 @@
+# Scene informations
+title: "rt - scene 0"
+camera{
+	pos: {0, 0, -1.5}
+	rot: {1, 1, 1}
+}
+ambiant: 0
+#
+
+# Objects
+object{
+	type: "sphere"
+	color: "0F00FF"
+	pos: {0, 0, 3}
+-	rot: {x, y, z}
+-	height: a
+-	width: a
+	radius: 1
+	opacity: 1
+	brillance: 0.2
+-	texture: "path"
+}
+#
+
+# Lights
+spot{
+	pos: {-2, 0, -3}
+	color: "FFFFFF"
+	intensity: 0.6
+}
+-spot{
+	pos: {2, 10, 0}
+	color: "FFFFFF"
+	intensity: 0.2
+}
+#

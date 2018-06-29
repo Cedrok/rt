@@ -10,25 +10,18 @@ ambiant: 0
 # Objects
 object{
 	type: "plane"
-	color: "FFFF00"
-	pos: {0, -6, 0}
-	rot: {0, 0, 0}
-	height: 3
-	width: 3
-	brillance: 0.3
-}
-object{
-	type: "plane"
-	color: "FF9900"
+	color: "FFFFFF"
 	pos: {0, -5, 0}
 	rot: {0, 0, 0}
 	height: 1
 	width: 1
-	brillance: 0.3
+	brillance: 0
 	texture{
-		path: "perlin"
-		x_scale: 1
-		y_scale: 1
+		path: "textures/lena_gray.bmp"
+		-x_offset: 140
+		-y_offset: 120
+		x_scale: 0.5
+		y_scale: 0.5
 	}
 }
 #
